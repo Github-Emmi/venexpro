@@ -1,5 +1,6 @@
 .venv/
 .env
-cert.cert
+cert.crt
 cert.key
 debug.log
+db.sqlite3
