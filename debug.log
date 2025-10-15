@@ -1264,3 +1264,14 @@ WARNING 2025-10-15 09:28:31,418 log 4913 123145590517760 Not Found: /dashboard/r
 WARNING 2025-10-15 09:28:31,445 log 4913 123145674465280 Not Found: /dashboard/resource(2).html
 WARNING 2025-10-15 09:28:31,456 log 4913 123145607307264 Not Found: /dashboard/resource(3).html
 WARNING 2025-10-15 09:29:14,179 log 4913 123145590517760 Not Found: /deposit-list
+INFO 2025-10-15 09:47:02,333 autoreload 7022 4400555520 Watching for file changes with StatReloader
+WARNING 2025-10-15 09:47:18,955 log 7022 123145507762176 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-15 09:47:19,092 log 7022 123145507762176 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-15 09:47:26,711 log 7022 123145524551680 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-15 09:47:26,854 log 7022 123145524551680 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-15 09:47:26,976 log 7022 123145507762176 Not Found: /login/er.lrticker.html
+WARNING 2025-10-15 09:47:37,237 log 7022 123145541341184 Not Found: /dashboard/img/user_2.png
+WARNING 2025-10-15 09:47:37,361 log 7022 123145591709696 Not Found: /dashboard/resource(1).html
+WARNING 2025-10-15 09:47:37,399 log 7022 123145524551680 Not Found: /dashboard/resource(2).html
+WARNING 2025-10-15 09:47:37,460 log 7022 123145574920192 Not Found: /dashboard/resource.html
+WARNING 2025-10-15 09:47:37,494 log 7022 123145524551680 Not Found: /dashboard/resource(3).html
