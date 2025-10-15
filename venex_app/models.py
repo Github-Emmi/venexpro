@@ -188,7 +188,7 @@ class PriceHistory(models.Model):
     cryptocurrency = models.ForeignKey(Cryptocurrency, on_delete=models.CASCADE, related_name='price_history')
     price = models.DecimalField(max_digits=20, decimal_places=8)
     volume = models.DecimalField(max_digits=30, decimal_places=2)
-    market_cap = models.DecimalField(max_digits=30, decimal_places=2, default=0.0)
+    market_cap = models.DecimalField(max_digits=30, decimal_places=2, default=0.0) # type: ignore
     timestamp = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
