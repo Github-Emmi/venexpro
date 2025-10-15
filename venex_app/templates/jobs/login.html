@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/assets/css/grids.css">
     <link rel="stylesheet" href="/static/assets/css/fw.css">
-    <link rel="stylesheet" href="/static/assets/css/fontsb86a.css">
+    <link rel= "stylesheet" href="/static/assets/css/fontsb86a.css">
     <link rel="stylesheet" href="/static/assets/css/stylesb86a.css">
 {% endblock %}
 {% block meta_keywords %} login venex ltd {% endblock %}
@@ -21,7 +21,6 @@
 </script>
 {% endblock %} 
 
-
 {% block content %}
 <!--passing crypto values-->
 
@@ -29,11 +28,12 @@
 <coingecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#ffffff" locale="en" vce-ready=""></coingecko-coin-price-marquee-widget> 
 
 <!--passing crypto values ends-->
+
 <script language="javascript">
     function checkform() {
-      if (document.mainform.username.value=='') {
-        alert("Please type your username!");
-        document.mainform.username.focus();
+      if (document.mainform.email.value=='') {
+        alert("Please type your email!");
+        document.mainform.email.focus();
         return false;
       }
       if (document.mainform.password.value=='') {
@@ -43,7 +43,40 @@
       }
       return true;
     }
-    </script>
+
+    // jQuery for handling login messages
+    $(document).ready(function() {
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    showErrorNotification('{{ message }}');
+                {% elif message.tags == 'success' %}
+                    showSuccessNotification('{{ message }}');
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    });
+
+    function showErrorNotification(message) {
+        // Create or update error display
+        var errorDiv = $('.alert-danger');
+        if (errorDiv.length === 0) {
+            errorDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 10px 0;"></div>');
+            $('.auth-box__form').prepend(errorDiv);
+        }
+        errorDiv.html(message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>').show();
+        
+        // Auto-hide after 5 seconds
+        setTimeout(function() {
+            errorDiv.fadeOut();
+        }, 5000);
+    }
+
+    function showSuccessNotification(message) {
+        // Could be used for successful login redirect feedback
+        console.log('Success:', message);
+    }
+</script>
 
         <div class="auth-box__content">
         <div class="auth-box__container">
@@ -51,34 +84,25 @@
                 Account Login
             </div>
             
-            
-            
-                        <div class="auth-box__form">
-                <form method="post" action="/do-login" name="mainform" onsubmit="return checkform()">
+            <div class="auth-box__form">
+                <form method="post" action="{% url 'login' %}" name="mainform" onsubmit="return checkform()">
                     {% csrf_token %}
                     
-                    {% if messages %}
-                     <div class="col-12">
-                        {% for message in messages %}
-                        {% if message.tags == 'error' %}
-                        <span class="alert alert-danger"> {{ message }}</span>
-                        {% endif %}
-                        {% endfor %}
-                     </div>
-                     {% endif %}
+                    <!-- Messages will be displayed here by jQuery -->
+                    
                     <div class="form__input-container">
-                        <label for="username">
+                        <label for="email">
                             <i class="fa fa-user"></i>
                             Email:</label>
-                        <input placeholder="Enter your username" type="email" name="email" value="" class="form__input form__input-full-width">
+                        <input placeholder="Enter your email" type="email" name="email" value="" class="form__input form__input-full-width" required>
                     </div>
                     <div class="form__input-container">
                         <label for="password">
                             <i class="fa fa-key"></i>
                             Password:</label>
-                        <input placeholder="Enter your password" type="password" name="password" class="form__input form__input-full-width">
+                        <input placeholder="Enter your password" type="password" name="password" class="form__input form__input-full-width" required>
                         <div style="padding-top: .3em">
-                            <a href="https://worldfxco.com/?a=forgot_password">
+                            <a href="#">
                                 Lost your password? Recover it now!
                             </a>
                         </div>
@@ -111,5 +135,4 @@
 <script src="/static/assets/js/jquery-3.2.1.min.js"></script>
 <script src="/static/assets/js/cubeb86a.js"></script>
 <script src="/static/assets/js/1fonjd21.js"></script>
-
-  {% endblock %}
+{% endblock %}

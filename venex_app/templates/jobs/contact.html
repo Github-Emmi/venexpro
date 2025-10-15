@@ -13,13 +13,10 @@
 </script>
 {% endblock %} 
 
-
 {% block content %}
 
 <script src="{% static 'assets/js/coingecko-coin-market-ticker-list-widget.js' %}"></script>
 <coingecko-coin-market-ticker-list-widget coin-id="bitcoin" currency="usd" locale="en" vce-ready=""></coingecko-coin-market-ticker-list-widget>
-
-
 
 <div class="bannerContainerinside">
     <div class="bannerinsideInner">
@@ -38,8 +35,11 @@
     <div class="inside_inner">
         <div class="form-contact">
             <h2 style="color: white">Send Us a Message: </h2>
-<script language="javascript">
+            
+            <!-- Messages Display Area -->
+            <div id="message-alerts" style="display: none;"></div>
 
+<script language="javascript">
 function checkform() {
   if (document.mainform.name.value == '') {
     alert("Please type your full name!");
@@ -59,8 +59,43 @@ function checkform() {
   return true;
 }
 
-</script>
+// jQuery for handling form submission and messages
+$(document).ready(function() {
+    // Show Django messages as jQuery notifications
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                showNotification('{{ message }}', 'success');
+            {% elif message.tags == 'error' %}
+                showNotification('{{ message }}', 'error');
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
+    // Handle form submission with AJAX (optional enhancement)
+    $('form[name="mainform"]').on('submit', function(e) {
+        // Basic validation passed, let form submit normally
+        // Django CSRF token and backend will handle the rest
+        console.log('Contact form submitted');
+    });
+});
+
+function showNotification(message, type) {
+    var alertDiv = $('#message-alerts');
+    var alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    
+    alertDiv.html('<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert">' +
+                  message +
+                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                  '<span aria-hidden="true">&times;</span>' +
+                  '</button></div>').show();
+    
+    // Auto-hide after 5 seconds
+    setTimeout(function() {
+        alertDiv.fadeOut();
+    }, 5000);
+}
+</script>
 
 <form method="POST" action="{% url 'contact' %}" name="mainform" onsubmit="return checkform()">
     {% csrf_token %}
@@ -88,12 +123,6 @@ function checkform() {
  <td><input type="submit" value="Send" class="sbmt"></td>
 </tr></tbody></table>
 
-
-
-
-
-    
-
 <div class="contact_inside">
     <div class="inside_inner">
         <div class="address">
@@ -112,11 +141,10 @@ function checkform() {
     </div>
 </div>
 
-
 </td></tr></tbody></table></form></div></div></div>
-   {% endblock %}
+{% endblock %}
 
-   {% block javascripts %} 
+{% block javascripts %}
   <script src="/assets/js/default.js"></script>
   <script src="/assets/js/element.js"></script>
-  {% endblock %}
+{% endblock %}

@@ -233,6 +233,11 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='') # type: ignore
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='') # type: ignore
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+# Login URLs
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/'
+
 # OpenAI Configuration for Chatbot
 OPENAI_API_KEY = env('OPENAI_API_KEY', default='your-openai-api-key') # type: ignore
 
