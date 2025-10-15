@@ -1,0 +1,189 @@
+{% extends 'admin_templates/base.html' %}
+
+{% block title %} venex | dashboard / account{% endblock title %}
+{% block content %}
+<div class="cabContent" style="background-image: url(/static/assets/images/grad_bg_rev.png), url(/static/assets/images/white_bg.png)">
+<div class="container">
+    <!-- cabHead starts-->
+    {% block cabHead %}
+    <div class="cabHead">
+        <div class="row">
+            <div class="left">
+                <div class="userInfo">
+                    <div class="userpic" style="background-image: url('/static/assets/images/user.png');"><input type="file" id="userpic"><label for="userpic"></label></div>
+                    <span>Username:</span>
+                    <a href="/view-profile">{{ user.username }}</a>
+                    <a href="/edit-account" class="editAcc"><span class="icon-edit"></span>Edit account</a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="accInfo cfix">
+                    <ul>
+                        <li>
+                            <div class="iconLeft">
+                                <span class="icon-date"></span>
+                                <div class="data">
+                                    <span>Last seen:</span>
+                                    <span><b>{{ user.admin.last_login }}</b></span>
+                                    <span>Registered On:</span>
+                                    <span><b>{{ user.admin.date_joined }}</b></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="userBal">
+                        <div class="iconLeft">
+                            <div class="icon">
+                                <span class="icon-sum2 gradTxt"></span>
+                            </div>
+                            <div class="data">
+                                <span class="title">your balance:</span>
+                                <span class="num" id="balance" style="">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnsCab">
+                        <a href="/deposit" class="btnFillColor1MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_out"></span><span class="data">deposit</span></span>
+                        </a>
+                        <a href="/withdraw" class="btnFillColor2MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_in"></span><span class="data">withdraw</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <!-- navigation starts -->
+                {% include 'admin_templates/includes/navigation.html' %}
+                <!-- navigation ends -->
+            
+            
+            <div class="right">
+                <div class="balInfo" id="infodata" style="">
+                                                                                                                                          ---->
+                        
+                        
+                        <div class="item">
+                            <div class="iconLeft">
+                                <div class="icon" style="background-image: url(/static/assets/images/1009.png);"></div>
+                                <div class="data">
+                                    <span>Currency: <b>TRON</b></span>
+                                    <span>Balance: <b>0.00</b></span>
+                                </div>
+                            </div>
+                        </div>
+                             <div class="item">
+                            <div class="iconLeft">
+                                <div class="icon" style="background-image: url(/static/assets/images/1007.png);"></div>
+                                <div class="data">
+                                    <span>Currency: <b>USDT (ERC20)</b></span>
+                                    <span>Balance: <b>0.00</b></span>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="item">
+                            <div class="iconLeft">
+                                <div class="icon" style="background-image: url(/static/assets/images/48.png);"></div>
+                                <div class="data">
+                                    <span>Currency: <b>BITCOIN</b></span>
+                                    <span>Balance: <b>0.00</b></span>
+                                </div>
+                            </div>
+                        </div>
+                              <div class="item">
+                            <div class="iconLeft">
+                                <div class="icon" style="background-image: url(/static/assets/images/68.png);"></div>
+                                <div class="data">
+                                    <span>Currency: <b>LITECOIN</b></span>
+                                    <span>Balance: <b>0.00</b></span>
+                                </div>
+                            </div>
+                        </div>
+                             <div class="item">
+                            <div class="iconLeft">
+                                <div class="icon" style="background-image: url(/static/assets/images/69.png);"></div>
+                                <div class="data">
+                                    <span>Currency: <b>ETHEREUM</b></span>
+                                    <span>Balance: <b>0.00</b></span>
+                                </div>
+                            </div>
+                        </div>
+                         
+                            <a href="#" class="btnFillGradMd">Promo materials</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endblock cabHead %}
+    <!-- end of cabHead -->
+
+    {% block content_place %}
+    <div id="content_place"></div>
+<div class="cabItem profile">
+<span class="captionDark center">your account</span>
+<div class="accTbl">
+<div class="row">
+<div class="item col6">
+<div class="tblWrap">
+    <ul class="tblTempl2 in table full">
+        <li class="tRow">
+            <span class="param tCell middle">Earned total</span>
+            <span class="data tCell middle">$0.00</span>
+        </li>
+        <li class="tRow">
+            <span class="param tCell middle">Pending withdrawal</span>
+            <span class="data tCell middle">$0.00</span>
+        </li>
+        <li class="tRow">
+            <span class="param tCell middle">Withdrew total</span>
+            <span class="data tCell middle">$0.00</span>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="item col6">
+<div class="tblWrap">
+    <ul class="tblTempl2 out table full">
+        <li class="tRow">
+            <span class="param tCell middle">Last deposit</span>
+            <span class="data tCell middle">$N/A</span>
+        </li>
+        <li class="tRow">
+            <span class="param tCell middle">Active deposit</span>
+            <span class="data tCell middle">$0.00</span>
+        </li>
+        <li class="tRow">
+            <span class="param tCell middle">Total deposit</span>
+            <span class="data tCell middle">$0.00</span>
+        </li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="refLink">
+<div class="userLink">
+<div class="userpic" style="background-image: url(img/user_2.png);"></div>
+<span class="title">your upline:</span>
+            <a style="text-decoration: none; cursor: default;">---</a>
+    </div>
+<div class="linkBlock">
+  <div class="iconLeft">
+  <span class="icon-link"></span>
+  <span class="title">referal link:</span>
+  <a href="https://kpispine.com/?ref=Emmi" id="linkRef">https://kpispine.com/?ref=Emmi</a>
+</div>
+<button class="btnFillGradMd copyBtn" data-clipboard-target="#linkRef">copy link</button>
+</div>
+</div>
+
+</div>
+{% endblock content_place %}
+
+</div>
+</div>
+
+{% endblock content %}

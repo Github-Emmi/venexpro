@@ -1,0 +1,202 @@
+{% extends 'admin_templates/base.html' %}
+{% block title %} Venex Dashboard | Add clients{% endblock title %}
+{% block content %}
+<div class="cabContent" style="background-image: url(/static/assets/images/grad_bg_rev.png), url(/static/assets/images/white_bg.png)">
+    <div class="container">
+            <!-- cabHead starts-->
+    {% block cabHead %}
+    <div class="cabHead">
+        <div class="row">
+            <div class="left">
+                <div class="userInfo">
+                    <div class="userpic" style="background-image: url('/static/assets/images/user.png');"><input type="file" id="userpic"><label for="userpic"></label></div>
+                    <span>Username:</span>
+                    <a href="/view-profile">{{ user.username }}</a>
+                    <a href="/edit-account" class="editAcc"><span class="icon-edit"></span>Edit account</a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="accInfo cfix">
+                    <ul>
+                        <li>
+                            <div class="iconLeft">
+                                <span class="icon-date"></span>
+                                <div class="data">
+                                    <span>Last seen:</span>
+                                    <span><b></b></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="userBal">
+                        <div class="iconLeft">
+                            <div class="icon">
+                                <span class="icon-sum2 gradTxt"></span>
+                            </div>
+                            <div class="data">
+                                <span class="title">your balance:</span>
+                                <span class="num" id="balance" style="">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnsCab">
+                        <a href="/deposit" class="btnFillColor1MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_out"></span><span class="data">deposit</span></span>
+                        </a>
+                        <a href="/withdraw" class="btnFillColor2MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_in"></span><span class="data">withdraw</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <!-- navigation starts -->
+                {% include 'admin_templates/includes/navigation.html' %}
+                <!-- navigation ends -->
+        </div>
+        </div>
+        {% endblock cabHead %}     
+     
+    {% block content_place %}
+    <div id="content_place"></div>
+    <div class="cabItem earn">
+     <span class="captionDark center">Add Clients</span><br>
+    
+     
+     <div class="wrap">
+                        <div class="row">
+                        
+                          <div>
+                                    <div class="formBlockDark">
+    
+    
+    
+    <script language="javascript">
+    function IsNumeric(sText) {
+      var ValidChars = "0123456789.";
+      var IsNumber=true;
+      var Char;
+      if (sText == '') return false;
+      for (i = 0; i < sText.length && IsNumber == true; i++) { 
+        Char = sText.charAt(i); 
+        if (ValidChars.indexOf(Char) == -1) {
+          IsNumber = false;
+        }
+      }
+      return IsNumber;
+    }
+    
+    function checkform() {
+      if (document.editform.first-name.value == '') {
+        alert("Please type your first name!");
+        document.editform.fullname.focus();
+        return false;
+      }
+
+      if (document.editform.last-name.value == '') {
+        alert("Please type your last name!");
+        document.editform.fullname.focus();
+        return false;
+      }
+    
+    
+      if (document.editform.password.value != document.editform.password2.value) {
+        alert("Password not Identical!");
+        document.editform.fullname.focus();
+        return false;
+      }
+    
+    
+    
+    
+      if (document.editform.email.value == '') {
+        alert("Please enter your e-mail address!");
+        document.editform.email.focus();
+        return false;
+      }
+    
+    
+    
+      for (i in document.editform.elements) {
+        f = document.editform.elements[i];
+        if (f.name && f.name.match(/^pay_account/)) {
+          if (f.value == '') continue;
+          var notice = f.getAttribute('data-validate-notice');
+          var invalid = 0;
+          if (f.getAttribute('data-validate') == 'regexp') {
+            var re = new RegExp(f.getAttribute('data-validate-regexp'));
+            if (!f.value.match(re)) {
+              invalid = 1;
+            }
+          } else if (f.getAttribute('data-validate') == 'email') {
+            var re = /^[^\@]+\@[^\@]+\.\w{2,4}$/;
+            if (!f.value.match(re)) {
+              invalid = 1;
+            }
+          }
+          if (invalid) {
+            alert('Invalid account format. Expected '+notice);
+            f.focus();
+            return false;
+          }
+        }
+      }
+    
+      return true;
+    }
+    </script>
+    
+    
+     <br><center>
+    <form action="{% url 'save_clients' %}" method="post" onsubmit="return checkform()" name="editform">
+              {% csrf_token %}
+             
+        <input type="hidden" name="form_id" value="16576755401296">
+        <input type="hidden" name="form_token" value="507ea65795b8db348bf3aad969fb1dd0">
+    <input type="hidden" name="a" value="edit_account">
+    <input type="hidden" name="action" value="edit_account">
+    <input type="hidden" name="say" value="">
+    
+    <table cellspacing="0" cellpadding="2" border="0">
+    <tbody>
+    <tr><td>Username:</td>
+        <td><input type="text" class="inpts" size="30" name="username"></td></tr>
+    <tr><td>First Name:</td>
+        <td><input type="text" class="inpts" size="30" name="first_name"></td></tr>
+    <tr><td>Last Name:</td>
+        <td><input type="text" name="last_name"  class="inpts" size="30"></td></tr>
+    <tr><td>Your E-mail address:</td>
+        <td><input type="email" name="email" class="inpts" size="30"></td></tr>
+    <tr><td>Your Home Address:</td>
+        <td><input type="text" name="address" class="inpts" size="30"></td></tr>
+    <tr><td>Password:</td>
+        <td><input type="password" name="password" value="" class="inpts" size="30"></td></tr>
+    <tr> <td>Retype Password:</td>
+        <td><input type="password" name="password2" value="" class="inpts" size="30"></td></tr>
+    
+        {% if messages %}
+        <div class="col-12">
+           {% for message in messages %}
+           {% if message.tags == 'error' %}
+           <span class="alert alert-danger"> {{ message }}</span>
+           {% endif %}
+           {% endfor %}
+        </div>
+        {% endif %}
+    <tr>
+     <td>&nbsp;</td>
+     <td>
+      <button type="submit" class="btnFillGradLg center">Add Client</button></td>
+        
+    </tr>
+  </tbody></table>
+    </form>
+    </center>
+    </div></div></div></div>
+    </div>
+    {% endblock content_place %}
+</div>
+</div>
+{% endblock content %}

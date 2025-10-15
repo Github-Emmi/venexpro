@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.utils.html import format_html
 from .models import (
     CustomUser, UserActivity, Cryptocurrency, PriceHistory, 
     Transaction, Order, Portfolio
@@ -536,11 +537,13 @@ class PortfolioAdmin(admin.ModelAdmin):
 
     def get_profit_loss(self, obj):
         color = 'green' if obj.profit_loss >= 0 else 'red'
+        profit_loss_value = f"${float(obj.profit_loss):.2f}"
+        profit_loss_percentage = f"{float(obj.profit_loss_percentage):.2f}%"
         return format_html( # type: ignore
-            '<span style="color: {}; font-weight: bold;">${:.2f} ({:.2f}%)</span>',
+            '<span style="color: {}; font-weight: bold;">{} ({})</span>',
             color,
-            float(obj.profit_loss),
-            float(obj.profit_loss_percentage)
+            profit_loss_value,
+            profit_loss_percentage
         )
     get_profit_loss.short_description = 'Profit/Loss' # type: ignore
 

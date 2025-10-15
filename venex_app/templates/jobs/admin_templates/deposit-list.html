@@ -1,0 +1,204 @@
+{% extends 'admin_templates/base.html' %}
+{% block title %} Venex Dashboard | Deposit List{% endblock title %}
+{% block content %}
+<div class="cabContent" style="background-image: url(/static/assets/images/grad_bg_rev.png), url(/static/assets/images/white_bg.png)">
+    <div class="container">
+            <!-- cabHead starts-->
+    {% block cabHead %}
+    <div class="cabHead">
+        <div class="row">
+            <div class="left">
+                <div class="userInfo">
+                    <div class="userpic" style="background-image: url('/static/assets/images/user.png');"><input type="file" id="userpic"><label for="userpic"></label></div>
+                    <span>Username:</span>
+                    <a href="/view-profile">{{ user.username }} </a>
+                    <a href="/edit-account" class="editAcc"><span class="icon-edit"></span>Edit account</a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="accInfo cfix">
+                    <ul>
+                        <li>
+                            <div class="iconLeft">
+                                <span class="icon-date"></span>
+                                <div class="data">
+                                    <span>Last seen:</span>
+                                    <span><b>{{ AdminUser.admin.last_login }}</b></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="userBal">
+                        <div class="iconLeft">
+                            <div class="icon">
+                                <span class="icon-sum2 gradTxt"></span>
+                            </div>
+                            <div class="data">
+                                <span class="title">your balance:</span>
+                                <span class="num" id="balance" style="">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnsCab">
+                        <a href="/deposit" class="btnFillColor1MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_out"></span><span class="data">deposit</span></span>
+                        </a>
+                        <a href="/withdraw" class="btnFillColor2MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_in"></span><span class="data">withdraw</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <!-- navigation starts -->
+                {% include 'admin_templates/includes/navigation.html' %}
+                <!-- navigation ends -->
+        </div>
+        </div>
+        {% endblock cabHead %}     
+
+{% block content_place %} 
+
+    <div id="content_place"></div>
+
+<div class="cabItem depList">
+    <span class="captionDark center">your deposit</span>
+
+	<div class="wrap">
+        <div class="row">
+<center><b>Total: $0.00</b></center><br><br>
+
+ 
+<div class="filter">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
+<tbody><tr>
+ <td colspan="3" align="center"><b>PLATINUM</b></td>
+</tr><tr>
+ <th class="inheader">Plan</th>
+ <th class="inheader" width="200">Amount Spent ($)</th>
+ <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
+</tr>
+<tr>
+ <td class="item">Platinum</td>
+ <td class="item" align="right">$20.00 - $999.00</td>
+ <td class="item" align="right">13.00</td>
+</tr>
+</tbody></table>
+<br>
+<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
+ <td colspan="4"><b>No deposits for this plan</b></td>
+</tr>           
+</tbody></table>
+<br>
+</td></tr></tbody></table></div>
+<br>
+ 
+<div class="filter">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
+<tbody><tr>
+ <td colspan="3" align="center"><b>SILVER</b></td>
+</tr><tr>
+ <th class="inheader">Plan</th>
+ <th class="inheader" width="200">Amount Spent ($)</th>
+ <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
+</tr>
+<tr>
+ <td class="item">Silver</td>
+ <td class="item" align="right">$1000.00 - $2999.00</td>
+ <td class="item" align="right">25.00</td>
+</tr>
+</tbody></table>
+<br>
+<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
+ <td colspan="4"><b>No deposits for this plan</b></td>
+</tr>           
+</tbody></table>
+<br>
+</td></tr></tbody></table></div>
+<br>
+ 
+<div class="filter">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
+<tbody><tr>
+ <td colspan="3" align="center"><b>GOLD</b></td>
+</tr><tr>
+ <th class="inheader">Plan</th>
+ <th class="inheader" width="200">Amount Spent ($)</th>
+ <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
+</tr>
+<tr>
+ <td class="item">Gold</td>
+ <td class="item" align="right">$3000.00 - $5999.00</td>
+ <td class="item" align="right">40.00</td>
+</tr>
+</tbody></table>
+<br>
+<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
+ <td colspan="4"><b>No deposits for this plan</b></td>
+</tr>           
+</tbody></table>
+<br>
+</td></tr></tbody></table></div>
+<br>
+ 
+<div class="filter">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
+<tbody><tr>
+ <td colspan="3" align="center"><b>DIAMOND</b></td>
+</tr><tr>
+ <th class="inheader">Plan</th>
+ <th class="inheader" width="200">Amount Spent ($)</th>
+ <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
+</tr>
+<tr>
+ <td class="item">Diamond</td>
+ <td class="item" align="right">$6000.00 - $9999.00</td>
+ <td class="item" align="right">60.00</td>
+</tr>
+</tbody></table>
+<br>
+<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
+ <td colspan="4"><b>No deposits for this plan</b></td>
+</tr>           
+</tbody></table>
+<br>
+</td></tr></tbody></table></div>
+<br>
+ 
+<div class="filter">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
+<tbody><tr>
+ <td colspan="3" align="center"><b>EMERALD</b></td>
+</tr><tr>
+ <th class="inheader">Plan</th>
+ <th class="inheader" width="200">Amount Spent ($)</th>
+ <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
+</tr>
+<tr>
+ <td class="item">Emerald</td>
+ <td class="item" align="right">$10000.00 - $50000.00</td>
+ <td class="item" align="right">80.00</td>
+</tr>
+</tbody></table>
+<br>
+<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
+ <td colspan="4"><b>No deposits for this plan</b></td>
+</tr>           
+</tbody></table>
+<br>
+</td></tr></tbody></table></div>
+<br>
+
+</div></div>
+</div>
+        {% endblock content_place %}
+    </div>
+</div>
+{% endblock content %}

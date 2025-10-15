@@ -1,0 +1,376 @@
+{% extends 'admin_templates/base.html' %}
+{% block title %} Venex Dashboard | Earning History {% endblock title %}
+{% block content %}
+<div class="cabContent" style="background-image: url(/static/assets/images/grad_bg_rev.png), url(/static/assets/images/white_bg.png)">
+    <div class="container">
+            <!-- cabHead starts-->
+    {% block cabHead %}
+    <div class="cabHead">
+        <div class="row">
+            <div class="left">
+                <div class="userInfo">
+                    <div class="userpic" style="background-image: url('/static/assets/images/user.png');"><input type="file" id="userpic"><label for="userpic"></label></div>
+                    <span>Username:</span>
+                    <a href="/view-profile">{{ user.username }} </a>
+                    <a href="/edit-account" class="editAcc"><span class="icon-edit"></span>Edit account</a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="accInfo cfix">
+                    <ul>
+                        <li>
+                            <div class="iconLeft">
+                                <span class="icon-date"></span>
+                                <div class="data">
+                                    <span>Last seen:</span>
+                                    <span><b>{{ AdminUser.admin.last_login }}</b></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="userBal">
+                        <div class="iconLeft">
+                            <div class="icon">
+                                <span class="icon-sum2 gradTxt"></span>
+                            </div>
+                            <div class="data">
+                                <span class="title">your balance:</span>
+                                <span class="num" id="balance" style="">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnsCab">
+                        <a href="/deposit" class="btnFillColor1MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_out"></span><span class="data">deposit</span></span>
+                        </a>
+                        <a href="/withdraw" class="btnFillColor2MdIcon">
+                            <span class="iconLeft"><span class="icon-pay_in"></span><span class="data">withdraw</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <!-- navigation starts -->
+                {% include 'admin_templates/includes/navigation.html' %}
+                <!-- navigation ends -->
+        </div>
+        </div>
+        {% endblock cabHead %}     
+
+{% block content_place %}
+    
+<div id="content_place"></div>
+<div class="cabItem earn">
+ <span class="captionDark center">earning history</span><br>
+
+<script language="javascript">
+function go(p)
+{
+  document.opts.page.value = p;
+  document.opts.submit();
+}
+</script>
+
+
+  <div class="filter">
+        <form method="post" name="opts">
+            <input type="hidden" name="form_id" value="16576753788142">
+            <input type="hidden" name="form_token" value="cbd86af9c673b681be52e14cad43cf35">
+            <input type="hidden" name="form_id" value="15348024919096">
+            <input type="hidden" name="form_token" value="d12c34872c09cff53899708073177208">
+            <input type="hidden" name="a" value="earnings">
+            <input type="hidden" name="page" value="1">
+            <div class="formBlockkDark date">
+                <label for="earnFrom">From:</label>
+                <div class="selectric-wrapper selectric-selectricBl">
+                    <div class="selectric-hide-select">
+                        <select name="month_from" class="selectricBl" tabindex="-1">
+                                       <option value="1">Jan
+</option><option value="2">Feb
+</option><option value="3">Mar
+</option><option value="4">Apr
+</option><option value="5">May
+</option><option value="6">Jun
+</option><option value="7" selected="">Jul
+</option><option value="8">Aug
+</option><option value="9">Sep
+</option><option value="10">Oct
+</option><option value="11">Nov
+</option><option value="12">Dec
+                                    </option></select></div><div class="selectric"><span class="label">Jul
+</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">Jan
+</li><li data-index="1" class="">Feb
+</li><li data-index="2" class="">Mar
+</li><li data-index="3" class="">Apr
+</li><li data-index="4" class="">May
+</li><li data-index="5" class="">Jun
+</li><li data-index="6" class="selected">Jul
+</li><li data-index="7" class="">Aug
+</li><li data-index="8" class="">Sep
+</li><li data-index="9" class="">Oct
+</li><li data-index="10" class="">Nov
+</li><li data-index="11" class="last">Dec
+                                    </li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                <div class="selectric-wrapper selectric-selectricBl"><div class="selectric-hide-select"><select name="day_from" class="selectricBl" tabindex="-1">
+                                        <option value="1">1
+</option><option value="2">2
+</option><option value="3">3
+</option><option value="4">4
+</option><option value="5">5
+</option><option value="6">6
+</option><option value="7">7
+</option><option value="8">8
+</option><option value="9">9
+</option><option value="10">10
+</option><option value="11">11
+</option><option value="12" selected="">12
+</option><option value="13">13
+</option><option value="14">14
+</option><option value="15">15
+</option><option value="16">16
+</option><option value="17">17
+</option><option value="18">18
+</option><option value="19">19
+</option><option value="20">20
+</option><option value="21">21
+</option><option value="22">22
+</option><option value="23">23
+</option><option value="24">24
+</option><option value="25">25
+</option><option value="26">26
+</option><option value="27">27
+</option><option value="28">28
+</option><option value="29">29
+</option><option value="30">30
+</option><option value="31">31
+                                    </option></select></div><div class="selectric"><span class="label">12
+</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">1
+</li><li data-index="1" class="">2
+</li><li data-index="2" class="">3
+</li><li data-index="3" class="">4
+</li><li data-index="4" class="">5
+</li><li data-index="5" class="">6
+</li><li data-index="6" class="">7
+</li><li data-index="7" class="">8
+</li><li data-index="8" class="">9
+</li><li data-index="9" class="">10
+</li><li data-index="10" class="">11
+</li><li data-index="11" class="selected">12
+</li><li data-index="12" class="">13
+</li><li data-index="13" class="">14
+</li><li data-index="14" class="">15
+</li><li data-index="15" class="">16
+</li><li data-index="16" class="">17
+</li><li data-index="17" class="">18
+</li><li data-index="18" class="">19
+</li><li data-index="19" class="">20
+</li><li data-index="20" class="">21
+</li><li data-index="21" class="">22
+</li><li data-index="22" class="">23
+</li><li data-index="23" class="">24
+</li><li data-index="24" class="">25
+</li><li data-index="25" class="">26
+</li><li data-index="26" class="">27
+</li><li data-index="27" class="">28
+</li><li data-index="28" class="">29
+</li><li data-index="29" class="">30
+</li><li data-index="30" class="last">31
+                                    </li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                <div class="selectric-wrapper selectric-selectricBl"><div class="selectric-hide-select"><select name="year_from" class="selectricBl" tabindex="-1">
+                                          <option value="2012">2012
+</option><option value="2013">2013
+</option><option value="2014">2014
+</option><option value="2015">2015
+</option><option value="2016">2016
+</option><option value="2017">2017
+</option><option value="2018">2018
+</option><option value="2019">2019
+</option><option value="2020">2020
+</option><option value="2021">2021
+</option><option value="2022" selected="">2022
+                                    </option></select></div><div class="selectric"><span class="label">2022
+                                    </span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">2012
+</li><li data-index="1" class="">2013
+</li><li data-index="2" class="">2014
+</li><li data-index="3" class="">2015
+</li><li data-index="4" class="">2016
+</li><li data-index="5" class="">2017
+</li><li data-index="6" class="">2018
+</li><li data-index="7" class="">2019
+</li><li data-index="8" class="">2020
+</li><li data-index="9" class="">2021
+</li><li data-index="10" class="last selected">2022
+                                    </li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+            </div>
+            <div class="formBlockDark">
+                <label for="filterPaySys">Payment system:</label>
+                <div class="selectric-wrapper selectric-selectricBl"><div class="selectric-hide-select"><select class="selectricBl" name="ec" tabindex="-1">
+                    <option value="-1">All eCurrencies</option>
+              <option value="1000">Bitcoin</option>
+ <option value="1006">Ethereum</option>
+ <option value="1007">USDT TRC20</option>
+ <option value="1008">Litecoin</option>
+ <option value="1009">Tron</option>
+                                     </select></div><div class="selectric"><span class="label">All eCurrencies</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected">All eCurrencies</li><li data-index="1" class="">Bitcoin</li><li data-index="2" class="">Ethereum</li><li data-index="3" class="">USDT TRC20</li><li data-index="4" class="">Litecoin</li><li data-index="5" class="last">Tron</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+            </div>
+            <div class="formBlockkDark date">
+                <label for="earnFrom">To:</label>
+                <div class="selectric-wrapper selectric-selectricBl"><div class="selectric-hide-select"><select name="month_to" class="selectricBl" tabindex="-1">
+                                          <option value="1">Jan
+</option><option value="2">Feb
+</option><option value="3">Mar
+</option><option value="4">Apr
+</option><option value="5">May
+</option><option value="6">Jun
+</option><option value="7" selected="">Jul
+</option><option value="8">Aug
+</option><option value="9">Sep
+</option><option value="10">Oct
+</option><option value="11">Nov
+</option><option value="12">Dec
+                                    </option></select></div><div class="selectric"><span class="label">Jul
+</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">Jan
+</li><li data-index="1" class="">Feb
+</li><li data-index="2" class="">Mar
+</li><li data-index="3" class="">Apr
+</li><li data-index="4" class="">May
+</li><li data-index="5" class="">Jun
+</li><li data-index="6" class="selected">Jul
+</li><li data-index="7" class="">Aug
+</li><li data-index="8" class="">Sep
+</li><li data-index="9" class="">Oct
+</li><li data-index="10" class="">Nov
+</li><li data-index="11" class="last">Dec
+                                    </li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                <div class="selectric-wrapper selectric-selectricBl"><div class="selectric-hide-select"><select name="day_to" class="selectricBl" tabindex="-1">
+                                           <option value="1">1
+</option><option value="2">2
+</option><option value="3">3
+</option><option value="4">4
+</option><option value="5">5
+</option><option value="6">6
+</option><option value="7">7
+</option><option value="8">8
+</option><option value="9">9
+</option><option value="10">10
+</option><option value="11">11
+</option><option value="12">12
+</option><option value="13" selected="">13
+</option><option value="14">14
+</option><option value="15">15
+</option><option value="16">16
+</option><option value="17">17
+</option><option value="18">18
+</option><option value="19">19
+</option><option value="20">20
+</option><option value="21">21
+</option><option value="22">22
+</option><option value="23">23
+</option><option value="24">24
+</option><option value="25">25
+</option><option value="26">26
+</option><option value="27">27
+</option><option value="28">28
+</option><option value="29">29
+</option><option value="30">30
+</option><option value="31">31
+                                    </option></select></div><div class="selectric"><span class="label">13
+</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">1
+</li><li data-index="1" class="">2
+</li><li data-index="2" class="">3
+</li><li data-index="3" class="">4
+</li><li data-index="4" class="">5
+</li><li data-index="5" class="">6
+</li><li data-index="6" class="">7
+</li><li data-index="7" class="">8
+</li><li data-index="8" class="">9
+</li><li data-index="9" class="">10
+</li><li data-index="10" class="">11
+</li><li data-index="11" class="">12
+</li><li data-index="12" class="selected">13
+</li><li data-index="13" class="">14
+</li><li data-index="14" class="">15
+</li><li data-index="15" class="">16
+</li><li data-index="16" class="">17
+</li><li data-index="17" class="">18
+</li><li data-index="18" class="">19
+</li><li data-index="19" class="">20
+</li><li data-index="20" class="">21
+</li><li data-index="21" class="">22
+</li><li data-index="22" class="">23
+</li><li data-index="23" class="">24
+</li><li data-index="24" class="">25
+</li><li data-index="25" class="">26
+</li><li data-index="26" class="">27
+</li><li data-index="27" class="">28
+</li><li data-index="28" class="">29
+</li><li data-index="29" class="">30
+</li><li data-index="30" class="last">31
+                                    </li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+                <div class="selectric-wrapper selectric-selectricBl"><div class="selectric-hide-select"><select name="year_to" class="selectricBl" tabindex="-1">
+                                           <option value="2012">2012
+</option><option value="2013">2013
+</option><option value="2014">2014
+</option><option value="2015">2015
+</option><option value="2016">2016
+</option><option value="2017">2017
+</option><option value="2018">2018
+</option><option value="2019">2019
+</option><option value="2020">2020
+</option><option value="2021">2021
+</option><option value="2022" selected="">2022
+                                    </option></select></div><div class="selectric"><span class="label">2022
+                                    </span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">2012
+</li><li data-index="1" class="">2013
+</li><li data-index="2" class="">2014
+</li><li data-index="3" class="">2015
+</li><li data-index="4" class="">2016
+</li><li data-index="5" class="">2017
+</li><li data-index="6" class="">2018
+</li><li data-index="7" class="">2019
+</li><li data-index="8" class="">2020
+</li><li data-index="9" class="">2021
+</li><li data-index="10" class="last selected">2022
+                                    </li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+            </div>
+            <div class="formBlockDark">
+                <label for="filterType">Type of transaction:</label>
+                <div class="selectric-wrapper selectric-selectricBl"><div class="selectric-hide-select"><select class="selectricBl" name="type" tabindex="-1">
+                    <option value="">All operations</option>
+                                       <option value="deposit">Deposit</option>
+<option value="withdrawal">Withdrawal</option>
+<option value="earning">Earning</option>
+<option value="commissions">Referral commission</option>
+                                    </select></div><div class="selectric"><span class="label">All operations</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected">All operations</li><li data-index="1" class="">Deposit</li><li data-index="2" class="">Withdrawal</li><li data-index="3" class="">Earning</li><li data-index="4" class="last">Referral commission</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+            </div>
+            <button type="submit" class="btnFillGradMd">Search</button>
+        </form>
+    </div>
+<br><br>
+ <div class="tblTempl3">
+<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
+<tbody><tr>
+ <th class="inheader"><b>Type</b></th>
+ <th class="inheader" width="200"><b>Amount</b></th>
+ <th class="inheader" width="170"><b>Date</b></th>
+</tr>
+<tr>
+ <td colspan="3" align="center">No transactions found</td>
+</tr>
+<tr><td colspan="3">&nbsp;</td>
+
+</tr><tr>
+    <td colspan="2">Total:</td>
+ <td align="right"><b>$ 0.00</b></td>
+</tr>
+</tbody></table>
+
+</div>
+</div>
+
+{% endblock content_place %}
+    </div>
+</div>
+{% endblock content %}

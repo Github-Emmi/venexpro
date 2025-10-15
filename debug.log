@@ -184,3 +184,451 @@ Traceback (most recent call last):
     return format_html( # type: ignore
            ^^^^^^^^^^^
 NameError: name 'format_html' is not defined
+INFO 2025-10-14 17:59:34,415 autoreload 35577 4629067264 Watching for file changes with StatReloader
+WARNING 2025-10-14 18:00:48,143 log 35577 123145566883840 Not Found: /
+WARNING 2025-10-14 18:00:50,168 log 35577 123145566883840 Not Found: /favicon.ico
+ERROR 2025-10-14 18:04:09,821 log 35577 123145650831360 Internal Server Error: /admin/venex_app/portfolio/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/options.py", line 683, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'get_profit_loss'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/utils.py", line 290, in lookup_field
+    f = _get_non_gfk_field(opts, name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/utils.py", line 330, in _get_non_gfk_field
+    field = opts.get_field(name)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/options.py", line 685, in get_field
+    raise FieldDoesNotExist(
+django.core.exceptions.FieldDoesNotExist: Portfolio has no field named 'get_profit_loss'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/base.py", line 45, in render
+    return super().render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/library.py", line 359, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 354, in result_list
+    "results": list(results(cl)),
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 330, in results
+    yield ResultList(None, items_for_result(cl, res, None))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 321, in __init__
+    super().__init__(*items)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 219, in items_for_result
+    f, attr, value = lookup_field(field_name, result, cl.model_admin)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/utils.py", line 299, in lookup_field
+    value = attr(obj)
+            ^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py", line 539, in get_profit_loss
+    return format_html( # type: ignore
+           ^^^^^^^^^^^
+NameError: name 'format_html' is not defined
+INFO 2025-10-14 18:06:50,684 autoreload 35577 4629067264 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:06:52,453 autoreload 35737 4577080832 Watching for file changes with StatReloader
+INFO 2025-10-14 18:06:56,027 autoreload 35737 4577080832 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:06:56,914 autoreload 35744 4364293632 Watching for file changes with StatReloader
+ERROR 2025-10-14 18:07:49,783 log 35744 123145473064960 Internal Server Error: /admin/venex_app/portfolio/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/options.py", line 683, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'get_profit_loss'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/utils.py", line 290, in lookup_field
+    f = _get_non_gfk_field(opts, name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/utils.py", line 330, in _get_non_gfk_field
+    field = opts.get_field(name)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/options.py", line 685, in get_field
+    raise FieldDoesNotExist(
+django.core.exceptions.FieldDoesNotExist: Portfolio has no field named 'get_profit_loss'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/base.py", line 45, in render
+    return super().render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/library.py", line 359, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 354, in result_list
+    "results": list(results(cl)),
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 330, in results
+    yield ResultList(None, items_for_result(cl, res, None))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 321, in __init__
+    super().__init__(*items)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/templatetags/admin_list.py", line 219, in items_for_result
+    f, attr, value = lookup_field(field_name, result, cl.model_admin)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/utils.py", line 299, in lookup_field
+    value = attr(obj)
+            ^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py", line 540, in get_profit_loss
+    return format_html( # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/html.py", line 145, in format_html
+    return mark_safe(format_string.format(*args_safe, **kwargs_safe))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unknown format code 'f' for object of type 'SafeString'
+INFO 2025-10-14 18:11:28,140 autoreload 35744 4364293632 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:11:29,560 autoreload 35780 4655916544 Watching for file changes with StatReloader
+INFO 2025-10-14 18:11:33,841 autoreload 35780 4655916544 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:11:35,202 autoreload 35787 4581692928 Watching for file changes with StatReloader
+INFO 2025-10-14 18:11:57,035 autoreload 35787 4581692928 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:11:58,246 autoreload 35802 4542309888 Watching for file changes with StatReloader
+INFO 2025-10-14 18:12:09,289 autoreload 35802 4542309888 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:12:10,617 autoreload 35811 4331738624 Watching for file changes with StatReloader
+INFO 2025-10-14 18:12:13,055 autoreload 35811 4331738624 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:12:13,631 autoreload 35818 4571321856 Watching for file changes with StatReloader
+INFO 2025-10-14 18:12:34,190 autoreload 35818 4571321856 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:12:35,333 autoreload 35826 4400342528 Watching for file changes with StatReloader
+INFO 2025-10-14 18:12:45,117 autoreload 35826 4400342528 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:12:45,962 autoreload 35835 4681049600 Watching for file changes with StatReloader
+INFO 2025-10-14 18:12:52,873 autoreload 35835 4681049600 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:12:54,179 autoreload 35845 4609103360 Watching for file changes with StatReloader
+INFO 2025-10-14 18:13:02,136 autoreload 35845 4609103360 /Users/emmidev/Desktop/Projects/RBC/venex_app/admin.py changed, reloading.
+INFO 2025-10-14 18:13:03,050 autoreload 35852 4700833280 Watching for file changes with StatReloader
+INFO 2025-10-14 18:38:58,496 autoreload 36746 4704048640 Watching for file changes with StatReloader
+ERROR 2025-10-14 18:39:02,633 log 36746 123145448435712 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/views.py", line 17, in index
+    return render(request, 'jobs/index.html', {})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contact' not found. 'contact' is not a valid view function or pattern name.
+INFO 2025-10-14 18:39:48,783 autoreload 36746 4704048640 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-14 18:39:49,718 autoreload 36764 4739397120 Watching for file changes with StatReloader
+INFO 2025-10-14 18:40:27,778 autoreload 36764 4739397120 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 18:40:28,773 autoreload 36780 4651169280 Watching for file changes with StatReloader
+INFO 2025-10-14 18:40:45,110 autoreload 36780 4651169280 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 18:40:45,857 autoreload 36791 4433999360 Watching for file changes with StatReloader
+INFO 2025-10-14 18:40:49,827 autoreload 36791 4433999360 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 18:40:50,529 autoreload 36798 4548367872 Watching for file changes with StatReloader
+INFO 2025-10-14 18:40:52,810 autoreload 36798 4548367872 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 18:40:53,493 autoreload 36805 4584973824 Watching for file changes with StatReloader
+WARNING 2025-10-14 18:41:01,519 log 36805 123145370890240 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:41:01,573 log 36805 123145370890240 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:41:27,123 log 36805 123145438048256 Not Found: /assets/js/default.js
+WARNING 2025-10-14 18:41:27,228 log 36805 123145438048256 Not Found: /assets/js/element.js
+WARNING 2025-10-14 18:41:27,231 log 36805 123145421258752 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:41:27,310 log 36805 123145421258752 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:41:59,736 log 36805 123145421258752 Not Found: /assets/js/default.js
+WARNING 2025-10-14 18:41:59,761 log 36805 123145370890240 Not Found: /assets/js/element.js
+WARNING 2025-10-14 18:41:59,797 log 36805 123145370890240 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:41:59,959 log 36805 123145370890240 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:42:14,924 log 36805 123145370890240 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:42:15,104 log 36805 123145370890240 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:42:51,113 log 36805 123145370890240 Not Found: /assets/js/default.js
+WARNING 2025-10-14 18:42:51,254 log 36805 123145370890240 Not Found: /assets/js/element.js
+WARNING 2025-10-14 18:42:51,300 log 36805 123145421258752 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:42:51,483 log 36805 123145421258752 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:42:58,259 log 36805 123145370890240 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:42:58,289 log 36805 123145404469248 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:42:58,353 log 36805 123145404469248 Not Found: /er.lrticker.html
+WARNING 2025-10-14 18:43:14,145 log 36805 123145370890240 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:43:14,525 log 36805 123145370890240 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:43:27,331 log 36805 123145370890240 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:43:27,437 log 36805 123145370890240 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 18:45:05,460 log 36805 123145370890240 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 18:45:05,569 log 36805 123145370890240 Not Found: /signup/gtranslate.net/flags/24.png
+INFO 2025-10-14 19:25:41,471 autoreload 36805 4584973824 /Users/emmidev/Desktop/Projects/RBC/venexpro/urls.py changed, reloading.
+INFO 2025-10-14 19:25:42,696 autoreload 37173 4449330688 Watching for file changes with StatReloader
+INFO 2025-10-14 19:28:03,006 autoreload 37173 4449330688 /Users/emmidev/Desktop/Projects/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-10-14 19:28:04,132 autoreload 37201 4628887040 Watching for file changes with StatReloader
+WARNING 2025-10-14 19:28:09,804 log 37201 123145400619008 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 19:28:10,029 log 37201 123145400619008 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 19:28:16,087 log 37201 123145400619008 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 19:28:16,092 log 37201 123145484566528 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 19:28:16,128 log 37201 123145467777024 Not Found: /er.lrticker.html
+WARNING 2025-10-14 19:35:17,944 log 37201 123145400619008 Not Found: /account-dashboard
+INFO 2025-10-14 19:37:21,664 autoreload 37201 4628887040 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:37:24,772 autoreload 37300 4551800320 Watching for file changes with StatReloader
+INFO 2025-10-14 19:37:28,586 autoreload 37300 4551800320 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:37:30,534 autoreload 37313 4755744256 Watching for file changes with StatReloader
+INFO 2025-10-14 19:37:32,513 autoreload 37313 4755744256 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:37:33,282 autoreload 37314 4519077376 Watching for file changes with StatReloader
+INFO 2025-10-14 19:37:35,977 autoreload 37314 4519077376 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:37:36,898 autoreload 37321 4374111744 Watching for file changes with StatReloader
+INFO 2025-10-14 19:37:38,361 autoreload 37321 4374111744 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:37:39,104 autoreload 37328 4728194560 Watching for file changes with StatReloader
+INFO 2025-10-14 19:37:41,821 autoreload 37328 4728194560 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:37:42,670 autoreload 37329 4375930368 Watching for file changes with StatReloader
+INFO 2025-10-14 19:37:54,809 autoreload 37329 4375930368 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:37:55,385 autoreload 37343 4563756544 Watching for file changes with StatReloader
+INFO 2025-10-14 19:38:00,078 autoreload 37343 4563756544 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:38:01,153 autoreload 37350 4580742656 Watching for file changes with StatReloader
+INFO 2025-10-14 19:38:24,714 autoreload 37350 4580742656 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-14 19:38:26,049 autoreload 37361 4556539392 Watching for file changes with StatReloader
+WARNING 2025-10-14 19:38:28,598 log 37361 123145531613184 Not Found: /account-dashboard
+WARNING 2025-10-14 19:38:32,952 log 37361 123145531613184 Forbidden (CSRF token from POST incorrect.): /do-login
+WARNING 2025-10-14 19:39:31,380 log 37361 123145531613184 Forbidden (CSRF token from POST incorrect.): /do-login
+WARNING 2025-10-14 19:54:23,239 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 19:54:23,545 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 19:57:30,938 log 37361 123145531613184 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 19:58:36,446 log 37361 123145531613184 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 19:58:37,021 log 37361 123145548402688 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 19:58:37,120 log 37361 123145548402688 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 19:59:14,820 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 19:59:14,917 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 19:59:32,522 log 37361 123145531613184 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 20:01:34,183 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:01:34,293 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:02:45,348 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:02:45,453 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:07:51,750 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:07:51,979 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:18:29,527 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:18:29,692 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:20:49,807 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:20:50,052 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:20:59,001 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:20:59,120 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:21:07,660 log 37361 123145531613184 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 20:21:08,106 log 37361 123145548402688 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:21:08,329 log 37361 123145548402688 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:21:32,397 log 37361 123145531613184 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 20:21:32,839 log 37361 123145548402688 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:21:33,155 log 37361 123145548402688 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:21:42,553 log 37361 123145531613184 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:21:42,596 log 37361 123145531613184 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:21:48,480 log 37361 123145531613184 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-14 20:21:48,622 log 37361 123145531613184 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-14 20:22:02,349 log 37361 123145531613184 Not Found: /.well-known/appspecific/com.chrome.devtools.json

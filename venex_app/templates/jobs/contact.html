@@ -1,0 +1,122 @@
+{% extends 'jobs/base.html' %}
+{% load static %}
+{% block title %}venexbtc | FAQ {% endblock %}
+{% block stylesheets %} {% endblock %}
+{% block meta_keywords %} faq venex ltd {% endblock %}
+{% block meta_description %}here are the frequent asked questions and answer you need to know. {% endblock %}
+{% block alert %} 
+<script>
+    function myFunction()
+    {
+      alert("Welcome to our contact page. Feel free to contact us anytime.");
+    }
+</script>
+{% endblock %} 
+
+
+{% block content %}
+
+<script src="{% static 'assets/js/coingecko-coin-market-ticker-list-widget.js' %}"></script>
+<coingecko-coin-market-ticker-list-widget coin-id="bitcoin" currency="usd" locale="en" vce-ready=""></coingecko-coin-market-ticker-list-widget>
+
+
+
+<div class="bannerContainerinside">
+    <div class="bannerinsideInner">
+        <h2>Contact Us :</h2>
+    </div>
+</div>
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr">
+    <div style="padding: 8px;">
+    <div>
+        <div class="logo"><img src="/app1/static/assets/images/translate_24dp.png" width="20" height="20" alt="Google Translate">
+        </div>
+    </div>
+</div>
+    <div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="inside_wrap">
+    <div class="inside_inner">
+        <div class="form-contact">
+            <h2 style="color: white">Send Us a Message: </h2>
+<script language="javascript">
+
+function checkform() {
+  if (document.mainform.name.value == '') {
+    alert("Please type your full name!");
+    document.mainform.name.focus();
+    return false;
+  }
+  if (document.mainform.email.value == '') {
+    alert("Please enter your e-mail address!");
+    document.mainform.email.focus();
+    return false;
+  }
+  if (document.mainform.message.value == '') {
+    alert("Please type your message!");
+    document.mainform.message.focus();
+    return false;
+  }
+  return true;
+}
+
+</script>
+
+
+<form method="POST" action="{% url 'contact' %}" name="mainform" onsubmit="return checkform()">
+    {% csrf_token %}
+                
+                <table width="100%" border="0" cellpadding="5" cellspacing="5">
+                    <tbody><tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                         <td width="44%"><label> Your Name:</label>
+                                            <input type="text" name="name" value="" size="30" class="inpts">
+                                        </td>
+                                        <td>Your Email:</td>
+                                        <td><input type="text" name="email" value="" size="30" class="inpts"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Message:<br><br>
+                                           <textarea name="message" class="inpts" cols="45" rows="4">
+                                           </textarea>
+                                        </td>
+                                  </tr>
+<tr>
+ <td>&nbsp;</td>
+ <td><input type="submit" value="Send" class="sbmt"></td>
+</tr></tbody></table>
+
+
+
+
+
+    
+
+<div class="contact_inside">
+    <div class="inside_inner">
+        <div class="address">
+            <h2>Company Address:</h2>
+            <p>9323 harbor Road, North West, Albuquerque, New Mexico (NM), 87121.</p>
+        </div>
+        <div class="emailblock">
+            <h2>Our E-mail:</h2>
+            <p>venexltd@gmail.com</p>
+        </div>
+        <div class="phone">
+            <h2>Our Number:</h2>
+            <p>+1 612-567-2940</p>
+        </div>
+
+    </div>
+</div>
+
+
+</td></tr></tbody></table></form></div></div></div>
+   {% endblock %}
+
+   {% block javascripts %} 
+  <script src="/assets/js/default.js"></script>
+  <script src="/assets/js/element.js"></script>
+  {% endblock %}

@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Live Rates Ticker</title>
+<script type="text/javascript" src="{% static 'assets/js.jquery.min.js' %}"></script>
+
+<script type="text/javascript">
+
+/**
+ * Horizontal Stock Ticker for jQuery.
+ *
+ * @package jStockTicker
+ * @author Peter Halasz <skinner@gmail.com>
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt GPL v3.0
+ * @copyright (c) 2009, Peter Halasz all rights reserved.
+ */
+( function($) {
+
+	$.fn.jStockTicker = function(options) {
+
+		if (typeof (options) == 'undefined') {
+			options = {};
+		}
+
+		var settings = $.extend( {}, $.fn.jStockTicker.defaults, options);
+
+		var $ticker = $(this);
+
+		settings.tickerID = $ticker[0].id;
+
+		$.fn.jStockTicker.settings[settings.tickerID] = {};
+
+		var $wrap = null;
+
+		if ($ticker.parent().get(0).className != 'wrap') {
+			$wrap = $ticker.wrap("<div class='wrap'></div>");
+		}
+
+		var $tickerContainer = null;
+
+		if ($ticker.parent().parent().get(0).className != 'container') {
+			$tickerContainer = $ticker.parent().wrap(
+					"<div class='container'></div>");
+		}
+
+		var node = $ticker[0].firstChild;
+		var next;
+
+		while(node) {
+			next = node.nextSibling;
+			if(node.nodeType == 3) {
+				$ticker[0].removeChild(node);
+			}
+			node = next;
+		}
+
+		var shiftLeftAt = $($ticker.children().get(0)).outerWidth(true);
+
+		$.fn.jStockTicker.settings[settings.tickerID].shiftLeftAt = shiftLeftAt;
+		$.fn.jStockTicker.settings[settings.tickerID].left = 0;
+		$.fn.jStockTicker.settings[settings.tickerID].runid = null;
+
+		$ticker.width(2 * screen.availWidth);
+
+		function startTicker() {
+			stopTicker();
+
+			var params = $.fn.jStockTicker.settings[settings.tickerID];
+			params.left -= settings.speed;
+			if(params.left <= params.shiftLeftAt * -1) {
+				params.left = 0;
+				$ticker.append($ticker.children().get(0));
+				params.shiftLeftAt = $($ticker.children().get(0)).outerWidth(true);
+			}
+
+			$ticker.css('left', params.left + 'px');
+			params.runId = setTimeout(arguments.callee, settings.interval);
+
+			$.fn.jStockTicker.settings[settings.tickerID] = params;
+		}
+
+		function stopTicker() {
+			var params = $.fn.jStockTicker.settings[settings.tickerID];
+			if (params.runId)
+			    clearTimeout(params.runId);
+
+			params.runId = null;
+
+			$.fn.jStockTicker.settings[settings.tickerID] = params;
+		}
+
+		function updateTicker() {
+
+			stopTicker();
+			startTicker();
+		}
+
+		$ticker.hover(stopTicker,startTicker);
+
+		startTicker();
+	};
+
+	$.fn.jStockTicker.settings = {};
+
+	$.fn.jStockTicker.defaults = {
+		tickerID :null,
+		url :null,
+		speed :1,
+		interval :20
+	};
+})(jQuery);
+
+    $(function() {
+        $("#ticker").jStockTicker({interval: 45,speed:1});
+    });
+</script>
+<style type="text/css" media="all">
+@CHARSET "UTF-8";
+
+.container {
+    background: #F0F0F0;
+    height: 28px;
+    margin: 0;
+    width: 2018px;
+}
+
+.container .wrap {
+    width: 1993px;
+    left: 10px;
+    top: 8px;
+    overflow: hidden;
+    position: relative;
+    line-height: normal;
+    font-size-adjust: none;
+}
+
+div.liveTicker {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    color: #000;
+}
+
+div.liveTicker span {
+    padding: 0 10px 0;
+}
+
+div.liveTicker span.value {
+    padding-left: 2px;
+    color: #FE9A00;
+
+}
+
+div.liveTicker span.valueup {
+    padding-left: 2px;
+    color: #008000;
+
+}
+
+div.liveTicker span.valuedown {
+    padding-left: 2px;
+    color: #FF0000;
+}
+
+
+div.liveTicker span.eq {
+    margin: 0;
+    padding-left: 10px;
+}
+
+div.liveTicker span.quote {
+    margin: 0;
+    font-weight: bold;
+    padding-left: 5px;
+    color: #000044;
+
+}
+
+a, a:visited {color:#036EB4;text-decoration:none;}
+a:hover {color:#FE9A00;text-decoration:none;}
+
+body {
+	font-family: verdana;
+	font-size: 10px;
+	color: #000044;
+}
+
+#ticker span{white-space:nowrap}
+
+@CHARSET "UTF-8";
+
+
+
+</style>
+</head>
+
+<body marginwidth="0" marginheight="0">
+
+<div class="container"><div class="wrap"><div id="ticker" class="liveTicker" style="width: 2732px; left: -30px;"><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Australian-Dollars-currency-conversion-page.html" target="_top">USD/AUD</a> = <span class="valueup">1.40862 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Canadian-Dollars-currency-conversion-page.html" target="_top">USD/CAD</a> = <span class="valueup">1.28287 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-New-Zealand-Dollars-currency-conversion-page.html" target="_top">USD/NZD</a> = <span class="valuedown">1.53993 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Lira-currency-conversion-page.html" target="_top">USD/TRY</a> = <span class="valueup">16.3013 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Danish-Krone-currency-conversion-page.html" target="_top">USD/DKK</a> = <span class="valueup">6.95936 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Dirhams-currency-conversion-page.html" target="_top">USD/AED</a> = <span class="valuedown">3.67 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Norwegian-Krone-currency-conversion-page.html" target="_top">USD/NOK</a> = <span class="valueup">9.58785 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Swedish-Krona-currency-conversion-page.html" target="_top">USD/SEK</a> = <span class="valueup">9.82762 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Swiss-Francs-currency-conversion-page.html" target="_top">USD/CHF</a> = <span class="valueup">0.9616 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Yen-currency-conversion-page.html" target="_top">USD/JPY</a> = <span class="valueup">127.1775 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Hong-Kong-Dollars-currency-conversion-page.html" target="_top">USD/HKD</a> = <span class="valueup">7.84946 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Mexican-Pesos-currency-conversion-page.html" target="_top">USD/MXN</a> = <span class="valueup">19.8716 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Singapore-Dollars-currency-conversion-page.html" target="_top">USD/SGD</a> = <span class="valueup">1.37393 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-South-African-Rands-currency-conversion-page.html" target="_top">USD/ZAR</a> = <span class="valueup">15.69677 ▲</span></span><span class="quote">Remaining Currencies: </span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Dirhams-currency-conversion-page.html" target="_top">USD/AED</a> = <span class="valuedown">3.67 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Albanian-Lek-currency-conversion-page.html" target="_top">USD/ALL</a> = <span class="valuedown">112.13028 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Neth-Antilles-Guilder-currency-conversion-page.html" target="_top">USD/ANG</a> = <span class="valuedown">1.80373 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Argentine-Pesos-currency-conversion-page.html" target="_top">USD/ARS</a> = <span class="valuedown">119.0887 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Australian-Dollars-currency-conversion-page.html" target="_top">USD/AUD</a> = <span class="valueup">1.40862 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Aruba-Florin-currency-conversion-page.html" target="_top">USD/AWG</a> = <span class="valuedown">1.8004 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Barbadian-Dollars-currency-conversion-page.html" target="_top">USD/BBD</a> = <span class="valuedown">2.00044 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Bangladesh-Taka-currency-conversion-page.html" target="_top">USD/BDT</a> = <span class="valuedown">87.85918 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Bulgarian-Lev-currency-conversion-page.html" target="_top">USD/BGN</a> = <span class="valueup">1.8277 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Bahraini-Dinars-currency-conversion-page.html" target="_top">USD/BHD</a> = <span class="valuedown">0.37711 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Burundi-Franc-currency-conversion-page.html" target="_top">USD/BIF</a> = <span class="valueup">2053.30948 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Bermuda-Dollar-currency-conversion-page.html" target="_top">USD/BMD</a> = <span class="valuedown">1.00022 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Brunei-Dollar-currency-conversion-page.html" target="_top">USD/BND</a> = <span class="valuedown">1.3724 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Bolivian-Boliviano-currency-conversion-page.html" target="_top">USD/BOB</a> = <span class="valuedown">6.87791 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Brazilian-Reals-currency-conversion-page.html" target="_top">USD/BRL</a> = <span class="valuedown">4.82077 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Bahamian-Dollar-currency-conversion-page.html" target="_top">USD/BSD</a> = <span class="valuedown">1.00022 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Bhutan-Ngultrum-currency-conversion-page.html" target="_top">USD/BTN</a> = <span class="valuedown">77.52802 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Belize-Dollar-currency-conversion-page.html" target="_top">USD/BZD</a> = <span class="valuedown">2.01736 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Canadian-Dollars-currency-conversion-page.html" target="_top">USD/CAD</a> = <span class="valueup">1.28287 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Swiss-Francs-currency-conversion-page.html" target="_top">USD/CHF</a> = <span class="valueup">0.9616 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Chilean-Pesos-currency-conversion-page.html" target="_top">USD/CLP</a> = <span class="valuedown">830.53464 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Yuan-currency-conversion-page.html" target="_top">USD/CNY</a> = <span class="valueup">6.67716 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Colombian-Peso-currency-conversion-page.html" target="_top">USD/COP</a> = <span class="valueup">3987.24434 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Costa-Rica-Colon-currency-conversion-page.html" target="_top">USD/CRC</a> = <span class="valuedown">672.27846 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Czech-Koruna-currency-conversion-page.html" target="_top">USD/CZK</a> = <span class="valueup">23.02025 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Danish-Krone-currency-conversion-page.html" target="_top">USD/DKK</a> = <span class="valueup">6.95936 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Dominican-Peso-currency-conversion-page.html" target="_top">USD/DOP</a> = <span class="valuedown">55.15194 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Algerian-Dinar-currency-conversion-page.html" target="_top">USD/DZD</a> = <span class="valueup">145.40913 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Egyptian-Pounds-currency-conversion-page.html" target="_top">USD/EGP</a> = <span class="valuedown">18.50351 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Ethiopian-Birr-currency-conversion-page.html" target="_top">USD/ETB</a> = <span class="valueup">51.86573 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Euros-currency-conversion-page.html" target="_top">USD/EUR</a> = <span class="valueup">0.93543 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Fiji-Dollar-currency-conversion-page.html" target="_top">USD/FJD</a> = <span class="valuedown">2.15338 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Pounds-currency-conversion-page.html" target="_top">USD/GBP</a> = <span class="valuedown">0.79677 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Gambian-Dalasi-currency-conversion-page.html" target="_top">USD/GMD</a> = <span class="valuedown">53.962 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Guinea-Franc-currency-conversion-page.html" target="_top">USD/GNF</a> = <span class="valuedown">8823.39464 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Guatemala-Quetzal-currency-conversion-page.html" target="_top">USD/GTQ</a> = <span class="valuedown">7.67927 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Hong-Kong-Dollars-currency-conversion-page.html" target="_top">USD/HKD</a> = <span class="valueup">7.84946 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Honduras-Lempira-currency-conversion-page.html" target="_top">USD/HNL</a> = <span class="valueup">24.54534 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Croatian-Kuna-currency-conversion-page.html" target="_top">USD/HRK</a> = <span class="valueup">7.04337 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Haiti-Gourde-currency-conversion-page.html" target="_top">USD/HTG</a> = <span class="valuedown">112.86579 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Hungarian-Forint-currency-conversion-page.html" target="_top">USD/HUF</a> = <span class="valueup">358.87579 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Indonesian-Rupiah-currency-conversion-page.html" target="_top">USD/IDR</a> = <span class="valuedown">14614.0263 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Israeli-Sheqel-currency-conversion-page.html" target="_top">USD/ILS</a> = <span class="valuedown">3.349 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Rupees-currency-conversion-page.html" target="_top">USD/INR</a> = <span class="valueup">77.51478 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Iraqi-Dinar-currency-conversion-page.html" target="_top">USD/IQD</a> = <span class="valuedown">1458.01293 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Iran-Rial-currency-conversion-page.html" target="_top">USD/IRR</a> = <span class="valuedown">42359.41717 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Icelandic-Krona-currency-conversion-page.html" target="_top">USD/ISK</a> = <span class="valueup">129.91888 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Jamaican-Dollars-currency-conversion-page.html" target="_top">USD/JMD</a> = <span class="valuedown">154.65321 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Jordanian-Dinars-currency-conversion-page.html" target="_top">USD/JOD</a> = <span class="valuedown">0.70916 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Yen-currency-conversion-page.html" target="_top">USD/JPY</a> = <span class="valueup">127.1775 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Kenyan-Shillings-currency-conversion-page.html" target="_top">USD/KES</a> = <span class="valuedown">116.62593 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Comoros-Franc-currency-conversion-page.html" target="_top">USD/KMF</a> = <span class="valuedown">458.40228 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-South-Korean-Won-currency-conversion-page.html" target="_top">USD/KRW</a> = <span class="valueup">1262.78004 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Kuwaiti-Dinar-currency-conversion-page.html" target="_top">USD/KWD</a> = <span class="valuedown">0.30595 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Cayman-Islands-Dollar-currency-conversion-page.html" target="_top">USD/KYD</a> = <span class="valuedown">0.83397 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Kazakhstan-Tenge-currency-conversion-page.html" target="_top">USD/KZT</a> = <span class="valuedown">416.31813 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Lebanese-Pounds-currency-conversion-page.html" target="_top">USD/LBP</a> = <span class="valuedown">1510.66848 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Sri-Lankan-Rupees-currency-conversion-page.html" target="_top">USD/LKR</a> = <span class="valuedown">359.62848 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Lesotho-Loti-currency-conversion-page.html" target="_top">USD/LSL</a> = <span class="valuedown">15.64762 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Moroccan-Dirhams-currency-conversion-page.html" target="_top">USD/MAD</a> = <span class="valuedown">9.96389 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Moldovan-Leu-currency-conversion-page.html" target="_top">USD/MDL</a> = <span class="valuedown">19.09559 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Macedonian-Denar-currency-conversion-page.html" target="_top">USD/MKD</a> = <span class="valueup">57.67184 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Mongolian-Tugrik-currency-conversion-page.html" target="_top">USD/MNT</a> = <span class="valuedown">3103.04026 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Macau-Pataca-currency-conversion-page.html" target="_top">USD/MOP</a> = <span class="valuedown">8.09159 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Mauritius-Rupee-currency-conversion-page.html" target="_top">USD/MUR</a> = <span class="valuedown">43.25962 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Maldives-Rufiyaa-currency-conversion-page.html" target="_top">USD/MVR</a> = <span class="valuedown">15.42843 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Malawi-Kwacha-currency-conversion-page.html" target="_top">USD/MWK</a> = <span class="valuedown">815.78608 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Mexican-Pesos-currency-conversion-page.html" target="_top">USD/MXN</a> = <span class="valueup">19.8716 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Malaysian-Ringgit-currency-conversion-page.html" target="_top">USD/MYR</a> = <span class="valuedown">4.39398 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Namibian-Dollars-currency-conversion-page.html" target="_top">USD/NAD</a> = <span class="valuedown">15.68349 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Nigerian-Naira-currency-conversion-page.html" target="_top">USD/NGN</a> = <span class="valuedown">414.57335 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Nicaragua-Cordoba-currency-conversion-page.html" target="_top">USD/NIO</a> = <span class="valuedown">35.79238 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Norwegian-Krone-currency-conversion-page.html" target="_top">USD/NOK</a> = <span class="valueup">9.58785 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Nepalese-Rupees-currency-conversion-page.html" target="_top">USD/NPR</a> = <span class="valuedown">124.04195 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-New-Zealand-Dollars-currency-conversion-page.html" target="_top">USD/NZD</a> = <span class="valuedown">1.53993 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Omani-Rial-currency-conversion-page.html" target="_top">USD/OMR</a> = <span class="valuedown">0.38509 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Panamanian-Balboa-currency-conversion-page.html" target="_top">USD/PAB</a> = <span class="valuedown">1.00022 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Peruvian-Nuevo-Sol-currency-conversion-page.html" target="_top">USD/PEN</a> = <span class="valuedown">3.71236 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Papua-New-Guinea-Kina-currency-conversion-page.html" target="_top">USD/PGK</a> = <span class="valuedown">3.52062 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Philippine-Pesos-currency-conversion-page.html" target="_top">USD/PHP</a> = <span class="valuedown">52.34964 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Pakistani-Rupees-currency-conversion-page.html" target="_top">USD/PKR</a> = <span class="valuedown">200.98949 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Polish-Zloty-currency-conversion-page.html" target="_top">USD/PLN</a> = <span class="valueup">4.2958 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Paraguayan-Guarani-currency-conversion-page.html" target="_top">USD/PYG</a> = <span class="valuedown">6849.41204 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Qatari-Riyal-currency-conversion-page.html" target="_top">USD/QAR</a> = <span class="valuedown">3.64181 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Romanian-Leu-currency-conversion-page.html" target="_top">USD/RON</a> = <span class="valueup">4.62333 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Russian-Roubles-currency-conversion-page.html" target="_top">USD/RUB</a> = <span class="valuedown">56.03746 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Rwanda-Franc-currency-conversion-page.html" target="_top">USD/RWF</a> = <span class="valuedown">1026.11948 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Saudi-Riyal-currency-conversion-page.html" target="_top">USD/SAR</a> = <span class="valueup">3.75179 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Solomon-Islands-Dollar-currency-conversion-page.html" target="_top">USD/SBD</a> = <span class="valuedown">8.12533 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Seychelles-Rupee-currency-conversion-page.html" target="_top">USD/SCR</a> = <span class="valuedown">13.14009 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Swedish-Krona-currency-conversion-page.html" target="_top">USD/SEK</a> = <span class="valueup">9.82762 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Singapore-Dollars-currency-conversion-page.html" target="_top">USD/SGD</a> = <span class="valueup">1.37393 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Sierra-Leone-Leone-currency-conversion-page.html" target="_top">USD/SLL</a> = <span class="valuedown">12891.76604 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-El-Salvador-Colon-currency-conversion-page.html" target="_top">USD/SVC</a> = <span class="valuedown">8.7565 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Swaziland-Lilageni-currency-conversion-page.html" target="_top">USD/SZL</a> = <span class="valuedown">15.65813 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Baht-currency-conversion-page.html" target="_top">USD/THB</a> = <span class="valueup">34.22211 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Tunisian-Dinar-currency-conversion-page.html" target="_top">USD/TND</a> = <span class="valuedown">3.03167 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Tonga-Paanga-currency-conversion-page.html" target="_top">USD/TOP</a> = <span class="valuedown">2.3125 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Lira-currency-conversion-page.html" target="_top">USD/TRY</a> = <span class="valueup">16.3013 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Trinidad-Tobago-Dollar-currency-conversion-page.html" target="_top">USD/TTD</a> = <span class="valuedown">6.79157 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Taiwan-Dollar-currency-conversion-page.html" target="_top">USD/TWD</a> = <span class="valuedown">29.51276 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Tanzanian-Shilling-currency-conversion-page.html" target="_top">USD/TZS</a> = <span class="valuedown">2326.51722 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Ukraine-Hryvnia-currency-conversion-page.html" target="_top">USD/UAH</a> = <span class="valuedown">29.36925 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Ugandan-Shilling-currency-conversion-page.html" target="_top">USD/UGX</a> = <span class="valuedown">3653.67235 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Uruguayan-New-Peso-currency-conversion-page.html" target="_top">USD/UYU</a> = <span class="valuedown">40.02325 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Vanuatu-Vatu-currency-conversion-page.html" target="_top">USD/VUV</a> = <span class="valuedown">115.73556 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Samoa-Tala-currency-conversion-page.html" target="_top">USD/WST</a> = <span class="valuedown">2.62502 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Central-African-CFA-Francs-currency-conversion-page.html" target="_top">USD/XAF</a> = <span class="valueup">613.61869 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-East-Caribbean-Dollars-currency-conversion-page.html" target="_top">USD/XCD</a> = <span class="valuedown">2.70315 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-West-African-CFA-Francs-currency-conversion-page.html" target="_top">USD/XOF</a> = <span class="valueup">613.61869 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Pacific-Franc-currency-conversion-page.html" target="_top">USD/XPF</a> = <span class="valueup">111.62955 ▲</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Yemen-Riyal-currency-conversion-page.html" target="_top">USD/YER</a> = <span class="valuedown">250.30558 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-South-African-Rands-currency-conversion-page.html" target="_top">USD/ZAR</a> = <span class="valueup">15.69677 ▲</span></span><span class="quote"><i>Powered by <a href="https://www.exchangerates.org.uk/webmasters/live-currency-rates-ticker.html" target="_new">EXCHANGE RATES TICKER</a></i></span><span class="quote">US DollarExchange Rates - Top 15: </span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Pounds-currency-conversion-page.html" target="_top">USD/GBP</a> = <span class="valuedown">0.79677 ▼</span></span><span class="quote"><a href="https://www.exchangerates.org.uk/Dollars-to-Euros-currency-conversion-page.html" target="_top">USD/EUR</a> = <span class="valueup">0.93543 ▲</span></span></div></div></div>
+
+</body></html>

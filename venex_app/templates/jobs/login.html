@@ -1,0 +1,115 @@
+{% extends 'jobs/base.html' %}
+{% load static %}
+{% block meta %}<meta name="google-site-verification" content="-Pufy5fHS0TtKeBSdCxbivH4iUWpPZkfTfuB0I5hO24">{% endblock meta %}
+{% block title %}Login | The New generation Crypto investment Platform {% endblock %}
+ {% block stylesheets %} 
+    <link rel="stylesheet" href="/static/assets/css/normalize.css">
+    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/css/grids.css">
+    <link rel="stylesheet" href="/static/assets/css/fw.css">
+    <link rel="stylesheet" href="/static/assets/css/fontsb86a.css">
+    <link rel="stylesheet" href="/static/assets/css/stylesb86a.css">
+{% endblock %}
+{% block meta_keywords %} login venex ltd {% endblock %}
+{% block meta_description %}login venex ltd {% endblock %}
+{% block alert %} 
+<script>
+    function myFunction()
+    {
+      alert("Login to your profile");
+    }
+</script>
+{% endblock %} 
+
+
+{% block content %}
+<!--passing crypto values-->
+
+<script src="{% static 'assets/js/coingecko-coin-price-marquee-widget.js' %}"></script>
+<coingecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#ffffff" locale="en" vce-ready=""></coingecko-coin-price-marquee-widget> 
+
+<!--passing crypto values ends-->
+<script language="javascript">
+    function checkform() {
+      if (document.mainform.username.value=='') {
+        alert("Please type your username!");
+        document.mainform.username.focus();
+        return false;
+      }
+      if (document.mainform.password.value=='') {
+        alert("Please type your password!");
+        document.mainform.password.focus();
+        return false;
+      }
+      return true;
+    }
+    </script>
+
+        <div class="auth-box__content">
+        <div class="auth-box__container">
+            <div class="auth-box__title">
+                Account Login
+            </div>
+            
+            
+            
+                        <div class="auth-box__form">
+                <form method="post" action="/do-login" name="mainform" onsubmit="return checkform()">
+                    {% csrf_token %}
+                    
+                    {% if messages %}
+                     <div class="col-12">
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <span class="alert alert-danger"> {{ message }}</span>
+                        {% endif %}
+                        {% endfor %}
+                     </div>
+                     {% endif %}
+                    <div class="form__input-container">
+                        <label for="username">
+                            <i class="fa fa-user"></i>
+                            Email:</label>
+                        <input placeholder="Enter your username" type="email" name="email" value="" class="form__input form__input-full-width">
+                    </div>
+                    <div class="form__input-container">
+                        <label for="password">
+                            <i class="fa fa-key"></i>
+                            Password:</label>
+                        <input placeholder="Enter your password" type="password" name="password" class="form__input form__input-full-width">
+                        <div style="padding-top: .3em">
+                            <a href="https://worldfxco.com/?a=forgot_password">
+                                Lost your password? Recover it now!
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form__input-container to-right">
+                        <label for="check">
+                            <input type="checkbox" name="remember" id="check">
+                            keep me logged in
+                        </label>
+                    </div>
+                    <div class="form__input-container">
+                        <button type="submit" class="button button-full-width button-success">
+                            Login
+                        </button>
+                    </div>
+                    <div class="is-centered padded">
+                        <a href="{% url 'signup' %}">Don't have an account yet? Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+       
+   <div class="fixed-to-bottom">
+        <iframe class="ticker" src="./er.lrticker.html" width="100%" height="30" frameborder="0" scrolling="no" marginwidth="0" marginheight="0"></iframe>
+    </div>
+{% endblock %}
+
+{% block javascripts %} 
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/static/assets/js/cubeb86a.js"></script>
+<script src="/static/assets/js/1fonjd21.js"></script>
+
+  {% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'jobs/base.html' %}
+{% load static %}
+{% block title %}venex btc | Get Started{% endblock %}
+{% block stylesheets %} {% endblock %}
+{% block meta_keywords %}get started with venex btc {% endblock %}
+{% block meta_description %}get started with venex ltd and cryptos investment {% endblock %}
+{% block alert %} 
+<script>
+    function myFunction()
+    {
+      alert("get started with venex btc and crypto investment. this page is a gulidline for a new members ");
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+
+
+
+<!--passing crypto values-->
+<script src="{% static 'assets/js/coingecko-coin-market-ticker-list-widget.js' %}"></script>
+<coingecko-coin-market-ticker-list-widget coin-id="bitcoin" currency="usd" locale="en" vce-ready=""></coingecko-coin-market-ticker-list-widget>
+
+<!--passing crypto values ends-->
+
+
+
+  <div class="bannerContainerinside">
+      <div class="bannerinsideInner">
+          <h2>Start Guide for members</h2>
+      </div>
+  </div>
+  </div>
+
+  <div class="inside_wrap">
+      <div class="inside_inner">
+          <h4>Follow the instructions on how start investment with </h4>
+          <p> Venex btc and cryptos is user-friendly and easy to understand. However, if you have any question like how to open your account, deposit, withdraw and more, please follow the step-by-step guide.</p>
+          <div class="start-step step1">
+              <h2>1. Get personal Venex Account </h2>
+              <p>To work with <a style="color:#f1db5c" href="{% url 'index' %}">Venex</a> crypto website, you must <a style="color: #f1db5c" href="{% url 'signup' %}">create the account</a> on the Venex btc and cryptos website. To signup, click on the registration button and fill in your details and complete the process. Now you are Venex btc and crypto's client officially.</p>
+
+          </div>
+          <div class="start-step step2">
+              <h2>2. MAKE YOUR INVESTMENT</h2>
+              <p>Once you have registered, login to your account and go to Make Deposit section. All you need is to enter amount of your deposit, not less than the minimum. Now the system will redirect you to a page where you will complete the process. You can send any amount (but not less than the minimum). Once the process is finished, you will be notified via an automatic email from our website.</p>
+          </div>
+          <div class="start-step step3">
+              <h2>3. INVEST INTO YOUR PREFERRED PLAN</h2>
+              <p> Once your payment has been confirmed, you will be notified in the email you provided during registration. After that, you can now invest to any plan of your choice, from your dashboard kindly click on Investment Plan and select any investment you wish to invest in. Make sure that you read the details of the investment clearly before clicking to continue to avoid investing in the wrong plan </p>
+          </div>
+          <div class="start-step step2">
+              <h2>4. WATCH HOW YOUR INVESTMENT GROWS</h2>
+              <p> uniqueness lies in the fact that profit is accrued every 60 minutes after the addition of your deposit. This process is endless, and you can stay company's investor for forever. Deposit is working on an ongoing basis, and brings profit every hour, 5 days a week. Note that profit is accrued at intervals of 60 minutes, accrual time coincides with the time of addition of deposit to your account. Please also note that the company's server works in GMT zone. The exact server time you can check the top of the page.</p>
+          </div>
+          <div class="start-step step4">
+              <h2>5. Withdraw your profits</h2>
+              <p>To get payout, you have to make appropriate request in your account. Go to Withdraw funds section and enter payout amount that you want to withdraw. The minimum amount you can withdraw is 10 USD only. Once your request is made, the system will process it instantly.</p>
+          </div>
+      </div>
+  </div>
+  {% endblock %}
+
+  {% block javascripts %} 
+  <script src="/assets/js/default.js"></script>
+  <script src="/assets/js/element.js"></script>
+  {% endblock %}

@@ -1,0 +1,60 @@
+ {% load static %}
+<header>  
+    <div class="topLine">
+        <div class="container">
+            <div class="table full">
+                <div class="logoWrap tCell">
+                    <div class="logo invisLink">
+                        <div class="txt">
+                            <span>V</span>
+                            <span>Venex Ltd</span>
+                        </div>
+                        <img src="/static/assets/images/venex-logo.png" alt="logo">
+                    </div>
+                </div>
+                                            <div class="lang tCell right">
+                    <a href="https://kpispine.com/?a=account&amp;language=en" style="background-image: url(/static/assets/images/lang_1.jpg);"></a>
+                    <a href="https://kpispine.com/?a=account&amp;language=ru" style="background-image: url(/static/assets/images/lang_2.jpg);"></a>
+                </div>
+                <div class="clock tCell right">
+                    <span class="time gradTxt" id="time">18:43</span>
+                    <span class="date">
+                        <span class="day" id="day">12 Jul</span>
+                        <span class="year" id="year">2022</span>
+                    </span>
+                </div>
+                                                <div class="userBlock tCell top right">
+                        <div class="iconLeft">
+                            <div class="icon" style="background-image: url(/static/assets/images/user.png);"></div>
+                            <div class="data">
+                                <span>Welcome,</span>
+                                <a href="https://kpispine.com/?a=account">emmi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="exit tCell top right">
+                        <a href="/" class="btnFillColor1Sm">exit</a>
+                    </div>
+                                        </div>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="container">
+            <center><ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">ABOUT US</a></li>
+                <li><a href="/affiliate">AFFILATE</a></li>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="/started">GET STARTED</a></li>
+                <li><a href="/terms-and-conditions">RULES</a></li>
+                <li><a href="/contact">CONTACT US</a></li>
+            </ul></center>
+        </div>
+    </div>
+    <!--passing crypto values-->
+
+<script src="{% static 'assets/js/coingecko-coin-price-marquee-widget.js' %}"></script>
+<coingecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#ffffff" locale="en" vce-ready=""></coingecko-coin-price-marquee-widget> 
+
+<!--passing crypto values ends-->
+</header>
