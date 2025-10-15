@@ -1275,3 +1275,26 @@ WARNING 2025-10-15 09:47:37,361 log 7022 123145591709696 Not Found: /dashboard/r
 WARNING 2025-10-15 09:47:37,399 log 7022 123145524551680 Not Found: /dashboard/resource(2).html
 WARNING 2025-10-15 09:47:37,460 log 7022 123145574920192 Not Found: /dashboard/resource.html
 WARNING 2025-10-15 09:47:37,494 log 7022 123145524551680 Not Found: /dashboard/resource(3).html
+INFO 2025-10-15 10:10:50,205 autoreload 7603 4592915968 Watching for file changes with StatReloader
+INFO 2025-10-15 10:11:28,657 autoreload 7842 4728133120 Watching for file changes with StatReloader
+WARNING 2025-10-15 10:11:41,845 log 7842 123145503232000 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-15 10:11:41,877 log 7842 123145503232000 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-15 10:11:46,726 log 7842 123145520021504 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-15 10:11:46,990 log 7842 123145520021504 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-15 10:11:47,005 log 7842 123145503232000 Not Found: /login/er.lrticker.html
+WARNING 2025-10-15 10:11:56,891 log 7842 123145503232000 Not Found: /dashboard/resource.html
+WARNING 2025-10-15 10:11:56,903 log 7842 123145536811008 Not Found: /dashboard/resource(1).html
+WARNING 2025-10-15 10:11:56,920 log 7842 123145570390016 Not Found: /dashboard/resource(3).html
+WARNING 2025-10-15 10:11:56,935 log 7842 123145553600512 Not Found: /dashboard/resource(2).html
+WARNING 2025-10-15 10:11:57,009 log 7842 123145587179520 Not Found: /dashboard/img/user_2.png
+INFO 2025-10-15 10:21:24,839 autoreload 8189 4707186176 Watching for file changes with StatReloader
+WARNING 2025-10-15 10:21:34,346 log 8189 123145473335296 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-15 10:21:34,782 log 8189 123145473335296 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-15 10:21:39,468 log 8189 123145473335296 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-15 10:21:39,578 log 8189 123145473335296 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-15 10:21:39,680 log 8189 123145473335296 Not Found: /login/er.lrticker.html
+WARNING 2025-10-15 10:21:51,913 log 8189 123145490124800 Not Found: /dashboard/resource.html
+WARNING 2025-10-15 10:21:51,937 log 8189 123145506914304 Not Found: /dashboard/img/user_2.png
+WARNING 2025-10-15 10:21:52,104 log 8189 123145490124800 Not Found: /dashboard/resource(1).html
+WARNING 2025-10-15 10:21:52,132 log 8189 123145523703808 Not Found: /dashboard/resource(2).html
+WARNING 2025-10-15 10:21:52,142 log 8189 123145506914304 Not Found: /dashboard/resource(3).html
