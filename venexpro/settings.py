@@ -208,21 +208,21 @@ if not DEBUG:
 
 # Add this after the CORS configuration
 # Handle HTTPS in development (fix for the warning)
-if DEBUG:
-    # This will prevent the HTTPS warning in development
-    SECURE_SSL_REDIRECT = False
-    SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
+# if DEBUG:
+#     # This will prevent the HTTPS warning in development
+#     SECURE_SSL_REDIRECT = False
+#     SESSION_COOKIE_SECURE = False
+#     CSRF_COOKIE_SECURE = False
     
-    # Additional development settings
-    import socket
-    try:
-        # This will show your local IP in network access
-        hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-        INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', '10.0.2.2']
-        ALLOWED_HOSTS.extend(INTERNAL_IPS) # type: ignore
-    except:
-        pass
+#     # Additional development settings
+#     import socket
+#     try:
+#         # This will show your local IP in network access
+#         hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+#         INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', '10.0.2.2']
+#         ALLOWED_HOSTS.extend(INTERNAL_IPS) # type: ignore
+#     except:
+#         pass
 
 # Email Configuration (for notifications)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -242,15 +242,15 @@ LOGOUT_REDIRECT_URL = '/'
 OPENAI_API_KEY = env('OPENAI_API_KEY', default='your-openai-api-key') # type: ignore
 
 # Cache Configuration
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': env('REDIS_URL', default='redis://127.0.0.1:6379/1'), # type: ignore
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': env('REDIS_URL', default='redis://127.0.0.1:6379/1'), # type: ignore
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         }
+#     }
+# }
 
 # Session Configuration
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
