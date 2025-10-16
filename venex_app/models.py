@@ -30,7 +30,27 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(email, password, **extra_fields)
+    
 
+# ------------------------
+# Country and State Models
+# ------------------------
+class Country(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(('country name'), max_length=55, unique=True)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name_plural = "Countries"
+
+class State(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(('state name'), max_length=55)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name_plural = "States"
 
 # ------------------------
 # Custom User Model
@@ -41,20 +61,23 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    country = models.ForeignKey('Country', on_delete=models.SET_NULL, null=True, blank=True,verbose_name="Country")
+    state = models.ForeignKey('State', on_delete=models.SET_NULL, null=True, blank=True,verbose_name="State/Province")
 
-    # Wallet Addresses
+    # Wallet Addresses and currency type
     btc_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="BTC Wallet Address")
     ethereum_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Ethereum Wallet Address")
     usdt_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="USDT Wallet Address")
     litecoin_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Litecoin Wallet Address")
     tron_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Tron Wallet Address")
+    currency_type = models.CharField(max_length=97, choices=Currency, default='USD')
 
     # Wallet Balances
-    btc_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    ethereum_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    usdt_balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0)
-    litecoin_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    tron_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
+    btc_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    ethereum_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    usdt_balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0) # type: ignore
+    litecoin_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    tron_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
 
     # Personal Information
     phone_no = models.CharField(max_length=20, blank=True, null=True)
@@ -105,30 +128,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         self.save()
 
 
-# ------------------------
-# Country and State Models
-# ------------------------
-class Country(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(('country name'), max_length=55, unique=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = "Countries"
-
-
-class State(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(('state name'), max_length=55)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = "States"
 
 
 # ------------------------
@@ -159,13 +158,13 @@ class Cryptocurrency(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     symbol = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=100)
-    current_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    price_change_24h = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    price_change_percentage_24h = models.DecimalField(max_digits=10, decimal_places=4, default=0.0)
-    market_cap = models.DecimalField(max_digits=30, decimal_places=2, default=0.0)
-    volume_24h = models.DecimalField(max_digits=30, decimal_places=2, default=0.0)
-    circulating_supply = models.DecimalField(max_digits=30, decimal_places=2, default=0.0)
-    total_supply = models.DecimalField(max_digits=30, decimal_places=2, default=0.0)
+    current_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore # type: ignore
+    price_change_24h = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    price_change_percentage_24h = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore
+    market_cap = models.DecimalField(max_digits=30, decimal_places=2, default=0.0) # type: ignore
+    volume_24h = models.DecimalField(max_digits=30, decimal_places=2, default=0.0) # type: ignore
+    circulating_supply = models.DecimalField(max_digits=30, decimal_places=2, default=0.0) # type: ignore
+    total_supply = models.DecimalField(max_digits=30, decimal_places=2, default=0.0) # type: ignore
     max_supply = models.DecimalField(max_digits=30, decimal_places=2, null=True, blank=True)
     rank = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
@@ -210,14 +209,14 @@ class Transaction(models.Model):
     cryptocurrency = models.CharField(max_length=10, choices=CRYPTO_CHOICES)
     quantity = models.DecimalField(max_digits=20, decimal_places=8, validators=[MinValueValidator(0)], null=True, blank=True)
     price_per_unit = models.DecimalField(max_digits=20, decimal_places=8, validators=[MinValueValidator(0)], null=True, blank=True)
-    total_amount = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
+    total_amount = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     fiat_amount = models.DecimalField(max_digits=15, decimal_places=2, validators=[MinValueValidator(0)], null=True, blank=True)
-    currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES)
+    currency = models.CharField(max_length=10, choices=Currency)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
     transaction_hash = models.CharField(max_length=255, blank=True, null=True)
     wallet_address = models.CharField(max_length=255, blank=True, null=True)
-    network_fee = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    platform_fee = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
+    network_fee = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    platform_fee = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     completed_at = models.DateTimeField(null=True, blank=True)
@@ -249,8 +248,8 @@ class Order(models.Model):
     quantity = models.DecimalField(max_digits=20, decimal_places=8, validators=[MinValueValidator(0.00000001)])
     price = models.DecimalField(max_digits=20, decimal_places=8, null=True, blank=True)
     stop_price = models.DecimalField(max_digits=20, decimal_places=8, null=True, blank=True)
-    filled_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    average_filled_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
+    filled_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    average_filled_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     status = models.CharField(max_length=20, choices=ORDER_STATUS_CHOICES, default='OPEN')
     time_in_force = models.CharField(max_length=20, choices=TIME_IN_FORCE_CHOICES, default='GTC')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -273,12 +272,13 @@ class Portfolio(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='portfolio')
     cryptocurrency = models.CharField(max_length=10, choices=CRYPTO_CHOICES)
-    total_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    average_buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    total_invested = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    current_value = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    profit_loss = models.DecimalField(max_digits=20, decimal_places=8, default=0.0)
-    profit_loss_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0)
+    Currency_type = models.CharField(max_length=97, choices=Currency)
+    total_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    average_buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    total_invested = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    current_value = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    profit_loss = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    profit_loss_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:

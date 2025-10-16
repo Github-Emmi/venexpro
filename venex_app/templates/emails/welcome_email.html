@@ -1,0 +1,47 @@
+{% extends 'emails/base_email.html' %}
+
+{% block header_title %}Welcome to Venex Brokerage!{% endblock %}
+{% block header_subtitle %}Your journey to smart crypto trading and investment begins here!{% endblock %}
+
+{% block content %}
+<div class="email-content">
+    <h2>Hello {{ user.first_name }},</h2>
+    
+    <p>Welcome to Venex Brokerage! We're thrilled to have you join our community of smart cryptocurrency traders and investors.</p>
+    
+    <div class="user-info">
+        <strong>Your Account Details:</strong><br>
+        <strong>Name:</strong> {{ user.get_full_name }}<br>
+        <strong>Email:</strong> {{ user.email }}<br>
+        <strong>Username:</strong> {{ user.username }}<br>
+        <strong>Account Created:</strong> {{ user.created_at|date:"F j, Y" }}
+    </div>
+    
+    <p>With your new account, you can:</p>
+    <ul>
+        <li>✅ Trade multiple cryptocurrencies (BTC, ETH, USDT, LTC, TRX)</li>
+        <li>✅ Invest with us and earn</li>
+        <li>✅ Monitor real-time market prices</li>
+        <li>✅ Manage your portfolio with advanced tools</li>
+        <li>✅ Enjoy secure wallet management</li>
+        <li>✅ Access 24/7 customer support</li>
+    </ul>
+    
+    <div class="highlight">
+        <strong>Next Steps:</strong><br>
+        1. Complete your profile verification<br>
+        2. Set up your preferred payment methods<br>
+        3. Explore our trading platform<br>
+        4. Start with a demo account if you're new to trading
+    </div>
+    
+    <p>If you have any questions or need assistance, our support team is always here to help.</p>
+    
+    <div style="text-align: center;">
+        <a href="{{ dashboard_url }}" class="button">Go to Dashboard</a>
+    </div>
+    
+    <p>Happy Trading and Investment!<br>
+    <strong>The Venex Brokerage Team</strong></p>
+</div>
+{% endblock %}

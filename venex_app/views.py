@@ -6,7 +6,12 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_protect
+from django.http import JsonResponse
+from .forms import SignUpForm
+from .models import State
+from .services.email_service import EmailService
 import logging
+import json
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -93,19 +98,46 @@ def user_login(request):
     # GET request - show login form
     return render(request, 'jobs/login.html')
 
+@require_http_methods(["GET", "POST"])
+@csrf_protect
+def signup(request):
+    """
+    Handle user registration with country/state selection
+    """
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            try:
+                # Create user
+                user = form.save()
+                
+                # Log the user in
+                login(request, user)
+                
+                # Send professional welcome email
+                EmailService.send_welcome_email(user)
+                
+                messages.success(request, f"Welcome {user.first_name}! Your account has been created successfully.")
+                return redirect('dashboard')
+                
+            except Exception as e:
+                logger.error(f"Error creating user: {str(e)}")
+                messages.error(request, "An error occurred during registration. Please try again.")
+        else:
+            # Form has errors
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{error}")
+    else:
+        form = SignUpForm()
+    
+    return render(request, 'jobs/signup.html', {'form': form})
+
 @login_required
 def user_logout(request):
     """Handle user logout"""
     logout(request)
     messages.success(request, "You have been successfully logged out.")
-    return redirect('index')
-
-def signup(request):
-    """
-    Placeholder for signup view - will be implemented after model updates
-    """
-    # TODO: Implement signup logic after model modifications
-    messages.info(request, "Signup functionality will be available soon.")
     return redirect('index')
 
 ###########################################################
@@ -126,37 +158,23 @@ def contact(request):
         # Validate form data
         if not name or not email or not message_text:
             messages.error(request, "Please fill in all required fields.")
-            return render(request, 'contact.html')
+            return render(request, 'jobs/contact.html')
         
         try:
-            # Prepare email content
-            subject = f"New Contact Form Submission from {name}"
-            message_body = f"""
-            New contact form submission from Venex BTC website:
+            # Prepare contact data
+            contact_data = {
+                'name': name,
+                'email': email,
+                'message': message_text,
+            }
             
-            Name: {name}
-            Email: {email}
-            
-            Message:
-            {message_text}
-            
-            ---
-            This message was sent from the contact form on Venex BTC website.
-            """
-            
-            # Send email using Zoho SMTP
-            send_mail(
-                subject=subject,
-                message=message_body,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.CONTACT_EMAIL],
-                fail_silently=False,
-            )
+            # Send professional contact notification
+            EmailService.send_contact_notification(contact_data)
             
             # Log successful email sending
             logger.info(f"Contact form submitted successfully by {name} ({email})")
             
-            # Success message - will be handled by jQuery on frontend
+            # Success message
             messages.success(request, "Your message has been sent successfully! We'll get back to you soon.")
             return redirect('contact')
             
@@ -164,21 +182,34 @@ def contact(request):
             # Log the error
             logger.error(f"Failed to send contact form email: {str(e)}")
             
-            # Error message - will be handled by jQuery on frontend
+            # Error message
             messages.error(request, "Sorry, there was an error sending your message. Please try again later.")
-            return render(request, 'contact.html')
+            return render(request, 'jobs/contact.html')
     
     # GET request - show contact form
     return render(request, 'jobs/contact.html')
 
 ###########################################################
-# Dashboard Views (Placeholder for now)
+# AJAX Views for Dynamic Form Handling
+###########################################################
+
+def get_states(request):
+    """AJAX view to get states for a selected country"""
+    country_id = request.GET.get('country_id')
+    if country_id:
+        states = State.objects.filter(country_id=country_id).order_by('name')
+        states_data = [{'id': state.id, 'name': state.name} for state in states]
+        return JsonResponse(states_data, safe=False)
+    return JsonResponse([], safe=False)
+
+###########################################################
+# Dashboard Views
 ###########################################################
 
 @login_required
 def dashboard(request):
     """
-    Placeholder dashboard view - will be fully implemented later
+    User dashboard view
     """
     return render(request, 'jobs/admin_templates/account.html', {'user': request.user})
 

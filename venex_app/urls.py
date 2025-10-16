@@ -24,6 +24,11 @@ urlpatterns = [
     # Contact & Communication URLs
     ###########################################
     path('contact/', views.contact, name='contact'),
+
+    ###########################################
+    # AJAX URLs
+    ###########################################
+    path('ajax/get-states/', views.get_states, name='get_states'),
     
     ###########################################
     # Dashboard & User Area URLs

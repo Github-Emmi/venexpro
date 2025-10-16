@@ -5,9 +5,10 @@ Django settings for btc_brokerage project.
 import os
 from pathlib import Path
 from datetime import timedelta
-import environ
+import environ 
 
 # Initialize environment variables
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -15,7 +16,7 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='your-secret-key-here') # type: ignore
+SECRET_KEY = env('SECRET_KEY', default="your_dev_secret_key_here") # type: ignore
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True) # type: ignore
@@ -224,22 +225,29 @@ if not DEBUG:
 #     except:
 #         pass
 
-# Email Configuration (for notifications)
+# Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST', default='smtp.gmail.com') # type: ignore
+EMAIL_HOST = env('EMAIL_HOST', default='smtp.zoho.com') # type: ignore
 EMAIL_PORT = env.int('EMAIL_PORT', default=587) # type: ignore
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True) # type: ignore
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='') # type: ignore
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='venexbtc@venexbtc.com') # type: ignore
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='') # type: ignore
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='venexbtc@venexbtc.com') # type: ignore
+DEFAULT_FROM_NAME = 'Venexbtc Brokerage'
 
-# Login URLs
+
+
+# Site URL for email templates
+SITE_URL = ['www.venexbtc.com', 'venexbtc.com'] # Change to your actual domain
+
+# Authentication settings
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
+
 # OpenAI Configuration for Chatbot
-OPENAI_API_KEY = env('OPENAI_API_KEY', default='your-openai-api-key') # type: ignore
+OPENAI_API_KEY = env('OPENAI_API_KEY', default='') # type: ignore
 
 # Cache Configuration
 # CACHES = {
