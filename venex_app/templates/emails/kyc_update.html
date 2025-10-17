@@ -1,0 +1,34 @@
+{% extends "emails/base_email.html" %}
+
+{% block title %}KYC Status Update - Venex Trading{% endblock %}
+
+{% block content %}
+<h2>KYC Verification Status Update</h2>
+
+<p>Hello <strong>{{ user.first_name }}</strong>,</p>
+
+<p>This is an update regarding your KYC (Know Your Customer) verification status.</p>
+
+<div class="transaction-details">
+    <h3>Current Status: {{ status }}</h3>
+    <p><strong>Update Date:</strong> {{ update_date|date:"F d, Y H:i" }}</p>
+</div>
+
+{% if status == "Pending" %}
+<p>Your documents are currently under review by our verification team. This process typically takes 1-2 business days.</p>
+{% elif status == "Approved" %}
+<p>Your verification has been approved! You now have full access to all platform features.</p>
+{% elif status == "Rejected" %}
+<p>We were unable to verify your documents. Please ensure you provide clear, valid documents and try again.</p>
+{% elif status == "Revoked" %}
+<p>Your KYC verification status has been updated. Please contact support for more information.</p>
+{% endif %}
+
+<p>You can check your current verification status in your account dashboard.</p>
+
+<a href="{{ site_url }}/dashboard" class="button">View Account Status</a>
+
+<p>If you have any questions about this status update, please contact our support team.</p>
+
+<p>Best regards,<br>The Venex Team</p>
+{% endblock %}

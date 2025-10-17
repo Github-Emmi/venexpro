@@ -84,8 +84,19 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'venexprodb',
+        # 'USER': 'root',
+        # 'PASSWORD': 'Aghason1999',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
+        # 'OPTIONS': {
+        #     'charset': 'utf8mb4',
+        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        # },
     }
 }
+
 
 # Custom User Model
 AUTH_USER_MODEL = 'venex_app.CustomUser'
@@ -186,15 +197,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-# CORS Configuration
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-]
 
-CORS_ALLOW_CREDENTIALS = True
 
 # Security Settings
 if not DEBUG:
@@ -207,38 +210,29 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 
-# Add this after the CORS configuration
-# Handle HTTPS in development (fix for the warning)
-# if DEBUG:
-#     # This will prevent the HTTPS warning in development
-#     SECURE_SSL_REDIRECT = False
-#     SESSION_COOKIE_SECURE = False
-#     CSRF_COOKIE_SECURE = False
-    
-#     # Additional development settings
-#     import socket
-#     try:
-#         # This will show your local IP in network access
-#         hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-#         INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', '10.0.2.2']
-#         ALLOWED_HOSTS.extend(INTERNAL_IPS) # type: ignore
-#     except:
-#         pass
-
-# Email Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST', default='smtp.zoho.com') # type: ignore
-EMAIL_PORT = env.int('EMAIL_PORT', default=587) # type: ignore
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True) # type: ignore
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='venexbtc@venexbtc.com') # type: ignore
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='') # type: ignore
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='venexbtc@venexbtc.com') # type: ignore
-DEFAULT_FROM_NAME = 'Venexbtc Brokerage'
 
 
+# ===========================
+# EMAIL CONFIGURATION (Zoho)
+# ===========================
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.zoho.com"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False  # must be False when using SSL
+EMAIL_HOST_USER = "venexbtc@venexbtc.com"
+EMAIL_HOST_PASSWORD = "a4siJdTwe4KA"  # your Zoho app password
+DEFAULT_FROM_EMAIL = "venexbtc@venexbtc.com"
+
+
+# Email recipients
+CONTACT_EMAIL = 'venexbtc@venexbtc.com'
+SUPPORT_EMAIL = 'venexbtc@venexbtc.com'
+ADMIN_EMAIL = 'venexbtc@venexbtc.com'
 
 # Site URL for email templates
-SITE_URL = ['www.venexbtc.com', 'venexbtc.com'] # Change to your actual domain
+SITE_URL = ['https://www.venexbtc.com', 'https://venexbtc.com'] # Change to your actual domain
 
 # Authentication settings
 LOGIN_URL = '/login/'
@@ -249,16 +243,7 @@ LOGOUT_REDIRECT_URL = '/'
 # OpenAI Configuration for Chatbot
 OPENAI_API_KEY = env('OPENAI_API_KEY', default='') # type: ignore
 
-# Cache Configuration
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django_redis.cache.RedisCache',
-#         'LOCATION': env('REDIS_URL', default='redis://127.0.0.1:6379/1'), # type: ignore
-#         'OPTIONS': {
-#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-#         }
-#     }
-# }
+
 
 # Session Configuration
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'

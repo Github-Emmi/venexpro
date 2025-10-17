@@ -26,6 +26,14 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
 
     ###########################################
+    # Password Reset URLs
+    ###########################################
+    path('password-reset/', views.password_reset_request, name='password_reset_request'),
+    path('password-reset/verify/', views.password_reset_verify, name='password_reset_verify'),
+    path('password-reset/confirm/', views.password_reset_confirm, name='password_reset_confirm'),
+    path('password-reset/resend-code/', views.password_reset_resend_code, name='password_reset_resend_code'),
+
+    ###########################################
     # AJAX URLs
     ###########################################
     path('ajax/get-states/', views.get_states, name='get_states'),

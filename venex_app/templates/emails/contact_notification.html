@@ -1,39 +1,36 @@
-{% extends 'emails/base_email.html' %}
+{% extends "emails/base_email.html" %}
 
-{% block header_title %}New Contact Form Submission{% endblock %}
-{% block header_subtitle %}Website Contact Form{% endblock %}
+{% block title %}Contact Form Submission - Venex Trading{% endblock %}
 
 {% block content %}
-<div class="email-content">
-    <h2>New Contact Message Received</h2>
+<h2>New Contact Form Submission</h2>
+
+<p>You have received a new message through the Venex contact form.</p>
+
+<div class="transaction-details">
+    <h3>Contact Details</h3>
+    <table>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{ contact_data.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Email:</strong></td>
+            <td>{{ contact_data.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Date:</strong></td>
+            <td>{{ timestamp|date:"F d, Y H:i" }}</td>
+        </tr>
+    </table>
     
-    <p>A visitor has submitted a contact form on the Venex Brokerage website.</p>
-    
-    <div class="user-info">
-        <strong>Contact Details:</strong><br>
-        <strong>Name:</strong> {{ contact_data.name }}<br>
-        <strong>Email:</strong> {{ contact_data.email }}<br>
-        <strong>Submitted:</strong> {{ submitted_at|date:"F j, Y g:i A" }}
-    </div>
-    
-    <div class="highlight">
-        <strong>Message:</strong><br>
-        {{ contact_data.message|linebreaks }}
-    </div>
-    
-    <p><strong>Action Required:</strong></p>
-    <ul>
-        <li>Review the message above</li>
-        <li>Respond to the user within 24 hours</li>
-        <li>Update the support ticket if applicable</li>
-    </ul>
-    
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="mailto:{{ contact_data.email }}" class="button">Reply to {{ contact_data.name }}</a>
-    </div>
-    
-    <p style="font-size: 14px; color: #666; margin-top: 30px;">
-        This email was automatically generated from the website contact form.
-    </p>
+    <h3>Message</h3>
+    <p>{{ contact_data.message }}</p>
 </div>
+
+<p>Please respond to this inquiry within 24 hours.</p>
+
+<a href="mailto:{{ contact_data.email }}" class="button">Reply to {{ contact_data.name }}</a>
+
+<p>This is an automated notification from the Venex contact system.</p>
 {% endblock %}

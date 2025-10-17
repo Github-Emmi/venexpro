@@ -4,6 +4,7 @@ from django.utils import timezone
 import uuid
 from django.core.validators import MinValueValidator
 from .choices import *
+from datetime import timedelta
 
 
 # ------------------------
@@ -294,3 +295,38 @@ class Portfolio(models.Model):
         self.profit_loss = self.current_value - self.total_invested
         self.profit_loss_percentage = (self.profit_loss / self.total_invested * 100) if self.total_invested > 0 else 0
         self.save()
+
+
+
+# ------------------------
+# Password Reset Code Model
+# ------------------------
+class PasswordResetCode(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reset_codes')
+    code = models.CharField(max_length=6)  # 6-digit code
+    is_used = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+
+    class Meta:
+        db_table = 'password_reset_codes'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.email} - {self.code}"
+
+    def is_valid(self):
+        """Check if the code is still valid"""
+        return not self.is_used and timezone.now() < self.expires_at
+
+    def mark_used(self):
+        """Mark the code as used"""
+        self.is_used = True
+        self.save()
+
+    def save(self, *args, **kwargs):
+        if not self.expires_at:
+            # Set expiration to 15 minutes from creation
+            self.expires_at = timezone.now() + timedelta(minutes=15)
+        super().save(*args, **kwargs)

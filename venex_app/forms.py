@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from .models import CustomUser, Country, State
+from .models import CustomUser, Country, State, PasswordResetCode
+from django.contrib.auth.forms import PasswordResetForm as DjangoPasswordResetForm
 
 
 class SignUpForm(forms.ModelForm):
@@ -164,3 +165,85 @@ class SignUpForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+
+class PasswordResetRequestForm(forms.Form):
+    email = forms.EmailField(
+        max_length=255,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your email address',
+            'required': True,
+        })
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not CustomUser.objects.filter(email=email, is_active=True).exists():
+            raise forms.ValidationError("No account found with this email address.")
+        return email
+
+class PasswordResetCodeForm(forms.Form):
+    code = forms.CharField(
+        max_length=6,
+        min_length=6,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter 6-digit code',
+            'required': True,
+            'maxlength': '6',
+        }),
+        validators=[
+            RegexValidator(
+                regex=r'^\d{6}$',
+                message='Code must be exactly 6 digits.'
+            )
+        ]
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    def clean_code(self):
+        code = self.cleaned_data.get('code')
+        if self.user:
+            try:
+                reset_code = PasswordResetCode.objects.get(
+                    user=self.user,
+                    code=code,
+                    is_used=False
+                )
+                if not reset_code.is_valid():
+                    raise forms.ValidationError("This code has expired or is invalid.")
+            except PasswordResetCode.DoesNotExist:
+                raise forms.ValidationError("Invalid reset code.")
+        return code
+
+class PasswordResetConfirmForm(forms.Form):
+    new_password = forms.CharField(
+        min_length=8,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter new password',
+            'required': True,
+        }),
+        help_text="Password must be at least 8 characters long."
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Confirm new password',
+            'required': True,
+        })
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get('new_password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if new_password and confirm_password and new_password != confirm_password:
+            raise forms.ValidationError("Passwords don't match.")
+
+        return cleaned_data

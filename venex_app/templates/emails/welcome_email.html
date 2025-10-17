@@ -1,47 +1,40 @@
-{% extends 'emails/base_email.html' %}
+{% extends "emails/base_email.html" %}
 
-{% block header_title %}Welcome to Venex Brokerage!{% endblock %}
-{% block header_subtitle %}Your journey to smart crypto trading and investment begins here!{% endblock %}
+{% block title %}Welcome to Venex Trading Platform{% endblock %}
 
 {% block content %}
-<div class="email-content">
-    <h2>Hello {{ user.first_name }},</h2>
-    
-    <p>Welcome to Venex Brokerage! We're thrilled to have you join our community of smart cryptocurrency traders and investors.</p>
-    
-    <div class="user-info">
-        <strong>Your Account Details:</strong><br>
-        <strong>Name:</strong> {{ user.get_full_name }}<br>
-        <strong>Email:</strong> {{ user.email }}<br>
-        <strong>Username:</strong> {{ user.username }}<br>
-        <strong>Account Created:</strong> {{ user.created_at|date:"F j, Y" }}
-    </div>
-    
-    <p>With your new account, you can:</p>
-    <ul>
-        <li>✅ Trade multiple cryptocurrencies (BTC, ETH, USDT, LTC, TRX)</li>
-        <li>✅ Invest with us and earn</li>
-        <li>✅ Monitor real-time market prices</li>
-        <li>✅ Manage your portfolio with advanced tools</li>
-        <li>✅ Enjoy secure wallet management</li>
-        <li>✅ Access 24/7 customer support</li>
-    </ul>
-    
-    <div class="highlight">
-        <strong>Next Steps:</strong><br>
-        1. Complete your profile verification<br>
-        2. Set up your preferred payment methods<br>
-        3. Explore our trading platform<br>
-        4. Start with a demo account if you're new to trading
-    </div>
-    
-    <p>If you have any questions or need assistance, our support team is always here to help.</p>
-    
-    <div style="text-align: center;">
-        <a href="{{ dashboard_url }}" class="button">Go to Dashboard</a>
-    </div>
-    
-    <p>Happy Trading and Investment!<br>
-    <strong>The Venex Brokerage Team</strong></p>
+<h2>Welcome to Venex Trading Platform! 🚀</h2>
+
+<p>Hello <strong>{{ user.first_name }}</strong>,</p>
+
+<p>Welcome to Venex - your gateway to the world of cryptocurrency trading! We're thrilled to have you on board.</p>
+
+<div class="transaction-details" style="background: #e8f5e8;">
+    <h3>Your Account is Ready!</h3>
+    <p><strong>Account Created:</strong> {{ signup_date|date:"F d, Y" }}</p>
+    <p><strong>Username:</strong> {{ user.username }}</p>
 </div>
+
+<h3>Getting Started</h3>
+<p>To begin your trading journey:</p>
+<ol>
+    <li><strong>Verify Your Account:</strong> Complete KYC verification for full access</li>
+    <li><strong>Fund Your Wallet:</strong> Make your first deposit</li>
+    <li><strong>Start Trading:</strong> Explore our trading pairs and markets</li>
+</ol>
+
+<a href="{{ site_url }}/dashboard" class="button">Go to Dashboard</a>
+
+<h3>Why Trade with Venex?</h3>
+<ul>
+    <li>✅ Secure and regulated platform</li>
+    <li>✅ Competitive trading fees</li>
+    <li>✅ 24/7 customer support</li>
+    <li>✅ Advanced trading tools</li>
+    <li>✅ Multiple cryptocurrency options</li>
+</ul>
+
+<p>If you have any questions or need assistance, our support team is available 24/7 to help you.</p>
+
+<p>Happy Trading!<br>The Venex Team</p>
 {% endblock %}

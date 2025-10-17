@@ -1,0 +1,31 @@
+{% extends "emails/base_email.html" %}
+
+{% block title %}KYC Approved - Venex Trading{% endblock %}
+
+{% block content %}
+<h2>KYC Verification Approved! 🎉</h2>
+
+<p>Hello <strong>{{ user.first_name }}</strong>,</p>
+
+<p>Great news! Your KYC (Know Your Customer) verification has been successfully approved.</p>
+
+<div class="transaction-details" style="background: #e8f5e8;">
+    <h3 style="color: green;">✓ Verification Status: Approved</h3>
+    <p><strong>Approval Date:</strong> {{ approval_date|date:"F d, Y" }}</p>
+</div>
+
+<p>With your KYC verification complete, you now have full access to all features of the Venex Trading Platform, including:</p>
+
+<ul>
+    <li>✅ Higher withdrawal limits</li>
+    <li>✅ Full trading capabilities</li>
+    <li>✅ Access to all payment methods</li>
+    <li>✅ Enhanced security features</li>
+</ul>
+
+<a href="{{ site_url }}/dashboard" class="button">Start Trading Now</a>
+
+<p>If you have any questions or need assistance, don't hesitate to contact our support team.</p>
+
+<p>Welcome to the full Venex experience!<br>The Venex Team</p>
+{% endblock %}

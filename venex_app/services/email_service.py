@@ -3,6 +3,8 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.utils.html import strip_tags
 import logging
+from django.utils import timezone
+from django.core.mail import send_mail
 
 logger = logging.getLogger(__name__)
 
@@ -191,4 +193,58 @@ class EmailService:
             
         except Exception as e:
             logger.error(f"Failed to send KYC status email: {str(e)}")
+            return False
+        
+    @staticmethod
+    def send_password_reset_code(user, reset_code):
+        """Send password reset code email"""
+        context = {
+            'user': user,
+            'reset_code': reset_code,
+            'expires_in': 15,
+            'timestamp': timezone.now(),
+        }
+        
+        subject = "Password Reset Code - Venex Trading"
+        html_message = render_to_string('emails/password_reset_code.html', context)
+        plain_message = f"Your password reset code is: {reset_code}. This code expires in 15 minutes."
+        
+        try:
+            send_mail(
+                subject=subject,
+                message=plain_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+            return True
+        except Exception as e:
+            print(f"Password reset email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_password_reset_success(user):
+        """Send password reset success notification"""
+        context = {
+            'user': user,
+            'timestamp': timezone.now(),
+        }
+        
+        subject = "Password Reset Successful - Venex Trading"
+        html_message = render_to_string('emails/password_reset_success.html', context)
+        plain_message = "Your password has been successfully reset. If you didn't make this change, please contact support immediately."
+        
+        try:
+            send_mail(
+                subject=subject,
+                message=plain_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+            return True
+        except Exception as e:
+            print(f"Password reset success email failed: {e}")
             return False

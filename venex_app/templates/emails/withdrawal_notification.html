@@ -1,0 +1,47 @@
+{% extends "emails/base_email.html" %}
+
+{% block title %}Withdrawal Completed - Venex Trading{% endblock %}
+
+{% block content %}
+<h2>Withdrawal Successfully Processed</h2>
+
+<p>Hello <strong>{{ user.first_name }}</strong>,</p>
+
+<p>Your withdrawal request has been processed and the funds have been sent to your specified wallet address.</p>
+
+<div class="transaction-details">
+    <h3>Transaction Details</h3>
+    <table>
+        <tr>
+            <td><strong>Amount:</strong></td>
+            <td>{{ amount }} {{ crypto }}</td>
+        </tr>
+        <tr>
+            <td><strong>Transaction ID:</strong></td>
+            <td>{{ transaction_id }}</td>
+        </tr>
+        <tr>
+            <td><strong>Status:</strong></td>
+            <td style="color: green;">Completed</td>
+        </tr>
+        <tr>
+            <td><strong>Date:</strong></td>
+            <td>{{ timestamp|date:"F d, Y H:i" }}</td>
+        </tr>
+        {% if transaction.transaction_hash %}
+        <tr>
+            <td><strong>Transaction Hash:</strong></td>
+            <td>{{ transaction.transaction_hash }}</td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
+
+<p>The funds should appear in your wallet shortly, depending on blockchain confirmation times.</p>
+
+<a href="{{ site_url }}/dashboard" class="button">View Your Dashboard</a>
+
+<p>If you don't see the funds in your wallet within the expected time frame, please contact our support team.</p>
+
+<p>Best regards,<br>The Venex Team</p>
+{% endblock %}
