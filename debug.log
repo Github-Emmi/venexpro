@@ -1,0 +1,5 @@
+INFO 2025-10-17 19:01:13,302 autoreload 22243 4480112128 Watching for file changes with StatReloader
+WARNING 2025-10-17 19:04:04,657 log 22243 123145359462400 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-17 19:04:10,190 log 22243 123145359462400 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-17 19:04:10,574 log 22243 123145359462400 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-17 19:04:27,842 log 22243 123145359462400 Not Found: /favicon.ico
