@@ -10,42 +10,58 @@ logger = logging.getLogger(__name__)
 
 class EmailService:
     """
-    Professional email service for sending HTML emails with templates
+    Professional email service for sending HTML emails with Zoho integration
     """
     
     @staticmethod
-    def send_welcome_email(user):
+    def _send_email(subject, template_name, context, to_emails, reply_to=None):
         """
-        Send welcome email to new users
+        Generic method to send emails with template
         """
         try:
-            context = {
-                'user': user,
-                'site_url': settings.SITE_URL,
-                'dashboard_url': f"{settings.SITE_URL}/dashboard",
-                'user_email': user.email,
-            }
-            
-            subject = "Welcome to Venex Brokerage - Your Account is Ready!"
-            html_content = render_to_string('emails/welcome_email.html', context)
+            html_content = render_to_string(template_name, context)
             text_content = strip_tags(html_content)
             
             email = EmailMultiAlternatives(
                 subject=subject,
                 body=text_content,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[user.email],
-                reply_to=[settings.SUPPORT_EMAIL],
+                to=to_emails,
+                reply_to=reply_to or [settings.SUPPORT_EMAIL],
             )
             email.attach_alternative(html_content, "text/html")
-            email.send()
+            email.send(fail_silently=False)
             
-            logger.info(f"Welcome email sent successfully to {user.email}")
+            logger.info(f"Email sent successfully to {to_emails} - Subject: {subject}")
             return True
             
         except Exception as e:
-            logger.error(f"Failed to send welcome email to {user.email}: {str(e)}")
+            logger.error(f"Failed to send email to {to_emails}: {str(e)}", exc_info=True)
             return False
+    
+    @staticmethod
+    def send_welcome_email(user):
+        """
+        Send professional welcome email to new users
+        """
+        context = {
+            'user': user,
+            'site_url': settings.SITE_URL,
+            'dashboard_url': f"{settings.SITE_URL}/dashboard",
+            'login_url': f"{settings.SITE_URL}/login",
+            'support_email': settings.SUPPORT_EMAIL,
+            'current_year': timezone.now().year,
+            'timestamp': timezone.now(),
+        }
+        
+        subject = "Welcome to Venex Brokerage - Your Account is Ready!"
+        return EmailService._send_email(
+            subject=subject,
+            template_name='emails/welcome_email.html',
+            context=context,
+            to_emails=[user.email]
+        )
+    
     
     @staticmethod
     def send_contact_notification(contact_data):

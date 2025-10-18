@@ -3,3 +3,594 @@ WARNING 2025-10-17 19:04:04,657 log 22243 123145359462400 Not Found: /World FX C
 WARNING 2025-10-17 19:04:10,190 log 22243 123145359462400 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
 WARNING 2025-10-17 19:04:10,574 log 22243 123145359462400 Not Found: /gtranslate.net/flags/24.png
 WARNING 2025-10-17 19:04:27,842 log 22243 123145359462400 Not Found: /favicon.ico
+INFO 2025-10-18 01:24:56,750 autoreload 5792 4607276544 Watching for file changes with StatReloader
+INFO 2025-10-18 01:25:28,402 autoreload 5792 4607276544 /Users/emmidev/Desktop/Projects/RBC/venex_app/serializers.py changed, reloading.
+INFO 2025-10-18 01:25:29,287 autoreload 5806 4433380864 Watching for file changes with StatReloader
+INFO 2025-10-18 01:25:46,361 autoreload 5806 4433380864 /Users/emmidev/Desktop/Projects/RBC/venex_app/serializers.py changed, reloading.
+INFO 2025-10-18 01:25:47,527 autoreload 5815 4405028352 Watching for file changes with StatReloader
+INFO 2025-10-18 01:27:07,843 autoreload 5815 4405028352 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:27:08,941 autoreload 5840 4459816448 Watching for file changes with StatReloader
+INFO 2025-10-18 01:27:10,194 autoreload 5840 4459816448 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:27:11,287 autoreload 5843 4367640064 Watching for file changes with StatReloader
+INFO 2025-10-18 01:27:13,728 autoreload 5843 4367640064 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:27:14,337 autoreload 5849 4631619072 Watching for file changes with StatReloader
+INFO 2025-10-18 01:27:18,790 autoreload 5849 4631619072 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:27:19,432 autoreload 5857 4452959744 Watching for file changes with StatReloader
+INFO 2025-10-18 01:28:49,055 autoreload 5857 4452959744 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:28:50,275 autoreload 5868 4608402944 Watching for file changes with StatReloader
+INFO 2025-10-18 01:28:53,878 autoreload 5868 4608402944 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:28:54,558 autoreload 5876 4598957568 Watching for file changes with StatReloader
+INFO 2025-10-18 01:30:01,115 autoreload 5876 4598957568 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:30:01,734 autoreload 5899 4692276736 Watching for file changes with StatReloader
+INFO 2025-10-18 01:30:04,026 autoreload 5899 4692276736 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:30:04,784 autoreload 5906 4616082944 Watching for file changes with StatReloader
+INFO 2025-10-18 01:30:09,348 autoreload 5906 4616082944 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:30:10,550 autoreload 5913 4660381184 Watching for file changes with StatReloader
+INFO 2025-10-18 01:30:17,492 autoreload 5913 4660381184 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:30:18,387 autoreload 5920 4659152384 Watching for file changes with StatReloader
+INFO 2025-10-18 01:30:21,925 autoreload 5920 4659152384 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:30:22,639 autoreload 5928 4547048960 Watching for file changes with StatReloader
+INFO 2025-10-18 01:30:55,558 autoreload 5928 4547048960 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:30:56,154 autoreload 5938 4322203136 Watching for file changes with StatReloader
+INFO 2025-10-18 01:30:58,435 autoreload 5938 4322203136 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:30:59,113 autoreload 5945 4484654592 Watching for file changes with StatReloader
+INFO 2025-10-18 01:31:29,807 autoreload 5945 4484654592 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:31:30,928 autoreload 5977 4622501376 Watching for file changes with StatReloader
+INFO 2025-10-18 01:31:34,441 autoreload 5977 4622501376 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:31:35,488 autoreload 5984 4485912064 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:01,043 autoreload 5984 4485912064 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:02,632 autoreload 5994 4535305728 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:17,860 autoreload 5994 4535305728 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:18,795 autoreload 6007 4671972864 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:28,315 autoreload 6007 4671972864 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:29,289 autoreload 6017 4417312256 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:30,846 autoreload 6017 4417312256 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:31,662 autoreload 6024 4555318784 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:36,074 autoreload 6024 4555318784 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:36,805 autoreload 6031 4605163008 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:41,315 autoreload 6031 4605163008 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:41,913 autoreload 6038 4721759744 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:44,232 autoreload 6038 4721759744 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:44,949 autoreload 6041 4654728704 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:50,297 autoreload 6041 4654728704 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:51,016 autoreload 6052 4708697600 Watching for file changes with StatReloader
+INFO 2025-10-18 01:32:56,391 autoreload 6052 4708697600 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:32:56,979 autoreload 6060 4437972480 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:00,309 autoreload 6060 4437972480 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:01,037 autoreload 6067 4543641088 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:09,506 autoreload 6067 4543641088 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:10,086 autoreload 6074 4751799808 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:14,407 autoreload 6074 4751799808 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:15,225 autoreload 6081 4646168064 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:16,598 autoreload 6081 4646168064 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:17,513 autoreload 6088 4604335616 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:23,145 autoreload 6088 4604335616 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:23,862 autoreload 6095 4401968640 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:28,363 autoreload 6095 4401968640 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:29,153 autoreload 6103 4621084160 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:32,475 autoreload 6103 4621084160 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:34,254 autoreload 6110 4524795392 Watching for file changes with StatReloader
+INFO 2025-10-18 01:33:40,684 autoreload 6110 4524795392 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:33:41,455 autoreload 6117 4697232896 Watching for file changes with StatReloader
+INFO 2025-10-18 01:34:04,566 autoreload 6117 4697232896 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:34:05,299 autoreload 6127 4445652480 Watching for file changes with StatReloader
+INFO 2025-10-18 01:34:07,534 autoreload 6127 4445652480 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:34:08,343 autoreload 6134 4705650176 Watching for file changes with StatReloader
+INFO 2025-10-18 01:37:19,045 autoreload 6134 4705650176 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:37:20,079 autoreload 6149 4492117504 Watching for file changes with StatReloader
+INFO 2025-10-18 01:37:47,510 autoreload 6149 4492117504 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:37:48,299 autoreload 6159 4492322304 Watching for file changes with StatReloader
+INFO 2025-10-18 01:37:51,612 autoreload 6159 4492322304 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:37:52,496 autoreload 6166 4513457664 Watching for file changes with StatReloader
+INFO 2025-10-18 01:37:54,808 autoreload 6166 4513457664 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:37:55,778 autoreload 6173 4440479232 Watching for file changes with StatReloader
+INFO 2025-10-18 01:37:58,138 autoreload 6173 4440479232 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:37:58,973 autoreload 6174 4546205184 Watching for file changes with StatReloader
+INFO 2025-10-18 01:38:07,488 autoreload 6174 4546205184 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:38:08,611 autoreload 6187 4376978944 Watching for file changes with StatReloader
+INFO 2025-10-18 01:38:55,769 autoreload 6187 4376978944 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:38:56,767 autoreload 6198 4578997760 Watching for file changes with StatReloader
+INFO 2025-10-18 01:39:10,568 autoreload 6198 4578997760 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 01:39:11,266 autoreload 6207 4421297664 Watching for file changes with StatReloader
+INFO 2025-10-18 01:49:36,871 autoreload 6437 4579718656 Watching for file changes with StatReloader
+INFO 2025-10-18 02:16:15,976 autoreload 8786 4570928640 Watching for file changes with StatReloader
+WARNING 2025-10-18 02:16:28,864 log 8786 123145488240640 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:16:29,764 log 8786 123145488240640 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:16:34,742 log 8786 123145421082624 Not Found: /assets/js/default.js
+WARNING 2025-10-18 02:16:34,758 log 8786 123145437872128 Not Found: /assets/js/element.js
+WARNING 2025-10-18 02:16:34,805 log 8786 123145437872128 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:16:34,825 log 8786 123145421082624 Not Found: /app1/static/assets/images/translate_24dp.png
+WARNING 2025-10-18 02:16:34,887 log 8786 123145421082624 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 02:16:50,191 email_service 8786 123145421082624 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 02:16:50,195 views 8786 123145421082624 Contact form submitted successfully by Franco Miller (aghason.emmanuel@gmail.com)
+WARNING 2025-10-18 02:16:50,367 log 8786 123145454661632 Not Found: /assets/js/element.js
+WARNING 2025-10-18 02:16:50,367 log 8786 123145437872128 Not Found: /assets/js/default.js
+WARNING 2025-10-18 02:16:50,395 log 8786 123145454661632 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:16:50,410 log 8786 123145437872128 Not Found: /app1/static/assets/images/translate_24dp.png
+WARNING 2025-10-18 02:16:50,569 log 8786 123145437872128 Not Found: /contact/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:17:15,323 log 8786 123145437872128 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:17:15,385 log 8786 123145437872128 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:17:18,765 log 8786 123145421082624 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:17:19,014 log 8786 123145437872128 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:17:19,029 log 8786 123145421082624 Not Found: /login/er.lrticker.html
+WARNING 2025-10-18 02:17:22,755 log 8786 123145421082624 Not Found: /password-reset/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:17:22,930 log 8786 123145421082624 Not Found: /password-reset/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:17:34,676 log 8786 123145421082624 Not Found: /password-reset/verify/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:17:34,819 log 8786 123145421082624 Not Found: /password-reset/verify/gtranslate.net/flags/24.png
+INFO 2025-10-18 02:34:13,682 autoreload 8786 4570928640 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:34:16,478 autoreload 9198 4440110592 Watching for file changes with StatReloader
+INFO 2025-10-18 02:36:32,914 autoreload 9198 4440110592 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:36:34,702 autoreload 9214 4522886656 Watching for file changes with StatReloader
+INFO 2025-10-18 02:36:49,863 autoreload 9214 4522886656 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:36:50,954 autoreload 9233 4418143744 Watching for file changes with StatReloader
+INFO 2025-10-18 02:37:10,316 autoreload 9233 4418143744 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:37:11,300 autoreload 9243 4536141312 Watching for file changes with StatReloader
+INFO 2025-10-18 02:37:20,142 autoreload 9243 4536141312 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:37:21,034 autoreload 9252 4770084352 Watching for file changes with StatReloader
+INFO 2025-10-18 02:37:23,405 autoreload 9252 4770084352 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:37:24,302 autoreload 9259 4605425152 Watching for file changes with StatReloader
+INFO 2025-10-18 02:37:26,590 autoreload 9259 4605425152 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:37:28,423 autoreload 9262 4623353344 Watching for file changes with StatReloader
+INFO 2025-10-18 02:37:34,078 autoreload 9262 4623353344 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:37:34,792 autoreload 9273 4598883840 Watching for file changes with StatReloader
+INFO 2025-10-18 02:38:19,967 autoreload 9273 4598883840 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:38:21,008 autoreload 9284 4369012224 Watching for file changes with StatReloader
+INFO 2025-10-18 02:38:24,368 autoreload 9284 4369012224 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:38:25,083 autoreload 9291 4644009472 Watching for file changes with StatReloader
+INFO 2025-10-18 02:38:34,723 autoreload 9291 4644009472 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:38:35,609 autoreload 9301 4591683072 Watching for file changes with StatReloader
+INFO 2025-10-18 02:38:43,180 autoreload 9301 4591683072 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:38:44,022 autoreload 9311 4675573248 Watching for file changes with StatReloader
+INFO 2025-10-18 02:38:49,585 autoreload 9311 4675573248 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:38:51,338 autoreload 9318 4446488064 Watching for file changes with StatReloader
+INFO 2025-10-18 02:39:01,459 autoreload 9318 4446488064 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:39:03,161 autoreload 9327 4441396736 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:03,153 autoreload 9327 4441396736 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:04,633 autoreload 9343 4814001664 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:10,173 autoreload 9343 4814001664 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:11,446 autoreload 9352 4549314048 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:19,063 autoreload 9352 4549314048 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:20,205 autoreload 9363 4586440192 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:22,539 autoreload 9363 4586440192 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:23,621 autoreload 9367 4785731072 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:27,016 autoreload 9367 4785731072 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:27,990 autoreload 9374 4604827136 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:32,377 autoreload 9374 4604827136 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:33,328 autoreload 9381 4446217728 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:37,714 autoreload 9381 4446217728 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:38,292 autoreload 9388 4604556800 Watching for file changes with StatReloader
+INFO 2025-10-18 02:40:40,676 autoreload 9388 4604556800 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:40:41,392 autoreload 9395 4314863104 Watching for file changes with StatReloader
+INFO 2025-10-18 02:41:45,248 autoreload 9395 4314863104 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:41:46,517 autoreload 9404 4479858176 Watching for file changes with StatReloader
+INFO 2025-10-18 02:42:08,473 autoreload 9404 4479858176 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 02:42:09,174 autoreload 9418 4632942080 Watching for file changes with StatReloader
+WARNING 2025-10-18 02:42:41,425 log 9418 123145582043136 Not Found: /assets/js/default.js
+WARNING 2025-10-18 02:42:42,046 log 9418 123145582043136 Not Found: /assets/js/element.js
+WARNING 2025-10-18 02:42:42,049 log 9418 123145531674624 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:42:42,122 log 9418 123145531674624 Not Found: /app1/static/assets/images/translate_24dp.png
+WARNING 2025-10-18 02:42:42,181 log 9418 123145531674624 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 02:44:53,282 autoreload 9418 4632942080 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:44:55,420 autoreload 9461 4454082048 Watching for file changes with StatReloader
+INFO 2025-10-18 02:45:03,549 autoreload 9461 4454082048 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:45:04,292 autoreload 9482 4682573312 Watching for file changes with StatReloader
+INFO 2025-10-18 02:46:16,621 autoreload 9482 4682573312 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:46:17,772 autoreload 9553 4520736256 Watching for file changes with StatReloader
+INFO 2025-10-18 02:46:20,249 autoreload 9553 4520736256 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:46:21,608 autoreload 9560 4698449408 Watching for file changes with StatReloader
+INFO 2025-10-18 02:46:30,728 autoreload 9560 4698449408 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:46:32,130 autoreload 9571 4692899328 Watching for file changes with StatReloader
+INFO 2025-10-18 02:49:08,016 autoreload 9571 4692899328 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:49:09,147 autoreload 9617 4653884928 Watching for file changes with StatReloader
+INFO 2025-10-18 02:49:21,177 autoreload 9617 4653884928 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:49:21,899 autoreload 9630 4728624640 Watching for file changes with StatReloader
+INFO 2025-10-18 02:49:35,657 autoreload 9630 4728624640 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:49:36,710 autoreload 9640 4419855872 Watching for file changes with StatReloader
+INFO 2025-10-18 02:49:48,540 autoreload 9640 4419855872 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:49:49,663 autoreload 9649 4502685184 Watching for file changes with StatReloader
+INFO 2025-10-18 02:49:51,395 autoreload 9649 4502685184 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:49:52,249 autoreload 9656 4580140544 Watching for file changes with StatReloader
+WARNING 2025-10-18 02:50:24,730 log 9656 123145635090432 Not Found: /assets/js/element.js
+WARNING 2025-10-18 02:50:24,730 log 9656 123145584721920 Not Found: /assets/js/default.js
+WARNING 2025-10-18 02:50:25,162 log 9656 123145584721920 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:50:25,174 log 9656 123145635090432 Not Found: /app1/static/assets/images/translate_24dp.png
+WARNING 2025-10-18 02:50:25,259 log 9656 123145635090432 Not Found: /contact/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:50:32,353 log 9656 123145601511424 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:50:32,360 log 9656 123145584721920 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:50:32,376 log 9656 123145618300928 Not Found: /login/er.lrticker.html
+WARNING 2025-10-18 02:50:36,891 log 9656 123145584721920 Not Found: /password-reset/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:50:37,003 log 9656 123145584721920 Not Found: /password-reset/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:50:49,728 log 9656 123145584721920 Not Found: /password-reset/verify/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:50:49,841 log 9656 123145584721920 Not Found: /password-reset/verify/gtranslate.net/flags/24.png
+WARNING 2025-10-18 02:51:18,500 log 9656 123145601511424 Not Found: /assets/js/element.js
+WARNING 2025-10-18 02:51:18,508 log 9656 123145584721920 Not Found: /assets/js/default.js
+WARNING 2025-10-18 02:51:18,539 log 9656 123145584721920 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 02:51:18,551 log 9656 123145601511424 Not Found: /app1/static/assets/images/translate_24dp.png
+WARNING 2025-10-18 02:51:18,767 log 9656 123145601511424 Not Found: /contact/gtranslate.net/flags/24.png
+ERROR 2025-10-18 02:51:51,488 log 9656 123145584721920 Internal Server Error: /contact/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/views.py", line 181, in contact
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 201, in errors
+    self.full_clean()
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 337, in full_clean
+    self._clean_fields()
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 347, in _clean_fields
+    value = getattr(self, "clean_%s" % name)()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py", line 231, in clean_message
+    if len(name) < 2: # type: ignore
+           ^^^^
+NameError: name 'name' is not defined
+WARNING 2025-10-18 02:51:51,903 log 9656 123145584721920 Not Found: /favicon.ico
+INFO 2025-10-18 02:53:41,504 autoreload 9656 4580140544 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:53:42,433 autoreload 9731 4553160192 Watching for file changes with StatReloader
+INFO 2025-10-18 02:53:52,251 autoreload 9731 4553160192 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 02:53:53,060 autoreload 9740 4448564736 Watching for file changes with StatReloader
+WARNING 2025-10-18 03:00:15,712 log 9740 123145617596416 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:00:15,772 log 9740 123145617596416 Not Found: /contact/gtranslate.net/flags/24.png
+ERROR 2025-10-18 03:00:57,399 log 9740 123145567227904 Internal Server Error: /contact/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/views.py", line 181, in contact
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 201, in errors
+    self.full_clean()
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 337, in full_clean
+    self._clean_fields()
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/forms/forms.py", line 347, in _clean_fields
+    value = getattr(self, "clean_%s" % name)()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py", line 231, in clean_message
+    if len(name) < 2: # type: ignore
+           ^^^^
+NameError: name 'name' is not defined
+INFO 2025-10-18 03:07:51,741 autoreload 9740 4448564736 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:07:54,359 autoreload 9855 4666979840 Watching for file changes with StatReloader
+INFO 2025-10-18 03:08:00,148 autoreload 9855 4666979840 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:08:01,601 autoreload 9868 4430575104 Watching for file changes with StatReloader
+INFO 2025-10-18 03:08:07,400 autoreload 9868 4430575104 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:08:08,375 autoreload 9875 4629583360 Watching for file changes with StatReloader
+INFO 2025-10-18 03:08:14,207 autoreload 9875 4629583360 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:08:15,463 autoreload 9888 4722943488 Watching for file changes with StatReloader
+INFO 2025-10-18 03:08:50,647 autoreload 9888 4722943488 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:08:52,523 autoreload 9899 4767983104 Watching for file changes with StatReloader
+INFO 2025-10-18 03:09:41,504 autoreload 9899 4767983104 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:09:42,291 autoreload 9914 4557272576 Watching for file changes with StatReloader
+WARNING 2025-10-18 03:10:27,517 log 9914 123145568198656 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:10:27,650 log 9914 123145568198656 Not Found: /contact/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:10:27,741 log 9914 123145568198656 Not Found: /contact/gtranslate.net/flags/24a.png
+INFO 2025-10-18 03:11:10,456 email_service 9914 123145568198656 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 03:11:14,347 email_service 9914 123145568198656 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 03:11:14,351 views 9914 123145568198656 Contact emails sent successfully for aghason.emmanuel@gmail.com
+WARNING 2025-10-18 03:11:14,547 log 9914 123145568198656 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:11:14,688 log 9914 123145568198656 Not Found: /contact/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:11:48,304 log 9914 123145584988160 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:11:48,400 log 9914 123145601777664 Not Found: /signup/gtranslate.net/flags/24.png
+INFO 2025-10-18 03:12:42,821 email_service 9914 123145568198656 Welcome email sent successfully to sandy@gmail.com
+INFO 2025-10-18 03:12:42,862 views 9914 123145568198656 Welcome email sent successfully to sandy@gmail.com
+WARNING 2025-10-18 03:12:43,292 log 9914 123145618567168 Not Found: /dashboard/resource.html
+WARNING 2025-10-18 03:12:43,416 log 9914 123145618567168 Not Found: /dashboard/img/user_2.png
+WARNING 2025-10-18 03:12:43,441 log 9914 123145668935680 Not Found: /dashboard/resource(1).html
+WARNING 2025-10-18 03:12:43,482 log 9914 123145584988160 Not Found: /dashboard/resource(3).html
+WARNING 2025-10-18 03:12:43,485 log 9914 123145635356672 Not Found: /dashboard/resource(2).html
+WARNING 2025-10-18 03:16:39,409 log 9914 123145568198656 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:16:39,598 log 9914 123145568198656 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:16:42,972 log 9914 123145568198656 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:16:43,034 log 9914 123145568198656 Not Found: /signup/gtranslate.net/flags/24.png
+INFO 2025-10-18 03:17:50,590 email_service 9914 123145568198656 Welcome email sent successfully to emmidevcodes@gmail.com
+INFO 2025-10-18 03:17:50,596 views 9914 123145568198656 Welcome email sent successfully to emmidevcodes@gmail.com
+WARNING 2025-10-18 03:17:50,735 log 9914 123145568198656 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:17:50,834 log 9914 123145568198656 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:25:26,859 log 9914 123145568198656 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:25:28,267 log 9914 123145601777664 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:26:05,904 log 9914 123145568198656 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:26:05,965 log 9914 123145568198656 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:26:09,524 log 9914 123145568198656 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:26:09,629 log 9914 123145568198656 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:33:59,604 log 9914 123145584988160 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:33:59,715 log 9914 123145584988160 Not Found: /signup/gtranslate.net/flags/24.png
+INFO 2025-10-18 03:34:53,268 autoreload 9914 4557272576 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:34:54,625 autoreload 10406 4588754432 Watching for file changes with StatReloader
+INFO 2025-10-18 03:34:57,564 autoreload 10406 4588754432 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:34:58,520 autoreload 10414 4660766208 Watching for file changes with StatReloader
+INFO 2025-10-18 03:35:04,290 autoreload 10414 4660766208 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:35:05,040 autoreload 10423 4508448256 Watching for file changes with StatReloader
+INFO 2025-10-18 03:35:06,596 autoreload 10423 4508448256 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:35:07,341 autoreload 10428 4515194368 Watching for file changes with StatReloader
+INFO 2025-10-18 03:35:18,291 autoreload 10428 4515194368 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:35:19,088 autoreload 10435 4575413760 Watching for file changes with StatReloader
+INFO 2025-10-18 03:35:22,627 autoreload 10435 4575413760 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:35:23,247 autoreload 10442 4653696512 Watching for file changes with StatReloader
+INFO 2025-10-18 03:36:32,800 autoreload 10442 4653696512 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:36:34,829 autoreload 10487 4413953536 Watching for file changes with StatReloader
+INFO 2025-10-18 03:36:42,866 autoreload 10487 4413953536 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:36:44,403 autoreload 10500 4707059200 Watching for file changes with StatReloader
+INFO 2025-10-18 03:37:36,355 autoreload 10500 4707059200 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:37:37,398 autoreload 10526 4485514752 Watching for file changes with StatReloader
+INFO 2025-10-18 03:37:39,758 autoreload 10526 4485514752 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:37:40,867 autoreload 10533 4566672896 Watching for file changes with StatReloader
+INFO 2025-10-18 03:37:43,707 autoreload 10533 4566672896 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:37:45,058 autoreload 10540 4635002368 Watching for file changes with StatReloader
+INFO 2025-10-18 03:37:46,847 autoreload 10540 4635002368 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:37:48,570 autoreload 10542 4506322432 Watching for file changes with StatReloader
+INFO 2025-10-18 03:37:50,570 autoreload 10542 4506322432 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:37:51,430 autoreload 10550 4483720704 Watching for file changes with StatReloader
+INFO 2025-10-18 03:37:57,161 autoreload 10550 4483720704 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:37:57,975 autoreload 10559 4553717248 Watching for file changes with StatReloader
+INFO 2025-10-18 03:41:56,453 autoreload 10559 4553717248 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:41:58,340 autoreload 10584 4504327680 Watching for file changes with StatReloader
+INFO 2025-10-18 03:42:05,349 autoreload 10584 4504327680 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:42:06,606 autoreload 10598 4566427136 Watching for file changes with StatReloader
+WARNING 2025-10-18 03:46:53,180 log 10598 123145582559232 Forbidden (CSRF token from POST incorrect.): /signup/
+WARNING 2025-10-18 03:47:04,652 log 10598 123145582559232 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:47:04,684 log 10598 123145599348736 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:48:23,051 log 10598 123145582559232 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:48:23,140 log 10598 123145582559232 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:48:39,356 log 10598 123145582559232 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:48:39,416 log 10598 123145582559232 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:49:33,607 log 10598 123145582559232 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:49:33,722 log 10598 123145582559232 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 03:49:58,098 email_service 10598 123145582559232 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 03:50:01,960 email_service 10598 123145582559232 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 03:50:01,963 views 10598 123145582559232 Contact emails sent successfully for aghason.emmanuel@gmail.com
+WARNING 2025-10-18 03:50:02,144 log 10598 123145582559232 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:50:02,250 log 10598 123145582559232 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 03:52:07,460 autoreload 10598 4566427136 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 03:52:09,765 autoreload 10734 4445967872 Watching for file changes with StatReloader
+INFO 2025-10-18 03:53:03,241 autoreload 10734 4445967872 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 03:53:04,573 autoreload 10751 4372420096 Watching for file changes with StatReloader
+INFO 2025-10-18 03:53:43,501 autoreload 10751 4372420096 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 03:53:45,178 autoreload 10766 4702275072 Watching for file changes with StatReloader
+WARNING 2025-10-18 03:55:33,038 log 10766 123145503633408 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:55:33,916 log 10766 123145503633408 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:56:36,975 log 10766 123145503633408 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:56:37,163 log 10766 123145503633408 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:56:49,629 log 10766 123145503633408 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 03:56:49,669 log 10766 123145503633408 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-18 03:56:49,901 log 10766 123145520422912 Not Found: /login/er.lrticker.html
+INFO 2025-10-18 03:58:50,705 autoreload 10766 4702275072 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:58:52,777 autoreload 10843 4528100864 Watching for file changes with StatReloader
+INFO 2025-10-18 03:59:13,436 autoreload 10843 4528100864 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:59:15,173 autoreload 10857 4554208768 Watching for file changes with StatReloader
+INFO 2025-10-18 03:59:19,358 autoreload 10857 4554208768 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:59:20,148 autoreload 10866 4706059776 Watching for file changes with StatReloader
+INFO 2025-10-18 03:59:22,694 autoreload 10866 4706059776 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:59:24,119 autoreload 10871 4604966400 Watching for file changes with StatReloader
+INFO 2025-10-18 03:59:28,109 autoreload 10871 4604966400 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:59:28,818 autoreload 10879 4503864832 Watching for file changes with StatReloader
+INFO 2025-10-18 03:59:34,527 autoreload 10879 4503864832 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:59:35,278 autoreload 10888 4617569792 Watching for file changes with StatReloader
+INFO 2025-10-18 03:59:37,251 autoreload 10888 4617569792 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:59:38,215 autoreload 10889 4697859584 Watching for file changes with StatReloader
+INFO 2025-10-18 03:59:40,197 autoreload 10889 4697859584 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 03:59:40,925 autoreload 10896 4702029312 Watching for file changes with StatReloader
+INFO 2025-10-18 04:01:04,505 autoreload 10896 4702029312 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 04:01:06,384 autoreload 10924 4477867520 Watching for file changes with StatReloader
+INFO 2025-10-18 04:01:59,737 autoreload 10924 4477867520 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:02:01,535 autoreload 10942 4552693248 Watching for file changes with StatReloader
+INFO 2025-10-18 04:02:14,446 autoreload 10942 4552693248 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:02:16,228 autoreload 10954 4510684672 Watching for file changes with StatReloader
+INFO 2025-10-18 04:02:20,394 autoreload 10954 4510684672 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:02:21,277 autoreload 10963 4528641536 Watching for file changes with StatReloader
+WARNING 2025-10-18 04:05:45,750 log 10963 123145411125248 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:05:45,784 log 10963 123145427914752 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:05:48,148 log 10963 123145411125248 Not Found: /signup/gtranslate.net/flags/24a.png
+WARNING 2025-10-18 04:05:53,075 log 10963 123145411125248 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:05:53,226 log 10963 123145411125248 Not Found: /signup/gtranslate.net/flags/24.png
+ERROR 2025-10-18 04:07:47,848 email_service 10963 123145411125248 Failed to send email to ['emmidevcodes@gmail.com']: 'block' tag with name 'title' appears more than once
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py", line 22, in _send_email
+    html_content = render_to_string(template_name, context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 228, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'title' appears more than once
+WARNING 2025-10-18 04:07:47,857 views 10963 123145411125248 Failed to send welcome email to emmidevcodes@gmail.com
+WARNING 2025-10-18 04:07:48,804 log 10963 123145495072768 Not Found: /dashboard/resource(1).html
+WARNING 2025-10-18 04:07:48,820 log 10963 123145461493760 Not Found: /dashboard/resource(2).html
+WARNING 2025-10-18 04:07:48,830 log 10963 123145427914752 Not Found: /dashboard/resource.html
+WARNING 2025-10-18 04:07:48,845 log 10963 123145444704256 Not Found: /dashboard/resource(3).html
+WARNING 2025-10-18 04:07:48,879 log 10963 123145411125248 Not Found: /dashboard/img/user_2.png
+WARNING 2025-10-18 04:18:30,005 log 10963 123145411125248 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:18:30,134 log 10963 123145411125248 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:18:33,602 log 10963 123145427914752 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:18:33,694 log 10963 123145427914752 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:19:19,056 log 10963 123145411125248 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:19:19,120 log 10963 123145411125248 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:20:46,048 log 10963 123145411125248 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:20:46,141 log 10963 123145411125248 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:20:54,846 log 10963 123145411125248 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:20:54,970 log 10963 123145411125248 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:21:36,338 log 10963 123145411125248 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:21:36,443 log 10963 123145411125248 Not Found: /signup/gtranslate.net/flags/24.png
+INFO 2025-10-18 04:23:00,378 autoreload 10963 4528641536 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:23:03,613 autoreload 11341 4387390976 Watching for file changes with StatReloader
+INFO 2025-10-18 04:23:06,791 autoreload 11341 4387390976 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:23:07,515 autoreload 11352 4633814528 Watching for file changes with StatReloader
+WARNING 2025-10-18 04:23:57,557 log 11352 123145585270784 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:23:57,877 log 11352 123145585270784 Not Found: /signup/gtranslate.net/flags/24.png
+INFO 2025-10-18 04:24:40,356 email_service 11352 123145568481280 Email sent successfully to ['leo.jacob1968@gmail.com'] - Subject: Welcome to Venex Brokerage - Your Account is Ready!
+INFO 2025-10-18 04:24:40,359 views 11352 123145568481280 Welcome email sent successfully to leo.jacob1968@gmail.com
+WARNING 2025-10-18 04:24:41,029 log 11352 123145568481280 Not Found: /dashboard/resource.html
+WARNING 2025-10-18 04:24:41,066 log 11352 123145585270784 Not Found: /dashboard/img/user_2.png
+WARNING 2025-10-18 04:24:41,098 log 11352 123145618849792 Not Found: /dashboard/resource(2).html
+WARNING 2025-10-18 04:24:41,127 log 11352 123145602060288 Not Found: /dashboard/resource(1).html
+WARNING 2025-10-18 04:24:41,131 log 11352 123145635639296 Not Found: /dashboard/resource(3).html
+WARNING 2025-10-18 04:27:12,913 log 11352 123145568481280 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:27:13,058 log 11352 123145568481280 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:27:16,488 log 11352 123145568481280 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:27:16,565 log 11352 123145568481280 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:28:32,839 log 11352 123145568481280 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:28:33,145 log 11352 123145568481280 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:28:35,701 log 11352 123145585270784 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:28:35,786 log 11352 123145585270784 Not Found: /signup/gtranslate.net/flags/24.png
+INFO 2025-10-18 04:29:32,090 email_service 11352 123145568481280 Email sent successfully to ['emmidevcodes@gmail.com'] - Subject: Welcome to Venex Brokerage - Your Account is Ready!
+INFO 2025-10-18 04:29:32,097 views 11352 123145568481280 Welcome email sent successfully to emmidevcodes@gmail.com
+WARNING 2025-10-18 04:29:32,921 log 11352 123145585270784 Not Found: /dashboard/resource.html
+WARNING 2025-10-18 04:29:32,969 log 11352 123145618849792 Not Found: /dashboard/resource(1).html
+WARNING 2025-10-18 04:29:32,986 log 11352 123145602060288 Not Found: /dashboard/img/user_2.png
+WARNING 2025-10-18 04:29:32,999 log 11352 123145652428800 Not Found: /dashboard/resource(2).html
+WARNING 2025-10-18 04:29:33,022 log 11352 123145568481280 Not Found: /dashboard/resource(3).html
+WARNING 2025-10-18 04:30:35,461 log 11352 123145568481280 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:30:35,566 log 11352 123145568481280 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-18 04:30:37,817 log 11352 123145568481280 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:30:38,056 log 11352 123145568481280 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 04:31:03,431 email_service 11352 123145568481280 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 04:31:06,912 email_service 11352 123145568481280 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 04:31:06,916 views 11352 123145568481280 Contact emails sent successfully for aghason.emmanuel@gmail.com
+WARNING 2025-10-18 04:31:07,118 log 11352 123145568481280 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:31:07,215 log 11352 123145568481280 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 04:33:01,516 autoreload 11352 4633814528 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:33:03,578 autoreload 11560 4494194176 Watching for file changes with StatReloader
+INFO 2025-10-18 04:33:05,595 autoreload 11560 4494194176 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:33:06,360 autoreload 11567 4477437440 Watching for file changes with StatReloader
+INFO 2025-10-18 04:33:13,186 autoreload 11567 4477437440 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:33:14,633 autoreload 11577 4601402880 Watching for file changes with StatReloader
+INFO 2025-10-18 04:33:19,706 autoreload 11577 4601402880 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:33:20,734 autoreload 11588 4527080960 Watching for file changes with StatReloader
+INFO 2025-10-18 04:33:46,076 autoreload 11588 4527080960 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:33:47,199 autoreload 11596 4511483392 Watching for file changes with StatReloader
+INFO 2025-10-18 04:35:15,679 autoreload 11596 4511483392 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 04:35:17,135 autoreload 11611 4478670336 Watching for file changes with StatReloader
+INFO 2025-10-18 04:35:21,707 autoreload 11611 4478670336 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 04:35:22,983 autoreload 11620 4663838208 Watching for file changes with StatReloader
+INFO 2025-10-18 04:35:29,864 autoreload 11620 4663838208 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 04:35:30,536 autoreload 11631 4408116736 Watching for file changes with StatReloader
+INFO 2025-10-18 04:35:32,042 autoreload 11631 4408116736 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 04:35:32,906 autoreload 11634 4552439296 Watching for file changes with StatReloader
+INFO 2025-10-18 04:35:38,517 autoreload 11634 4552439296 /Users/emmidev/Desktop/Projects/RBC/venex_app/views.py changed, reloading.
+INFO 2025-10-18 04:35:39,802 autoreload 11641 4591764992 Watching for file changes with StatReloader
+INFO 2025-10-18 04:36:51,821 autoreload 11641 4591764992 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:36:55,110 autoreload 11664 4470822400 Watching for file changes with StatReloader
+INFO 2025-10-18 04:36:59,455 autoreload 11664 4470822400 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:37:00,697 autoreload 11677 4798297600 Watching for file changes with StatReloader
+INFO 2025-10-18 04:37:05,045 autoreload 11677 4798297600 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:37:05,672 autoreload 11684 4669539840 Watching for file changes with StatReloader
+INFO 2025-10-18 04:37:10,317 autoreload 11684 4669539840 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:37:11,510 autoreload 11691 4484494848 Watching for file changes with StatReloader
+INFO 2025-10-18 04:40:31,692 autoreload 11797 4625217024 Watching for file changes with StatReloader
+INFO 2025-10-18 04:40:59,025 autoreload 11797 4625217024 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:41:00,436 autoreload 11809 4549797376 Watching for file changes with StatReloader
+INFO 2025-10-18 04:41:05,072 autoreload 11809 4549797376 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:41:06,067 autoreload 11819 4686009856 Watching for file changes with StatReloader
+INFO 2025-10-18 04:41:10,135 autoreload 11819 4686009856 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:41:11,065 autoreload 11826 4664043008 Watching for file changes with StatReloader
+INFO 2025-10-18 04:41:13,320 autoreload 11826 4664043008 /Users/emmidev/Desktop/Projects/RBC/venex_app/forms.py changed, reloading.
+INFO 2025-10-18 04:41:13,888 autoreload 11831 4452582912 Watching for file changes with StatReloader
+WARNING 2025-10-18 04:41:26,259 log 11831 123145486217216 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:41:26,463 log 11831 123145486217216 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 04:42:02,677 email_service 11831 123145486217216 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 04:42:06,114 email_service 11831 123145486217216 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-18 04:42:06,116 views 11831 123145486217216 Contact emails sent successfully for aghason.emmanuel@gmail.com
+WARNING 2025-10-18 04:42:06,354 log 11831 123145486217216 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 04:42:06,559 log 11831 123145486217216 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 04:55:55,749 autoreload 11831 4452582912 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:55:57,991 autoreload 12140 4608656896 Watching for file changes with StatReloader
+INFO 2025-10-18 04:56:22,439 autoreload 12140 4608656896 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:56:23,352 autoreload 12154 4587902464 Watching for file changes with StatReloader
+INFO 2025-10-18 04:56:27,781 autoreload 12154 4587902464 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:56:29,210 autoreload 12161 4454090240 Watching for file changes with StatReloader
+INFO 2025-10-18 04:56:31,926 autoreload 12161 4454090240 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:56:33,222 autoreload 12168 4535875072 Watching for file changes with StatReloader
+INFO 2025-10-18 04:56:34,857 autoreload 12168 4535875072 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:56:36,907 autoreload 12175 4700861952 Watching for file changes with StatReloader
+INFO 2025-10-18 04:56:40,419 autoreload 12175 4700861952 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:56:42,277 autoreload 12182 4568118784 Watching for file changes with StatReloader
+INFO 2025-10-18 04:56:46,993 autoreload 12182 4568118784 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 04:56:48,460 autoreload 12190 4326770176 Watching for file changes with StatReloader
+INFO 2025-10-18 05:04:27,840 autoreload 12190 4326770176 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/email_service.py changed, reloading.
+INFO 2025-10-18 05:04:29,656 autoreload 12245 4598765056 Watching for file changes with StatReloader
+WARNING 2025-10-18 05:04:44,262 log 12245 123145553567744 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 05:04:44,500 log 12245 123145553567744 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 05:05:13,644 email_service 12245 123145553567744 Contact notification sent for emmidevcodes@gmail.com
+INFO 2025-10-18 05:05:18,775 email_service 12245 123145553567744 Contact notification sent for emmidevcodes@gmail.com
+INFO 2025-10-18 05:05:18,840 views 12245 123145553567744 Contact emails sent successfully for emmidevcodes@gmail.com
+WARNING 2025-10-18 05:05:19,101 log 12245 123145553567744 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 05:05:19,208 log 12245 123145553567744 Not Found: /contact/gtranslate.net/flags/24.png
+WARNING 2025-10-18 05:30:24,463 log 12245 123145553567744 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 05:30:24,629 log 12245 123145553567744 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-18 05:30:56,690 email_service 12245 123145553567744 Contact notification sent for emmidevcodes@gmail.com
+INFO 2025-10-18 05:31:02,423 email_service 12245 123145553567744 Contact notification sent for emmidevcodes@gmail.com
+INFO 2025-10-18 05:31:02,425 views 12245 123145553567744 Contact emails sent successfully for emmidevcodes@gmail.com
+WARNING 2025-10-18 05:31:02,612 log 12245 123145553567744 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 05:31:02,715 log 12245 123145553567744 Not Found: /contact/gtranslate.net/flags/24.png
+WARNING 2025-10-18 05:31:34,770 log 12245 123145570357248 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-18 05:31:34,841 log 12245 123145570357248 Not Found: /signup/gtranslate.net/flags/24.png

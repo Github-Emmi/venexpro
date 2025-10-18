@@ -1,15 +1,83 @@
 {% extends 'jobs/base.html' %}
 {% load static %}
-{% block title %}venexbtc | FAQ {% endblock %}
-{% block stylesheets %} {% endblock %}
-{% block meta_keywords %} faq venex ltd {% endblock %}
-{% block meta_description %}here are the frequent asked questions and answer you need to know. {% endblock %}
+{% block title %}venexbtc | Contact Us {% endblock %}
+{% block stylesheets %} 
+<style>
+    .error-list {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+        list-style: none;
+        padding-left: 0;
+    }
+    .error-list li {
+        background: #f8d7da;
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        border-left: 4px solid #dc3545;
+    }
+    .success-message {
+        background: #d4edda;
+        color: #155724;
+        padding: 12px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        border-left: 4px solid #28a745;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: white;
+    }
+    .inpts {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: white;
+        color: #333;
+    }
+    .inpts:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    }
+    textarea.inpts {
+        min-height: 120px;
+        resize: vertical;
+    }
+    .sbmt {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+    .sbmt:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+</style>
+{% endblock %}
+
+{% block meta_keywords %} contact venex ltd {% endblock %}
+{% block meta_description %}Contact us for any inquiries. We're here to help you with cryptocurrency trading and investment. {% endblock %}
+
 {% block alert %} 
 <script>
-    function myFunction()
-    {
-      alert("Welcome to our contact page. Feel free to contact us anytime.");
+    function myFunction() {
+        alert("Welcome to our contact page. Feel free to contact us anytime.");
     }
+    // Call the function when page loads
+    window.onload = myFunction;
 </script>
 {% endblock %} 
 
@@ -20,131 +88,374 @@
 
 <div class="bannerContainerinside">
     <div class="bannerinsideInner">
-        <h2>Contact Us :</h2>
+        <h2>Contact Us</h2>
     </div>
 </div>
 
 <div id="goog-gt-tt" class="skiptranslate" dir="ltr">
     <div style="padding: 8px;">
-    <div>
-        <div class="logo"><img src="/app1/static/assets/images/translate_24dp.png" width="20" height="20" alt="Google Translate">
+        <div>
+            <div class="logo">
+                <img src="{% static 'assets/images/translate_24dp.png' %}" width="20" height="20" alt="Google Translate">
+            </div>
         </div>
     </div>
+    <div class="top" style="padding: 8px; float: left; width: 100%;">
+        <h1 class="title gray">Original text</h1>
+    </div>
+    <div class="middle" style="padding: 8px;">
+        <div class="original-text"></div>
+    </div>
+    <div class="bottom" style="padding: 8px;">
+        <div class="activity-links">
+            <span class="activity-link">Contribute a better translation</span>
+            <span class="activity-link"></span>
+        </div>
+        <div class="started-activity-container">
+            <hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
+            <div class="activity-root"></div>
+        </div>
+    </div>
+    <div class="status-message" style="display: none;"></div>
 </div>
-    <div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="inside_wrap">
+
+<div class="inside_wrap">
     <div class="inside_inner">
         <div class="form-contact">
-            <h2 style="color: white">Send Us a Message: </h2>
+            <h2 style="color: white">Send Us a Message</h2>
             
-            <!-- Messages Display Area -->
+            <!-- Django Messages Display -->
+            {% if messages %}
+            <div id="django-messages">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Messages Display Area for JavaScript -->
             <div id="message-alerts" style="display: none;"></div>
 
-<script language="javascript">
-function checkform() {
-  if (document.mainform.name.value == '') {
-    alert("Please type your full name!");
-    document.mainform.name.focus();
-    return false;
-  }
-  if (document.mainform.email.value == '') {
-    alert("Please enter your e-mail address!");
-    document.mainform.email.focus();
-    return false;
-  }
-  if (document.mainform.message.value == '') {
-    alert("Please type your message!");
-    document.mainform.message.focus();
-    return false;
-  }
-  return true;
-}
-
-// jQuery for handling form submission and messages
-$(document).ready(function() {
-    // Show Django messages as jQuery notifications
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == 'success' %}
-                showNotification('{{ message }}', 'success');
-            {% elif message.tags == 'error' %}
-                showNotification('{{ message }}', 'error');
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
-    // Handle form submission with AJAX (optional enhancement)
-    $('form[name="mainform"]').on('submit', function(e) {
-        // Basic validation passed, let form submit normally
-        // Django CSRF token and backend will handle the rest
-        console.log('Contact form submitted');
-    });
-});
-
-function showNotification(message, type) {
-    var alertDiv = $('#message-alerts');
-    var alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-    
-    alertDiv.html('<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert">' +
-                  message +
-                  '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                  '<span aria-hidden="true">&times;</span>' +
-                  '</button></div>').show();
-    
-    // Auto-hide after 5 seconds
-    setTimeout(function() {
-        alertDiv.fadeOut();
-    }, 5000);
-}
-</script>
-
-<form method="POST" action="{% url 'contact' %}" name="mainform" onsubmit="return checkform()">
-    {% csrf_token %}
+            <form method="POST" action="{% url 'contact' %}" name="mainform" id="contactForm">
+                {% csrf_token %}
                 
                 <table width="100%" border="0" cellpadding="5" cellspacing="5">
-                    <tbody><tr>
-                        <td>
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tbody>
-                                    <tr>
-                                         <td width="44%"><label> Your Name:</label>
-                                            <input type="text" name="name" value="" size="30" class="inpts">
-                                        </td>
-                                        <td>Your Email:</td>
-                                        <td><input type="text" name="email" value="" size="30" class="inpts"></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Message:<br><br>
-                                           <textarea name="message" class="inpts" cols="45" rows="4">
-                                           </textarea>
-                                        </td>
-                                  </tr>
-<tr>
- <td>&nbsp;</td>
- <td><input type="submit" value="Send" class="sbmt"></td>
-</tr></tbody></table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="44%">
+                                                <div class="form-group">
+                                                    <label>Your Name:</label>
+                                                    <input type="text" 
+                                                           name="name" 
+                                                           value="{{ form.name.value|default:'' }}" 
+                                                           class="inpts"
+                                                           placeholder="Your Full Name"
+                                                           required>
+                                                    {% if form.name.errors %}
+                                                    <ul class="error-list">
+                                                        {% for error in form.name.errors %}
+                                                        <li>{{ error }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                            <td width="56%">
+                                                <div class="form-group">
+                                                    <label>Your Email:</label>
+                                                    <input type="email" 
+                                                           name="email" 
+                                                           value="{{ form.email.value|default:'' }}" 
+                                                           class="inpts"
+                                                           placeholder="Your Email Address"
+                                                           required>
+                                                    {% if form.email.errors %}
+                                                    <ul class="error-list">
+                                                        {% for error in form.email.errors %}
+                                                        <li>{{ error }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="form-group">
+                                                    <label>Subject:</label>
+                                                    <input type="text" 
+                                                           name="subject" 
+                                                           value="{{ form.subject.value|default:'' }}" 
+                                                           class="inpts"
+                                                           placeholder="Message Subject"
+                                                           required>
+                                                    {% if form.subject.errors %}
+                                                    <ul class="error-list">
+                                                        {% for error in form.subject.errors %}
+                                                        <li>{{ error }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="form-group">
+                                                    <label>Message:</label>
+                                                    <textarea name="message" 
+                                                              class="inpts" 
+                                                              cols="45" 
+                                                              rows="6"
+                                                              placeholder="Your message...">{{ form.message.value|default:'' }}</textarea>
+                                                    {% if form.message.errors %}
+                                                    <ul class="error-list">
+                                                        {% for error in form.message.errors %}
+                                                        <li>{{ error }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                <input type="submit" value="Send Message" class="sbmt">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
 
-<div class="contact_inside">
-    <div class="inside_inner">
-        <div class="address">
-            <h2>Company Address:</h2>
-            <p>9323 harbor Road, North West, Albuquerque, New Mexico (NM), 87121.</p>
-        </div>
-        <div class="emailblock">
-            <h2>Our E-mail:</h2>
-            <p>venexltd@gmail.com</p>
-        </div>
-        <div class="phone">
-            <h2>Our Number:</h2>
-            <p>+1 612-567-2940</p>
-        </div>
+            <div class="contact_inside">
+                <div class="inside_inner">
+                    <div class="address">
+                        <h2>Company Address:</h2>
+                        <p>9323 Harbor Road, North West, Albuquerque, New Mexico (NM), 87121</p>
+                    </div>
+                    <div class="emailblock">
+                        <h2>Our E-mail:</h2>
+                        <p>venexltd@gmail.com</p>
+                    </div>
+                    <div class="phone">
+                        <h2>Our Number:</h2>
+                        <p>+1 612-567-2940</p>
+                    </div>
+                </div>
+            </div>
 
+        </div>
     </div>
 </div>
-
-</td></tr></tbody></table></form></div></div></div>
 {% endblock %}
 
 {% block javascripts %}
-  <script src="/assets/js/default.js"></script>
-  <script src="/assets/js/element.js"></script>
+<script>
+// Enhanced form validation and message handling
+$(document).ready(function() {
+    // Enhanced form validation
+    $('#contactForm').on('submit', function(e) {
+        let isValid = true;
+        const form = $(this);
+        
+        // Clear previous errors
+        $('.error-list').remove();
+        
+        // Validate each required field
+        form.find('input[required], textarea[required]').each(function() {
+            const field = $(this);
+            const value = field.val().trim();
+            
+            if (!value) {
+                isValid = false;
+                const fieldName = field.attr('name');
+                const errorMsg = `Please enter your ${fieldName === 'name' ? 'full name' : fieldName}.`;
+                
+                field.after('<ul class="error-list"><li>' + errorMsg + '</li></ul>');
+                field.addClass('error-border');
+            } else {
+                field.removeClass('error-border');
+            }
+        });
+        
+        // Validate email format
+        const emailField = form.find('input[type="email"]');
+        const emailValue = emailField.val().trim();
+        if (emailValue && !isValidEmail(emailValue)) {
+            isValid = false;
+            emailField.after('<ul class="error-list"><li>Please enter a valid email address.</li></ul>');
+            emailField.addClass('error-border');
+        }
+        
+        // Validate message length
+        const messageField = form.find('textarea[name="message"]');
+        const messageValue = messageField.val().trim();
+        if (messageValue && messageValue.length < 10) {
+            isValid = false;
+            messageField.after('<ul class="error-list"><li>Please provide a more detailed message (at least 10 characters).</li></ul>');
+            messageField.addClass('error-border');
+        }
+        
+        if (!isValid) {
+            e.preventDefault();
+            showNotification('Please correct the errors below.', 'error');
+            
+            // Scroll to first error
+            $('html, body').animate({
+                scrollTop: $('.error-list').first().offset().top - 100
+            }, 500);
+        } else {
+            // Show loading state
+            const submitBtn = form.find('input[type="submit"]');
+            submitBtn.val('Sending...').prop('disabled', true);
+            
+            console.log('Contact form submitted successfully');
+        }
+    });
+    
+    // Email validation function
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Real-time validation
+    $('input, textarea').on('blur', function() {
+        const field = $(this);
+        const value = field.val().trim();
+        
+        if (field.attr('required') && !value) {
+            field.addClass('error-border');
+        } else {
+            field.removeClass('error-border');
+        }
+        
+        // Specific validations
+        if (field.attr('type') === 'email' && value && !isValidEmail(value)) {
+            field.addClass('error-border');
+        }
+        
+        if (field.attr('name') === 'message' && value && value.length < 10) {
+            field.addClass('error-border');
+        }
+    });
+    
+    // Clear errors on input
+    $('input, textarea').on('input', function() {
+        $(this).removeClass('error-border');
+        $(this).next('.error-list').remove();
+    });
+    
+    // Notification function
+    function showNotification(message, type) {
+        const alertDiv = $('#message-alerts');
+        const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+        
+        alertDiv.html('<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert">' +
+                      message +
+                      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                      '<span aria-hidden="true">&times;</span>' +
+                      '</button></div>').show();
+        
+        // Auto-hide after 5 seconds
+        setTimeout(function() {
+            alertDiv.fadeOut();
+        }, 5000);
+    }
+    
+    // Auto-hide Django messages after 5 seconds
+    setTimeout(function() {
+        $('#django-messages').fadeOut();
+    }, 5000);
+});
+
+// Basic form validation fallback (for non-JS users)
+function checkform() {
+    const name = document.forms['mainform']['name'].value;
+    const email = document.forms['mainform']['email'].value;
+    const subject = document.forms['mainform']['subject'].value;
+    const message = document.forms['mainform']['message'].value;
+    
+    if (!name) {
+        alert("Please type your full name!");
+        document.forms['mainform']['name'].focus();
+        return false;
+    }
+    if (!email) {
+        alert("Please enter your e-mail address!");
+        document.forms['mainform']['email'].focus();
+        return false;
+    }
+    if (!subject) {
+        alert("Please enter a subject for your message!");
+        document.forms['mainform']['subject'].focus();
+        return false;
+    }
+    if (!message) {
+        alert("Please type your message!");
+        document.forms['mainform']['message'].focus();
+        return false;
+    }
+    if (message.length < 10) {
+        alert("Please provide a more detailed message (at least 10 characters).");
+        document.forms['mainform']['message'].focus();
+        return false;
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address!");
+        document.forms['mainform']['email'].focus();
+        return false;
+    }
+    
+    return true;
+}
+</script>
+
+<style>
+    .error-border {
+        border-color: #dc3545 !important;
+        box-shadow: 0 0 5px rgba(220, 53, 69, 0.5) !important;
+    }
+    .alert {
+        padding: 12px 20px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    .alert-danger {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+    .alert-dismissible .close {
+        position: relative;
+        top: -5px;
+        right: -10px;
+        color: inherit;
+    }
+</style>
+
+<script src="{% static 'assets/js/default.js' %}"></script>
+<script src="{% static 'assets/js/element.js' %}"></script>
 {% endblock %}

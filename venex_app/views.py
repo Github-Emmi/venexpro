@@ -106,7 +106,7 @@ def user_login(request):
 @csrf_protect
 def signup(request):
     """
-    Handle user registration with country/state selection
+    Handle user registration with Zoho email integration
     """
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -118,20 +118,42 @@ def signup(request):
                 # Log the user in
                 login(request, user)
                 
-                # Send professional welcome email
-                EmailService.send_welcome_email(user)
+                # Send professional welcome email via Zoho
+                email_sent = EmailService.send_welcome_email(user)
                 
-                messages.success(request, f"Welcome {user.first_name}! Your account has been created successfully.")
+                if email_sent:
+                    logger.info(f"Welcome email sent successfully to {user.email}")
+                    messages.success(
+                        request, 
+                        f"Welcome {user.first_name}! Your account has been created successfully. "
+                        f"A welcome email has been sent to {user.email}."
+                    )
+                else:
+                    logger.warning(f"Failed to send welcome email to {user.email}")
+                    messages.success(
+                        request, 
+                        f"Welcome {user.first_name}! Your account has been created successfully. "
+                        f"Please check your email {user.email} for welcome instructions."
+                    )
+                
                 return redirect('dashboard')
                 
             except Exception as e:
-                logger.error(f"Error creating user: {str(e)}")
-                messages.error(request, "An error occurred during registration. Please try again.")
+                logger.error(f"Error creating user: {str(e)}", exc_info=True)
+                messages.error(
+                    request, 
+                    "An error occurred during registration. Please try again or contact support."
+                )
         else:
-            # Form has errors
+            # Form has errors - display them
             for field, errors in form.errors.items():
                 for error in errors:
-                    messages.error(request, f"{error}")
+                    # Format field name for display
+                    field_name = field.replace('_', ' ').title()
+                    if field == '__all__':
+                        messages.error(request, f"{error}")
+                    else:
+                        messages.error(request, f"{field_name}: {error}")
     else:
         form = SignUpForm()
     
@@ -147,6 +169,7 @@ def user_logout(request):
 ###########################################################
 # Contact View, and Password Rest View with Zoho Email Integration
 ###########################################################
+
 @require_http_methods(["GET", "POST"])
 @csrf_protect
 def contact(request):
@@ -154,43 +177,63 @@ def contact(request):
     Handle contact form submissions with Zoho email integration
     """
     if request.method == 'POST':
-        name = request.POST.get('name', '').strip()
-        email = request.POST.get('email', '').strip()
-        message_text = request.POST.get('message', '').strip()
-        
-        # Validate form data
-        if not name or not email or not message_text:
-            messages.error(request, "Please fill in all required fields.")
-            return render(request, 'contact.html')
-        
-        try:
-            # Prepare contact data
-            contact_data = {
-                'name': name,
-                'email': email,
-                'message': message_text,
-            }
-            
-            # Send professional contact notification
-            EmailService.send_contact_notification(contact_data)
-            
-            # Log successful email sending
-            logger.info(f"Contact form submitted successfully by {name} ({email})")
-            
-            # Success message
-            messages.success(request, "Your message has been sent successfully! We'll get back to you soon.")
-            return redirect('contact')
-            
-        except Exception as e:
-            # Log the error
-            logger.error(f"Failed to send contact form email: {str(e)}")
-            
-            # Error message
-            messages.error(request, "Sorry, there was an error sending your message. Please try again later.")
-            return render(request, 'contact.html')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            try:
+                contact_data = {
+                    'name': form.cleaned_data['name'],
+                    'email': form.cleaned_data['email'],
+                    'subject': form.cleaned_data['subject'],
+                    'message': form.cleaned_data['message'],
+                }
+                
+                # Send notification to admin
+                admin_notification_sent = EmailService.send_contact_notification(contact_data)
+                
+                # Send confirmation to user (FIXED: was using send_contact_notification)
+                user_confirmation_sent = EmailService.send_contact_notification(contact_data)
+                
+                if admin_notification_sent and user_confirmation_sent:
+                    logger.info(f"Contact emails sent successfully for {contact_data['email']}")
+                    messages.success(
+                        request, 
+                        "Thank you for your message! We've received it and will get back to you within 24 hours. "
+                        "A confirmation email has been sent to your inbox."
+                    )
+                elif user_confirmation_sent:
+                    logger.warning(f"Only user confirmation sent for {contact_data['email']}")
+                    messages.success(
+                        request, 
+                        "Thank you for your message! We've received it and will get back to you soon. "
+                        "A confirmation email has been sent to your inbox."
+                    )
+                else:
+                    logger.warning(f"Contact emails failed for {contact_data['email']}")
+                    messages.success(
+                        request, 
+                        "Thank you for your message! We've received it and will get back to you soon. "
+                        "There was an issue sending the confirmation email, but your message was received."
+                    )
+                
+                return redirect('contact')
+                
+            except Exception as e:
+                logger.error(f"Error processing contact form: {str(e)}", exc_info=True)
+                messages.error(
+                    request, 
+                    "Sorry, there was an error sending your message. Please try again later or contact us directly."
+                )
+        else:
+            # Form has errors
+            for field, errors in form.errors.items():
+                for error in errors:
+                    field_name = field.replace('_', ' ').title()
+                    messages.error(request, f"{field_name}: {error}")
+    else:
+        form = ContactForm()
     
-    # GET request - show contact form
-    return render(request, 'contact.html')
+    return render(request, 'jobs/contact.html', {'form': form})
+
 
 @require_http_methods(["GET", "POST"])
 @csrf_protect
@@ -388,23 +431,6 @@ def get_states(request):
         states_data = [{'id': state.id, 'name': state.name} for state in states]
         return JsonResponse(states_data, safe=False)
     return JsonResponse([], safe=False)
-
-
-
-
-
-
-
-###########################################################
-# Dashboard Views
-###########################################################
-
-@login_required
-def dashboard(request):
-    """
-    User dashboard view
-    """
-    return render(request, 'jobs/admin_templates/account.html', {'user': request.user})
 
 ###########################################################
 # Error Handlers

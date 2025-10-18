@@ -1,40 +1,432 @@
-{% extends "emails/base_email.html" %}
-
-{% block title %}Welcome to Venex Trading Platform{% endblock %}
-
-{% block content %}
-<h2>Welcome to Venex Trading Platform! 🚀</h2>
-
-<p>Hello <strong>{{ user.first_name }}</strong>,</p>
-
-<p>Welcome to Venex - your gateway to the world of cryptocurrency trading! We're thrilled to have you on board.</p>
-
-<div class="transaction-details" style="background: #e8f5e8;">
-    <h3>Your Account is Ready!</h3>
-    <p><strong>Account Created:</strong> {{ signup_date|date:"F d, Y" }}</p>
-    <p><strong>Username:</strong> {{ user.username }}</p>
-</div>
-
-<h3>Getting Started</h3>
-<p>To begin your trading journey:</p>
-<ol>
-    <li><strong>Verify Your Account:</strong> Complete KYC verification for full access</li>
-    <li><strong>Fund Your Wallet:</strong> Make your first deposit</li>
-    <li><strong>Start Trading:</strong> Explore our trading pairs and markets</li>
-</ol>
-
-<a href="{{ site_url }}/dashboard" class="button">Go to Dashboard</a>
-
-<h3>Why Trade with Venex?</h3>
-<ul>
-    <li>✅ Secure and regulated platform</li>
-    <li>✅ Competitive trading fees</li>
-    <li>✅ 24/7 customer support</li>
-    <li>✅ Advanced trading tools</li>
-    <li>✅ Multiple cryptocurrency options</li>
-</ul>
-
-<p>If you have any questions or need assistance, our support team is available 24/7 to help you.</p>
-
-<p>Happy Trading!<br>The Venex Team</p>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Venex Brokerage</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f7f9fc;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.1"><polygon points="1000,100 1000,0 0,100"/></svg>');
+            background-size: cover;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Content Styles */
+        .content {
+            padding: 40px 30px;
+            background: #ffffff;
+        }
+        
+        .welcome-section {
+            margin-bottom: 30px;
+        }
+        
+        .welcome-section h2 {
+            color: #2d3748;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .welcome-section p {
+            color: #4a5568;
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        /* Account Details Card */
+        .account-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .account-card h3 {
+            color: #2d3748;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .account-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .account-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #718096;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .feature-desc {
+            color: #718096;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Next Steps */
+        .next-steps {
+            background: #fff8f0;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .next-steps h3 {
+            color: #c05621;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .steps-list {
+            list-style: none;
+        }
+        
+        .steps-list li {
+            padding: 8px 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .steps-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: #a0aec0;
+            padding: 30px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .footer-links {
+            margin: 15px 0;
+        }
+        
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 8px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #2d3748;
+            color: #718096;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .account-detail {
+                flex-direction: column;
+            }
+            
+            .detail-value {
+                margin-top: 5px;
+            }
+            
+            .cta-button {
+                padding: 14px 30px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Welcome to Venex Brokerage!</h1>
+            <p>Your Gateway to Professional Cryptocurrency Trading</p>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Welcome Message -->
+            <div class="welcome-section">
+                <h2>Hello {{ user.first_name }},</h2>
+                <p>Thank you for choosing Venex Brokerage! We're thrilled to welcome you to our growing community of cryptocurrency traders and investors.</p>
+                <p>Your account has been successfully created and is ready to use. We're committed to providing you with the tools and support you need for successful trading.</p>
+            </div>
+            
+            <!-- Account Details -->
+            <div class="account-card">
+                <h3>Your Account Details</h3>
+                <div class="account-detail">
+                    <span class="detail-label">Email Address:</span>
+                    <span class="detail-value">{{ user.email }}</span>
+                </div>
+                <div class="account-detail">
+                    <span class="detail-label">Full Name:</span>
+                    <span class="detail-value">{{ user.first_name}} {{ user.last_name}}</span>
+                </div>
+                <div class="account-detail">
+                    <span class="detail-label">Account Status:</span>
+                    <span class="detail-value" style="color: #48bb78;">Active & Verified</span>
+                </div>
+            </div>
+            
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-title">Portfolio Management</div>
+                    <div class="feature-desc">Track and manage all your cryptocurrency investments in one place</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Real-time Analytics</div>
+                    <div class="feature-desc">Advanced charts and market data to inform your trading decisions</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Bank-level Security</div>
+                    <div class="feature-desc">Multi-layer security to protect your assets and personal information</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Fast Execution</div>
+                    <div class="feature-desc">Lightning-fast trade execution with competitive fees</div>
+                </div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="cta-section">
+                <p style="margin-bottom: 20px; color: #4a5568; font-size: 16px;">Ready to start your trading journey?</p>
+                <a href="{{ dashboard_url }}" class="cta-button">Launch Your Dashboard</a>
+            </div>
+            
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>Getting Started Guide</h3>
+                <ul class="steps-list">
+                    <li>Complete your profile verification for enhanced security</li>
+                    <li>Explore our wide range of supported cryptocurrencies</li>
+                    <li>Set up your wallet addresses for deposits and withdrawals</li>
+                    <li>Familiarize yourself with our trading tools and features</li>
+                    <li>Start with small trades to get comfortable with the platform</li>
+                </ul>
+            </div>
+            
+            <!-- Support Section -->
+            <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f0f9ff; border-radius: 8px; border: 1px solid #bee3f8;">
+                <h3 style="color: #2b6cb0; margin-bottom: 10px;">Need Help?</h3>
+                <p style="color: #4a5568; margin-bottom: 15px;">Our support team is available 24/7 to assist you</p>
+                <p style="color: #2b6cb0; font-weight: 600;">
+                    📧 <a href="mailto:{{ support_email }}" style="color: #2b6cb0; text-decoration: none;">{{ support_email }}</a> | 
+                    📞 +1 612-567-2940
+                </p>
+            </div>
+            
+            <!-- Closing -->
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                <p style="color: #4a5568; font-size: 14px;">
+                    Welcome aboard! We're excited to be part of your trading journey.<br>
+                    <strong>The Venex Brokerage Team</strong>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="{{ site_url }}">Website</a>
+                <a href="{{ site_url }}/faq">FAQ</a>
+                <a href="{{ site_url }}/contact">Contact</a>
+                <a href="{{ site_url }}/terms">Terms</a>
+                <a href="{{ site_url }}/privacy">Privacy</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Facebook</a>
+                <a href="#">Telegram</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; {{ current_year }} Venex Brokerage. All rights reserved.</p>
+                <p style="margin-top: 5px; font-size: 11px; color: #718096;">
+                    This email was sent to {{ user.email }} as part of your Venex Brokerage account.<br>
+                    Please do not reply to this email. For assistance, contact our support team.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

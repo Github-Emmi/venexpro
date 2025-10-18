@@ -4,14 +4,6 @@
 {% block meta_keywords %} venex signup {% endblock %}
 {% block meta_description %}sign up with venex {% endblock %}
 
-{% block alert %}
-<script>
-    function myFunction() {
-        alert("This is where your journey begins. fill the form with your appropriate data to become an official member and see your investment grow");
-    }
-</script>
-{% endblock %}
-
 {% block content %}
 <script src="{% static 'assets/js/coingecko-coin-market-ticker-list-widget.js' %}"></script>
 <coingecko-coin-market-ticker-list-widget coin-id="bitcoin" currency="usd" locale="en" vce-ready=""></coingecko-coin-market-ticker-list-widget>

@@ -1,36 +1,69 @@
-{% extends "emails/base_email.html" %}
-
-{% block title %}Contact Form Submission - Venex Trading{% endblock %}
-
-{% block content %}
-<h2>New Contact Form Submission</h2>
-
-<p>You have received a new message through the Venex contact form.</p>
-
-<div class="transaction-details">
-    <h3>Contact Details</h3>
-    <table>
-        <tr>
-            <td><strong>Name:</strong></td>
-            <td>{{ contact_data.name }}</td>
-        </tr>
-        <tr>
-            <td><strong>Email:</strong></td>
-            <td>{{ contact_data.email }}</td>
-        </tr>
-        <tr>
-            <td><strong>Date:</strong></td>
-            <td>{{ timestamp|date:"F d, Y H:i" }}</td>
-        </tr>
-    </table>
-    
-    <h3>Message</h3>
-    <p>{{ contact_data.message }}</p>
-</div>
-
-<p>Please respond to this inquiry within 24 hours.</p>
-
-<a href="mailto:{{ contact_data.email }}" class="button">Reply to {{ contact_data.name }}</a>
-
-<p>This is an automated notification from the Venex contact system.</p>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Contact Form Submission - Venex Trading</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }
+        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
+        .message-box { background: white; padding: 20px; border-radius: 5px; border-left: 4px solid #667eea; margin: 20px 0; }
+        .footer { text-align: center; margin-top: 20px; font-size: 12px; color: #666; }
+        .info-item { margin-bottom: 10px; padding: 10px; background: white; border-radius: 5px; }
+        .priority-high { background: #fff3cd; border-left: 4px solid #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Contact Form Submission</h1>
+            <p>Venex Brokerage Support</p>
+        </div>
+        <div class="content">
+            <h2>Contact Request Received</h2>
+            
+            <div class="info-item">
+                <strong>👤 From:</strong> {{ contact_data.name }}
+            </div>
+            <div class="info-item">
+                <strong>📧 Email:</strong> {{ contact_data.email }}
+            </div>
+            <div class="info-item">
+                <strong>📋 Subject:</strong> {{ contact_data.subject }}
+            </div>
+            <div class="info-item">
+                <strong>🕒 Submitted:</strong> {{ submitted_at|date:"F j, Y g:i A" }}
+            </div>
+            
+            <h3>Message Details:</h3>
+            <div class="message-box">
+                {{ contact_data.message|linebreaks }}
+            </div>
+            
+            <div class="info-item priority-high">
+                <strong>🚀 Action Required:</strong>
+                <ul>
+                    <li>Respond to the user within 24 hours</li>
+                    <li>Use reply-to address: {{ contact_data.email }}</li>
+                    <li>Assign appropriate priority based on inquiry</li>
+                </ul>
+            </div>
+            
+            <p style="background: #e7f3ff; padding: 15px; border-radius: 5px;">
+                <strong>📝 Note:</strong> This is an automated notification from the Venex Brokerage contact form system.
+            </p>
+            
+            <p>
+                <strong>Quick Actions:</strong><br>
+                <a href="mailto:{{ contact_data.email }}?subject=Re: {{ contact_data.subject }}">Reply to {{ contact_data.name }}</a>
+            </p>
+        </div>
+        <div class="footer">
+            <p>&copy; {{ current_year }} Venex Brokerage. All rights reserved.</p>
+            <p>Automated Notification System</p>
+        </div>
+    </div>
+</body>
+</html>
