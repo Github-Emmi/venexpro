@@ -1,24 +1,52 @@
-<div class="left">
-<div class="cabNav">
-    <ul>
-        <li>
-            <a href="/account-dashboard" class="active"><span class="icon-profile"></span> account</a>
-        </li>
-        <li>
-            <a href="/deposit-list"><span class="icon-deposit"></span>deposit list</a>
-        </li>
-        <li>
-            <a href="/earning-history"><span class="icon-hist"></span>earning history</a>
-        </li>
-        <li>
-            <a href="/referrals"><span class="icon-partner"></span>referrals</a>
-        </li>
-        <li>
-            <a href="/security"><span class="icon-settings"></span>security</a>
-        </li>
-       <li>
-            {% comment %} <a href="{% url 'add_clients' %}"><span class="icon-settings"></span>Add Clients</a> {% endcomment %}
-        </li>
-    </ul>
-</div>
-</div> 
+<nav class="dashboard-sidebar">
+                <ul class="sidebar-nav">
+                    <li class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                        <a href="{% url 'dashboard' %}" class="nav-link">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'markets' %}active{% endif %}">
+                        <a href="{% url 'markets' %}" class="nav-link">
+                            <span class="nav-icon">📈</span>
+                            <span class="nav-text">Markets</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'trading' %}active{% endif %}">
+                        <a href="{% url 'trading' %}" class="nav-link">
+                            <span class="nav-icon">💰</span>
+                            <span class="nav-text">Trade</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'wallet' %}active{% endif %}">
+                        <a href="{% url 'wallet' %}" class="nav-link">
+                            <span class="nav-icon">🏦</span>
+                            <span class="nav-text">Wallet</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}">
+                        <a href="{% url 'portfolio' %}" class="nav-link">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-text">Portfolio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'history' %}active{% endif %}">
+                        <a href="{% url 'history' %}" class="nav-link">
+                            <span class="nav-icon">📜</span>
+                            <span class="nav-text">History</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
+                        <a href="{% url 'profile' %}" class="nav-link">
+                            <span class="nav-icon">👤</span>
+                            <span class="nav-text">Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'support' %}active{% endif %}">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-text">Support</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>

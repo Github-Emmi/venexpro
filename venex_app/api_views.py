@@ -6,6 +6,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from .services.crypto_api_service import crypto_service
+from django.views.decorators.http import require_GET
+from django.http import JsonResponse
 from .models import CustomUser, Transaction, Order, Portfolio, Cryptocurrency
 from .serializers import (
     TransactionSerializer, OrderSerializer, PortfolioSerializer, 
@@ -70,6 +73,52 @@ def api_buy_crypto(request):
             {'error': f'Failed to execute buy order: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+
+@require_GET
+def get_crypto_price_data(request, symbol):
+    """API endpoint to get current price data for a cryptocurrency"""
+    try:
+        from .models import Cryptocurrency
+        crypto = Cryptocurrency.objects.get(symbol=symbol.upper())
+        
+        data = {
+            'symbol': crypto.symbol,
+            'price': float(crypto.current_price),
+            'change_24h': float(crypto.price_change_24h),
+            'change_percentage_24h': float(crypto.price_change_percentage_24h),
+            'volume': float(crypto.volume_24h),
+            'market_cap': float(crypto.market_cap),
+            'last_updated': crypto.last_updated.isoformat()
+        }
+        return JsonResponse({'success': True, 'data': data})
+    except Cryptocurrency.DoesNotExist: # type: ignore
+        return JsonResponse({'success': False, 'error': 'Cryptocurrency not found'})
+
+@require_GET
+def get_historical_data(request, symbol):
+    """API endpoint to get historical data for charts"""
+    days = request.GET.get('days', 30)
+    try:
+        days = int(days)
+    except ValueError:
+        days = 30
+    
+    historical_data = crypto_service.get_historical_data(symbol, days)
+    return JsonResponse({
+        'success': True, 
+        'symbol': symbol,
+        'data': historical_data
+    })
+
+@require_GET
+def get_multiple_prices(request):
+    """API endpoint to get multiple cryptocurrency prices at once"""
+    symbols = request.GET.get('symbols', 'BTC,ETH,USDT,LTC,TRX')
+    symbol_list = [s.strip().upper() for s in symbols.split(',')]
+    
+    prices = crypto_service.get_multiple_prices(symbol_list)
+    return JsonResponse({'success': True, 'prices': prices})
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

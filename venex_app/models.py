@@ -5,6 +5,8 @@ import uuid
 from django.core.validators import MinValueValidator
 from .choices import *
 from datetime import timedelta
+from django.db.models import Sum
+from decimal import Decimal
 
 
 # ------------------------
@@ -127,7 +129,35 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         self.is_blocked = False
         self.is_active = True
         self.save()
-
+    
+    def get_total_portfolio_value(self):
+        """Calculate total portfolio value across all cryptocurrencies"""
+        portfolio_items = Portfolio.objects.filter(user=self)
+        return sum(float(item.current_value) for item in portfolio_items)
+    
+    def get_portfolio_distribution(self):
+        """Get portfolio distribution for dashboard"""
+        portfolio = Portfolio.objects.filter(user=self)
+        distribution = []
+        for item in portfolio:
+            distribution.append({
+                'symbol': item.cryptocurrency,
+                'quantity': item.total_quantity,
+                'value': item.current_value,
+                'profit_loss_percentage': item.profit_loss_percentage
+            })
+        return distribution
+    
+    def get_crypto_balance(self, crypto_symbol):
+        """Get balance for specific cryptocurrency"""
+        balances = {
+            'BTC': self.btc_balance,
+            'ETH': self.ethereum_balance,
+            'USDT': self.usdt_balance,
+            'LTC': self.litecoin_balance,
+            'TRX': self.tron_balance
+        }
+        return balances.get(crypto_symbol, Decimal('0.0'))
 
 
 
@@ -271,15 +301,15 @@ class Order(models.Model):
 # ------------------------
 class Portfolio(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='portfolio')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='portfolios')  # Changed related_name
     cryptocurrency = models.CharField(max_length=10, choices=CRYPTO_CHOICES)
-    Currency_type = models.CharField(max_length=97, choices=Currency)
-    total_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
-    average_buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
-    total_invested = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
-    current_value = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
-    profit_loss = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
-    profit_loss_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore
+    currency_type = models.CharField(max_length=97, choices=Currency, default='USD')  # Fixed field name
+    total_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
+    average_buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
+    total_invested = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
+    current_value = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
+    profit_loss = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
+    profit_loss_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) ## type: ignore
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -291,11 +321,14 @@ class Portfolio(models.Model):
         return f"{self.user.email} - {self.cryptocurrency} Portfolio"
 
     def update_portfolio_value(self, current_price):
+        """Update portfolio values based on current market price"""
         self.current_value = self.total_quantity * current_price
         self.profit_loss = self.current_value - self.total_invested
-        self.profit_loss_percentage = (self.profit_loss / self.total_invested * 100) if self.total_invested > 0 else 0
+        if self.total_invested > 0:
+            self.profit_loss_percentage = (self.profit_loss / self.total_invested) * 100
+        else:
+            self.profit_loss_percentage = Decimal('0.0')
         self.save()
-
 
 
 # ------------------------

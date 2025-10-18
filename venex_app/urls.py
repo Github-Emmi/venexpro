@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from . import user_views
 from . import api_views
@@ -42,10 +42,20 @@ urlpatterns = [
     ###########################################
     # DASHBOARD & USER AREA URLs (HTML Views)
     ###########################################
+    # User Dashboard URLs
     path('dashboard/', user_views.dashboard, name='dashboard'),
-    path('profile/', user_views.user_profile_view, name='user_profile'),
-    path('wallet/', user_views.wallet_management_view, name='wallet_management'),
-    path('security/', user_views.security_settings_view, name='security_settings'),
+    path('profile/', user_views.user_profile_view, name='profile'),
+    path('trading/', user_views.trading_dashboard, name='trading'),
+    path('buy/', user_views.buy_crypto_view, name='buy'),
+    path('sell/', user_views.sell_crypto_view, name='sell'),
+    path('deposit/', user_views.deposit_funds_view, name='deposit'),
+    path('withdraw/', user_views.withdraw_funds_view, name='withdraw'),
+    path('orders/', user_views.orders_view, name='orders'),
+    path('markets/', user_views.market_data_view, name='markets'),
+    path('portfolio/', user_views.portfolio_view, name='portfolio'),
+    path('history/', user_views.transaction_history_view, name='history'),
+    path('wallet/', user_views.wallet_management_view, name='wallet'),
+    path('security/', user_views.security_settings_view, name='security'),
     
     ###########################################
     # TRADING INTERFACE URLs (HTML Views)
@@ -71,6 +81,13 @@ urlpatterns = [
     path('api/trading/sell/', api_views.api_sell_crypto, name='api_sell_crypto'),
     path('api/trading/deposit/', api_views.api_deposit_funds, name='api_deposit_funds'),
     path('api/trading/withdraw/', api_views.api_withdraw_funds, name='api_withdraw_funds'),
+    # API URLs
+    path('api/v1/', include([
+        path('prices/<str:symbol>/', api_views.get_crypto_price_data, name='api_crypto_price'),
+        path('prices/historical/<str:symbol>/', api_views.get_historical_data, name='api_historical_data'),
+        path('prices/multiple/', api_views.get_multiple_prices, name='api_multiple_prices'),
+        # path('trade/quick/', api_views.quick_trade, name='api_quick_trade'),
+    ])),
     
     ###########################################
     # API ENDPOINTS - ORDER MANAGEMENT
