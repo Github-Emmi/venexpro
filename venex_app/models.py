@@ -237,7 +237,7 @@ class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='transactions')
     transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
-    cryptocurrency = models.CharField(max_length=10, choices=CRYPTO_CHOICES)
+    cryptocurrency = models.ForeignKey(Cryptocurrency, on_delete=models.SET_NULL, null=True,blank=True,related_name='transactions')
     quantity = models.DecimalField(max_digits=20, decimal_places=8, validators=[MinValueValidator(0)], null=True, blank=True)
     price_per_unit = models.DecimalField(max_digits=20, decimal_places=8, validators=[MinValueValidator(0)], null=True, blank=True)
     total_amount = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
@@ -301,15 +301,15 @@ class Order(models.Model):
 # ------------------------
 class Portfolio(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='portfolios')  # Changed related_name
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='portfolios')
     cryptocurrency = models.CharField(max_length=10, choices=CRYPTO_CHOICES)
     currency_type = models.CharField(max_length=97, choices=Currency, default='USD')  # Fixed field name
-    total_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
-    average_buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
-    total_invested = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
-    current_value = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
-    profit_loss = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) ## type: ignore
-    profit_loss_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) ## type: ignore
+    total_quantity = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    average_buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    total_invested = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    current_value = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    profit_loss = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    profit_loss_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -320,8 +320,16 @@ class Portfolio(models.Model):
     def __str__(self):
         return f"{self.user.email} - {self.cryptocurrency} Portfolio"
 
-    def update_portfolio_value(self, current_price):
+    def update_portfolio_value(self, current_price=None):
         """Update portfolio values based on current market price"""
+        if current_price is None:
+            # Try to get current price from Cryptocurrency model
+            try:
+                crypto = Cryptocurrency.objects.get(symbol=self.cryptocurrency)
+                current_price = crypto.current_price
+            except Cryptocurrency.DoesNotExist:
+                current_price = self.average_buy_price
+        
         self.current_value = self.total_quantity * current_price
         self.profit_loss = self.current_value - self.total_invested
         if self.total_invested > 0:

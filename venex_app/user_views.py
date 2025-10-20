@@ -1,4 +1,4 @@
-from venv import logger
+# venex_app/user_views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -6,7 +6,12 @@ from django.http import JsonResponse
 from django.db.models import Sum, Q
 from decimal import Decimal
 import logging
+from django.utils import timezone
 from .models import CustomUser, Transaction, Order, Portfolio, Cryptocurrency
+from .services.dashboard_service import DashboardService
+from .services.crypto_api_service import crypto_service
+
+logger = logging.getLogger(__name__)
 
 # ================================
 # DASHBOARD & PROFILE VIEWS
@@ -19,107 +24,82 @@ def dashboard(request):
     """
     user = request.user
     
-    # Update cryptocurrency data from API (in background - you might want to use Celery for this)
     try:
-        from .services.crypto_api_service import crypto_service
-        crypto_service.update_cryptocurrency_data()
+        # Update cryptocurrency data if it's stale (older than 5 minutes)
+        latest_crypto = Cryptocurrency.objects.order_by('-last_updated').first()
+        if not latest_crypto or (timezone.now() - latest_crypto.last_updated).total_seconds() > 300:
+            crypto_service.update_cryptocurrency_data()
+            logger.info("Cryptocurrency data updated successfully")
     except Exception as e:
         logger.error(f"Failed to update crypto data: {e}")
     
-    # Get user portfolio summary
-    portfolio_items = Portfolio.objects.filter(user=user)
-    total_portfolio_value = user.get_total_portfolio_value()
-    
-    # Calculate portfolio performance
-    total_invested = sum(float(item.total_invested) for item in portfolio_items)
-    total_profit_loss = total_portfolio_value - total_invested
-    total_profit_loss_percentage = (total_profit_loss / total_invested * 100) if total_invested > 0 else 0
-    
-    # Get portfolio distribution for the grid
-    portfolio_distribution = user.get_portfolio_distribution()
+    # Get portfolio data from service
+    portfolio_data = DashboardService.get_user_portfolio_value(user)
     
     # Get recent transactions
-    recent_transactions = Transaction.objects.filter(user=user).order_by('-created_at')[:5]
+    recent_transactions = Transaction.objects.filter(
+        user=user
+    ).select_related('cryptocurrency').order_by('-created_at')[:10]
     
     # Get open orders
-    open_orders = Order.objects.filter(user=user, status='OPEN').order_by('-created_at')[:5]
+    open_orders = Order.objects.filter(
+        user=user, 
+        status='OPEN'
+    ).order_by('-created_at')[:5]
     
-    # Get top cryptocurrencies for charts and trading
-    top_cryptos = Cryptocurrency.objects.filter(is_active=True).order_by('rank')[:6]
+    # Get cryptocurrencies for chart dropdown
+    cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('rank')[:10]
     
-    # Get user's crypto balances for quick display with current prices
+    # Get current market prices for all supported cryptocurrencies
+    current_prices = {}
+    for crypto in cryptocurrencies:
+        current_prices[crypto.symbol] = {
+            'price': crypto.current_price,
+            'change_24h': crypto.price_change_24h,
+            'change_percentage_24h': crypto.price_change_percentage_24h,
+            'market_cap': crypto.market_cap,
+            'volume_24h': crypto.volume_24h
+        }
+    
+    # Get user's crypto balances with current values
     crypto_balances = {}
     for symbol in ['BTC', 'ETH', 'USDT', 'LTC', 'TRX']:
         try:
             crypto = Cryptocurrency.objects.get(symbol=symbol)
+            balance = user.get_crypto_balance(symbol)
+            current_value = balance * crypto.current_price
             
-            # Use the correct field names from your model
-            if symbol == 'BTC':
-                balance = user.btc_balance
-            elif symbol == 'ETH':
-                balance = user.ethereum_balance  # Correct field name
-            elif symbol == 'USDT':
-                balance = user.usdt_balance
-            elif symbol == 'LTC':
-                balance = user.litecoin_balance
-            elif symbol == 'TRX':
-                balance = user.tron_balance
-            else:
-                balance = Decimal('0.0')
-                
             crypto_balances[symbol] = {
                 'balance': balance,
                 'current_price': crypto.current_price,
-                'value': float(balance) * float(crypto.current_price),
-                'change_24h': crypto.price_change_percentage_24h
+                'value': current_value,
+                'change_24h': crypto.price_change_24h,
+                'change_percentage_24h': crypto.price_change_percentage_24h
             }
         except Cryptocurrency.DoesNotExist:
-            # Fallback using the same logic for balance retrieval
-            if symbol == 'BTC':
-                balance = user.btc_balance
-            elif symbol == 'ETH':
-                balance = user.ethereum_balance
-            elif symbol == 'USDT':
-                balance = user.usdt_balance
-            elif symbol == 'LTC':
-                balance = user.litecoin_balance
-            elif symbol == 'TRX':
-                balance = user.tron_balance
-            else:
-                balance = Decimal('0.0')
-                
             crypto_balances[symbol] = {
-                'balance': balance,
-                'current_price': 0,
-                'value': 0,
-                'change_24h': 0
+                'balance': Decimal('0.0'),
+                'current_price': Decimal('0.0'),
+                'value': Decimal('0.0'),
+                'change_24h': Decimal('0.0'),
+                'change_percentage_24h': Decimal('0.0')
             }
     
-    # Get current prices for the crypto grid display
-    current_prices = {}
-    for crypto in top_cryptos:
-        current_prices[crypto.symbol] = {
-            'price': crypto.current_price,
-            'change_24h': crypto.price_change_24h,
-            'change_percentage_24h': crypto.price_change_percentage_24h
-        }
-    
+    # Prepare context with new service data
     context = {
         'user': user,
-        'portfolio': portfolio_items,
-        'portfolio_distribution': portfolio_distribution,
-        'total_portfolio_value': total_portfolio_value,
-        'total_invested': total_invested,
-        'total_profit_loss': total_profit_loss,
-        'total_profit_loss_percentage': total_profit_loss_percentage,
+        'total_balance': portfolio_data['total_balance'],
+        'total_profit_loss': portfolio_data['total_profit_loss'],
+        'total_profit_loss_pct': portfolio_data['total_profit_loss_pct'],
+        'portfolio_details': portfolio_data['portfolio_details'],
         'recent_transactions': recent_transactions,
         'open_orders': open_orders,
-        'cryptocurrencies': top_cryptos,
-        'top_cryptos': top_cryptos,
-        'crypto_balances': crypto_balances,
+        'cryptocurrencies': cryptocurrencies,
         'current_prices': current_prices,
-        'websocket_url': 'ws://' + request.get_host() + '/ws/prices/'
+        'crypto_balances': crypto_balances,
+        'chart_choices': cryptocurrencies,
     }
+    
     return render(request, 'jobs/admin_templates/dashboard.html', context)
 
 @login_required

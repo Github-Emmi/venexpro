@@ -1674,3 +1674,1753 @@ WARNING 2025-10-18 12:54:37,615 log 22199 123145385803776 Not Found: /ws/
 WARNING 2025-10-18 12:54:46,739 log 22199 123145385803776 Not Found: /ws/
 WARNING 2025-10-18 12:54:58,754 log 22199 123145385803776 Not Found: /ws/
 WARNING 2025-10-18 12:55:13,822 log 22199 123145385803776 Not Found: /ws/
+INFO 2025-10-18 13:10:56,901 autoreload 23406 4687570432 Watching for file changes with StatReloader
+WARNING 2025-10-18 13:11:00,084 log 23406 123145437896704 Not Found: /ws/
+ERROR 2025-10-18 13:11:07,637 crypto_api_service 23406 123145437896704 Binance API error: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/24hr?symbol=BTCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x112bb0250>: Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+INFO 2025-10-18 13:11:08,508 crypto_api_service 23406 123145437896704 Updated 5 cryptocurrencies
+WARNING 2025-10-18 13:11:10,529 log 23406 123145454686208 Not Found: /ws/
+WARNING 2025-10-18 13:11:14,946 log 23406 123145454686208 Not Found: /ws/
+WARNING 2025-10-18 13:11:20,975 log 23406 123145454686208 Not Found: /ws/
+WARNING 2025-10-18 13:11:30,078 log 23406 123145454686208 Not Found: /ws/
+WARNING 2025-10-18 13:11:42,510 log 23406 123145437896704 Not Found: /ws/
+WARNING 2025-10-18 13:11:59,268 log 23406 123145437896704 Not Found: /ws/
+INFO 2025-10-20 05:23:44,347 autoreload 3391 4583065088 Watching for file changes with StatReloader
+WARNING 2025-10-20 05:24:13,738 log 3391 123145590173696 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 05:24:14,748 log 3391 123145590173696 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-20 05:24:14,844 log 3391 123145523015680 Not Found: /login/er.lrticker.html
+WARNING 2025-10-20 05:24:26,177 log 3391 123145523015680 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 05:24:26,277 log 3391 123145523015680 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-20 05:24:26,377 log 3391 123145523015680 Not Found: /login/er.lrticker.html
+WARNING 2025-10-20 05:24:37,650 log 3391 123145573384192 Not Found: /favicon.ico
+WARNING 2025-10-20 05:25:54,037 log 3391 123145590173696 Forbidden (CSRF token from POST incorrect.): /login/
+WARNING 2025-10-20 05:25:59,955 log 3391 123145590173696 Forbidden (CSRF token from POST incorrect.): /login/
+WARNING 2025-10-20 05:26:03,495 log 3391 123145606963200 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 05:26:03,548 log 3391 123145523015680 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-20 05:26:03,662 log 3391 123145573384192 Not Found: /login/er.lrticker.html
+WARNING 2025-10-20 05:26:57,063 log 3391 123145523552256 Forbidden (Permission denied): /admin/venex_app/customuser/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/options.py", line 2021, in changelist_view
+    raise PermissionDenied
+django.core.exceptions.PermissionDenied
+WARNING 2025-10-20 05:27:01,604 log 3391 123145523552256 Forbidden (Permission denied): /admin/venex_app/portfolio/2bb53419-50cb-46d8-b54d-6eb967f59b2a/change/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/options.py", line 1987, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/options.py", line 1840, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/admin/options.py", line 1870, in _changeform_view
+    raise PermissionDenied
+django.core.exceptions.PermissionDenied
+ERROR 2025-10-20 05:27:17,840 crypto_api_service 3391 123145606963200 Binance API error: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/24hr?symbol=BTCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10b8473d0>: Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+WARNING 2025-10-20 05:27:19,169 log 3391 123145540341760 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 05:27:19,275 log 3391 123145623752704 Not Found: /gtranslate.net/flags/24.png
+INFO 2025-10-20 05:27:20,305 crypto_api_service 3391 123145606963200 Updated 5 cryptocurrencies
+ERROR 2025-10-20 05:27:56,113 crypto_api_service 3391 123145573384192 Binance API error: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/24hr?symbol=BTCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10b9849d0>: Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+INFO 2025-10-20 05:27:58,024 crypto_api_service 3391 123145573384192 Updated 5 cryptocurrencies
+WARNING 2025-10-20 05:30:22,137 log 3391 123145523552256 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 05:30:22,170 log 3391 123145523552256 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-20 05:30:22,318 log 3391 123145523552256 Not Found: /login/er.lrticker.html
+WARNING 2025-10-20 05:31:16,793 log 3391 123145557131264 Not Found: /ws/
+WARNING 2025-10-20 05:31:22,837 log 3391 123145557131264 Not Found: /ws/
+WARNING 2025-10-20 05:31:28,887 log 3391 123145557131264 Not Found: /ws/
+ERROR 2025-10-20 05:31:32,488 crypto_api_service 3391 123145523552256 Binance API error: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/24hr?symbol=BTCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10be83b10>: Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+INFO 2025-10-20 05:31:33,681 crypto_api_service 3391 123145523552256 Updated 5 cryptocurrencies
+WARNING 2025-10-20 05:31:34,184 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:31:38,322 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:31:45,346 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:31:55,480 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:32:07,756 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:32:17,519 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:32:22,440 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:32:24,535 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:32:31,131 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:32:43,447 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:32:58,442 log 3391 123145540341760 Not Found: /ws/
+WARNING 2025-10-20 05:33:13,455 log 3391 123145540341760 Not Found: /ws/
+INFO 2025-10-20 10:02:05,530 autoreload 3173 4436772352 Watching for file changes with StatReloader
+WARNING 2025-10-20 10:02:14,143 log 3173 123145503694848 Forbidden (CSRF token from POST incorrect.): /contact/
+WARNING 2025-10-20 10:02:18,293 log 3173 123145503694848 Not Found: /favicon.ico
+WARNING 2025-10-20 10:02:20,523 log 3173 123145570852864 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 10:02:21,804 log 3173 123145570852864 Not Found: /contact/gtranslate.net/flags/24.png
+INFO 2025-10-20 10:03:03,815 email_service 3173 123145503694848 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-20 10:03:09,494 email_service 3173 123145503694848 Contact notification sent for aghason.emmanuel@gmail.com
+INFO 2025-10-20 10:03:09,497 views 3173 123145503694848 Contact emails sent successfully for aghason.emmanuel@gmail.com
+WARNING 2025-10-20 10:03:09,750 log 3173 123145503694848 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 10:03:09,828 log 3173 123145503694848 Not Found: /contact/gtranslate.net/flags/24.png
+WARNING 2025-10-20 10:07:27,350 log 3173 123145503694848 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 10:07:27,554 log 3173 123145503694848 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-20 10:07:27,764 log 3173 123145503694848 Not Found: /login/er.lrticker.html
+ERROR 2025-10-20 10:08:38,632 crypto_api_service 3173 123145520484352 Binance API error: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/24hr?symbol=BTCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10c9493d0>: Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+INFO 2025-10-20 10:08:39,453 crypto_api_service 3173 123145520484352 Updated 5 cryptocurrencies
+WARNING 2025-10-20 10:13:14,775 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 10:13:17,849 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 10:13:24,029 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 10:13:33,974 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 10:13:48,837 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 10:14:07,308 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:06:35,933 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:06:39,935 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:06:45,966 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:06:55,417 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:07:07,673 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:07:22,345 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:07:26,526 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:07:38,745 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:07:52,775 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:08:08,972 log 3173 123145504231424 Not Found: /ws/
+WARNING 2025-10-20 11:08:28,696 log 3173 123145504231424 Not Found: /ws/
+INFO 2025-10-20 12:01:01,525 autoreload 3173 4436772352 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:04,228 autoreload 4611 4697208320 Watching for file changes with StatReloader
+INFO 2025-10-20 12:01:11,675 autoreload 4611 4697208320 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:12,836 autoreload 4624 4418536960 Watching for file changes with StatReloader
+INFO 2025-10-20 12:01:23,290 autoreload 4624 4418536960 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:24,618 autoreload 4637 4689401344 Watching for file changes with StatReloader
+INFO 2025-10-20 12:01:27,936 autoreload 4637 4689401344 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:29,447 autoreload 4644 4557075968 Watching for file changes with StatReloader
+INFO 2025-10-20 12:01:32,668 autoreload 4644 4557075968 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:33,602 autoreload 4652 4420306432 Watching for file changes with StatReloader
+INFO 2025-10-20 12:01:40,453 autoreload 4652 4420306432 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:41,708 autoreload 4661 4442772992 Watching for file changes with StatReloader
+INFO 2025-10-20 12:01:43,775 autoreload 4661 4442772992 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:45,280 autoreload 4666 4586464768 Watching for file changes with StatReloader
+INFO 2025-10-20 12:01:48,487 autoreload 4666 4586464768 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 12:01:49,584 autoreload 4673 4699452928 Watching for file changes with StatReloader
+INFO 2025-10-20 12:04:16,630 autoreload 4673 4699452928 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:04:18,348 autoreload 4706 4456695296 Watching for file changes with StatReloader
+INFO 2025-10-20 12:05:46,251 autoreload 4706 4456695296 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:05:47,581 autoreload 4724 4582249984 Watching for file changes with StatReloader
+INFO 2025-10-20 12:05:49,714 autoreload 4724 4582249984 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:05:50,520 autoreload 4731 4406212096 Watching for file changes with StatReloader
+INFO 2025-10-20 12:05:57,224 autoreload 4731 4406212096 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:05:57,967 autoreload 4738 4572665344 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:01,930 autoreload 4738 4572665344 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:02,749 autoreload 4746 4499379712 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:05,671 autoreload 4746 4499379712 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:06,697 autoreload 4754 4480538112 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:21,568 autoreload 4754 4480538112 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:22,640 autoreload 4761 4581295616 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:24,161 autoreload 4761 4581295616 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:24,791 autoreload 4768 4465272320 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:28,140 autoreload 4768 4465272320 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:28,873 autoreload 4775 4586497536 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:30,568 autoreload 4775 4586497536 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:31,306 autoreload 4776 4371576320 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:33,685 autoreload 4776 4371576320 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:34,750 autoreload 4783 4338095616 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:43,413 autoreload 4783 4338095616 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:45,610 autoreload 4796 4599227904 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:50,604 autoreload 4796 4599227904 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:51,577 autoreload 4812 4717651456 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:52,993 autoreload 4812 4717651456 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:53,798 autoreload 4813 4481488384 Watching for file changes with StatReloader
+INFO 2025-10-20 12:06:58,544 autoreload 4813 4481488384 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:06:59,498 autoreload 4820 4616570368 Watching for file changes with StatReloader
+INFO 2025-10-20 12:07:01,048 autoreload 4820 4616570368 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:07:01,898 autoreload 4823 4548916736 Watching for file changes with StatReloader
+INFO 2025-10-20 12:07:25,815 autoreload 4905 4398499328 Watching for file changes with StatReloader
+INFO 2025-10-20 12:07:49,049 autoreload 4905 4398499328 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:07:50,299 autoreload 4914 4503184896 Watching for file changes with StatReloader
+INFO 2025-10-20 12:08:16,045 autoreload 4914 4503184896 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:08:17,914 autoreload 4928 4618233344 Watching for file changes with StatReloader
+INFO 2025-10-20 12:08:49,561 autoreload 4928 4618233344 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:08:51,299 autoreload 4942 4440061440 Watching for file changes with StatReloader
+INFO 2025-10-20 12:08:52,854 autoreload 4942 4440061440 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:08:53,588 autoreload 4949 4680218112 Watching for file changes with StatReloader
+INFO 2025-10-20 12:09:01,217 autoreload 4949 4680218112 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:09:02,161 autoreload 4957 4574520832 Watching for file changes with StatReloader
+INFO 2025-10-20 12:09:06,647 autoreload 4957 4574520832 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:09:07,740 autoreload 4964 4647077376 Watching for file changes with StatReloader
+INFO 2025-10-20 12:09:11,191 autoreload 4964 4647077376 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:09:12,031 autoreload 4972 4534523392 Watching for file changes with StatReloader
+INFO 2025-10-20 12:09:22,702 autoreload 4972 4534523392 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:09:23,730 autoreload 4981 4374701568 Watching for file changes with StatReloader
+INFO 2025-10-20 12:09:25,437 autoreload 4981 4374701568 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:09:26,551 autoreload 4988 4713305600 Watching for file changes with StatReloader
+INFO 2025-10-20 12:09:33,381 autoreload 4988 4713305600 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:09:34,372 autoreload 4995 4513662464 Watching for file changes with StatReloader
+INFO 2025-10-20 12:09:49,323 autoreload 4995 4513662464 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:09:50,345 autoreload 5009 4602664448 Watching for file changes with StatReloader
+INFO 2025-10-20 12:10:19,043 autoreload 5009 4602664448 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:10:19,730 autoreload 5019 4540433920 Watching for file changes with StatReloader
+INFO 2025-10-20 12:11:04,808 autoreload 5019 4540433920 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:11:05,760 autoreload 5054 4502828544 Watching for file changes with StatReloader
+INFO 2025-10-20 12:11:11,889 autoreload 5054 4502828544 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 12:11:12,699 autoreload 5063 4619814400 Watching for file changes with StatReloader
+INFO 2025-10-20 12:13:22,554 autoreload 5063 4619814400 /Users/emmidev/Desktop/Projects/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-10-20 12:13:24,611 autoreload 5085 4686456320 Watching for file changes with StatReloader
+INFO 2025-10-20 12:14:32,461 autoreload 5085 4686456320 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:14:33,635 autoreload 5104 4466562560 Watching for file changes with StatReloader
+INFO 2025-10-20 12:14:36,507 autoreload 5104 4466562560 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:14:37,263 autoreload 5111 4599207424 Watching for file changes with StatReloader
+INFO 2025-10-20 12:14:39,072 autoreload 5111 4599207424 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:14:39,810 autoreload 5118 4618372608 Watching for file changes with StatReloader
+INFO 2025-10-20 12:14:42,437 autoreload 5118 4618372608 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:14:43,346 autoreload 5119 4493723136 Watching for file changes with StatReloader
+INFO 2025-10-20 12:14:51,610 autoreload 5119 4493723136 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:14:53,011 autoreload 5132 4585113088 Watching for file changes with StatReloader
+INFO 2025-10-20 12:14:54,952 autoreload 5132 4585113088 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:14:56,066 autoreload 5140 4354782720 Watching for file changes with StatReloader
+INFO 2025-10-20 12:14:58,811 autoreload 5140 4354782720 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:14:59,902 autoreload 5145 4669953536 Watching for file changes with StatReloader
+INFO 2025-10-20 12:15:05,567 autoreload 5145 4669953536 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:15:06,252 autoreload 5154 4606592512 Watching for file changes with StatReloader
+INFO 2025-10-20 12:15:09,031 autoreload 5154 4606592512 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:15:09,886 autoreload 5157 4475356672 Watching for file changes with StatReloader
+INFO 2025-10-20 12:15:16,657 autoreload 5157 4475356672 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:15:17,897 autoreload 5168 4603643392 Watching for file changes with StatReloader
+INFO 2025-10-20 12:15:19,623 autoreload 5168 4603643392 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:15:20,512 autoreload 5175 4664346112 Watching for file changes with StatReloader
+INFO 2025-10-20 12:15:26,322 autoreload 5175 4664346112 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:15:27,087 autoreload 5183 4581287424 Watching for file changes with StatReloader
+INFO 2025-10-20 12:15:33,676 autoreload 5183 4581287424 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 12:15:34,586 autoreload 5192 4585547264 Watching for file changes with StatReloader
+INFO 2025-10-20 13:31:34,751 autoreload 5192 4585547264 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-20 13:31:36,408 autoreload 6545 4747150848 Watching for file changes with StatReloader
+INFO 2025-10-20 13:31:38,930 autoreload 6545 4747150848 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-20 13:31:40,775 autoreload 6552 4526188032 Watching for file changes with StatReloader
+INFO 2025-10-20 13:33:33,043 autoreload 6552 4526188032 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-20 13:33:34,634 autoreload 6587 4316145152 Watching for file changes with StatReloader
+INFO 2025-10-20 13:33:36,451 autoreload 6587 4316145152 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-20 13:33:37,724 autoreload 6590 4628776448 Watching for file changes with StatReloader
+INFO 2025-10-20 13:36:30,322 autoreload 6590 4628776448 /Users/emmidev/Desktop/Projects/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-20 13:36:32,225 autoreload 6630 4493305344 Watching for file changes with StatReloader
+INFO 2025-10-20 13:45:36,132 crypto_api_service 7041 4561716736 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 13:45:36,136 crypto_api_service 7041 4561716736 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 13:45:36,169 crypto_api_service 7041 4561716736 Updated 5 cryptocurrencies
+INFO 2025-10-20 14:12:34,904 autoreload 7908 4520371712 Watching for file changes with StatReloader
+WARNING 2025-10-20 14:13:00,260 log 7908 123145522237440 Not Found: /ws/
+WARNING 2025-10-20 14:13:03,476 log 7908 123145522237440 Not Found: /ws/
+WARNING 2025-10-20 14:13:10,639 log 7908 123145522237440 Not Found: /ws/
+WARNING 2025-10-20 14:13:16,703 log 7908 123145522237440 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 14:13:17,863 log 7908 123145522237440 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-20 14:13:21,130 log 7908 123145539026944 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-20 14:13:21,218 log 7908 123145539026944 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-20 14:13:21,328 log 7908 123145522237440 Not Found: /login/er.lrticker.html
+INFO 2025-10-20 14:13:33,209 crypto_api_service 7908 123145522237440 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:13:33,227 crypto_api_service 7908 123145522237440 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:13:33,310 crypto_api_service 7908 123145522237440 Updated 5 cryptocurrencies
+INFO 2025-10-20 14:13:33,336 user_views 7908 123145522237440 Cryptocurrency data updated successfully
+INFO 2025-10-20 14:13:33,904 crypto_api_service 7908 123145522237440 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:13:33,908 crypto_api_service 7908 123145522237440 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:13:33,921 crypto_api_service 7908 123145522237440 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:13:34,188 log 7908 123145522237440 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'transaction_history_view' not found. 'transaction_history_view' is not a valid view function or pattern name.
+INFO 2025-10-20 14:16:07,861 autoreload 7908 4520371712 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:16:09,880 autoreload 7976 4723873280 Watching for file changes with StatReloader
+INFO 2025-10-20 14:17:39,785 autoreload 7976 4723873280 /Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-20 14:17:41,084 autoreload 8001 4704937472 Watching for file changes with StatReloader
+INFO 2025-10-20 14:17:48,335 autoreload 8001 4704937472 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:17:49,679 autoreload 8020 4682384896 Watching for file changes with StatReloader
+INFO 2025-10-20 14:17:58,642 crypto_api_service 8020 123145365749760 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:17:58,644 crypto_api_service 8020 123145365749760 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:17:58,661 crypto_api_service 8020 123145365749760 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:17:58,781 log 8020 123145365749760 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'transaction_history_view' not found. 'transaction_history_view' is not a valid view function or pattern name.
+INFO 2025-10-20 14:18:38,801 crypto_api_service 8020 123145365749760 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:18:38,806 crypto_api_service 8020 123145365749760 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:18:38,823 crypto_api_service 8020 123145365749760 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:18:38,931 log 8020 123145365749760 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 199, in render
+    len_values = len(values)
+                 ^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 766, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 85, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 74, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+                                                            ^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 299, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1230, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Non-relational field given in select_related: 'cryptocurrency'. Choices are: user
+INFO 2025-10-20 14:19:54,505 crypto_api_service 8020 123145365749760 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:19:54,509 crypto_api_service 8020 123145365749760 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:19:54,523 crypto_api_service 8020 123145365749760 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:19:54,614 log 8020 123145365749760 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'empty'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 533: 'empty', expected 'endblock'. Did you forget to register or load this tag?
+INFO 2025-10-20 14:20:05,991 crypto_api_service 8020 123145365749760 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:20:05,996 crypto_api_service 8020 123145365749760 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:20:06,008 crypto_api_service 8020 123145365749760 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:20:06,102 log 8020 123145365749760 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'orders_view' not found. 'orders_view' is not a valid view function or pattern name.
+INFO 2025-10-20 14:21:42,027 autoreload 8020 4682384896 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:21:45,163 autoreload 8185 4773676544 Watching for file changes with StatReloader
+INFO 2025-10-20 14:21:49,852 crypto_api_service 8185 123145348571136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:21:49,863 crypto_api_service 8185 123145348571136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:21:49,879 crypto_api_service 8185 123145348571136 Updated 5 cryptocurrencies
+WARNING 2025-10-20 14:21:51,908 log 8185 123145416802304 Not Found: /ws/
+WARNING 2025-10-20 14:21:57,979 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:02,999 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:08,043 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:13,069 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:15,243 log 8185 123145348571136 Not Found: /api/market/chart/ETH/
+WARNING 2025-10-20 14:22:18,244 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:21,840 log 8185 123145348571136 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:22:22,050 log 8185 123145348571136 Not Found: /api/market/chart/USDT/
+WARNING 2025-10-20 14:22:23,653 log 8185 123145365360640 Not Found: /ws/
+WARNING 2025-10-20 14:22:27,423 log 8185 123145348571136 Not Found: /api/market/chart/BTC/
+WARNING 2025-10-20 14:22:29,566 log 8185 123145365360640 Not Found: /ws/
+INFO 2025-10-20 14:22:30,918 crypto_api_service 8185 123145348571136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:22:30,922 crypto_api_service 8185 123145348571136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:22:30,954 crypto_api_service 8185 123145348571136 Updated 5 cryptocurrencies
+WARNING 2025-10-20 14:22:33,838 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:35,542 log 8185 123145348571136 Not Found: /api/market/chart/TRX/
+INFO 2025-10-20 14:22:39,642 crypto_api_service 8185 123145348571136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:22:39,655 crypto_api_service 8185 123145348571136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:22:39,691 crypto_api_service 8185 123145348571136 Updated 5 cryptocurrencies
+WARNING 2025-10-20 14:22:43,099 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:51,550 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:22:58,223 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:23:06,357 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:23:10,112 log 8185 123145348571136 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:23:15,661 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:23:21,968 log 8185 123145348571136 Not Found: /ws/
+INFO 2025-10-20 14:23:27,772 crypto_api_service 8185 123145348571136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:23:27,775 crypto_api_service 8185 123145348571136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:23:27,785 crypto_api_service 8185 123145348571136 Updated 5 cryptocurrencies
+WARNING 2025-10-20 14:23:29,980 log 8185 123145365360640 Not Found: /ws/
+WARNING 2025-10-20 14:23:38,866 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:23:51,631 log 8185 123145382686720 Not Found: /ws/
+WARNING 2025-10-20 14:24:01,135 log 8185 123145348571136 Not Found: /ws/
+WARNING 2025-10-20 14:24:09,994 log 8185 123145348571136 Not Found: /ws/
+INFO 2025-10-20 14:24:16,701 crypto_api_service 8185 123145348571136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:24:16,704 crypto_api_service 8185 123145348571136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:24:16,717 crypto_api_service 8185 123145348571136 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:24:16,821 log 8185 123145348571136 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 199, in render
+    len_values = len(values)
+                 ^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 766, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 85, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 74, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+                                                            ^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 299, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1230, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Non-relational field given in select_related: 'cryptocurrency'. Choices are: user
+INFO 2025-10-20 14:25:46,436 crypto_api_service 8185 123145348571136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:25:46,439 crypto_api_service 8185 123145348571136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:25:46,455 crypto_api_service 8185 123145348571136 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:25:46,560 log 8185 123145348571136 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'transaction_history_view' not found. 'transaction_history_view' is not a valid view function or pattern name.
+INFO 2025-10-20 14:26:22,414 autoreload 8185 4773676544 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:26:23,683 autoreload 8309 4500612608 Watching for file changes with StatReloader
+INFO 2025-10-20 14:26:25,713 autoreload 8309 4500612608 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:26:26,534 autoreload 8316 4555404800 Watching for file changes with StatReloader
+INFO 2025-10-20 14:26:28,312 crypto_api_service 8316 123145479720960 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:26:28,320 crypto_api_service 8316 123145479720960 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:26:28,337 crypto_api_service 8316 123145479720960 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:26:28,491 log 8316 123145479720960 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 210, in render
+    return template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'history' not found. 'history' is not a valid view function or pattern name.
+INFO 2025-10-20 14:27:25,382 autoreload 8316 4555404800 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:27:26,460 autoreload 8351 4672554496 Watching for file changes with StatReloader
+INFO 2025-10-20 14:27:33,815 autoreload 8351 4672554496 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:27:34,779 autoreload 8365 4584285696 Watching for file changes with StatReloader
+INFO 2025-10-20 14:27:37,044 crypto_api_service 8365 123145397723136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:27:37,047 crypto_api_service 8365 123145397723136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:27:37,063 crypto_api_service 8365 123145397723136 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:27:37,195 log 8365 123145397723136 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'transaction_history_view' not found. 'transaction_history_view' is not a valid view function or pattern name.
+INFO 2025-10-20 14:27:53,962 autoreload 8365 4584285696 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:27:54,862 autoreload 8380 4727801344 Watching for file changes with StatReloader
+INFO 2025-10-20 14:27:57,568 crypto_api_service 8380 123145552818176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:27:57,570 crypto_api_service 8380 123145552818176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:27:57,584 crypto_api_service 8380 123145552818176 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:27:57,718 log 8380 123145552818176 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 210, in render
+    return template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'history' not found. 'history' is not a valid view function or pattern name.
+INFO 2025-10-20 14:28:20,394 autoreload 8380 4727801344 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:28:22,686 autoreload 8393 4538201600 Watching for file changes with StatReloader
+INFO 2025-10-20 14:28:24,386 autoreload 8393 4538201600 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:28:25,365 autoreload 8400 4689520128 Watching for file changes with StatReloader
+INFO 2025-10-20 14:30:27,483 autoreload 8400 4689520128 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:30:29,502 autoreload 8462 4668339712 Watching for file changes with StatReloader
+INFO 2025-10-20 14:30:40,835 autoreload 8462 4668339712 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:30:41,846 autoreload 8480 4723328512 Watching for file changes with StatReloader
+INFO 2025-10-20 14:31:04,836 autoreload 8480 4723328512 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:31:05,852 autoreload 8489 4632929792 Watching for file changes with StatReloader
+INFO 2025-10-20 14:31:08,680 autoreload 8489 4632929792 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:31:09,524 autoreload 8497 4555781632 Watching for file changes with StatReloader
+INFO 2025-10-20 14:31:12,440 autoreload 8497 4555781632 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:31:13,471 autoreload 8504 4522694144 Watching for file changes with StatReloader
+INFO 2025-10-20 14:31:43,333 crypto_api_service 8504 123145355341824 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:31:43,346 crypto_api_service 8504 123145355341824 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:31:43,359 crypto_api_service 8504 123145355341824 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:31:43,929 log 8504 123145355341824 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'transaction_history_view' not found. 'transaction_history_view' is not a valid view function or pattern name.
+INFO 2025-10-20 14:34:15,097 autoreload 8504 4522694144 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:34:16,144 autoreload 8538 4548437504 Watching for file changes with StatReloader
+INFO 2025-10-20 14:34:18,048 crypto_api_service 8538 123145498050560 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:34:18,051 crypto_api_service 8538 123145498050560 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:34:18,116 crypto_api_service 8538 123145498050560 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:34:18,307 log 8538 123145498050560 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 210, in render
+    return template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'history' not found. 'history' is not a valid view function or pattern name.
+INFO 2025-10-20 14:34:59,362 crypto_api_service 8538 123145498050560 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:34:59,365 crypto_api_service 8538 123145498050560 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:34:59,376 crypto_api_service 8538 123145498050560 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:34:59,475 log 8538 123145498050560 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 199, in render
+    len_values = len(values)
+                 ^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 766, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 85, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 74, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+                                                            ^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 299, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1230, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Non-relational field given in select_related: 'cryptocurrency'. Choices are: user
+INFO 2025-10-20 14:52:00,045 autoreload 8538 4548437504 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:02,046 autoreload 8875 4650939904 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:04,266 autoreload 8875 4650939904 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:05,112 autoreload 8884 4583745024 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:09,342 autoreload 8884 4583745024 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:10,266 autoreload 8899 4609734144 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:12,522 autoreload 8899 4609734144 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:13,869 autoreload 8907 4564354560 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:17,139 autoreload 8907 4564354560 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:18,325 autoreload 8914 4658173440 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:20,590 autoreload 8914 4658173440 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:22,581 autoreload 8915 4754384384 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:24,767 autoreload 8915 4754384384 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:25,888 autoreload 8922 4488881664 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:29,157 autoreload 8922 4488881664 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:29,929 autoreload 8929 4811810304 Watching for file changes with StatReloader
+INFO 2025-10-20 14:52:36,236 autoreload 8929 4811810304 /Users/emmidev/Desktop/Projects/RBC/venex_app/models.py changed, reloading.
+INFO 2025-10-20 14:52:37,651 autoreload 8948 4394112512 Watching for file changes with StatReloader
+INFO 2025-10-20 14:54:07,008 autoreload 9673 4627310080 Watching for file changes with StatReloader
+INFO 2025-10-20 14:54:10,777 crypto_api_service 9673 123145583812608 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:54:10,780 crypto_api_service 9673 123145583812608 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:54:10,804 crypto_api_service 9673 123145583812608 Updated 5 cryptocurrencies
+INFO 2025-10-20 14:54:10,805 user_views 9673 123145583812608 Cryptocurrency data updated successfully
+INFO 2025-10-20 14:54:11,309 crypto_api_service 9673 123145583812608 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:54:11,314 crypto_api_service 9673 123145583812608 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:54:11,328 crypto_api_service 9673 123145583812608 Updated 5 cryptocurrencies
+ERROR 2025-10-20 14:54:11,521 log 9673 123145583812608 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/venex_app/user_views.py", line 103, in dashboard
+    return render(request, 'jobs/admin_templates/dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/RBC/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'orders_view' not found. 'orders_view' is not a valid view function or pattern name.
+INFO 2025-10-20 14:54:41,869 autoreload 9673 4627310080 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:54:43,940 autoreload 9697 4549965312 Watching for file changes with StatReloader
+INFO 2025-10-20 14:54:46,723 autoreload 9697 4549965312 /Users/emmidev/Desktop/Projects/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-20 14:54:47,846 autoreload 9705 4374930944 Watching for file changes with StatReloader
+INFO 2025-10-20 14:54:49,298 crypto_api_service 9705 123145570148352 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 14:54:49,301 crypto_api_service 9705 123145570148352 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 14:54:49,328 crypto_api_service 9705 123145570148352 Updated 5 cryptocurrencies
+WARNING 2025-10-20 14:54:50,117 log 9705 123145604800512 Not Found: /ws/
+WARNING 2025-10-20 14:54:55,302 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:55:00,329 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:55:05,365 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:55:09,896 log 9705 123145570148352 Not Found: /api/market/chart/ETH/
+WARNING 2025-10-20 14:55:10,421 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 14:55:15,502 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:55:18,326 log 9705 123145570148352 Not Found: /api/market/chart/BTC/
+WARNING 2025-10-20 14:55:20,094 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:55:21,022 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 14:55:26,516 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:55:32,911 log 9705 123145570148352 Bad Request: /api/trade/quick/
+WARNING 2025-10-20 14:55:35,781 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 14:55:39,684 log 9705 123145570148352 Bad Request: /api/trade/quick/
+WARNING 2025-10-20 14:55:41,986 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:55:50,265 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:55:50,682 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 14:55:57,394 log 9705 123145570148352 Bad Request: /api/trade/quick/
+WARNING 2025-10-20 14:56:00,560 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 14:56:15,446 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:56:20,111 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:56:23,361 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:56:33,724 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:56:43,731 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:56:50,383 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:56:52,134 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:01,765 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:10,880 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:19,780 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:20,265 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:57:28,018 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:35,002 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:41,329 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:49,036 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:57:50,267 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:57:56,362 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:58:06,113 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:58:14,561 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:58:24,263 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:58:34,068 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:58:41,888 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:58:41,923 log 9705 123145586937856 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:58:52,126 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:59:00,016 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:59:07,486 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:59:14,955 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:59:22,742 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:59:32,496 log 9705 123145570148352 Not Found: /ws/
+WARNING 2025-10-20 14:59:41,350 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 14:59:41,708 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 14:59:50,814 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 14:59:58,492 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 15:00:09,044 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 15:00:18,247 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 15:00:27,333 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 15:00:35,148 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 15:00:41,344 log 9705 123145570148352 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:00:44,370 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 15:00:50,334 log 9705 123145586937856 Not Found: /ws/
+WARNING 2025-10-20 15:00:56,335 log 9705 123145586937856 Not Found: /ws/
+INFO 2025-10-20 15:14:42,979 autoreload 10329 4516693504 Watching for file changes with StatReloader
+INFO 2025-10-20 15:14:46,743 crypto_api_service 10329 123145383792640 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 15:14:46,746 crypto_api_service 10329 123145383792640 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 15:14:46,768 crypto_api_service 10329 123145383792640 Updated 5 cryptocurrencies
+INFO 2025-10-20 15:14:46,769 user_views 10329 123145383792640 Cryptocurrency data updated successfully
+INFO 2025-10-20 15:14:47,303 crypto_api_service 10329 123145383792640 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 15:14:47,305 crypto_api_service 10329 123145383792640 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 15:14:47,319 crypto_api_service 10329 123145383792640 Updated 5 cryptocurrencies
+WARNING 2025-10-20 15:14:48,514 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:14:54,207 log 10329 123145400582144 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 15:14:55,104 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:00,442 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:05,469 log 10329 123145383792640 Not Found: /ws/
+INFO 2025-10-20 15:15:07,511 crypto_api_service 10329 123145400582144 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 15:15:07,514 crypto_api_service 10329 123145400582144 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 15:15:07,527 crypto_api_service 10329 123145400582144 Updated 5 cryptocurrencies
+WARNING 2025-10-20 15:15:07,771 log 10329 123145400582144 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 15:15:08,373 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:14,067 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:19,087 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:20,269 log 10329 123145435770880 Bad Request: /api/trade/quick/
+WARNING 2025-10-20 15:15:24,107 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:29,129 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:34,158 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:38,364 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:15:39,217 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:44,375 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:49,476 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:15:55,430 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:16:01,665 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:16:08,506 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:16:09,351 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:16:15,625 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:16:23,175 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:16:29,633 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:16:38,587 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:16:39,368 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:16:46,221 log 10329 123145383792640 Not Found: /ws/
+INFO 2025-10-20 15:16:52,686 crypto_api_service 10329 123145435770880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 15:16:52,697 crypto_api_service 10329 123145435770880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 15:16:52,741 crypto_api_service 10329 123145435770880 Updated 5 cryptocurrencies
+WARNING 2025-10-20 15:16:55,391 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:03,335 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:11,585 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:18,518 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:23,517 log 10329 123145452560384 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:17:24,782 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:33,651 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:41,836 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:49,320 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:17:55,115 log 10329 123145452560384 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:17:59,258 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:18:09,620 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:18:19,928 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:18:24,602 log 10329 123145452560384 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:18:29,257 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:18:36,313 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:18:45,331 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:18:54,354 log 10329 123145452560384 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:18:58,094 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:05,618 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:10,677 log 10329 123145383792640 Not Found: /ws/
+INFO 2025-10-20 15:19:12,567 crypto_api_service 10329 123145452560384 CoinGecko API success: fetched 5 coins
+INFO 2025-10-20 15:19:12,570 crypto_api_service 10329 123145452560384 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-20 15:19:12,582 crypto_api_service 10329 123145452560384 Updated 5 cryptocurrencies
+WARNING 2025-10-20 15:19:12,906 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:18,062 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:23,100 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:28,414 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:31,878 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:34,592 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:37,410 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:40,742 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:43,554 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:19:44,358 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:48,182 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:54,375 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:19:56,367 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:05,558 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:07,449 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:13,369 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:20:15,464 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:23,004 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:23,700 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:30,252 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:39,400 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:43,369 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:20:49,671 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:20:58,235 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:05,379 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:10,814 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:13,355 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:21:16,353 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:22,366 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:28,358 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:34,361 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:40,403 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:43,358 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:21:46,412 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:52,552 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:21:58,821 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:22:06,826 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:22:13,357 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:22:13,564 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:22:21,194 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:22:31,023 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:22:39,668 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:22:47,178 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:22:56,082 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:04,492 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:10,357 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:16,356 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:22,357 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:28,359 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:34,360 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:40,661 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:41,369 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:23:46,370 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:52,390 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:23:58,399 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:04,418 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:11,032 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:17,158 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:23,094 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:29,599 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:37,134 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:41,370 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:24:45,092 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:24:53,535 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:25:01,272 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:25:10,808 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:25:18,036 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:25:27,979 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:25:37,081 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:25:41,512 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:25:45,727 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:25:56,007 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:26:06,263 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:26:16,271 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:26:22,583 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:26:30,237 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:26:40,297 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:26:41,403 log 10329 123145435770880 Not Found: /api/dashboard/data/
+WARNING 2025-10-20 15:26:47,734 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:26:58,110 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:27:04,963 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:27:12,323 log 10329 123145383792640 Not Found: /ws/
+WARNING 2025-10-20 15:27:19,943 log 10329 123145383792640 Not Found: /ws/

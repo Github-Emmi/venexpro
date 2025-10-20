@@ -50,10 +50,9 @@ urlpatterns = [
     path('sell/', user_views.sell_crypto_view, name='sell'),
     path('deposit/', user_views.deposit_funds_view, name='deposit'),
     path('withdraw/', user_views.withdraw_funds_view, name='withdraw'),
-    path('orders/', user_views.orders_view, name='orders'),
     path('markets/', user_views.market_data_view, name='markets'),
     path('portfolio/', user_views.portfolio_view, name='portfolio'),
-    path('history/', user_views.transaction_history_view, name='history'),
+    path('history/', user_views.transaction_history_view, name='transaction_history_view'),
     path('wallet/', user_views.wallet_management_view, name='wallet'),
     path('security/', user_views.security_settings_view, name='security'),
     
@@ -65,7 +64,7 @@ urlpatterns = [
     path('trading/sell/', user_views.sell_crypto_view, name='sell_crypto'),
     path('trading/deposit/', user_views.deposit_funds_view, name='deposit_funds'),
     path('trading/withdraw/', user_views.withdraw_funds_view, name='withdraw_funds'),
-    path('trading/orders/', user_views.orders_view, name='user_orders'),
+    path('trading/orders/', user_views.orders_view, name='orders_view'),
     
     ###########################################
     # MARKET & PORTFOLIO URLs (HTML Views)
@@ -75,7 +74,23 @@ urlpatterns = [
     path('transactions/', user_views.transaction_history_view, name='transaction_history'),
     
     ###########################################
+    # API ENDPOINTS - Dash Board Features
+    ###########################################
+    path('api/market/prices/<str:symbol>/history/', api_views.market_prices_history, name='market_prices_history'),
+    path('api/trade/quick/', api_views.quick_trade, name='quick_trade'),
+    path('api/orders/open/', api_views.open_orders, name='open_orders'),
+    path('api/orders/<uuid:order_id>/cancel/', api_views.cancel_order, name='cancel_order'),
+    path('api/portfolio/overview/', api_views.portfolio_overview, name='portfolio_overview'),
+
+    ###########################################
     # API ENDPOINTS - TRADING OPERATIONS
+    ###########################################
+    path('api/data/crypto/prices/', api_views.get_multiple_prices, name='get_multiple_prices'),
+    path('api/data/crypto/<str:symbol>/', api_views.get_crypto_price_data, name='get_crypto_price_data'),
+    path('api/data/crypto/<str:symbol>/historical/', api_views.get_historical_data, name='get_historical_data'),
+
+    ###########################################
+    # API ENDPOINTS - Real-Time Data endpoints
     ###########################################
     path('api/trading/buy/', api_views.api_buy_crypto, name='api_buy_crypto'),
     path('api/trading/sell/', api_views.api_sell_crypto, name='api_sell_crypto'),

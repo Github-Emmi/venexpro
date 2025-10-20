@@ -1,7 +1,9 @@
+import os
 import requests
 import logging
 from django.utils import timezone
 from django.db import transaction
+from django.conf import settings
 from ..models import Cryptocurrency, PriceHistory
 from ..choices import CRYPTO_CHOICES
 
@@ -20,9 +22,14 @@ class CryptoDataService:
             self._fetch_from_cryptocompare
         ]
         self.base_currencies = ['USD', 'USDT']
+        
+        # Load API keys from environment
+        self.coingecko_api_key = os.getenv('COINGECKO_API_KEY', '')
+        self.binance_api_key = os.getenv('BINANCE_API_KEY', '')
+        self.binance_secret_key = os.getenv('BINANCE_SECRET_KEY', '')
     
     def _fetch_from_coingecko(self, symbols):
-        """Fetch data from CoinGecko API"""
+        """Fetch data from CoinGecko API with API key"""
         try:
             # Map symbols to CoinGecko IDs
             coin_mapping = {
@@ -33,7 +40,7 @@ class CryptoDataService:
                 'TRX': 'tron'
             }
             
-            coin_ids = [coin_mapping.get(symbol.lower(), symbol.lower()) for symbol in symbols]
+            coin_ids = [coin_mapping.get(symbol.upper(), symbol.lower()) for symbol in symbols]
             coin_ids = [coin_id for coin_id in coin_ids if coin_id]
             
             url = "https://api.coingecko.com/api/v3/coins/markets"
@@ -47,10 +54,23 @@ class CryptoDataService:
                 'price_change_percentage': '24h'
             }
             
-            response = requests.get(url, params=params, timeout=10)
+            headers = {}
+            if self.coingecko_api_key:
+                headers['x-cg-demo-api-key'] = self.coingecko_api_key
+            
+            response = requests.get(url, params=params, headers=headers, timeout=10)
+            
             if response.status_code == 200:
                 data = response.json()
+                logger.info(f"CoinGecko API success: fetched {len(data)} coins")
                 return self._parse_coingecko_data(data)
+            elif response.status_code == 429:
+                logger.warning("CoinGecko API rate limit reached")
+            else:
+                logger.error(f"CoinGecko API error: {response.status_code}")
+                
+        except requests.exceptions.Timeout:
+            logger.error("CoinGecko API timeout")
         except Exception as e:
             logger.error(f"CoinGecko API error: {e}")
         return None
@@ -71,10 +91,14 @@ class CryptoDataService:
                     }
                     continue
                     
-                url = f"https://api.binance.com/api/v3/ticker/24hr"
+                url = "https://api.binance.com/api/v3/ticker/24hr"
                 params = {'symbol': f'{symbol}USDT'}
                 
-                response = requests.get(url, params=params, timeout=5)
+                headers = {}
+                if self.binance_api_key:
+                    headers['X-MBX-APIKEY'] = self.binance_api_key
+                
+                response = requests.get(url, params=params, headers=headers, timeout=5)
                 if response.status_code == 200:
                     ticker_data = response.json()
                     data[symbol] = {
@@ -84,19 +108,21 @@ class CryptoDataService:
                         'volume': float(ticker_data.get('volume', 0)),
                         'market_cap': 0  # Binance doesn't provide market cap
                     }
+                else:
+                    logger.warning(f"Binance API error for {symbol}: {response.status_code}")
             return data
         except Exception as e:
             logger.error(f"Binance API error: {e}")
         return None
     
     def _fetch_from_cryptocompare(self, symbols):
-        """Fetch data from CryptoCompare API"""
+        """Fetch data from CryptoCompare API (free tier)"""
         try:
             url = "https://min-api.cryptocompare.com/data/pricemultifull"
             params = {
                 'fsyms': ','.join(symbols),
-                'tsyms': 'USD',
-                'api_key': 'your_api_key_here'  # Optional: add your API key
+                'tsyms': 'USD'
+                # No API key needed for basic free tier
             }
             
             response = requests.get(url, params=params, timeout=10)
@@ -136,7 +162,7 @@ class CryptoDataService:
                 'price': usd_data.get('PRICE', 0),
                 'change_24h': usd_data.get('CHANGEPCT24HOUR', 0),
                 'change_percentage_24h': usd_data.get('CHANGEPCT24HOUR', 0),
-                'volume': usd_data.get('VOLUME24HOUR', 0),
+                'volume': usd_data.get('VOLUME24HOURTO', 0),
                 'market_cap': usd_data.get('MKTCAP', 0),
                 'circulating_supply': usd_data.get('SUPPLY', 0),
                 'total_supply': usd_data.get('TOTALSUPPLY', 0),
@@ -145,9 +171,80 @@ class CryptoDataService:
             }
         return parsed_data
     
+    def get_historical_data(self, symbol, days=30):
+        """Get historical price data for charting from CoinGecko"""
+        try:
+            coin_mapping = {
+                'BTC': 'bitcoin',
+                'ETH': 'ethereum', 
+                'USDT': 'tether',
+                'LTC': 'litecoin',
+                'TRX': 'tron'
+            }
+            
+            coin_id = coin_mapping.get(symbol.upper(), symbol.lower())
+            url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart"
+            params = {
+                'vs_currency': 'usd',
+                'days': days,
+                'interval': 'daily' if days > 1 else 'hourly'
+            }
+            
+            headers = {}
+            if self.coingecko_api_key:
+                headers['x-cg-demo-api-key'] = self.coingecko_api_key
+            
+            response = requests.get(url, params=params, headers=headers, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                prices = data.get('prices', [])
+                
+                historical_data = []
+                for price_point in prices:
+                    timestamp, price = price_point
+                    historical_data.append({
+                        'timestamp': timestamp / 1000,  # Convert to seconds
+                        'price': price,
+                        'volume': 0  # CoinGecko doesn't provide volume in this endpoint
+                    })
+                
+                return historical_data
+            else:
+                logger.warning(f"CoinGecko historical data error: {response.status_code}")
+                
+        except Exception as e:
+            logger.error(f"Error fetching historical data for {symbol}: {e}")
+        
+        # Fallback to database historical data
+        return self._get_historical_from_database(symbol, days)
+    
+    def _get_historical_from_database(self, symbol, days):
+        """Fallback: Get historical data from our database"""
+        try:
+            crypto = Cryptocurrency.objects.get(symbol=symbol)
+            end_date = timezone.now()
+            start_date = end_date - timezone.timedelta(days=days)
+            
+            history = PriceHistory.objects.filter(
+                cryptocurrency=crypto,
+                timestamp__gte=start_date
+            ).order_by('timestamp')
+            
+            return [
+                {
+                    'timestamp': entry.timestamp.timestamp(),
+                    'price': float(entry.price),
+                    'volume': float(entry.volume)
+                }
+                for entry in history
+            ]
+        except Cryptocurrency.DoesNotExist:
+            return []
+    
     @transaction.atomic
     def update_cryptocurrency_data(self):
-        """Update all cryptocurrency data in database"""
+        """Update all cryptocurrency data in database with enhanced error handling"""
         symbols = [choice[0] for choice in CRYPTO_CHOICES]
         crypto_data = None
         
@@ -155,6 +252,7 @@ class CryptoDataService:
         for provider in self.providers:
             crypto_data = provider(symbols)
             if crypto_data:
+                logger.info(f"Successfully fetched data from {provider.__name__}")
                 break
         
         if not crypto_data:
@@ -193,14 +291,20 @@ class CryptoDataService:
                     crypto.rank = data.get('rank', crypto.rank)
                     crypto.save()
                 
-                # Create price history entry
-                PriceHistory.objects.create(
+                # Create price history entry (limit to avoid database bloat)
+                recent_entries = PriceHistory.objects.filter(
                     cryptocurrency=crypto,
-                    price=data['price'],
-                    volume=data.get('volume', 0),
-                    market_cap=data.get('market_cap', 0),
-                    timestamp=timezone.now()
-                )
+                    timestamp__gte=timezone.now() - timezone.timedelta(hours=1)
+                ).count()
+                
+                if recent_entries == 0:  # Only save if no recent entry
+                    PriceHistory.objects.create(
+                        cryptocurrency=crypto,
+                        price=data['price'],
+                        volume=data.get('volume', 0),
+                        market_cap=data.get('market_cap', 0),
+                        timestamp=timezone.now()
+                    )
                 
                 updated_count += 1
                 
@@ -222,29 +326,6 @@ class CryptoDataService:
         }
         return name_mapping.get(symbol, symbol)
     
-    def get_historical_data(self, symbol, days=30):
-        """Get historical price data for charting"""
-        try:
-            crypto = Cryptocurrency.objects.get(symbol=symbol)
-            end_date = timezone.now()
-            start_date = end_date - timezone.timedelta(days=days)
-            
-            history = PriceHistory.objects.filter(
-                cryptocurrency=crypto,
-                timestamp__gte=start_date
-            ).order_by('timestamp')
-            
-            return [
-                {
-                    'timestamp': entry.timestamp.isoformat(),
-                    'price': float(entry.price),
-                    'volume': float(entry.volume)
-                }
-                for entry in history
-            ]
-        except Cryptocurrency.DoesNotExist:
-            return []
-    
     def get_multiple_prices(self, symbols):
         """Get current prices for multiple symbols"""
         prices = {}
@@ -254,10 +335,18 @@ class CryptoDataService:
                 prices[symbol] = {
                     'price': float(crypto.current_price),
                     'change_24h': float(crypto.price_change_24h),
-                    'change_percentage_24h': float(crypto.price_change_percentage_24h)
+                    'change_percentage_24h': float(crypto.price_change_percentage_24h),
+                    'market_cap': float(crypto.market_cap),
+                    'volume_24h': float(crypto.volume_24h)
                 }
             except Cryptocurrency.DoesNotExist:
-                prices[symbol] = {'price': 0, 'change_24h': 0, 'change_percentage_24h': 0}
+                prices[symbol] = {
+                    'price': 0, 
+                    'change_24h': 0, 
+                    'change_percentage_24h': 0,
+                    'market_cap': 0,
+                    'volume_24h': 0
+                }
         return prices
 
 # Global instance

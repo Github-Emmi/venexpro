@@ -3,7 +3,7 @@
 <html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>{% block title %}VENEX BROKERAGE | Cryptocurrency Trading{% endblock %}</title>
     
     <!-- Favicon -->
@@ -15,11 +15,16 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/venex-custom.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/venex-responsive.css' %}">
     
     <!-- JavaScript -->
     <script src="{% static 'assets/js/jquery-3.3.1.js' %}"></script>
     <script src="{% static 'assets/js/chart.js' %}"></script>
     <script src="{% static 'assets/js/venex-dashboard.js' %}"></script>
+    <script src="{% static 'assets/js/venex-responsive.js' %}"></script>
+    <script src="{% static 'assets/js/venex-utilis.js' %}"></script>
+    <script src="{% static 'assets/js/venex-jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/venex-jqueryy-ui.js' %}"></script>
 
     {% block extra_css %}{% endblock %}
 </head>
@@ -27,13 +32,14 @@
     <div class="dashboard-container">
         <!-- Header -->
         {% include "jobs/admin_templates/includes/header.html" %}
-        <div class="clock tCell right">
-                    <span class="time gradTxt" id="time">18:43</span>
-                    <span class="date">
-                        <span class="day" id="day">12 Jul</span>
-                        <span class="year" id="year">2022</span>
-                    </span>
-                </div>
+        
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn show-on-mobile" data-toggle="sidebar" aria-label="Toggle menu">
+            <span>☰</span>
+        </button>
+
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay"></div>
 
         <div class="dashboard-main">
             <!-- Sidebar Navigation -->
@@ -56,7 +62,8 @@
                 {% endblock %}
             </main>
         </div>
-        <!--passing crypto values-->
+
+         <!--passing crypto values-->
     
 
 <script src="{% static 'assets/js/coingecko-coin-price-marquee-widget.js' %}"></script>

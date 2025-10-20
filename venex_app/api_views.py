@@ -824,3 +824,260 @@ def get_current_price(cryptocurrency):
         return crypto.current_price
     except Cryptocurrency.DoesNotExist:
         return Decimal('0')
+    
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def market_prices_history(request, symbol):
+    """
+    GET /api/market/prices/<symbol>/history/
+    Returns price history for charting
+    """
+    range_param = request.GET.get('range', '1d')
+    
+    try:
+        history_data = CryptoMarketService.get_price_history(symbol, range_param)
+        
+        if 'error' in history_data:
+            return Response({'error': history_data['error']}, status=400)
+        
+        return Response({
+            'success': True,
+            'symbol': symbol,
+            'range': range_param,
+            'prices': history_data['prices'],
+            'timestamps': history_data['timestamps'],
+            'current_price': history_data['current_price'],
+            'price_change_24h': history_data.get('price_change_24h', 0),
+            'price_change_percentage_24h': history_data.get('price_change_percentage_24h', 0)
+        })
+        
+    except Exception as e:
+        return Response({'error': str(e)}, status=400)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def quick_trade(request):
+    """
+    POST /api/trade/quick/
+    Quick trade execution
+    """
+    try:
+        data = request.data
+        user = request.user
+        
+        # Validate required fields
+        required_fields = ['crypto', 'side', 'quantity']
+        for field in required_fields:
+            if field not in data:
+                return Response({
+                    'error': f'Missing required field: {field}'
+                }, status=400)
+        
+        crypto_symbol = data['crypto'].upper()
+        side = data['side'].upper()
+        quantity = Decimal(str(data['quantity']))
+        
+        # Get current price
+        current_price = CryptoMarketService.get_crypto_price(crypto_symbol)
+        if not current_price or current_price <= 0:
+            return Response({
+                'error': f'Could not get current price for {crypto_symbol}'
+            }, status=400)
+        
+        # Validate quantity
+        if quantity <= 0:
+            return Response({
+                'error': 'Quantity must be positive'
+            }, status=400)
+        
+        total_amount = quantity * current_price
+        
+        # Check balances based on side
+        if side == 'SELL':
+            # Check if user has enough cryptocurrency
+            try:
+                portfolio = Portfolio.objects.get(user=user, cryptocurrency=crypto_symbol)
+                if portfolio.total_quantity < quantity:
+                    return Response({
+                        'error': f'Insufficient {crypto_symbol} balance'
+                    }, status=400)
+            except Portfolio.DoesNotExist:
+                return Response({
+                    'error': f'No {crypto_symbol} holdings found'
+                }, status=400)
+        
+        elif side == 'BUY':
+            # Check if user has enough USD balance (simplified)
+            # In real implementation, check user's fiat balance
+            portfolio_data = DashboardService.get_user_portfolio_value(user)
+            if portfolio_data['total_balance'] < total_amount:
+                return Response({
+                    'error': 'Insufficient funds'
+                }, status=400)
+        
+        else:
+            return Response({
+                'error': 'Invalid side. Use BUY or SELL'
+            }, status=400)
+        
+        # Create order
+        order = Order.objects.create(
+            user=user,
+            order_type='MARKET',
+            side=side,
+            cryptocurrency=crypto_symbol,
+            quantity=quantity,
+            price=current_price,
+            status='OPEN'
+        )
+        
+        # Create transaction
+        transaction = Transaction.objects.create(
+            user=user,
+            transaction_type=side,
+            cryptocurrency=crypto_symbol,
+            quantity=quantity,
+            price_per_unit=current_price,
+            total_amount=total_amount,
+            currency=user.currency_type,
+            status='PENDING'
+        )
+        
+        # Update portfolio (simplified - in production, this would be more complex)
+        try:
+            portfolio, created = Portfolio.objects.get_or_create(
+                user=user,
+                cryptocurrency=crypto_symbol,
+                defaults={
+                    'total_quantity': quantity if side == 'BUY' else -quantity,
+                    'average_buy_price': current_price,
+                    'total_invested': total_amount if side == 'BUY' else Decimal('0.0'),
+                    'currency_type': user.currency_type
+                }
+            )
+            
+            if not created:
+                if side == 'BUY':
+                    new_quantity = portfolio.total_quantity + quantity
+                    new_invested = portfolio.total_invested + total_amount
+                    portfolio.average_buy_price = new_invested / new_quantity
+                    portfolio.total_quantity = new_quantity
+                    portfolio.total_invested = new_invested
+                else:  # SELL
+                    portfolio.total_quantity -= quantity
+                    # For simplicity, we're not adjusting average_buy_price on sells
+                
+                portfolio.save()
+                portfolio.update_portfolio_value(current_price)
+                
+        except Exception as e:
+            # Log portfolio update error but don't fail the trade
+            logger.error(f"Portfolio update error: {e}")
+        
+        # Update order status
+        order.status = 'FILLED'
+        order.filled_quantity = quantity
+        order.average_filled_price = current_price
+        order.filled_at = timezone.now()
+        order.save()
+        
+        # Update transaction status
+        transaction.status = 'COMPLETED'
+        transaction.completed_at = timezone.now()
+        transaction.save()
+        
+        return Response({
+            'success': True,
+            'order_id': str(order.id),
+            'transaction_id': str(transaction.id),
+            'status': 'COMPLETED',
+            'filled_quantity': float(quantity),
+            'average_price': float(current_price),
+            'total_amount': float(total_amount)
+        })
+        
+    except Exception as e:
+        return Response({
+            'error': f'Trade execution failed: {str(e)}'
+        }, status=400)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def open_orders(request):
+    """
+    GET /api/orders/open/
+    Returns user's open orders
+    """
+    try:
+        orders = Order.objects.filter(
+            user=request.user, 
+            status='OPEN'
+        ).order_by('-created_at')
+        
+        serializer = OrderSerializer(orders, many=True)
+        
+        return Response({
+            'success': True,
+            'orders': serializer.data
+        })
+        
+    except Exception as e:
+        return Response({
+            'error': str(e)
+        }, status=400)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def cancel_order(request, order_id):
+    """
+    POST /api/orders/<order_id>/cancel/
+    Cancel an open order
+    """
+    try:
+        order = Order.objects.get(id=order_id, user=request.user)
+        
+        if order.status != 'OPEN':
+            return Response({
+                'error': 'Only open orders can be cancelled'
+            }, status=400)
+        
+        order.status = 'CANCELLED'
+        order.save()
+        
+        return Response({
+            'success': True,
+            'message': 'Order cancelled successfully'
+        })
+        
+    except Order.DoesNotExist:
+        return Response({
+            'error': 'Order not found'
+        }, status=404)
+    except Exception as e:
+        return Response({
+            'error': str(e)
+        }, status=400)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def portfolio_overview(request):
+    """
+    GET /api/portfolio/overview/
+    Returns user's portfolio overview
+    """
+    try:
+        portfolio_data = DashboardService.get_user_portfolio_value(request.user)
+        
+        return Response({
+            'success': True,
+            'total_balance': float(portfolio_data['total_balance']),
+            'total_profit_loss': float(portfolio_data['total_profit_loss']),
+            'total_profit_loss_pct': float(portfolio_data['total_profit_loss_pct']),
+            'portfolio_details': portfolio_data['portfolio_details']
+        })
+        
+    except Exception as e:
+        return Response({
+            'error': str(e)
+        }, status=400)
