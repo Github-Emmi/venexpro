@@ -5,7 +5,7 @@ Django settings for btc_brokerage project.
 import os
 from pathlib import Path
 from datetime import timedelta
-import environ 
+import environ
 
 # Initialize environment variables
 
@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Third party apps
     'rest_framework',
     'rest_framework_simplejwt',
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django_filters',
     'channels',
     'django_extensions',
-    
+
     # Local apps
     'venex_app',
 
