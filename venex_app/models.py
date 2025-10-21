@@ -33,25 +33,29 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(email, password, **extra_fields)
-    
+
 
 # ------------------------
 # Country and State Models
 # ------------------------
 class Country(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(('country name'), max_length=55, unique=True)
+    # remove the manual id definition
+    name = models.CharField('country name', max_length=55, unique=True)
+
     def __str__(self):
         return self.name
+
     class Meta:
         verbose_name_plural = "Countries"
 
+
 class State(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(('state name'), max_length=55)
+    name = models.CharField('state name', max_length=55)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.name
+
     class Meta:
         verbose_name_plural = "States"
 
@@ -129,12 +133,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         self.is_blocked = False
         self.is_active = True
         self.save()
-    
+
     def get_total_portfolio_value(self):
         """Calculate total portfolio value across all cryptocurrencies"""
         portfolio_items = Portfolio.objects.filter(user=self)
         return sum(float(item.current_value) for item in portfolio_items)
-    
+
     def get_portfolio_distribution(self):
         """Get portfolio distribution for dashboard"""
         portfolio = Portfolio.objects.filter(user=self)
@@ -147,7 +151,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
                 'profit_loss_percentage': item.profit_loss_percentage
             })
         return distribution
-    
+
     def get_crypto_balance(self, crypto_symbol):
         """Get balance for specific cryptocurrency"""
         balances = {
@@ -329,7 +333,7 @@ class Portfolio(models.Model):
                 current_price = crypto.current_price
             except Cryptocurrency.DoesNotExist:
                 current_price = self.average_buy_price
-        
+
         self.current_value = self.total_quantity * current_price
         self.profit_loss = self.current_value - self.total_invested
         if self.total_invested > 0:
