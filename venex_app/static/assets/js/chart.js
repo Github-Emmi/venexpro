@@ -1,6 +1,4 @@
-// VENEX BROKERAGE - Dashboard Charts JavaScript
-// Comprehensive charting functionality for cryptocurrency trading platform
-
+// static/js/chart.js - Comprehensive charting functionality
 class VenexChartManager {
     constructor() {
         this.charts = new Map();
@@ -18,7 +16,6 @@ class VenexChartManager {
         this.loadInitialData();
     }
 
-    // Theme detection for dark/light mode
     detectTheme() {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             return 'dark';
@@ -26,7 +23,6 @@ class VenexChartManager {
         return 'light';
     }
 
-    // Get chart colors based on theme
     getChartColors() {
         const lightTheme = {
             primary: '#667eea',
@@ -53,7 +49,6 @@ class VenexChartManager {
         return this.theme === 'dark' ? darkTheme : lightTheme;
     }
 
-    // Setup event listeners for chart controls
     setupEventListeners() {
         // Timeframe buttons
         document.querySelectorAll('.timeframe-btn').forEach(btn => {
@@ -70,14 +65,6 @@ class VenexChartManager {
             });
         }
 
-        // Chart type toggle
-        const chartTypeToggle = document.getElementById('chart-type-toggle');
-        if (chartTypeToggle) {
-            chartTypeToggle.addEventListener('change', (e) => {
-                this.toggleChartType(e.target.checked ? 'candlestick' : 'line');
-            });
-        }
-
         // Window resize handling
         window.addEventListener('resize', () => {
             this.handleResize();
@@ -90,7 +77,6 @@ class VenexChartManager {
         });
     }
 
-    // Initialize main price chart
     initializePriceChart() {
         const ctx = document.getElementById('priceChart');
         if (!ctx) return;
@@ -122,7 +108,6 @@ class VenexChartManager {
         this.charts.set('price', this.priceChart);
     }
 
-    // Initialize portfolio distribution chart
     initializePortfolioChart() {
         const ctx = document.getElementById('portfolioChart');
         if (!ctx) return;
@@ -150,7 +135,6 @@ class VenexChartManager {
         this.charts.set('portfolio', this.portfolioChart);
     }
 
-    // Generate time labels based on timeframe
     generateTimeLabels(timeframe) {
         const now = new Date();
         const labels = [];
@@ -190,7 +174,6 @@ class VenexChartManager {
         return labels;
     }
 
-    // Create gradient for line charts
     createGradient(ctx, color) {
         const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
         
@@ -205,7 +188,6 @@ class VenexChartManager {
         return gradient;
     }
 
-    // Convert hex to rgba
     hexToRgba(hex, alpha) {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
@@ -213,7 +195,6 @@ class VenexChartManager {
         return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
 
-    // Get chart options based on chart type
     getChartOptions(type) {
         const colors = this.getChartColors();
 
@@ -277,7 +258,6 @@ class VenexChartManager {
         return commonOptions;
     }
 
-    // Handle timeframe changes
     async handleTimeframeChange(timeframe) {
         this.currentTimeframe = timeframe;
         
@@ -291,68 +271,20 @@ class VenexChartManager {
         await this.updatePriceChartData();
     }
 
-    // Handle cryptocurrency changes
     async handleCryptocurrencyChange(symbol) {
         this.currentCryptoSymbol = symbol;
         await this.updatePriceChartData();
     }
 
-    // Toggle between line and candlestick charts
-    toggleChartType(type) {
-        if (this.priceChart) {
-            this.priceChart.destroy();
-            
-            const ctx = document.getElementById('priceChart');
-            const colors = this.getChartColors();
-
-            if (type === 'candlestick') {
-                // Initialize candlestick chart
-                this.initializeCandlestickChart();
-            } else {
-                // Reinitialize line chart
-                this.initializePriceChart();
-            }
-
-            this.updatePriceChartData();
-        }
-    }
-
-    // Initialize candlestick chart (simplified version)
-    initializeCandlestickChart() {
-        const ctx = document.getElementById('priceChart');
-        const colors = this.getChartColors();
-
-        this.priceChart = new Chart(ctx, {
-            type: 'line', // In a real implementation, you'd use a candlestick chart library
-            data: {
-                labels: [],
-                datasets: [{
-                    label: 'Price',
-                    data: [],
-                    borderColor: colors.primary,
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
-                    tension: 0.1
-                }]
-            },
-            options: this.getChartOptions('price')
-        });
-
-        this.charts.set('price', this.priceChart);
-    }
-
-    // Load initial chart data
     async loadInitialData() {
         await this.updatePriceChartData();
         await this.updatePortfolioChartData();
     }
 
-    // Update price chart with new data
     async updatePriceChartData() {
         if (!this.priceChart) return;
 
         try {
-            // Simulate API call - replace with actual API endpoint
             const data = await this.fetchPriceData(this.currentCryptoSymbol, this.currentTimeframe);
             
             this.priceChart.data.labels = data.labels;
@@ -366,12 +298,10 @@ class VenexChartManager {
         }
     }
 
-    // Update portfolio chart with new data
     async updatePortfolioChartData() {
         if (!this.portfolioChart) return;
 
         try {
-            // Simulate API call - replace with actual API endpoint
             const data = await this.fetchPortfolioData();
             
             this.portfolioChart.data.labels = data.labels;
@@ -384,7 +314,6 @@ class VenexChartManager {
         }
     }
 
-    // Simulate price data fetching
     async fetchPriceData(symbol, timeframe) {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -398,7 +327,7 @@ class VenexChartManager {
         };
 
         const basePrice = basePrices[symbol] || 100;
-        const volatility = 0.02; // 2% volatility
+        const volatility = 0.02;
         const dataPoints = this.getDataPointCount(timeframe);
 
         let prices = [basePrice * (1 - volatility / 2)];
@@ -412,13 +341,11 @@ class VenexChartManager {
 
         return {
             labels: labels,
-            prices: prices.map(price => ({ x: labels[prices.indexOf(price)], y: price }))
+            prices: prices.map(price => price)
         };
     }
 
-    // Simulate portfolio data fetching
     async fetchPortfolioData() {
-        // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 300));
 
         const sampleData = {
@@ -429,7 +356,6 @@ class VenexChartManager {
         return sampleData;
     }
 
-    // Get number of data points based on timeframe
     getDataPointCount(timeframe) {
         const counts = {
             '1H': 12,
@@ -440,14 +366,12 @@ class VenexChartManager {
         return counts[timeframe] || 24;
     }
 
-    // Handle window resize
     handleResize() {
         this.charts.forEach(chart => {
             chart.resize();
         });
     }
 
-    // Update all charts when theme changes
     updateChartThemes() {
         const colors = this.getChartColors();
 
@@ -472,7 +396,6 @@ class VenexChartManager {
         });
     }
 
-    // Show error message on chart
     showChartError(chartId, message) {
         const canvas = document.getElementById(chartId);
         if (canvas) {
@@ -485,7 +408,6 @@ class VenexChartManager {
         }
     }
 
-    // Public method to update specific chart
     updateChart(chartType, data) {
         const chart = this.charts.get(chartType);
         if (chart && data) {
@@ -494,7 +416,6 @@ class VenexChartManager {
         }
     }
 
-    // Public method to destroy all charts
     destroy() {
         this.charts.forEach(chart => {
             chart.destroy();
@@ -503,7 +424,7 @@ class VenexChartManager {
     }
 }
 
-// Additional utility functions for chart data processing
+// Chart data processing utilities
 class ChartDataProcessor {
     static calculateSMA(data, period) {
         const sma = [];
@@ -518,7 +439,6 @@ class ChartDataProcessor {
         const ema = [];
         const multiplier = 2 / (period + 1);
         
-        // Start with SMA
         ema[period - 1] = this.calculateSMA(data, period)[0];
         
         for (let i = period; i < data.length; i++) {
@@ -547,7 +467,6 @@ class ChartDataProcessor {
             const rs = avgGain / avgLoss;
             rsi.push(100 - (100 / (1 + rs)));
             
-            // Update averages
             avgGain = ((avgGain * (period - 1)) + gains[i]) / period;
             avgLoss = ((avgLoss * (period - 1)) + losses[i]) / period;
         }
@@ -556,97 +475,17 @@ class ChartDataProcessor {
     }
 }
 
-// Real-time data updates using WebSocket (if available)
-class RealTimeDataManager {
-    constructor(chartManager) {
-        this.chartManager = chartManager;
-        this.ws = null;
-        this.reconnectAttempts = 0;
-        this.maxReconnectAttempts = 5;
-    }
-
-    connect() {
-        try {
-            this.ws = new WebSocket(VENEX_CONFIG.api.wsUrl + 'prices/');
-            
-            this.ws.onopen = () => {
-                console.log('WebSocket connected for real-time data');
-                this.reconnectAttempts = 0;
-            };
-
-            this.ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                this.handleRealTimeData(data);
-            };
-
-            this.ws.onclose = () => {
-                console.log('WebSocket disconnected');
-                this.handleReconnection();
-            };
-
-            this.ws.onerror = (error) => {
-                console.error('WebSocket error:', error);
-            };
-
-        } catch (error) {
-            console.error('WebSocket connection failed:', error);
-        }
-    }
-
-    handleRealTimeData(data) {
-        // Update charts with real-time data
-        if (data.type === 'price_update') {
-            this.chartManager.updatePriceChartData();
-        } else if (data.type === 'portfolio_update') {
-            this.chartManager.updatePortfolioChartData();
-        }
-    }
-
-    handleReconnection() {
-        if (this.reconnectAttempts < this.maxReconnectAttempts) {
-            this.reconnectAttempts++;
-            setTimeout(() => {
-                console.log(`Attempting to reconnect... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
-                this.connect();
-            }, 3000 * this.reconnectAttempts);
-        }
-    }
-
-    disconnect() {
-        if (this.ws) {
-            this.ws.close();
-        }
-    }
-}
-
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize chart manager
-    window.venexCharts = new VenexChartManager();
-    
-    // Initialize real-time data manager if WebSocket is available
-    if (VENEX_CONFIG.api.wsUrl) {
-        window.venexRealTime = new RealTimeDataManager(window.venexCharts);
-        window.venexRealTime.connect();
+    if (document.getElementById('priceChart')) {
+        window.venexCharts = new VenexChartManager();
     }
-
-    // Export utilities to global scope for debugging
-    window.VenexChartUtils = {
-        ChartDataProcessor,
-        getChartManager: () => window.venexCharts
-    };
-});
-
-// Error handling for Chart.js
-window.addEventListener('error', function(e) {
-    console.error('Chart.js Error:', e.error);
 });
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         VenexChartManager,
-        ChartDataProcessor,
-        RealTimeDataManager
+        ChartDataProcessor
     };
 }

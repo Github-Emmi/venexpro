@@ -9,8 +9,8 @@ import environ
 
 # Initialize environment variables
 
-env = environ.Env()
-environ.Env.read_env()
+env = environ.Env()  # type: ignore[attr-defined]
+environ.Env.read_env()  # type: ignore[attr-defined]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     # Third party apps
     'rest_framework',
@@ -79,21 +80,41 @@ TEMPLATES = [
 WSGI_APPLICATION = 'venexpro.wsgi.application'
 ASGI_APPLICATION = 'venexpro.asgi.application'
 
+# Channel layers (development configuration)
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+
+# For production, use Redis:
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('venexbtc.com', 6379)],
+#         },
+#     },
+# }
+
+
+
+
 # Database
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'emmidevcodes$venexprodb',
-        'USER': 'emmidevcodes',
-        'PASSWORD': 'Aghason1999',
-        'HOST': 'emmidevcodes.mysql.pythonanywhere-services.com',
-        'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'emmidevcodes$venexprodb',
+        # 'USER': 'emmidevcodes',
+        # 'PASSWORD': 'Aghason1999',
+        # 'HOST': 'emmidevcodes.mysql.pythonanywhere-services.com',
+        # 'PORT': '3306',
+        # 'OPTIONS': {
+        #     'charset': 'utf8mb4',
+        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        # },
     }
 }
 
@@ -116,6 +137,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+
+
+
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
@@ -240,8 +266,13 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-# OpenAI Configuration for Chatbot
-OPENAI_API_KEY = env('OPENAI_API_KEY', default='') # type: ignore
+# API Configuration
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', default='') # type: ignore
+COINGECKO_API_KEY = os.getenv('COINGECKO_API_KEY')
+CRYPTOCOMPARE_API_KEY = os.getenv('CRYPTOCOMPARE_API_KEY')
 
 
 
@@ -277,3 +308,12 @@ LOGGING = {
 }
 
 
+# =====================================
+# CELERY CONFIGURATION
+# =====================================
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Use Redis as broker
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'

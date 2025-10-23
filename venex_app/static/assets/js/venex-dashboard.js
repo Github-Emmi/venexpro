@@ -1,15 +1,18 @@
+// venex-dashboard.js - UPDATED VERSION
 class VenexDashboard {
     constructor() {
         this.currentChart = null;
-        this.socket = null;
+        this.userId = document.body.getAttribute('data-user-id');
         this.init();
     }
 
     init() {
         this.initializeCharts();
         this.setupEventListeners();
-        this.setupWebSocket();
         this.loadRealTimeData();
+        
+        // WebSocket is now handled by VenexWebSocket class
+        console.log('Dashboard initialized for user:', this.userId);
     }
 
     // Initialize price charts
@@ -118,12 +121,6 @@ class VenexDashboard {
         // Mobile menu toggle (for responsive design)
         this.setupMobileMenu();
 
-        // Notification click handler
-        const notifications = document.querySelector('.notifications');
-        if (notifications) {
-            notifications.addEventListener('click', () => this.showNotifications());
-        }
-
         // Auto-refresh data every 30 seconds
         setInterval(() => this.refreshDashboardData(), 30000);
     }
@@ -132,32 +129,36 @@ class VenexDashboard {
     async handleQuickTrade(event) {
         const button = event.currentTarget;
         const action = button.getAttribute('data-action');
-        const form = document.getElementById('quick-trade-form');
+        const symbol = button.getAttribute('data-symbol');
         
-        if (!form) return;
+        if (!symbol) {
+            this.showToast('Please select a cryptocurrency first', 'error');
+            return;
+        }
 
         // Show loading state
         button.classList.add('loading');
         button.disabled = true;
 
         try {
-            const formData = new FormData(form);
-            formData.append('action', action);
-
-            const response = await fetch('/api/trade/quick/', {
+            const response = await fetch('/api/trading/buy/', {
                 method: 'POST',
-                body: formData,
                 headers: {
+                    'Content-Type': 'application/json',
                     'X-CSRFToken': this.getCSRFToken()
-                }
+                },
+                body: JSON.stringify({
+                    symbol: symbol,
+                    quantity: '0.001', // Default small amount for quick trade
+                    action: action
+                })
             });
 
             const data = await response.json();
 
-            if (data.success) {
+            if (response.ok) {
                 this.showToast(`Trade ${action} executed successfully!`, 'success');
-                // Refresh dashboard data
-                this.refreshDashboardData();
+                // WebSocket will handle the real-time update
             } else {
                 throw new Error(data.error || 'Trade execution failed');
             }
@@ -195,164 +196,13 @@ class VenexDashboard {
         }
     }
 
-    // Setup WebSocket for real-time updates
-    setupWebSocket() {
-        if (typeof VENEX_CONFIG === 'undefined' || !VENEX_CONFIG.api.wsUrl) {
-            console.warn('WebSocket URL not configured');
-            return;
-        }
-
-        try {
-            this.socket = new WebSocket(VENEX_CONFIG.api.wsUrl);
-
-            this.socket.onopen = () => {
-                console.log('WebSocket connected');
-                // Subscribe to market data updates
-                this.socket.send(JSON.stringify({
-                    type: 'subscribe',
-                    channels: ['prices', 'portfolio']
-                }));
-            };
-
-            this.socket.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                this.handleWebSocketMessage(data);
-            };
-
-            this.socket.onclose = () => {
-                console.log('WebSocket disconnected');
-                // Attempt reconnect after 5 seconds
-                setTimeout(() => this.setupWebSocket(), 5000);
-            };
-
-            this.socket.onerror = (error) => {
-                console.error('WebSocket error:', error);
-            };
-        } catch (error) {
-            console.error('WebSocket setup failed:', error);
-        }
-    }
-
-    // Handle incoming WebSocket messages
-    handleWebSocketMessage(data) {
-        switch (data.type) {
-            case 'price_update':
-                this.updatePriceDisplay(data.symbol, data.price, data.change);
-                break;
-            case 'portfolio_update':
-                this.updatePortfolioValues(data.portfolio);
-                break;
-            case 'transaction_update':
-                this.addNewTransaction(data.transaction);
-                break;
-            default:
-                console.log('Unknown WebSocket message type:', data.type);
-        }
-    }
-
-    // Update price display in real-time
-    updatePriceDisplay(symbol, price, change) {
-        // Update crypto cards
-        const cryptoCard = document.querySelector(`[data-symbol="${symbol}"]`);
-        if (cryptoCard) {
-            const priceElement = cryptoCard.querySelector('.crypto-value');
-            const changeElement = cryptoCard.querySelector('.crypto-change');
-            
-            if (priceElement) {
-                priceElement.textContent = `$${parseFloat(price).toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 8
-                })}`;
-            }
-            
-            if (changeElement) {
-                const isPositive = parseFloat(change) >= 0;
-                changeElement.textContent = `${isPositive ? '+' : ''}${change}%`;
-                changeElement.className = `crypto-change ${isPositive ? 'positive' : 'negative'}`;
-            }
-        }
-
-        // Update total portfolio value if this affects user's holdings
-        this.updateTotalPortfolioValue();
-    }
-
-    // Update portfolio values from WebSocket data
-    updatePortfolioValues(portfolioData) {
-        portfolioData.forEach(asset => {
-            const portfolioItem = document.querySelector(`[data-portfolio-symbol="${asset.symbol}"]`);
-            if (portfolioItem) {
-                const currentValue = portfolioItem.querySelector('.crypto-value');
-                const profitLoss = portfolioItem.querySelector('.crypto-change');
-                
-                if (currentValue) {
-                    currentValue.textContent = `$${asset.current_value}`;
-                }
-                if (profitLoss) {
-                    profitLoss.textContent = `${asset.profit_loss_percentage}%`;
-                    profitLoss.className = `crypto-change ${asset.profit_loss_percentage >= 0 ? 'positive' : 'negative'}`;
-                }
-            }
-        });
-    }
-
-    // Add new transaction to the recent transactions list
-    addNewTransaction(transaction) {
-        const transactionsList = document.querySelector('.transactions-list');
-        if (!transactionsList) return;
-
-        const transactionElement = this.createTransactionElement(transaction);
-        
-        // Add to top of list
-        transactionsList.insertBefore(transactionElement, transactionsList.firstChild);
-        
-        // Remove oldest transaction if we have more than 10
-        const allTransactions = transactionsList.querySelectorAll('.transaction-item');
-        if (allTransactions.length > 10) {
-            allTransactions[allTransactions.length - 1].remove();
-        }
-    }
-
-    // Create HTML element for a transaction
-    createTransactionElement(transaction) {
-        const div = document.createElement('div');
-        div.className = `transaction-item`;
-        div.innerHTML = `
-            <div class="transaction-type ${transaction.transaction_type.toLowerCase()}">
-                <span class="type-icon">
-                    ${this.getTransactionIcon(transaction.transaction_type)}
-                </span>
-                ${transaction.transaction_type}
-            </div>
-            <div class="transaction-details">
-                <span class="crypto">${transaction.cryptocurrency}</span>
-                <span class="amount">${transaction.quantity}</span>
-            </div>
-            <div class="transaction-meta">
-                <span class="status ${transaction.status.toLowerCase()}">${transaction.status}</span>
-                <span class="time">Just now</span>
-            </div>
-        `;
-        return div;
-    }
-
-    // Get appropriate icon for transaction type
-    getTransactionIcon(type) {
-        const icons = {
-            'BUY': '⬇️',
-            'SELL': '⬆️',
-            'DEPOSIT': '📥',
-            'WITHDRAWAL': '📤'
-        };
-        return icons[type] || '💰';
-    }
-
     // Refresh dashboard data
     async refreshDashboardData() {
         try {
-            const response = await fetch('/api/dashboard/data/');
+            const response = await fetch('/api/dashboard/');
             const data = await response.json();
             
-            if (data.success) {
+            if (data.portfolio_summary) {
                 this.updateDashboardUI(data);
             }
         } catch (error) {
@@ -364,13 +214,18 @@ class VenexDashboard {
     updateDashboardUI(data) {
         // Update total balance
         const balanceElement = document.querySelector('.balance-amount');
-        if (balanceElement && data.total_balance) {
-            balanceElement.textContent = `$${data.total_balance}`;
+        if (balanceElement && data.portfolio_summary.total_value) {
+            balanceElement.textContent = `$${data.portfolio_summary.total_value.toLocaleString()}`;
         }
 
         // Update portfolio distribution
-        if (data.portfolio_distribution) {
-            this.updatePortfolioDistribution(data.portfolio_distribution);
+        if (data.portfolio_breakdown) {
+            this.updatePortfolioDistribution(data.portfolio_breakdown);
+        }
+
+        // Update recent transactions
+        if (data.recent_activity) {
+            this.updateRecentTransactions(data.recent_activity);
         }
     }
 
@@ -382,20 +237,38 @@ class VenexDashboard {
         grid.innerHTML = distribution.map(asset => `
             <div class="crypto-card" data-symbol="${asset.symbol}">
                 <div class="crypto-symbol">${asset.symbol}</div>
-                <div class="crypto-amount">${asset.quantity}</div>
-                <div class="crypto-value">$${asset.value}</div>
+                <div class="crypto-amount">${VenexUtils.formatCrypto(asset.quantity)}</div>
+                <div class="crypto-value">${VenexUtils.formatCurrency(asset.current_value)}</div>
                 <div class="crypto-change ${asset.profit_loss_percentage >= 0 ? 'positive' : 'negative'}">
-                    ${asset.profit_loss_percentage}%
+                    ${asset.profit_loss_percentage >= 0 ? '+' : ''}${asset.profit_loss_percentage.toFixed(2)}%
                 </div>
             </div>
         `).join('');
     }
 
-    // Update total portfolio value
-    updateTotalPortfolioValue() {
-        // This would recalculate based on current prices
-        // In a real implementation, this would make an API call or calculate locally
-        console.log('Updating total portfolio value...');
+    // Update recent transactions list
+    updateRecentTransactions(transactions) {
+        const container = document.querySelector('.transactions-list');
+        if (!container) return;
+
+        container.innerHTML = transactions.map(tx => `
+            <div class="transaction-item ${tx.type.toLowerCase()}">
+                <div class="transaction-type">
+                    <span class="type-icon">
+                        ${this.getTransactionIcon(tx.type)}
+                    </span>
+                    ${tx.type}
+                </div>
+                <div class="transaction-details">
+                    <span class="crypto">${tx.symbol || 'USD'}</span>
+                    <span class="amount">${VenexUtils.formatCrypto(tx.amount)}</span>
+                </div>
+                <div class="transaction-meta">
+                    <span class="status completed">Completed</span>
+                    <span class="time">${VenexUtils.timeAgo(tx.timestamp)}</span>
+                </div>
+            </div>
+        `).join('');
     }
 
     // Setup mobile menu functionality
@@ -426,7 +299,9 @@ class VenexDashboard {
 
         menuToggle.addEventListener('click', () => {
             const sidebar = document.querySelector('.dashboard-sidebar');
-            sidebar.classList.toggle('mobile-open');
+            if (sidebar) {
+                sidebar.classList.toggle('mobile-open');
+            }
         });
 
         document.body.appendChild(menuToggle);
@@ -437,13 +312,6 @@ class VenexDashboard {
         });
     }
 
-    // Show notifications panel
-    showNotifications() {
-        // This would show a notifications modal or dropdown
-        console.log('Showing notifications...');
-        this.showToast('Notifications feature coming soon!', 'info');
-    }
-
     // Show toast notification
     showToast(message, type = 'info') {
         // Create toast container if it doesn't exist
@@ -451,16 +319,31 @@ class VenexDashboard {
         if (!container) {
             container = document.createElement('div');
             container.className = 'toast-container';
+            container.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+            `;
             document.body.appendChild(container);
         }
 
         // Create toast element
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
+        toast.style.cssText = `
+            background: white;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 4px solid ${this.getToastColor(type)};
+            animation: slideIn 0.3s ease;
+        `;
         
         const icon = this.getToastIcon(type);
         toast.innerHTML = `
-            <span class="toast-icon">${icon}</span>
+            <span class="toast-icon" style="margin-right: 8px;">${icon}</span>
             <span class="toast-message">${message}</span>
         `;
 
@@ -468,8 +351,9 @@ class VenexDashboard {
 
         // Remove toast after 5 seconds
         setTimeout(() => {
-            toast.style.animation = 'slideIn 0.3s ease reverse';
-            setTimeout(() => toast.remove(), 300);
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
         }, 5000);
     }
 
@@ -482,6 +366,33 @@ class VenexDashboard {
             'info': 'ℹ️'
         };
         return icons[type] || '💡';
+    }
+
+    // Get color for toast type
+    getToastColor(type) {
+        const colors = {
+            'success': '#10B981',
+            'error': '#EF4444',
+            'warning': '#F59E0B',
+            'info': '#3B82F6'
+        };
+        return colors[type] || '#6B7280';
+    }
+
+    // Get appropriate icon for transaction type
+    getTransactionIcon(type) {
+        const icons = {
+            'BUY': '⬇️',
+            'SELL': '⬆️',
+            'DEPOSIT': '📥',
+            'WITHDRAWAL': '📤'
+        };
+        return icons[type] || '💰';
+    }
+
+    // Load real-time data on initialization
+    loadRealTimeData() {
+        this.refreshDashboardData();
     }
 
     // Get CSRF token from cookies
@@ -506,18 +417,13 @@ class VenexDashboard {
         if (this.currentChart) {
             this.currentChart.destroy();
         }
-        if (this.socket) {
-            this.socket.close();
-        }
     }
 }
 
 // Initialize dashboard when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    window.venexDashboard = new VenexDashboard();
+    // Only initialize on dashboard pages
+    if (document.querySelector('.dashboard-container')) {
+        window.venexDashboard = new VenexDashboard();
+    }
 });
-
-// Export for module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = VenexDashboard;
-}

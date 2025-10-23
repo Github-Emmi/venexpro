@@ -1,3 +1,39 @@
+
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from decimal import Decimal
+from django.utils import timezone
+import logging
+from rest_framework.decorators import api_view, permission_classes
+
+logger = logging.getLogger(__name__)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def dashboard_data(request):
+    """
+    GET /api/dashboard/data/
+    Returns summary data for the user's dashboard (portfolio, recent transactions, market overview)
+    """
+    try:
+        user = request.user
+        portfolio = Portfolio.objects.filter(user=user)
+        transactions = Transaction.objects.filter(user=user).order_by('-completed_at')[:10]
+        market_overview = crypto_service.get_market_overview() if hasattr(crypto_service, 'get_market_overview') else {}
+
+        portfolio_serializer = PortfolioSerializer(portfolio, many=True)
+        transaction_serializer = TransactionSerializer(transactions, many=True)
+
+        return Response({
+            'portfolio': portfolio_serializer.data,
+            'recent_transactions': transaction_serializer.data,
+            'market_overview': market_overview,
+        })
+    except Exception as e:
+        logger.error(f"Error fetching dashboard data: {e}")
+        return Response({'error': str(e)}, status=400)
+    
 from django.shortcuts import get_object_or_404
 from django.db import transaction
 from django.utils import timezone
@@ -6,7 +42,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from .services.crypto_api_service import crypto_service
+from .services.crypto_api_service import crypto_service, CryptoDataService
+from .services.dashboard_service import DashboardService
+from .services.trading_service import ( TradingService, OrderMatchingEngine )
 from django.views.decorators.http import require_GET
 from django.http import JsonResponse
 from .models import CustomUser, Transaction, Order, Portfolio, Cryptocurrency
@@ -836,20 +874,33 @@ def market_prices_history(request, symbol):
     range_param = request.GET.get('range', '1d')
     
     try:
-        history_data = CryptoMarketService.get_price_history(symbol, range_param)
+        history_data = CryptoDataService.get_price_history(symbol, range_param)
         
-        if 'error' in history_data:
-            return Response({'error': history_data['error']}, status=400)
+        # Normalize history_data to a mapping to support either dict-like returns or objects.
+        if isinstance(history_data, dict):
+            hd = history_data
+        else:
+            hd = {
+                'prices': getattr(history_data, 'prices', None),
+                'timestamps': getattr(history_data, 'timestamps', None),
+                'current_price': getattr(history_data, 'current_price', None),
+                'price_change_24h': getattr(history_data, 'price_change_24h', None),
+                'price_change_percentage_24h': getattr(history_data, 'price_change_percentage_24h', None),
+                'error': getattr(history_data, 'error', None)
+            }
+        
+        if hd.get('error'):
+            return Response({'error': hd.get('error')}, status=400)
         
         return Response({
             'success': True,
             'symbol': symbol,
             'range': range_param,
-            'prices': history_data['prices'],
-            'timestamps': history_data['timestamps'],
-            'current_price': history_data['current_price'],
-            'price_change_24h': history_data.get('price_change_24h', 0),
-            'price_change_percentage_24h': history_data.get('price_change_percentage_24h', 0)
+            'prices': hd.get('prices', []),
+            'timestamps': hd.get('timestamps', []),
+            'current_price': hd.get('current_price', 0),
+            'price_change_24h': hd.get('price_change_24h', 0),
+            'price_change_percentage_24h': hd.get('price_change_percentage_24h', 0)
         })
         
     except Exception as e:
@@ -879,7 +930,7 @@ def quick_trade(request):
         quantity = Decimal(str(data['quantity']))
         
         # Get current price
-        current_price = CryptoMarketService.get_crypto_price(crypto_symbol)
+        current_price = crypto_service.get_crypto_price(crypto_symbol)
         if not current_price or current_price <= 0:
             return Response({
                 'error': f'Could not get current price for {crypto_symbol}'

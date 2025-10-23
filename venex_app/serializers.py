@@ -284,24 +284,33 @@ class OrderCreateSerializer(serializers.ModelSerializer):
             'order_type', 'side', 'cryptocurrency', 'quantity', 'price',
             'stop_price', 'time_in_force', 'expires_at'
         ]
-    
+        extra_kwargs = {
+            'side': {'required': True},
+        }
+
     def validate(self, attrs):
         order_type = attrs.get('order_type')
         price = attrs.get('price')
         stop_price = attrs.get('stop_price')
-        
+        side = attrs.get('side')
+
+        if not side:
+            raise serializers.ValidationError({
+                "side": "Side (BUY/SELL) is required."
+            })
+
         # Validate LIMIT orders require price
         if order_type == 'LIMIT' and (not price or price <= 0):
             raise serializers.ValidationError({
                 "price": "Price is required for LIMIT orders and must be positive."
             })
-        
+
         # Validate STOP_LOSS/TAKE_PROFIT orders require stop_price
         if order_type in ['STOP_LOSS', 'TAKE_PROFIT'] and (not stop_price or stop_price <= 0):
             raise serializers.ValidationError({
                 "stop_price": "Stop price is required for STOP_LOSS/TAKE_PROFIT orders and must be positive."
             })
-        
+
         return attrs
 
 class PortfolioSerializer(serializers.ModelSerializer):

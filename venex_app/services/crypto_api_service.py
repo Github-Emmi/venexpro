@@ -1,3 +1,4 @@
+from decimal import Decimal
 import os
 import requests
 import logging
@@ -28,6 +29,99 @@ class CryptoDataService:
         self.binance_api_key = os.getenv('BINANCE_API_KEY', '')
         self.binance_secret_key = os.getenv('BINANCE_SECRET_KEY', '')
     
+    def get_market_overview(self):
+        """
+        Get market overview data for dashboard
+        """
+        try:
+            cryptocurrencies = Cryptocurrency.objects.filter(is_active=True)
+            
+            total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
+            total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies)
+            
+            # Get top gainers and losers
+            gainers = cryptocurrencies.filter(price_change_percentage_24h__gt=0).order_by('-price_change_percentage_24h')[:5]
+            losers = cryptocurrencies.filter(price_change_percentage_24h__lt=0).order_by('price_change_percentage_24h')[:5]
+            
+            return {
+                'total_market_cap': total_market_cap,
+                'total_volume_24h': total_volume,
+                'active_cryptocurrencies': cryptocurrencies.count(),
+                'market_dominance': self._calculate_market_dominance(cryptocurrencies),
+                'top_gainers': [
+                    {
+                        'symbol': crypto.symbol,
+                        'price': float(crypto.current_price),
+                        'change_24h': float(crypto.price_change_24h),
+                        'change_percentage_24h': float(crypto.price_change_percentage_24h)
+                    }
+                    for crypto in gainers
+                ],
+                'top_losers': [
+                    {
+                        'symbol': crypto.symbol,
+                        'price': float(crypto.current_price),
+                        'change_24h': float(crypto.price_change_24h),
+                        'change_percentage_24h': float(crypto.price_change_percentage_24h)
+                    }
+                    for crypto in losers
+                ]
+            }
+        except Exception as e:
+            logger.error(f"Error getting market overview: {e}")
+            return {}
+    
+    def _calculate_market_dominance(self, cryptocurrencies):
+        """
+        Calculate market dominance percentages
+        """
+        try:
+            total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
+            dominance = {}
+            
+            for crypto in cryptocurrencies:
+                if crypto.market_cap and total_market_cap > 0:
+                    dominance[crypto.symbol] = (float(crypto.market_cap) / total_market_cap) * 100
+            
+            return dominance
+        except Exception as e:
+            logger.error(f"Error calculating market dominance: {e}")
+            return {}
+    
+    def get_price_history(self, symbol, range_param='1d'):
+        """
+        Get price history for different time ranges
+        """
+        try:
+            # Map range parameter to days
+            range_mapping = {
+                '1d': 1,
+                '7d': 7,
+                '30d': 30,
+                '90d': 90,
+                '1y': 365
+            }
+            
+            days = range_mapping.get(range_param, 30)
+            return self.get_historical_data(symbol, days)
+            
+        except Exception as e:
+            logger.error(f"Error getting price history for {symbol}: {e}")
+            return {'error': str(e)}
+    
+    def get_crypto_price(self, symbol):
+        """
+        Get current price for a single cryptocurrency
+        """
+        try:
+            crypto = Cryptocurrency.objects.get(symbol=symbol.upper())
+            return crypto.current_price
+        except Cryptocurrency.DoesNotExist:
+            # Fallback to API fetch
+            prices = self.get_multiple_prices([symbol])
+            return prices.get(symbol, {}).get('price', Decimal('0.0'))
+    
+
     def _fetch_from_coingecko(self, symbols):
         """Fetch data from CoinGecko API with API key"""
         try:
