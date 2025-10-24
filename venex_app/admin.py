@@ -100,7 +100,7 @@ class AdminEmailService:
         }
         
         subject = f"Transaction Update - {context['crypto']}"
-        html_message = render_to_string('emails/transaction_notification.html', context)
+        html_message = render_to_string('emails/transaction_notification.html', context) # type: ignore
         plain_message = f"Your {context['crypto']} transaction has been updated."
         
         try:
@@ -551,7 +551,7 @@ class CustomUserAdmin(UserAdmin):
 
     def full_name(self, obj):
         return obj.full_name
-    full_name.short_description = 'Full Name'
+    full_name.short_description = 'Full Name' # type: ignore
 
     def get_verification_status(self, obj):
         if obj.is_verified:
@@ -603,7 +603,7 @@ class CustomUserAdmin(UserAdmin):
                 summary.append(f"{activity.timestamp.strftime('%Y-%m-%d %H:%M')} - {activity.activity_type}")
             return format_html('<br>'.join(summary))
         return "No recent activity"
-    get_activity_summary.short_description = 'Recent Activity'
+    get_activity_summary.short_description = 'Recent Activity' # type: ignore
 
     # ================================
     # USER MANAGEMENT ACTIONS
@@ -626,7 +626,7 @@ class CustomUserAdmin(UserAdmin):
             f"✅ Successfully verified {updated_count} users and sent approval emails.", 
             messages.SUCCESS
         )
-    verify_users.short_description = "✅ Verify selected users"
+    verify_users.short_description = "✅ Verify selected users" # type: ignore
 
     def unverify_users(self, request, queryset):
         updated_count = 0
@@ -645,7 +645,7 @@ class CustomUserAdmin(UserAdmin):
             f"❌ Successfully unverified {updated_count} users.", 
             messages.WARNING
         )
-    unverify_users.short_description = "❌ Unverify selected users"
+    unverify_users.short_description = "❌ Unverify selected users" # type: ignore
 
     def block_users(self, request, queryset):
         for user in queryset:

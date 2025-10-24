@@ -76,10 +76,10 @@ urlpatterns = [
     ###########################################
     # API ENDPOINTS - Dash Board Features
     ###########################################
-    path('api/market/prices/<str:symbol>/history/', api_views.market_prices_history, name='market_prices_history'),
+    path('api/market/chart/<str:symbol>/', api_views.market_prices_history, name='market_prices_history'),
     path('api/trade/quick/', api_views.quick_trade, name='quick_trade'),
     path('api/orders/open/', api_views.open_orders, name='open_orders'),
-    path('api/dashboard/data/', api_views.dashboard_data, name='dashboard_data'),
+    path('api/dashboard/', api_views.dashboard_data, name='dashboard_data'),
     path('api/orders/<uuid:order_id>/cancel/', api_views.cancel_order, name='cancel_order'),
     path('api/portfolio/overview/', api_views.portfolio_overview, name='portfolio_overview'),
 

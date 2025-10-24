@@ -142,7 +142,7 @@ def get_historical_data(request, symbol):
     except ValueError:
         days = 30
     
-    historical_data = crypto_service.get_historical_data(symbol, days)
+    historical_data = crypto_service.get_historical_data (symbol, days)
     return JsonResponse({
         'success': True, 
         'symbol': symbol,
@@ -874,9 +874,11 @@ def market_prices_history(request, symbol):
     range_param = request.GET.get('range', '1d')
     
     try:
-        history_data = CryptoDataService.get_price_history(symbol, range_param)
+        from .services.crypto_api_service import crypto_service
+       
+        history_data = crypto_service.get_price_history(symbol, range_param)
         
-        # Normalize history_data to a mapping to support either dict-like returns or objects.
+        # Rest of your code remains the same...
         if isinstance(history_data, dict):
             hd = history_data
         else:
@@ -904,6 +906,7 @@ def market_prices_history(request, symbol):
         })
         
     except Exception as e:
+        logger.error(f"Error in market_prices_history for {symbol}: {e}")
         return Response({'error': str(e)}, status=400)
 
 @api_view(['POST'])

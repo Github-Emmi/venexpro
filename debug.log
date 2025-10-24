@@ -1,0 +1,585 @@
+INFO 2025-10-24 03:45:23,415 autoreload 7876 4509128192 Watching for file changes with StatReloader
+INFO 2025-10-24 03:45:29,365 crypto_api_service 7876 123145465905152 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 03:45:29,370 crypto_api_service 7876 123145465905152 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 03:45:29,388 crypto_api_service 7876 123145465905152 Updated 5 cryptocurrencies
+WARNING 2025-10-24 03:45:54,603 crypto_api_service 7876 123145465905152 CoinGecko historical data error: 401
+WARNING 2025-10-24 03:47:08,837 crypto_api_service 7876 123145465905152 CoinGecko historical data error: 401
+INFO 2025-10-24 03:47:32,230 crypto_api_service 7876 123145465905152 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 03:47:32,233 crypto_api_service 7876 123145465905152 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 03:47:32,246 crypto_api_service 7876 123145465905152 Updated 5 cryptocurrencies
+WARNING 2025-10-24 03:47:52,564 crypto_api_service 7876 123145465905152 CoinGecko historical data error: 401
+INFO 2025-10-24 03:49:34,642 autoreload 8073 4561679872 Watching for file changes with StatReloader
+INFO 2025-10-24 04:19:24,419 cli 9095 4710282752 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:19:24,420 server 9095 4710282752 HTTP/2 support enabled
+INFO 2025-10-24 04:19:24,420 server 9095 4710282752 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:19:24,422 server 9095 4710282752 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-24 04:26:57,625 server 9095 4710282752 Killed 0 pending application instances
+INFO 2025-10-24 04:40:22,780 cli 10104 4431361536 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:40:22,781 server 10104 4431361536 HTTP/2 support enabled
+INFO 2025-10-24 04:40:22,781 server 10104 4431361536 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:40:22,783 server 10104 4431361536 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-10-24 04:40:31,719 crypto_api_service 10104 123145514901504 CoinGecko API error: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Ctether%2Clitecoin%2Ctron&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h (Caused by SSLError(SSLError(1, '[SSL] record layer failure (_ssl.c:1006)')))
+INFO 2025-10-24 04:40:46,870 server 10104 4431361536 Killed 1 pending application instances
+INFO 2025-10-24 04:41:34,746 cli 10820 4474607104 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:41:34,747 server 10820 4474607104 HTTP/2 support enabled
+INFO 2025-10-24 04:41:34,747 server 10820 4474607104 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:41:34,748 server 10820 4474607104 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-24 04:41:43,479 log 10820 123145421279232 Not Found: /static/assets/css.css
+WARNING 2025-10-24 04:41:44,011 log 10820 123145421279232 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 04:41:44,013 log 10820 123145421279232 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 04:41:44,210 log 10820 123145488437248 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-24 04:41:44,218 log 10820 123145488437248 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-24 04:41:44,278 log 10820 123145488437248 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 04:41:44,338 log 10820 123145488437248 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 04:41:45,831 log 10820 123145488437248 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 04:41:45,854 log 10820 123145421279232 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-24 04:41:45,857 log 10820 123145488437248 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-24 04:41:45,898 log 10820 123145488437248 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-24 04:41:46,083 log 10820 123145421279232 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-24 04:41:46,163 log 10820 123145421279232 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-24 04:41:54,910 crypto_api_service 10820 123145404489728 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 04:41:54,913 crypto_api_service 10820 123145404489728 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 04:41:54,936 crypto_api_service 10820 123145404489728 Updated 5 cryptocurrencies
+INFO 2025-10-24 04:41:54,937 user_views 10820 123145404489728 Cryptocurrency data updated successfully
+INFO 2025-10-24 04:41:55,604 crypto_api_service 10820 123145404489728 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 04:41:55,607 crypto_api_service 10820 123145404489728 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 04:41:55,622 crypto_api_service 10820 123145404489728 Updated 5 cryptocurrencies
+WARNING 2025-10-24 04:42:19,243 crypto_api_service 10820 123145404489728 CoinGecko historical data error: 401
+INFO 2025-10-24 04:57:42,636 server 10820 4474607104 Killed 0 pending application instances
+INFO 2025-10-24 04:59:23,931 cli 11601 4304160256 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:59:23,932 server 11601 4304160256 HTTP/2 support enabled
+INFO 2025-10-24 04:59:23,932 server 11601 4304160256 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 04:59:23,933 server 11601 4304160256 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-24 05:27:08,000 server 11601 4304160256 Killed 0 pending application instances
+INFO 2025-10-24 05:33:31,830 cli 14482 4563310080 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 05:33:31,831 server 14482 4563310080 HTTP/2 support enabled
+INFO 2025-10-24 05:33:31,831 server 14482 4563310080 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 05:33:31,832 server 14482 4563310080 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-24 05:33:39,199 crypto_api_service 14482 123145406939136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:33:39,203 crypto_api_service 14482 123145406939136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:33:39,226 crypto_api_service 14482 123145406939136 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:33:39,227 user_views 14482 123145406939136 Cryptocurrency data updated successfully
+INFO 2025-10-24 05:33:39,883 crypto_api_service 14482 123145406939136 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:33:39,928 crypto_api_service 14482 123145406939136 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:33:40,008 crypto_api_service 14482 123145406939136 Updated 5 cryptocurrencies
+WARNING 2025-10-24 05:33:55,679 crypto_api_service 14482 123145406939136 CoinGecko historical data error: 401
+INFO 2025-10-24 05:36:47,761 server 14482 4563310080 Killed 0 pending application instances
+INFO 2025-10-24 05:36:51,273 cli 14669 4489016832 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 05:36:51,273 server 14669 4489016832 HTTP/2 support enabled
+INFO 2025-10-24 05:36:51,273 server 14669 4489016832 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 05:36:51,274 server 14669 4489016832 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-24 05:36:56,193 crypto_api_service 14669 123145498513408 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:36:56,196 crypto_api_service 14669 123145498513408 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:36:56,218 crypto_api_service 14669 123145498513408 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:38:06,317 crypto_api_service 14669 123145498513408 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:38:06,321 crypto_api_service 14669 123145498513408 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:38:06,346 crypto_api_service 14669 123145498513408 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:38:19,970 server 14669 4489016832 Killed 0 pending application instances
+INFO 2025-10-24 05:38:36,350 autoreload 14876 4617418240 Watching for file changes with StatReloader
+INFO 2025-10-24 05:38:39,856 crypto_api_service 14876 123145447817216 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:38:39,860 crypto_api_service 14876 123145447817216 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:38:39,881 crypto_api_service 14876 123145447817216 Updated 5 cryptocurrencies
+WARNING 2025-10-24 05:38:44,765 crypto_api_service 14876 123145464606720 CoinGecko historical data error: 429
+WARNING 2025-10-24 05:38:54,805 crypto_api_service 14876 123145464606720 CoinGecko API rate limit reached
+INFO 2025-10-24 05:39:12,397 autoreload 15008 4457104896 Watching for file changes with StatReloader
+WARNING 2025-10-24 05:39:17,582 crypto_api_service 15008 123145464356864 CoinGecko API rate limit reached
+WARNING 2025-10-24 05:39:32,916 crypto_api_service 15008 123145481146368 CoinGecko API rate limit reached
+INFO 2025-10-24 05:39:49,111 autoreload 15008 4457104896 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:39:52,470 autoreload 15025 4607010304 Watching for file changes with StatReloader
+INFO 2025-10-24 05:39:56,364 autoreload 15025 4607010304 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:39:58,419 autoreload 15044 4790670848 Watching for file changes with StatReloader
+INFO 2025-10-24 05:40:27,598 crypto_api_service 15044 123145484599296 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:40:27,612 crypto_api_service 15044 123145484599296 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:40:27,656 crypto_api_service 15044 123145484599296 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:45:32,509 autoreload 15044 4790670848 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:45:34,446 autoreload 15146 4438676992 Watching for file changes with StatReloader
+INFO 2025-10-24 05:45:44,321 autoreload 15146 4438676992 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:45:45,487 autoreload 15161 4603442688 Watching for file changes with StatReloader
+INFO 2025-10-24 05:45:58,622 crypto_api_service 15161 123145470820352 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:45:58,625 crypto_api_service 15161 123145470820352 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:45:58,644 crypto_api_service 15161 123145470820352 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:45:58,645 user_views 15161 123145470820352 Cryptocurrency data updated successfully
+INFO 2025-10-24 05:45:59,190 crypto_api_service 15161 123145470820352 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:45:59,193 crypto_api_service 15161 123145470820352 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:45:59,211 crypto_api_service 15161 123145470820352 Updated 5 cryptocurrencies
+WARNING 2025-10-24 05:46:06,463 crypto_api_service 15161 123145470820352 CoinGecko historical data error: 401
+INFO 2025-10-24 05:46:17,403 autoreload 15161 4603442688 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:46:18,616 autoreload 15187 4619060736 Watching for file changes with StatReloader
+INFO 2025-10-24 05:46:32,233 autoreload 15187 4619060736 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:46:33,509 autoreload 15207 4542531072 Watching for file changes with StatReloader
+INFO 2025-10-24 05:46:39,357 autoreload 15207 4542531072 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:46:41,612 autoreload 15214 4469605888 Watching for file changes with StatReloader
+INFO 2025-10-24 05:46:56,835 autoreload 15214 4469605888 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:46:58,089 autoreload 15228 4516136448 Watching for file changes with StatReloader
+INFO 2025-10-24 05:47:02,974 autoreload 15228 4516136448 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:47:04,135 autoreload 15241 4342408704 Watching for file changes with StatReloader
+INFO 2025-10-24 05:47:15,205 autoreload 15241 4342408704 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:47:16,339 autoreload 15249 4686566912 Watching for file changes with StatReloader
+INFO 2025-10-24 05:47:53,027 crypto_api_service 15249 123145541058560 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:47:53,031 crypto_api_service 15249 123145541058560 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:47:53,051 crypto_api_service 15249 123145541058560 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:54:49,521 autoreload 15249 4686566912 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-10-24 05:54:51,370 autoreload 15315 4718765568 Watching for file changes with StatReloader
+INFO 2025-10-24 05:55:06,702 crypto_api_service 15315 123145589510144 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:55:06,706 crypto_api_service 15315 123145589510144 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:55:06,723 crypto_api_service 15315 123145589510144 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:55:06,724 user_views 15315 123145589510144 Cryptocurrency data updated successfully
+INFO 2025-10-24 05:55:07,253 crypto_api_service 15315 123145589510144 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 05:55:07,256 crypto_api_service 15315 123145589510144 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 05:55:07,275 crypto_api_service 15315 123145589510144 Updated 5 cryptocurrencies
+INFO 2025-10-24 05:55:19,330 autoreload 15315 4718765568 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-10-24 05:55:20,659 autoreload 15346 4728002048 Watching for file changes with StatReloader
+INFO 2025-10-24 05:55:34,905 autoreload 15346 4728002048 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:55:36,204 autoreload 15363 4548855296 Watching for file changes with StatReloader
+INFO 2025-10-24 05:56:57,358 autoreload 15363 4548855296 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:56:58,856 autoreload 15392 4656498176 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:09,185 autoreload 15392 4656498176 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:57:10,165 autoreload 15405 4582782464 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:18,043 autoreload 15405 4582782464 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:57:18,794 autoreload 15414 4542739968 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:21,823 autoreload 15414 4542739968 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:57:22,549 autoreload 15422 4651910656 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:26,243 autoreload 15422 4651910656 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:57:27,625 autoreload 15430 4413621760 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:30,280 autoreload 15430 4413621760 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:57:31,229 autoreload 15438 4353893888 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:36,150 autoreload 15438 4353893888 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:57:36,854 autoreload 15445 4459558400 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:47,866 autoreload 15445 4459558400 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:57:48,567 autoreload 15452 4407027200 Watching for file changes with StatReloader
+INFO 2025-10-24 05:57:59,507 autoreload 15452 4407027200 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:58:00,267 autoreload 15462 4460185088 Watching for file changes with StatReloader
+INFO 2025-10-24 05:58:12,302 autoreload 15462 4460185088 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:58:13,105 autoreload 15475 4651501056 Watching for file changes with StatReloader
+INFO 2025-10-24 05:58:18,222 autoreload 15475 4651501056 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:58:18,971 autoreload 15489 4707845632 Watching for file changes with StatReloader
+INFO 2025-10-24 05:58:25,716 autoreload 15489 4707845632 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:58:27,144 autoreload 15498 4687394304 Watching for file changes with StatReloader
+INFO 2025-10-24 05:58:28,712 autoreload 15498 4687394304 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:58:30,554 autoreload 15506 4375938560 Watching for file changes with StatReloader
+INFO 2025-10-24 05:58:34,361 autoreload 15506 4375938560 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:58:35,988 autoreload 15514 4472296960 Watching for file changes with StatReloader
+INFO 2025-10-24 05:58:37,783 autoreload 15514 4472296960 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 05:58:38,788 autoreload 15518 4445607424 Watching for file changes with StatReloader
+INFO 2025-10-24 06:08:15,671 autoreload 15811 4452726272 Watching for file changes with StatReloader
+INFO 2025-10-24 06:08:20,195 crypto_api_service 15811 123145391046656 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 06:08:20,199 crypto_api_service 15811 123145391046656 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 06:08:20,221 crypto_api_service 15811 123145391046656 Updated 5 cryptocurrencies
+INFO 2025-10-24 06:08:20,223 user_views 15811 123145391046656 Cryptocurrency data updated successfully
+INFO 2025-10-24 06:08:20,754 crypto_api_service 15811 123145391046656 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 06:08:20,763 crypto_api_service 15811 123145391046656 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 06:08:20,779 crypto_api_service 15811 123145391046656 Updated 5 cryptocurrencies
+INFO 2025-10-24 06:17:21,634 autoreload 15811 4452726272 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 06:17:24,593 autoreload 15984 4732126720 Watching for file changes with StatReloader
+INFO 2025-10-24 06:17:31,451 autoreload 15984 4732126720 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 06:17:33,537 autoreload 16004 4366198272 Watching for file changes with StatReloader
+INFO 2025-10-24 06:17:44,706 autoreload 16004 4366198272 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 06:17:45,485 autoreload 16017 4473353728 Watching for file changes with StatReloader
+INFO 2025-10-24 06:17:47,230 autoreload 16017 4473353728 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 06:17:48,292 autoreload 16020 4442469888 Watching for file changes with StatReloader
+INFO 2025-10-24 06:17:51,995 autoreload 16020 4442469888 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 06:17:53,249 autoreload 16028 4533253632 Watching for file changes with StatReloader
+INFO 2025-10-24 06:17:55,945 autoreload 16028 4533253632 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 06:17:56,652 autoreload 16035 4538025472 Watching for file changes with StatReloader
+INFO 2025-10-24 06:17:59,224 autoreload 16035 4538025472 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/services/crypto_api_service.py changed, reloading.
+INFO 2025-10-24 06:17:59,975 autoreload 16040 4427818496 Watching for file changes with StatReloader
+INFO 2025-10-24 06:29:44,442 cli 18205 4639245824 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 06:29:44,443 server 18205 4639245824 HTTP/2 support enabled
+INFO 2025-10-24 06:29:44,443 server 18205 4639245824 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 06:29:44,444 server 18205 4639245824 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-24 06:29:54,717 crypto_api_service 18205 123145337315328 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 06:29:54,721 crypto_api_service 18205 123145337315328 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 06:29:54,741 crypto_api_service 18205 123145337315328 Updated 5 cryptocurrencies
+INFO 2025-10-24 06:29:54,743 user_views 18205 123145337315328 Cryptocurrency data updated successfully
+INFO 2025-10-24 06:29:55,289 crypto_api_service 18205 123145337315328 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 06:29:55,293 crypto_api_service 18205 123145337315328 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 06:29:55,310 crypto_api_service 18205 123145337315328 Updated 5 cryptocurrencies
+INFO 2025-10-24 06:30:01,154 crypto_api_service 18205 123145337315328 CoinGecko: Fetched 277 data points for ETH
+INFO 2025-10-24 06:30:16,411 crypto_api_service 18205 123145337315328 CoinGecko: Fetched 277 data points for TRX
+INFO 2025-10-24 06:32:04,575 crypto_api_service 18205 123145337315328 CoinGecko: Fetched 277 data points for LTC
+INFO 2025-10-24 06:32:09,368 server 18205 4639245824 Killed 0 pending application instances
+INFO 2025-10-24 06:34:47,900 cli 18435 4702438912 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 06:34:47,901 server 18435 4702438912 HTTP/2 support enabled
+INFO 2025-10-24 06:34:47,902 server 18435 4702438912 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 06:34:47,903 server 18435 4702438912 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-24 06:34:52,604 crypto_api_service 18435 123145418149888 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 06:34:52,606 crypto_api_service 18435 123145418149888 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 06:34:52,638 crypto_api_service 18435 123145418149888 Updated 5 cryptocurrencies
+WARNING 2025-10-24 06:34:52,978 log 18435 123145436012544 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-24 06:36:59,967 server 18435 4702438912 Killed 0 pending application instances
+INFO 2025-10-24 06:59:14,615 cli 18825 4543239680 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 06:59:14,616 server 18825 4543239680 HTTP/2 support enabled
+INFO 2025-10-24 06:59:14,616 server 18825 4543239680 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 06:59:14,617 server 18825 4543239680 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-24 06:59:25,322 log 18825 123145462849536 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-24 06:59:25,601 log 18825 123145462849536 Not Found: /static/assets/css.css
+WARNING 2025-10-24 06:59:25,618 log 18825 123145462849536 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 06:59:25,642 log 18825 123145462849536 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 06:59:26,109 log 18825 123145462849536 Not Found: /static/assets/js/jquery.min.map
+WARNING 2025-10-24 06:59:26,361 log 18825 123145513218048 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-24 06:59:26,363 log 18825 123145462849536 Not Found: /static/assets/css/styles.css.map
+WARNING 2025-10-24 06:59:26,622 log 18825 123145513218048 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 06:59:26,639 log 18825 123145462849536 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-24 06:59:26,761 log 18825 123145513218048 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 06:59:26,912 log 18825 123145513218048 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-24 06:59:26,938 log 18825 123145513218048 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-24 06:59:27,448 log 18825 123145513218048 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 06:59:28,568 log 18825 123145513218048 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-24 06:59:28,881 log 18825 123145513218048 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-24 06:59:28,931 log 18825 123145513218048 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-24 06:59:38,176 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 06:59:38,179 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 06:59:38,202 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+INFO 2025-10-24 06:59:38,203 user_views 18825 123145446060032 Cryptocurrency data updated successfully
+INFO 2025-10-24 06:59:38,936 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 06:59:38,939 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 06:59:38,951 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+INFO 2025-10-24 06:59:48,093 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 277 data points for ETH
+INFO 2025-10-24 07:00:04,420 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 277 data points for USDT
+INFO 2025-10-24 07:00:08,147 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 277 data points for LTC
+INFO 2025-10-24 07:00:20,042 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 280 data points for BTC
+WARNING 2025-10-24 07:00:25,682 crypto_api_service 18825 123145480175616 CoinGecko historical data error: 429
+INFO 2025-10-24 07:00:26,423 crypto_api_service 18825 123145480175616 CryptoCompare: Fetched 2 data points for USDT
+WARNING 2025-10-24 07:00:27,529 crypto_api_service 18825 123145446060032 CoinGecko historical data error: 429
+INFO 2025-10-24 07:00:28,327 crypto_api_service 18825 123145446060032 CryptoCompare: Fetched 2 data points for ETH
+INFO 2025-10-24 07:09:44,875 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:09:44,879 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:09:44,904 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:09:44,911 user_views 18825 123145446060032 Cryptocurrency data updated successfully
+INFO 2025-10-24 07:09:45,465 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:09:45,467 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:09:45,480 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+WARNING 2025-10-24 07:09:50,631 log 18825 123145513218048 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-24 07:11:05,717 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:11:05,722 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:11:05,735 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+WARNING 2025-10-24 07:11:05,995 log 18825 123145513218048 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-24 07:11:20,014 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 278 data points for ETH
+INFO 2025-10-24 07:11:39,988 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 277 data points for TRX
+INFO 2025-10-24 07:12:17,846 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 282 data points for BTC
+INFO 2025-10-24 07:12:19,414 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:12:19,417 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:12:19,447 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+WARNING 2025-10-24 07:12:28,599 crypto_api_service 18825 123145446060032 CoinGecko historical data error: 429
+INFO 2025-10-24 07:12:29,286 crypto_api_service 18825 123145446060032 CryptoCompare: Fetched 2 data points for ETH
+INFO 2025-10-24 07:30:34,822 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:30:34,826 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:30:34,869 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:30:34,870 user_views 18825 123145446060032 Cryptocurrency data updated successfully
+INFO 2025-10-24 07:30:35,449 crypto_api_service 18825 123145446060032 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:30:35,458 crypto_api_service 18825 123145446060032 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:30:35,681 crypto_api_service 18825 123145446060032 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:31:00,204 crypto_api_service 18825 123145446060032 CoinGecko: Fetched 278 data points for ETH
+INFO 2025-10-24 07:31:05,798 server 18825 4543239680 Killed 0 pending application instances
+INFO 2025-10-24 07:35:58,376 cli 19551 4554573312 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 07:35:58,377 server 19551 4554573312 HTTP/2 support enabled
+INFO 2025-10-24 07:35:58,377 server 19551 4554573312 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 07:35:58,378 server 19551 4554573312 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-24 07:36:03,044 crypto_api_service 19551 123145448673280 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:36:03,047 crypto_api_service 19551 123145448673280 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:36:03,068 crypto_api_service 19551 123145448673280 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:36:03,069 user_views 19551 123145448673280 Cryptocurrency data updated successfully
+INFO 2025-10-24 07:36:03,608 crypto_api_service 19551 123145448673280 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:36:03,622 crypto_api_service 19551 123145448673280 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:36:03,660 crypto_api_service 19551 123145448673280 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:36:18,256 crypto_api_service 19551 123145448673280 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:36:18,260 crypto_api_service 19551 123145448673280 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:36:18,276 crypto_api_service 19551 123145448673280 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:36:22,456 crypto_api_service 19551 123145448673280 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:36:22,459 crypto_api_service 19551 123145448673280 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:36:22,491 crypto_api_service 19551 123145448673280 Updated 5 cryptocurrencies
+WARNING 2025-10-24 07:36:44,414 crypto_api_service 19551 123145448673280 CoinGecko API rate limit reached
+WARNING 2025-10-24 07:36:59,664 log 19551 123145583525888 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 07:36:59,666 log 19551 123145600315392 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 07:36:59,672 log 19551 123145566736384 Not Found: /static/assets/css.css
+WARNING 2025-10-24 07:36:59,916 log 19551 123145566736384 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 07:37:00,524 log 19551 123145566736384 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-24 07:37:01,394 log 19551 123145583525888 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-24 07:37:01,396 log 19551 123145566736384 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-24 07:37:01,488 log 19551 123145583525888 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-24 07:37:01,492 log 19551 123145566736384 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-24 07:37:01,724 log 19551 123145566736384 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-24 07:37:01,729 log 19551 123145600315392 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-24 07:37:02,589 log 19551 123145566736384 Not Found: /static/assets/css.css
+WARNING 2025-10-24 07:37:02,623 log 19551 123145600315392 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 07:37:02,630 log 19551 123145566736384 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 07:37:02,843 log 19551 123145566736384 Not Found: /static/assets/css.css
+WARNING 2025-10-24 07:37:03,054 log 19551 123145566736384 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-24 07:37:03,063 log 19551 123145600315392 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-24 07:37:03,183 log 19551 123145566736384 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 07:37:03,194 log 19551 123145583525888 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 07:37:03,196 log 19551 123145566736384 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 07:37:03,253 log 19551 123145600315392 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-24 07:37:03,253 log 19551 123145583525888 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-24 07:37:03,254 log 19551 123145566736384 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-24 07:37:03,398 log 19551 123145566736384 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-24 07:37:03,633 log 19551 123145566736384 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+WARNING 2025-10-24 07:37:09,715 server 19551 4554573312 Application instance <Task pending name='Task-197' coro=<ProtocolTypeRouter.__call__() running at /Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/routing.py:48> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()]>> for connection <WebRequest at 0x109a754d0 method=GET uri=/dashboard/ clientproto=HTTP/1.1> took too long to shut down and was killed.
+INFO 2025-10-24 07:37:49,728 autoreload 19713 4746851840 Watching for file changes with StatReloader
+WARNING 2025-10-24 07:37:54,690 log 19713 123145469640704 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 07:37:54,737 log 19713 123145469640704 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 07:37:55,019 log 19713 123145486430208 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 07:37:59,469 log 19713 123145452851200 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 07:37:59,607 log 19713 123145452851200 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 07:37:59,674 log 19713 123145452851200 Not Found: /login/er.lrticker.html
+INFO 2025-10-24 07:38:11,001 crypto_api_service 19713 123145452851200 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:38:11,003 crypto_api_service 19713 123145452851200 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:38:11,022 crypto_api_service 19713 123145452851200 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:38:45,306 crypto_api_service 19713 123145537871872 CoinGecko: Fetched 277 data points for TRX
+INFO 2025-10-24 07:52:33,719 crypto_api_service 19713 123145537871872 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:52:33,722 crypto_api_service 19713 123145537871872 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:52:33,748 crypto_api_service 19713 123145537871872 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:52:33,752 user_views 19713 123145537871872 Cryptocurrency data updated successfully
+INFO 2025-10-24 07:52:34,372 crypto_api_service 19713 123145537871872 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:52:34,374 crypto_api_service 19713 123145537871872 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:52:34,390 crypto_api_service 19713 123145537871872 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:52:45,042 crypto_api_service 19713 123145537871872 CoinGecko: Fetched 278 data points for ETH
+INFO 2025-10-24 07:54:37,684 crypto_api_service 19713 123145452851200 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 07:54:37,689 crypto_api_service 19713 123145452851200 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 07:54:37,710 crypto_api_service 19713 123145452851200 Updated 5 cryptocurrencies
+INFO 2025-10-24 07:54:41,343 crypto_api_service 19713 123145452851200 CoinGecko: Fetched 277 data points for USDT
+INFO 2025-10-24 07:54:50,484 crypto_api_service 19713 123145452851200 CoinGecko: Fetched 276 data points for LTC
+INFO 2025-10-24 07:59:50,132 autoreload 20160 4376385024 Watching for file changes with StatReloader
+WARNING 2025-10-24 08:00:02,743 log 20160 123145492066304 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 08:00:02,744 log 20160 123145508855808 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 08:00:02,998 log 20160 123145492066304 Not Found: /login/gtranslate.net/flags/24.png
+INFO 2025-10-24 08:00:12,361 crypto_api_service 20160 123145492066304 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 08:00:12,365 crypto_api_service 20160 123145492066304 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 08:00:12,386 crypto_api_service 20160 123145492066304 Updated 5 cryptocurrencies
+INFO 2025-10-24 08:00:12,387 user_views 20160 123145492066304 Cryptocurrency data updated successfully
+INFO 2025-10-24 08:00:12,921 crypto_api_service 20160 123145492066304 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 08:00:12,925 crypto_api_service 20160 123145492066304 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 08:00:12,942 crypto_api_service 20160 123145492066304 Updated 5 cryptocurrencies
+INFO 2025-10-24 08:00:21,874 crypto_api_service 20160 123145492066304 CoinGecko: Fetched 278 data points for ETH
+INFO 2025-10-24 08:00:34,924 crypto_api_service 20160 123145492066304 CoinGecko: Fetched 276 data points for LTC
+WARNING 2025-10-24 08:00:38,488 crypto_api_service 20160 123145492066304 CoinGecko historical data error: 429
+INFO 2025-10-24 08:00:39,779 crypto_api_service 20160 123145492066304 CryptoCompare: Fetched 2 data points for TRX
+WARNING 2025-10-24 08:00:42,163 crypto_api_service 20160 123145492066304 CoinGecko historical data error: 429
+INFO 2025-10-24 08:00:42,816 crypto_api_service 20160 123145492066304 CryptoCompare: Fetched 2 data points for ETH
+WARNING 2025-10-24 08:00:54,852 crypto_api_service 20160 123145492066304 CoinGecko historical data error: 429
+INFO 2025-10-24 08:00:55,564 crypto_api_service 20160 123145492066304 CryptoCompare: Fetched 2 data points for USDT
+WARNING 2025-10-24 08:01:01,724 crypto_api_service 20160 123145492066304 CoinGecko historical data error: 429
+INFO 2025-10-24 08:01:02,368 crypto_api_service 20160 123145492066304 CryptoCompare: Fetched 2 data points for ETH
+WARNING 2025-10-24 08:01:05,194 crypto_api_service 20160 123145492066304 CoinGecko historical data error: 429
+INFO 2025-10-24 08:01:06,198 crypto_api_service 20160 123145492066304 CryptoCompare: Fetched 2 data points for BTC
+WARNING 2025-10-24 08:01:14,780 crypto_api_service 20160 123145492066304 CoinGecko historical data error: 429
+INFO 2025-10-24 08:01:15,571 crypto_api_service 20160 123145492066304 CryptoCompare: Fetched 2 data points for ETH
+WARNING 2025-10-24 08:01:17,334 crypto_api_service 20160 123145492066304 CoinGecko historical data error: 429
+INFO 2025-10-24 08:01:17,963 crypto_api_service 20160 123145492066304 CryptoCompare: Fetched 2 data points for TRX
+WARNING 2025-10-24 08:01:24,917 crypto_api_service 20160 123145492066304 CoinGecko API rate limit reached
+ERROR 2025-10-24 08:02:24,948 crypto_api_service 20160 123145492066304 Binance API error: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/24hr?symbol=BTCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10533b490>: Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+INFO 2025-10-24 08:02:26,482 crypto_api_service 20160 123145492066304 Successfully fetched data from _fetch_from_cryptocompare
+INFO 2025-10-24 08:02:26,492 crypto_api_service 20160 123145492066304 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:03:20,694 crypto_api_service 20160 123145492066304 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:03:20,698 crypto_api_service 20160 123145492066304 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:03:20,721 crypto_api_service 20160 123145492066304 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:03:20,723 user_views 20160 123145492066304 Cryptocurrency data updated successfully
+INFO 2025-10-24 09:03:21,264 crypto_api_service 20160 123145492066304 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:03:21,268 crypto_api_service 20160 123145492066304 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:03:21,290 crypto_api_service 20160 123145492066304 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:03:30,087 crypto_api_service 20160 123145492066304 CoinGecko: Fetched 279 data points for ETH
+INFO 2025-10-24 09:04:30,828 crypto_api_service 20160 123145492066304 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:04:30,832 crypto_api_service 20160 123145492066304 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:04:30,853 crypto_api_service 20160 123145492066304 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:20:42,412 autoreload 20819 4750235136 Watching for file changes with StatReloader
+INFO 2025-10-24 09:20:48,995 crypto_api_service 20819 123145415057408 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:20:48,998 crypto_api_service 20819 123145415057408 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:20:49,018 crypto_api_service 20819 123145415057408 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:20:49,020 user_views 20819 123145415057408 Cryptocurrency data updated successfully
+INFO 2025-10-24 09:20:49,595 crypto_api_service 20819 123145415057408 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:20:49,597 crypto_api_service 20819 123145415057408 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:20:49,617 crypto_api_service 20819 123145415057408 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:21:46,099 crypto_api_service 20819 123145500078080 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:21:46,101 crypto_api_service 20819 123145500078080 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:21:46,119 crypto_api_service 20819 123145500078080 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:41:56,545 autoreload 21102 4784494080 Watching for file changes with StatReloader
+INFO 2025-10-24 09:42:00,292 crypto_api_service 21102 123145447497728 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:42:00,297 crypto_api_service 21102 123145447497728 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:42:00,317 crypto_api_service 21102 123145447497728 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:42:00,319 user_views 21102 123145447497728 Cryptocurrency data updated successfully
+INFO 2025-10-24 09:42:00,861 crypto_api_service 21102 123145447497728 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:42:00,866 crypto_api_service 21102 123145447497728 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:42:00,885 crypto_api_service 21102 123145447497728 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:42:17,940 crypto_api_service 21102 123145447497728 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:42:17,944 crypto_api_service 21102 123145447497728 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:42:17,963 crypto_api_service 21102 123145447497728 Updated 5 cryptocurrencies
+INFO 2025-10-24 09:42:47,557 crypto_api_service 21102 123145447497728 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 09:42:47,559 crypto_api_service 21102 123145447497728 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 09:42:47,585 crypto_api_service 21102 123145447497728 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:02:17,582 cli 21423 4753327616 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 10:02:17,582 server 21423 4753327616 HTTP/2 support enabled
+INFO 2025-10-24 10:02:17,583 server 21423 4753327616 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-24 10:02:17,584 server 21423 4753327616 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-24 10:02:25,558 log 21423 123145455022080 Not Found: /static/assets/css.css
+WARNING 2025-10-24 10:02:26,517 log 21423 123145438232576 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 10:02:26,518 log 21423 123145455022080 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 10:02:26,771 log 21423 123145438232576 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-24 10:02:26,771 log 21423 123145455022080 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-24 10:02:26,871 log 21423 123145455022080 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 10:02:26,953 log 21423 123145455022080 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:02:28,320 log 21423 123145455022080 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:02:28,676 log 21423 123145455022080 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-24 10:02:28,681 log 21423 123145438232576 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-24 10:02:28,681 log 21423 123145404653568 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-24 10:02:28,734 log 21423 123145404653568 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-24 10:02:28,821 log 21423 123145404653568 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-24 10:02:37,276 crypto_api_service 21423 123145421443072 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:02:37,279 crypto_api_service 21423 123145421443072 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:02:37,299 crypto_api_service 21423 123145421443072 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:02:37,300 user_views 21423 123145421443072 Cryptocurrency data updated successfully
+INFO 2025-10-24 10:02:37,920 crypto_api_service 21423 123145421443072 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:02:37,925 crypto_api_service 21423 123145421443072 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:02:37,937 crypto_api_service 21423 123145421443072 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:03:08,194 log 21423 123145404653568 Not Found: /static/assets/css/font-aweason.min.css
+WARNING 2025-10-24 10:03:19,669 log 21423 123145404653568 Not Found: /static/assets/css.css
+WARNING 2025-10-24 10:03:19,670 log 21423 123145455022080 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 10:03:19,671 log 21423 123145438232576 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 10:03:19,994 log 21423 123145438232576 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-24 10:03:20,031 log 21423 123145438232576 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-24 10:03:20,080 log 21423 123145438232576 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:03:20,950 log 21423 123145438232576 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:03:20,999 log 21423 123145404653568 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 10:03:21,731 log 21423 123145404653568 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-24 10:03:21,754 log 21423 123145455022080 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-24 10:03:21,764 log 21423 123145438232576 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-24 10:03:21,932 log 21423 123145438232576 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-24 10:03:22,109 log 21423 123145438232576 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-24 10:03:26,407 crypto_api_service 21423 123145421443072 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:03:26,410 crypto_api_service 21423 123145421443072 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:03:26,433 crypto_api_service 21423 123145421443072 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:03:32,918 crypto_api_service 21423 123145421443072 CoinGecko: Fetched 279 data points for ETH
+WARNING 2025-10-24 10:03:38,532 crypto_api_service 21423 123145421443072 CoinGecko historical data error: 429
+INFO 2025-10-24 10:03:39,243 crypto_api_service 21423 123145421443072 CryptoCompare: Fetched 2 data points for TRX
+WARNING 2025-10-24 10:03:41,469 crypto_api_service 21423 123145421443072 CoinGecko API rate limit reached
+WARNING 2025-10-24 10:04:11,390 log 21423 123145455022080 Not Found: /static/assets/css.css
+WARNING 2025-10-24 10:04:11,407 log 21423 123145404653568 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 10:04:11,410 log 21423 123145455022080 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 10:04:12,145 log 21423 123145455022080 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:04:12,285 log 21423 123145455022080 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:04:12,537 log 21423 123145455022080 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-24 10:04:12,537 log 21423 123145438232576 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-24 10:04:16,382 log 21423 123145404653568 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-24 10:04:16,398 log 21423 123145438232576 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-24 10:04:17,315 log 21423 123145438232576 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-24 10:04:17,885 log 21423 123145438232576 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-24 10:04:41,294 log 21423 123145455022080 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-24 10:04:41,295 log 21423 123145438232576 Not Found: /static/assets/css.css
+WARNING 2025-10-24 10:04:41,295 log 21423 123145404653568 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-24 10:04:41,360 server 21423 4753327616 Application instance <Task pending name='Task-497' coro=<ProtocolTypeRouter.__call__() running at /Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/routing.py:48> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()]>> for connection <WebRequest at 0x1150272d0 method=GET uri=/dashboard/ clientproto=HTTP/1.1> took too long to shut down and was killed.
+ERROR 2025-10-24 10:04:41,481 crypto_api_service 21423 123145421443072 Binance API error: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/24hr?symbol=BTCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11505bd10>: Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+INFO 2025-10-24 10:04:42,515 crypto_api_service 21423 123145421443072 Successfully fetched data from _fetch_from_cryptocompare
+INFO 2025-10-24 10:04:42,527 crypto_api_service 21423 123145421443072 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:04:43,162 log 21423 123145404653568 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:04:43,183 log 21423 123145455022080 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 10:04:43,190 log 21423 123145404653568 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:04:43,220 log 21423 123145438232576 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-24 10:04:43,224 log 21423 123145455022080 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-24 10:04:43,328 log 21423 123145438232576 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-24 10:04:43,328 log 21423 123145455022080 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-24 10:04:43,329 log 21423 123145404653568 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-24 10:04:43,570 log 21423 123145455022080 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-24 10:04:43,832 log 21423 123145455022080 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-24 10:04:57,673 crypto_api_service 21423 123145421443072 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:04:57,676 crypto_api_service 21423 123145421443072 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:04:57,692 crypto_api_service 21423 123145421443072 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:05:12,101 server 21423 4753327616 Killed 0 pending application instances
+INFO 2025-10-24 10:05:16,341 autoreload 21705 4559119872 Watching for file changes with StatReloader
+INFO 2025-10-24 10:05:20,459 crypto_api_service 21705 123145570942976 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:05:20,462 crypto_api_service 21705 123145570942976 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:05:20,482 crypto_api_service 21705 123145570942976 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:07:05,345 crypto_api_service 21705 123145570942976 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:07:05,352 crypto_api_service 21705 123145570942976 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:07:05,424 crypto_api_service 21705 123145570942976 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:07:09,666 crypto_api_service 21705 123145570942976 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:07:09,670 crypto_api_service 21705 123145570942976 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:07:09,682 crypto_api_service 21705 123145570942976 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:07:15,936 crypto_api_service 21705 123145570942976 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:07:15,938 crypto_api_service 21705 123145570942976 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:07:15,954 crypto_api_service 21705 123145570942976 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:09:09,064 crypto_api_service 21705 123145570942976 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:09:09,079 crypto_api_service 21705 123145570942976 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:09:09,105 crypto_api_service 21705 123145570942976 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:09:15,538 crypto_api_service 21705 123145570942976 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:09:15,545 crypto_api_service 21705 123145570942976 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:09:15,569 crypto_api_service 21705 123145570942976 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:09:41,512 log 21705 123145638637568 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:09:42,632 log 21705 123145621848064 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:09:50,829 log 21705 123145587732480 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:09:50,845 log 21705 123145605058560 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:09:50,856 log 21705 123145621848064 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 10:10:05,003 crypto_api_service 21705 123145570942976 CoinGecko API rate limit reached
+INFO 2025-10-24 10:10:27,125 autoreload 21960 4576835072 Watching for file changes with StatReloader
+WARNING 2025-10-24 10:10:40,339 log 21960 123145407516672 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:10:40,402 log 21960 123145407516672 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:10:40,479 log 21960 123145407516672 Not Found: /login/er.lrticker.html
+INFO 2025-10-24 10:10:53,488 crypto_api_service 21960 123145407516672 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:10:53,493 crypto_api_service 21960 123145407516672 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:10:53,512 crypto_api_service 21960 123145407516672 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:11:04,281 crypto_api_service 21960 123145475747840 CoinGecko: Fetched 279 data points for ETH
+INFO 2025-10-24 10:11:05,537 crypto_api_service 21960 123145475747840 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:11:05,539 crypto_api_service 21960 123145475747840 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:11:05,570 crypto_api_service 21960 123145475747840 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:17:18,610 crypto_api_service 21960 123145475747840 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:17:18,613 crypto_api_service 21960 123145475747840 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:17:18,636 crypto_api_service 21960 123145475747840 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:17:18,639 user_views 21960 123145475747840 Cryptocurrency data updated successfully
+INFO 2025-10-24 10:17:19,195 crypto_api_service 21960 123145475747840 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:17:19,203 crypto_api_service 21960 123145475747840 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:17:19,378 crypto_api_service 21960 123145475747840 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:17:24,148 crypto_api_service 21960 123145424306176 CoinGecko: Fetched 278 data points for ETH
+INFO 2025-10-24 10:46:32,464 crypto_api_service 21960 123145407516672 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:46:32,469 crypto_api_service 21960 123145407516672 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:46:32,493 crypto_api_service 21960 123145407516672 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:46:32,494 user_views 21960 123145407516672 Cryptocurrency data updated successfully
+INFO 2025-10-24 10:46:33,020 crypto_api_service 21960 123145407516672 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:46:33,024 crypto_api_service 21960 123145407516672 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:46:33,043 crypto_api_service 21960 123145407516672 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:49:43,683 crypto_api_service 21960 123145424306176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:49:43,685 crypto_api_service 21960 123145424306176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:49:43,712 crypto_api_service 21960 123145424306176 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:50:03,980 autoreload 22552 4520400384 Watching for file changes with StatReloader
+INFO 2025-10-24 10:50:11,693 crypto_api_service 22552 123145390374912 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:50:11,698 crypto_api_service 22552 123145390374912 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:50:11,718 crypto_api_service 22552 123145390374912 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:50:27,561 log 22552 123145458069504 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:50:27,569 log 22552 123145441280000 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 10:50:29,498 log 22552 123145441280000 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:50:29,546 log 22552 123145458069504 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 10:50:29,708 log 22552 123145424490496 Not Found: /login/er.lrticker.html
+INFO 2025-10-24 10:50:39,112 crypto_api_service 22552 123145424490496 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:50:39,115 crypto_api_service 22552 123145424490496 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:50:39,135 crypto_api_service 22552 123145424490496 Updated 5 cryptocurrencies
+INFO 2025-10-24 10:51:08,244 crypto_api_service 22552 123145424490496 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:51:08,249 crypto_api_service 22552 123145424490496 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:51:08,269 crypto_api_service 22552 123145424490496 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:52:10,854 log 22552 123145458069504 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 10:52:13,003 log 22552 123145424490496 Not Found: /login/er.lrticker.html
+WARNING 2025-10-24 10:52:13,054 log 22552 123145441280000 Not Found: /login/gtranslate.net/flags/24.png
+INFO 2025-10-24 10:52:23,517 crypto_api_service 22552 123145508438016 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:52:23,520 crypto_api_service 22552 123145508438016 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:52:23,538 crypto_api_service 22552 123145508438016 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:52:41,472 log 22552 123145474859008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-24 10:54:53,102 crypto_api_service 22552 123145474859008 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:54:53,104 crypto_api_service 22552 123145474859008 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:54:53,122 crypto_api_service 22552 123145474859008 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:54:53,438 log 22552 123145474859008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-24 10:59:25,595 crypto_api_service 22552 123145474859008 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 10:59:25,597 crypto_api_service 22552 123145474859008 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 10:59:25,615 crypto_api_service 22552 123145474859008 Updated 5 cryptocurrencies
+WARNING 2025-10-24 10:59:25,853 log 22552 123145474859008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-24 11:03:14,878 log 22552 123145424490496 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-24 11:03:15,848 log 22552 123145474859008 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-24 11:03:18,318 log 22552 123145441280000 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-24 11:03:18,604 log 22552 123145458069504 Not Found: /login/er.lrticker.html
+INFO 2025-10-24 11:03:33,048 crypto_api_service 22552 123145424490496 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 11:03:33,058 crypto_api_service 22552 123145424490496 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 11:03:33,076 crypto_api_service 22552 123145424490496 Updated 5 cryptocurrencies
+INFO 2025-10-24 11:04:30,506 crypto_api_service 22552 123145458069504 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 11:04:30,508 crypto_api_service 22552 123145458069504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 11:04:30,531 crypto_api_service 22552 123145458069504 Updated 5 cryptocurrencies
+INFO 2025-10-24 11:06:10,131 crypto_api_service 22552 123145458069504 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 11:06:10,133 crypto_api_service 22552 123145458069504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 11:06:10,158 crypto_api_service 22552 123145458069504 Updated 5 cryptocurrencies
+INFO 2025-10-24 11:08:29,708 crypto_api_service 22552 123145458069504 CoinGecko API success: fetched 5 coins
+INFO 2025-10-24 11:08:29,712 crypto_api_service 22552 123145458069504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-24 11:08:29,731 crypto_api_service 22552 123145458069504 Updated 5 cryptocurrencies

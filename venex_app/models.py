@@ -193,6 +193,7 @@ class Cryptocurrency(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     symbol = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=100)
+    get_cryptocurrency_display = models.CharField(max_length=10, choices=TRANSACTION_TYPES, default='')
     current_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore # type: ignore
     price_change_24h = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     price_change_percentage_24h = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore

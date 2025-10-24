@@ -582,6 +582,7 @@
 
 {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/chart.js' %}"></script>
 <script>
     // Global configuration
     const VENEX_CONFIG = {
@@ -592,8 +593,9 @@
         },
         api: {
             baseUrl: "/api/",
-            prices: "/api/market/prices/",
-            trade: "/api/trade/quick/"
+            marketChart: "/api/market/chart/",  // CORRECTED: Fixed endpoint
+            trade: "/api/trade/quick/",
+            dashboard: "/api/dashboard/"
         },
         csrfToken: "{{ csrf_token }}"
     };
@@ -615,18 +617,27 @@
         }
 
         initializeCharts() {
-            this.loadChartData(this.currentSymbol, this.currentTimeframe);
+            // Use the VenexChartManager from chart.js
+            if (window.venexCharts) {
+                this.chartManager = window.venexCharts;
+            } else {
+                console.warn('VenexChartManager not found, initializing basic chart');
+                this.loadChartData(this.currentSymbol, this.currentTimeframe);
+            }
         }
 
         setupEventListeners() {
             // Chart cryptocurrency selector
-            document.getElementById('chart-crypto-select').addEventListener('change', (e) => {
-                this.currentSymbol = e.target.value;
-                const selectedOption = e.target.options[e.target.selectedIndex];
-                document.getElementById('current-crypto-name').textContent = 
-                    selectedOption.getAttribute('data-name');
-                this.loadChartData(this.currentSymbol, this.currentTimeframe);
-            });
+            const chartSelect = document.getElementById('chart-crypto-select');
+            if (chartSelect) {
+                chartSelect.addEventListener('change', (e) => {
+                    this.currentSymbol = e.target.value;
+                    const selectedOption = e.target.options[e.target.selectedIndex];
+                    document.getElementById('current-crypto-name').textContent = 
+                        selectedOption.getAttribute('data-name');
+                    this.loadChartData(this.currentSymbol, this.currentTimeframe);
+                });
+            }
 
             // Timeframe buttons
             document.querySelectorAll('.timeframe-btn').forEach(btn => {
@@ -651,18 +662,29 @@
             try {
                 loadingElement.style.display = 'block';
                 
-                const response = await fetch(`${VENEX_CONFIG.api.prices}${symbol}/history/?range=${timeframe}`);
+                // CORRECTED: Use the proper endpoint
+                const response = await fetch(`${VENEX_CONFIG.api.marketChart}${symbol}/?range=${timeframe}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
                 
                 if (data.success) {
                     this.renderChart(data);
                 } else {
                     console.error('Chart data error:', data.error);
-                    this.showToast('Failed to load chart data', 'error');
+                    this.showToast('Failed to load chart data: ' + (data.error || 'Unknown error'), 'error');
                 }
             } catch (error) {
                 console.error('Error loading chart data:', error);
-                this.showToast('Error loading chart data', 'error');
+                this.showToast('Error loading chart data: ' + error.message, 'error');
+                
+                // Fallback: Try to use the chart manager if available
+                if (this.chartManager) {
+                    this.chartManager.loadChartData(symbol, timeframe);
+                }
             } finally {
                 loadingElement.style.display = 'none';
             }
@@ -676,27 +698,9 @@
                 this.currentChart.destroy();
             }
 
-            const chartData = {
-                labels: data.timestamps.map(ts => {
-                    const date = new Date(ts);
-                    return date.toLocaleTimeString();
-                }),
-                datasets: [{
-                    label: `${data.symbol} Price`,
-                    data: data.prices,
-                    borderColor: '#667eea',
-                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: '#667eea',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 2,
-                    pointRadius: 3,
-                    pointHoverRadius: 5
-                }]
-            };
-
+            // Process the data for Chart.js
+            const chartData = this.processChartData(data);
+            
             const config = {
                 type: 'line',
                 data: chartData,
@@ -710,9 +714,17 @@
                         tooltip: {
                             mode: 'index',
                             intersect: false,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#667eea',
+                            borderWidth: 1,
                             callbacks: {
                                 label: function(context) {
-                                    return `Price: $${context.parsed.y.toFixed(2)}`;
+                                    return `Price: $${context.parsed.y.toLocaleString('en-US', { 
+                                        minimumFractionDigits: 2, 
+                                        maximumFractionDigits: 2 
+                                    })}`;
                                 }
                             }
                         }
@@ -722,6 +734,17 @@
                             display: true,
                             grid: {
                                 display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 8,
+                                callback: function(value, index, values) {
+                                    // Format date labels
+                                    if (chartData.labels.length > 30) {
+                                        return new Date(chartData.labels[index]).toLocaleDateString();
+                                    } else {
+                                        return new Date(chartData.labels[index]).toLocaleTimeString();
+                                    }
+                                }
                             }
                         },
                         y: {
@@ -731,20 +754,81 @@
                             },
                             ticks: {
                                 callback: function(value) {
+                                    if (value >= 1000) {
+                                        return '$' + (value / 1000).toFixed(1) + 'K';
+                                    }
                                     return '$' + value.toLocaleString();
                                 }
-                            }
+                            },
+                            position: 'right'
                         }
                     },
                     interaction: {
                         mode: 'nearest',
                         axis: 'x',
                         intersect: false
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hoverRadius: 4,
+                            hitRadius: 8
+                        }
                     }
                 }
             };
 
             this.currentChart = new Chart(ctx, config);
+        }
+
+        processChartData(apiData) {
+            let labels = [];
+            let prices = [];
+            
+            // Handle different data formats from API
+            if (apiData.prices && apiData.timestamps) {
+                // Format: { prices: [], timestamps: [] }
+                labels = apiData.timestamps.map(ts => {
+                    const date = new Date(ts * 1000); // Convert to milliseconds
+                    return date.toISOString();
+                });
+                prices = apiData.prices;
+            } else if (apiData.data && Array.isArray(apiData.data)) {
+                // Format: { data: [{timestamp, price}, ...] }
+                apiData.data.forEach(item => {
+                    labels.push(new Date(item.timestamp * 1000).toISOString());
+                    prices.push(item.price);
+                });
+            } else {
+                console.warn('Unknown data format:', apiData);
+                return { labels: [], datasets: [] };
+            }
+            
+            return {
+                labels: labels,
+                datasets: [{
+                    label: `${apiData.symbol || this.currentSymbol} Price`,
+                    data: prices,
+                    borderColor: '#667eea',
+                    backgroundColor: this.createGradient(),
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#667eea',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 0,
+                    pointHoverRadius: 6
+                }]
+            };
+        }
+
+        createGradient() {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(102, 126, 234, 0.3)');
+            gradient.addColorStop(1, 'rgba(102, 126, 234, 0.05)');
+            return gradient;
         }
 
         setupTradeForm() {
@@ -761,6 +845,9 @@
 
                 currentPriceDisplay.textContent = `$${price.toFixed(2)}`;
                 totalAmountDisplay.textContent = `$${total.toFixed(2)}`;
+                
+                // Update quick trade price display
+                document.getElementById('quick-trade-price').textContent = `$${price.toFixed(2)}`;
             };
 
             tradeSelect.addEventListener('change', updateTradeCalculation);
@@ -826,29 +913,28 @@
 
         async updateCurrentPrices() {
             try {
-                const symbols = ['BTC', 'ETH', 'USDT', 'LTC', 'TRX'];
-                const response = await fetch(`${VENEX_CONFIG.api.baseUrl}data/crypto/prices/`);
+                const response = await fetch(VENEX_CONFIG.api.dashboard);
                 const data = await response.json();
                 
-                if (data.success) {
-                    this.updatePriceDisplays(data.prices);
+                if (data.crypto_balances) {
+                    this.updatePriceDisplays(data.crypto_balances);
                 }
             } catch (error) {
                 console.error('Error updating prices:', error);
             }
         }
 
-        updatePriceDisplays(prices) {
-            for (const [symbol, data] of Object.entries(prices)) {
+        updatePriceDisplays(cryptoBalances) {
+            for (const [symbol, data] of Object.entries(cryptoBalances)) {
                 const priceElement = document.getElementById(`price-${symbol}`);
                 const changeElement = document.getElementById(`change-${symbol}`);
                 const cardElement = document.getElementById(`crypto-card-${symbol}`);
                 
-                if (priceElement) {
-                    priceElement.textContent = data.price.toFixed(2);
+                if (priceElement && data.current_price) {
+                    priceElement.textContent = data.current_price.toFixed(2);
                 }
                 
-                if (changeElement) {
+                if (changeElement && data.change_percentage_24h !== undefined) {
                     const isPositive = data.change_percentage_24h >= 0;
                     changeElement.textContent = `${isPositive ? '+' : ''}${data.change_percentage_24h.toFixed(2)}%`;
                     changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
@@ -910,7 +996,7 @@
 
             // Remove toast after 5 seconds
             setTimeout(() => {
-                toast.style.animation = 'slideIn 0.3s ease reverse';
+                toast.style.animation = 'slideOut 0.3s ease';
                 setTimeout(() => toast.remove(), 300);
             }, 5000);
         }
@@ -948,6 +1034,23 @@
     // Initialize dashboard when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         window.venexDashboard = new VenexDashboard();
+        
+        // Add CSS animations for toasts
+        if (!document.querySelector('#toast-animations')) {
+            const style = document.createElement('style');
+            style.id = 'toast-animations';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     });
 </script>
 {% endblock %}

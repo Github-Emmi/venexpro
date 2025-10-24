@@ -265,23 +265,44 @@ class CryptoDataService:
             }
         return parsed_data
     
+    ## crypto_api_service.py for getting historical data for charting displays
     def get_historical_data(self, symbol, days=30):
-        """Get historical price data for charting from CoinGecko"""
+        """Get historical price data with multiple provider fallback"""
+        
+        # Try CoinGecko first
+        cg_data = self._get_historical_from_coingecko(symbol, days)
+        if cg_data:
+            return cg_data
+        
+        # Try CryptoCompare as fallback
+        cc_data = self._get_historical_from_cryptocompare(symbol, days)
+        if cc_data:
+            return cc_data
+        
+        # Try Binance as third option
+        binance_data = self._get_historical_from_binance(symbol, days)
+        if binance_data:
+            return binance_data
+        
+        # Final fallback to database
+        return self._get_historical_from_database(symbol, days)
+
+    def _get_historical_from_coingecko(self, symbol, days):
+        """CoinGecko implementation without interval parameter"""
         try:
             coin_mapping = {
-                'BTC': 'bitcoin',
-                'ETH': 'ethereum', 
-                'USDT': 'tether',
-                'LTC': 'litecoin',
-                'TRX': 'tron'
+                'BTC': 'bitcoin', 'ETH': 'ethereum', 'USDT': 'tether',
+                'LTC': 'litecoin', 'TRX': 'tron'
             }
             
-            coin_id = coin_mapping.get(symbol.upper(), symbol.lower())
+            coin_id = coin_mapping.get(symbol.upper())
+            if not coin_id:
+                return None
+            
             url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart"
             params = {
                 'vs_currency': 'usd',
-                'days': days,
-                'interval': 'daily' if days > 1 else 'hourly'
+                'days': days
             }
             
             headers = {}
@@ -298,17 +319,86 @@ class CryptoDataService:
                 for price_point in prices:
                     timestamp, price = price_point
                     historical_data.append({
-                        'timestamp': timestamp / 1000,  # Convert to seconds
+                        'timestamp': timestamp / 1000,
                         'price': price,
-                        'volume': 0  # CoinGecko doesn't provide volume in this endpoint
+                        'volume': 0
                     })
-                
+            
+                logger.info(f"CoinGecko: Fetched {len(historical_data)} data points for {symbol}")
                 return historical_data
             else:
                 logger.warning(f"CoinGecko historical data error: {response.status_code}")
+                return None
+            
+        except Exception as e:
+            logger.error(f"CoinGecko historical data error for {symbol}: {e}")
+            return None
+
+    def _get_historical_from_cryptocompare(self, symbol, days):
+        """CryptoCompare fallback implementation"""
+        try:
+            url = "https://min-api.cryptocompare.com/data/v2/histoday"
+            params = {
+                'fsym': symbol,
+                'tsym': 'USD',
+                'limit': min(days, 2000)  # CryptoCompare limit
+            }
+            
+            response = requests.get(url, params=params, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                historical_data = []
+                
+                for item in data.get('Data', {}).get('Data', []):
+                    historical_data.append({
+                        'timestamp': item['time'],
+                        'price': item['close'],
+                        'volume': item['volumeto']
+                    })
+            
+                logger.info(f"CryptoCompare: Fetched {len(historical_data)} data points for {symbol}")
+                return historical_data
+            
+        except Exception as e:
+            logger.error(f"CryptoCompare historical data error for {symbol}: {e}")
+        
+        return None
+
+    def _get_historical_from_binance(self, symbol, days):
+        """Binance fallback implementation"""
+        try:
+            if symbol == 'USDT':
+                return None  # Binance doesn't have USDT charts
+            
+            interval = '1d' if days > 7 else '1h'
+            url = f"https://api.binance.com/api/v3/klines"
+            params = {
+                'symbol': f'{symbol}USDT',
+                'interval': interval,
+                'limit': min(days * (24 if interval == '1h' else 1), 1000)
+            }
+            
+            response = requests.get(url, params=params, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                historical_data = []
+                
+                for kline in data:
+                    historical_data.append({
+                        'timestamp': kline[0] / 1000,  # Convert to seconds
+                        'price': float(kline[4]),  # Close price
+                        'volume': float(kline[5])  # Volume
+                    })
+            
+                logger.info(f"Binance: Fetched {len(historical_data)} data points for {symbol}")
+                return historical_data
                 
         except Exception as e:
-            logger.error(f"Error fetching historical data for {symbol}: {e}")
+            logger.error(f"Binance historical data error for {symbol}: {e}")
+    
+        return None
         
         # Fallback to database historical data
         return self._get_historical_from_database(symbol, days)
