@@ -6,6 +6,21 @@ from decimal import Decimal
 from django.utils import timezone
 import logging
 from rest_framework.decorators import api_view, permission_classes
+from django.shortcuts import get_object_or_404
+from django.db import transaction
+from django.utils import timezone
+from decimal import Decimal
+from rest_framework.decorators import api_view, permission_classes
+from .services.crypto_api_service import crypto_service, CryptoDataService
+from .services.dashboard_service import DashboardService
+from .services.trading_service import ( TradingService, OrderMatchingEngine )
+from django.views.decorators.http import require_GET
+from django.http import JsonResponse
+from .models import CustomUser, Transaction, Order, Portfolio, Cryptocurrency
+from .serializers import (
+    TransactionSerializer, OrderSerializer, PortfolioSerializer, 
+    CryptocurrencySerializer, TransactionCreateSerializer, OrderCreateSerializer
+)
 
 logger = logging.getLogger(__name__)
 
@@ -33,25 +48,6 @@ def dashboard_data(request):
     except Exception as e:
         logger.error(f"Error fetching dashboard data: {e}")
         return Response({'error': str(e)}, status=400)
-    
-from django.shortcuts import get_object_or_404
-from django.db import transaction
-from django.utils import timezone
-from decimal import Decimal
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-from .services.crypto_api_service import crypto_service, CryptoDataService
-from .services.dashboard_service import DashboardService
-from .services.trading_service import ( TradingService, OrderMatchingEngine )
-from django.views.decorators.http import require_GET
-from django.http import JsonResponse
-from .models import CustomUser, Transaction, Order, Portfolio, Cryptocurrency
-from .serializers import (
-    TransactionSerializer, OrderSerializer, PortfolioSerializer, 
-    CryptocurrencySerializer, TransactionCreateSerializer, OrderCreateSerializer
-)
 
 # ================================
 # TRADING OPERATIONS API ENDPOINTS

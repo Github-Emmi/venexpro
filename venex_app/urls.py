@@ -2,6 +2,7 @@ from django.urls import path, include
 from . import views
 from . import user_views
 from . import api_views
+from . import consumers
 
 urlpatterns = [
     ###########################################
@@ -59,6 +60,7 @@ urlpatterns = [
     ###########################################
     # TRADING INTERFACE URLs (HTML Views)
     ###########################################
+    # User Trading URLs
     path('trading/', user_views.trading_dashboard, name='trading_dashboard'),
     path('trading/buy/', user_views.buy_crypto_view, name='buy_crypto'),
     path('trading/sell/', user_views.sell_crypto_view, name='sell_crypto'),
@@ -69,6 +71,7 @@ urlpatterns = [
     ###########################################
     # MARKET & PORTFOLIO URLs (HTML Views)
     ###########################################
+    # User Market & Portfolio URLs
     path('market/', user_views.market_data_view, name='market_data'),
     path('portfolio/', user_views.portfolio_view, name='portfolio'),
     path('transactions/', user_views.transaction_history_view, name='transaction_history'),
@@ -76,6 +79,7 @@ urlpatterns = [
     ###########################################
     # API ENDPOINTS - Dash Board Features
     ###########################################
+    # API URLs for Dashboard Data
     path('api/market/chart/<str:symbol>/', api_views.market_prices_history, name='market_prices_history'),
     path('api/trade/quick/', api_views.quick_trade, name='quick_trade'),
     path('api/orders/open/', api_views.open_orders, name='open_orders'),
@@ -117,6 +121,7 @@ urlpatterns = [
     ###########################################
     path('api/market/data/', api_views.api_market_data, name='api_market_data'),
     path('api/market/crypto/<str:symbol>/', api_views.api_get_crypto_detail, name='api_get_crypto_detail'),
+    # WebSocket URL (add to your existing WebSocket patterns)
     
     ###########################################
     # API ENDPOINTS - PORTFOLIO

@@ -191,21 +191,53 @@ def orders_view(request):
 @login_required
 def market_data_view(request):
     """
-    Market data and prices page
+    Enhanced market data and prices page with real-time updates
     """
-    cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('rank')
-    
-    # Calculate market statistics
-    total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
-    total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies)
-    
-    context = {
-        'user': request.user,
-        'cryptocurrencies': cryptocurrencies,
-        'total_market_cap': total_market_cap,
-        'total_volume': total_volume,
-    }
-    return render(request, 'jobs/admin_templates/market_data.html', context)
+    try:
+        # Get all active cryptocurrencies
+        cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('rank')
+        
+        # Calculate market statistics
+        total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
+        total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies)
+        
+        # Calculate Bitcoin dominance
+        btc = cryptocurrencies.filter(symbol='BTC').first()
+        btc_dominance = (float(btc.market_cap) / total_market_cap * 100) if btc and total_market_cap > 0 else 0
+        
+        # Get top gainers and losers
+        top_gainers = cryptocurrencies.filter(price_change_percentage_24h__gt=0).order_by('-price_change_percentage_24h')[:5]
+        top_losers = cryptocurrencies.filter(price_change_percentage_24h__lt=0).order_by('price_change_percentage_24h')[:5]
+        
+        # Prepare market stats
+        market_stats = {
+            'total_market_cap': total_market_cap,
+            'total_volume_24h': total_volume,
+            'btc_dominance': round(btc_dominance, 2),
+            'active_cryptocurrencies': cryptocurrencies.count(),
+            'timestamp': timezone.now()
+        }
+        
+        context = {
+            'cryptocurrencies': cryptocurrencies,
+            'market_stats': market_stats,
+            'top_gainers': top_gainers,
+            'top_losers': top_losers,
+            'current_prices': {crypto.symbol: {'price': crypto.current_price} for crypto in cryptocurrencies},
+        }
+        
+        return render(request, 'jobs/admin_templates/market.html', context)
+        
+    except Exception as e:
+        logger.error(f"Error in market_data_view: {str(e)}")
+        messages.error(request, 'Failed to load market data. Please try again.')
+        return render(request, 'jobs/admin_templates/market.html', {
+            'cryptocurrencies': [],
+            'market_stats': {},
+            'top_gainers': [],
+            'top_losers': [],
+            'current_prices': {}
+        })
 
 @login_required
 def portfolio_view(request):

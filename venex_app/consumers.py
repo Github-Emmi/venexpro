@@ -3,6 +3,8 @@ import asyncio
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from .services.crypto_api_service import crypto_service
+from .models import Cryptocurrency
+from django.utils import timezone
 import logging
 
 logger = logging.getLogger(__name__)
@@ -192,3 +194,261 @@ class PriceConsumer(AsyncWebsocketConsumer):
                 await self.send(text_data=json.dumps(event))
         except Exception as e:
             logger.error(f"Error in price_update handler: {e}")
+
+
+
+logger = logging.getLogger(__name__)
+
+class MarketConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.room_group_name = 'market_updates'
+        
+        # Join market group
+        await self.channel_layer.group_add(
+            self.room_group_name,
+            self.channel_name
+        )
+        
+        await self.accept()
+        logger.info(f"Market WebSocket connected: {self.channel_name}")
+        
+        # Send initial market data
+        await self.send_initial_market_data()
+
+    async def disconnect(self, close_code): # type: ignore
+        # Leave market group
+        await self.channel_layer.group_discard(
+            self.room_group_name,
+            self.channel_name
+        )
+        logger.info(f"Market WebSocket disconnected: {self.channel_name}")
+
+    async def receive(self, text_data): # type: ignore
+        try:
+            data = json.loads(text_data)
+            message_type = data.get('type')
+            
+            if message_type == 'subscribe_chart':
+                symbol = data.get('symbol', 'BTC')
+                timeframe = data.get('timeframe', '1d')
+                await self.send_chart_data(symbol, timeframe)
+                
+        except Exception as e:
+            logger.error(f"Error processing WebSocket message: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': str(e)
+            }))
+
+    async def market_update(self, event):
+        """Receive market update from group"""
+        await self.send(text_data=json.dumps(event['data']))
+
+    async def price_update(self, event):
+        """Receive price update from group"""
+        await self.send(text_data=json.dumps(event['data']))
+
+    @database_sync_to_async
+    def get_market_data(self):
+        """Get current market data from database"""
+        from .models import Cryptocurrency
+        from .serializers import CryptocurrencySerializer
+        
+        cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('rank')
+        serializer = CryptocurrencySerializer(cryptocurrencies, many=True)
+        
+        # Calculate market stats
+        total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
+        total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies)
+        
+        # Calculate BTC dominance
+        btc = cryptocurrencies.filter(symbol='BTC').first()
+        btc_dominance = (float(btc.market_cap) / total_market_cap * 100) if btc and total_market_cap > 0 else 0
+        
+        return {
+            'type': 'market_data',
+            'data': {
+                'cryptocurrencies': serializer.data,
+                'market_stats': {
+                    'total_market_cap': total_market_cap,
+                    'total_volume_24h': total_volume,
+                    'btc_dominance': round(btc_dominance, 2),
+                    'active_cryptocurrencies': cryptocurrencies.count(),
+                    'timestamp': timezone.now().isoformat()
+                }
+            }
+        }
+
+    @database_sync_to_async
+    def get_chart_data(self, symbol, timeframe):
+        """Get chart data for specific symbol and timeframe"""
+        from services.crypto_api_service  import crypto_service
+        return crypto_service.get_price_history(symbol, timeframe)
+
+    async def send_initial_market_data(self):
+        """Send initial market data on connection"""
+        try:
+            market_data = await self.get_market_data()
+            await self.send(text_data=json.dumps(market_data))
+        except Exception as e:
+            logger.error(f"Error sending initial market data: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': 'Failed to load market data'
+            }))
+
+    async def send_chart_data(self, symbol, timeframe):
+        """Send chart data for specific cryptocurrency"""
+        try:
+            chart_data = await self.get_chart_data(symbol, timeframe)
+            await self.send(text_data=json.dumps({
+                'type': 'chart_data',
+                'symbol': symbol,
+                'timeframe': timeframe,
+                'data': chart_data
+            }))
+        except Exception as e:
+            logger.error(f"Error sending chart data for {symbol}: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': f'Failed to load chart data for {symbol}'
+            }))
+
+class PortfolioConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.user = self.scope["user"]
+        if self.user.is_anonymous:
+            await self.close()
+            return
+            
+        self.portfolio_group_name = f'portfolio_{self.user.id}'
+        
+        # Join portfolio group
+        await self.channel_layer.group_add(
+            self.portfolio_group_name,
+            self.channel_name
+        )
+        
+        await self.accept()
+        logger.info(f"Portfolio WebSocket connected for user: {self.user.username}")
+        
+        # Send initial portfolio data
+        await self.send_initial_portfolio_data()
+
+    async def disconnect(self, close_code):
+        # Leave portfolio group
+        await self.channel_layer.group_discard(
+            self.portfolio_group_name,
+            self.channel_name
+        )
+        logger.info(f"Portfolio WebSocket disconnected for user: {self.user.username}")
+
+    async def receive(self, text_data):
+        try:
+            data = json.loads(text_data)
+            message_type = data.get('type')
+            
+            if message_type == 'get_analytics':
+                timeframe = data.get('timeframe', '1M')
+                await self.send_analytics_data(timeframe)
+                
+        except Exception as e:
+            logger.error(f"Error processing portfolio WebSocket message: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': str(e)
+            }))
+
+    async def portfolio_update(self, event):
+        """Receive portfolio update from group"""
+        await self.send(text_data=json.dumps(event['data']))
+
+    async def price_update(self, event):
+        """Handle price updates that affect portfolio"""
+        # Recalculate portfolio when prices change
+        await self.send_updated_portfolio_data()
+
+    @database_sync_to_async
+    def get_portfolio_data(self):
+        """Get current portfolio data"""
+        from .services.portfolio_service import portfolio_service
+        
+        portfolio = portfolio_service.get_user_portfolio(self.user)
+        portfolio_service.calculate_portfolio_value(portfolio)
+        
+        holdings = portfolio.holdings.all().select_related('cryptocurrency')
+        holdings_data = []
+        
+        for holding in holdings:
+            crypto = holding.cryptocurrency
+            holdings_data.append({
+                'symbol': crypto.symbol,
+                'name': crypto.name,
+                'amount': float(holding.amount),
+                'current_price': float(crypto.current_price),
+                'value_usd': float(holding.current_value),
+                'allocation': float(holding.allocation_percentage),
+                'unrealized_pl': float(holding.unrealized_pl),
+                'unrealized_pl_percentage': float(holding.unrealized_pl_percentage),
+                '24h_change': float(crypto.price_change_percentage_24h)
+            })
+        
+        return {
+            'type': 'portfolio_data',
+            'data': {
+                'portfolio': {
+                    'total_value': float(portfolio.total_value),
+                    'unrealized_pl': float(portfolio.unrealized_pl),
+                    'realized_pl': float(portfolio.realized_pl),
+                    'daily_change': float(portfolio.daily_change),
+                    'daily_change_percentage': float(portfolio.daily_change_percentage),
+                    'initial_investment': float(portfolio.initial_investment)
+                },
+                'holdings': holdings_data
+            }
+        }
+
+    @database_sync_to_async
+    def get_analytics_data(self, timeframe):
+        """Get portfolio analytics data"""
+        from .services.portfolio_service import portfolio_service
+        
+        portfolio = portfolio_service.get_user_portfolio(self.user)
+        analytics = portfolio_service.get_portfolio_analytics(portfolio, timeframe)
+        
+        return {
+            'type': 'analytics_data',
+            'data': analytics
+        }
+
+    async def send_initial_portfolio_data(self):
+        """Send initial portfolio data on connection"""
+        try:
+            portfolio_data = await self.get_portfolio_data()
+            await self.send(text_data=json.dumps(portfolio_data))
+        except Exception as e:
+            logger.error(f"Error sending initial portfolio data: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': 'Failed to load portfolio data'
+            }))
+
+    async def send_updated_portfolio_data(self):
+        """Send updated portfolio data"""
+        try:
+            portfolio_data = await self.get_portfolio_data()
+            await self.send(text_data=json.dumps(portfolio_data))
+        except Exception as e:
+            logger.error(f"Error sending updated portfolio data: {e}")
+
+    async def send_analytics_data(self, timeframe):
+        """Send analytics data"""
+        try:
+            analytics_data = await self.get_analytics_data(timeframe)
+            await self.send(text_data=json.dumps(analytics_data))
+        except Exception as e:
+            logger.error(f"Error sending analytics data: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': 'Failed to load analytics data'
+            }))

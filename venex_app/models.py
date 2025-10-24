@@ -344,6 +344,32 @@ class Portfolio(models.Model):
         self.save()
 
 
+class PortfolioHolding(models.Model):
+    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name='holdings')
+    cryptocurrency = models.ForeignKey(Cryptocurrency, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    average_buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    total_cost = models.DecimalField(max_digits=20, decimal_places=2, default=0.0) # type: ignore
+    current_value = models.DecimalField(max_digits=20, decimal_places=2, default=0.0) # type: ignore
+    unrealized_pl = models.DecimalField(max_digits=20, decimal_places=2, default=0.0) # type: ignore
+    unrealized_pl_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore
+    allocation_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore
+    
+    class Meta:
+        db_table = 'portfolio_holdings'
+        unique_together = ['portfolio', 'cryptocurrency']
+
+class PortfolioHistory(models.Model):
+    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name='history')
+    total_value = models.DecimalField(max_digits=20, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table = 'portfolio_history'
+        verbose_name_plural = 'Portfolio History'
+        ordering = ['-timestamp']
+
+
 # ------------------------
 # Password Reset Code Model
 # ------------------------

@@ -1,0 +1,62 @@
+/* Add these to your existing CSS file */
+.connection-status {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 1000;
+}
+
+.connection-status.connected {
+    background: #10b981;
+    color: white;
+}
+
+.connection-status.disconnected {
+    background: #6b7280;
+    color: white;
+}
+
+.connection-status.error {
+    background: #ef4444;
+    color: white;
+}
+
+.crypto-row.selected {
+    background: #f0f9ff !important;
+    border-left: 3px solid #667eea;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Price update animations */
+.price-update {
+    animation: pricePulse 0.5s ease-in-out;
+}
+
+@keyframes pricePulse {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(16, 185, 129, 0.1); }
+    100% { background-color: transparent; }
+}
+
+.price-downdate {
+    animation: priceDownPulse 0.5s ease-in-out;
+}
+
+@keyframes priceDownPulse {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(239, 68, 68, 0.1); }
+    100% { background-color: transparent; }
+}
