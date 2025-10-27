@@ -1,52 +1,96 @@
-<nav class="dashboard-sidebar">
-                <ul class="sidebar-nav">
-                    <li class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
-                        <a href="{% url 'dashboard' %}" class="nav-link">
-                            <span class="nav-icon">📊</span>
-                            <span class="nav-text">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {% if request.resolver_match.url_name == 'markets' %}active{% endif %}">
-                        <a href="{% url 'markets' %}" class="nav-link">
-                            <span class="nav-icon">📈</span>
-                            <span class="nav-text">Markets</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {% if request.resolver_match.url_name == 'trading' %}active{% endif %}">
-                        <a href="{% url 'trading' %}" class="nav-link">
-                            <span class="nav-icon">💰</span>
-                            <span class="nav-text">Trade</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {% if request.resolver_match.url_name == 'wallet' %}active{% endif %}">
-                        <a href="{% url 'wallet' %}" class="nav-link">
-                            <span class="nav-icon">🏦</span>
-                            <span class="nav-text">Wallet</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}">
-                        <a href="{% url 'portfolio' %}" class="nav-link">
-                            <span class="nav-icon">📋</span>
-                            <span class="nav-text">Portfolio</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {% if request.resolver_match.url_name == 'history' %}active{% endif %}">
-                        {% comment %} <a href="{% url 'history' %}" class="nav-link"> {% endcomment %}
-                            <span class="nav-icon">📜</span>
-                            <span class="nav-text">History</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
-                        <a href="{% url 'profile' %}" class="nav-link">
-                            <span class="nav-icon">👤</span>
-                            <span class="nav-text">Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {% if request.resolver_match.url_name == 'support' %}active{% endif %}">
-                        <a href="#" class="nav-link">
-                            <span class="nav-icon">🤖</span>
-                            <span class="nav-text">Support</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<aside class="sidebar" id="sidebar">
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'markets' %}" class="nav-link {% if request.resolver_match.url_name == 'markets' %}active{% endif %}">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Markets</span>
+                </a>
+            </li>
+            
+            <li class="nav-section-title">Trading</li>
+            <li class="nav-item">
+                <a href="{% url 'trading' %}" class="nav-link {% if request.resolver_match.url_name == 'trading' %}active{% endif %}">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Trade</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'buy' %}" class="nav-link {% if request.resolver_match.url_name == 'buy' %}active{% endif %}">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Buy Crypto</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'sell' %}" class="nav-link {% if request.resolver_match.url_name == 'sell' %}active{% endif %}">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>Sell Crypto</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'orders_view' %}" class="nav-link {% if request.resolver_match.url_name == 'orders_view' %}active{% endif %}">
+                    <i class="fas fa-list-alt"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+            
+            <li class="nav-section-title">Account</li>
+            <li class="nav-item">
+                <a href="{% url 'wallet' %}" class="nav-link {% if request.resolver_match.url_name == 'wallet' %}active{% endif %}">
+                    <i class="fas fa-wallet"></i>
+                    <span>Wallet</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'deposit' %}" class="nav-link {% if request.resolver_match.url_name == 'deposit' %}active{% endif %}">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Deposit</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'withdraw' %}" class="nav-link {% if request.resolver_match.url_name == 'withdraw' %}active{% endif %}">
+                    <i class="fas fa-minus-circle"></i>
+                    <span>Withdraw</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'portfolio' %}" class="nav-link {% if request.resolver_match.url_name == 'portfolio' %}active{% endif %}">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Portfolio</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'transaction_history' %}" class="nav-link {% if request.resolver_match.url_name == 'transaction_history' %}active{% endif %}">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </a>
+            </li>
+            
+            <li class="nav-section-title">Settings</li>
+            <li class="nav-item">
+                <a href="{% url 'profile' %}" class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'security' %}" class="nav-link {% if request.resolver_match.url_name == 'security' %}active{% endif %}">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </a>
+            </li>
+            
+            <li class="nav-section-title">Support</li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Support</span>
+                </a>
+            </li>
+        </ul>
+    </aside>

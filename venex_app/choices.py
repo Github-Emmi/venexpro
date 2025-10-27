@@ -1,4 +1,4 @@
-
+# venex_app/choices.py
 # ✅ Gender Choices
 GENDER_CHOICES = [
     ('M', 'Male'),

@@ -222,7 +222,12 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:8000', 'http://127.0.0.1:8000', 'https://www.venexbtc.com']
+CORS_ALLOWED_ORIGINS = ['https://www.venexbtc.com', 'https://venexbtc.com']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.venexbtc.com',
+    'https://venexbtc.com',
+]
 
 # Security Settings
 if not DEBUG:
@@ -245,11 +250,6 @@ else:
     SECURE_HSTS_SECONDS = 0
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_HSTS_PRELOAD = False
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://www.venexbtc.com",
-]
-
 
 # ===========================
 # EMAIL CONFIGURATION (Zoho)
