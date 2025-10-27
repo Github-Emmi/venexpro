@@ -1,4 +1,5 @@
-:root {
+
+        :root {
             --primary-color: #2563eb;
             --secondary-color: #1e40af;
             --success-color: #10b981;
@@ -271,6 +272,3 @@
         .text-danger {
             color: var(--danger-color) !important;
         }
-        .text-warning {
-            color: var(--warning-color) !important;
-        }   

@@ -1,379 +1,588 @@
 {% extends 'jobs/admin_templates/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}Dashboard - VENEX Brokerage{% endblock %}
 
 {% block extra_css %}
-<style>
-    .portfolio-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border-radius: 16px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
+   <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">  
+    {% endblock %}
 
-    .portfolio-value {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
+    {% block main_content%}
+    <div class="connection-status connected" id="connectionStatus">
+        Connected
+    </div>
 
-    .portfolio-change {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255,255,255,0.2);
-        border-radius: 20px;
-        font-size: 0.95rem;
-        font-weight: 600;
-    }
-
-    .asset-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .asset-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .asset-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 1rem;
-    }
-
-    .crypto-price-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        border: 2px solid transparent;
-        transition: all 0.3s;
-    }
-
-    .crypto-price-card:hover {
-        border-color: var(--primary-color);
-    }
-
-    .price-ticker {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        background: #f8fafc;
-        border-radius: 8px;
-        margin-bottom: 0.5rem;
-    }
-
-    .quick-trade-btn {
-        width: 100%;
-        padding: 0.875rem;
-        border-radius: 8px;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s;
-        margin-bottom: 0.75rem;
-    }
-
-    .buy-btn {
-        background: var(--success-color);
-        color: white;
-    }
-
-    .buy-btn:hover {
-        background: #059669;
-        transform: translateY(-1px);
-    }
-
-    .sell-btn {
-        background: var(--danger-color);
-        color: white;
-    }
-
-    .sell-btn:hover {
-        background: #dc2626;
-        transform: translateY(-1px);
-    }
-
-    .transaction-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .transaction-item:last-child {
-        border-bottom: none;
-    }
-
-    .status-badge {
-        padding: 0.375rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-
-    .status-completed {
-        background: #dcfce7;
-        color: var(--success-color);
-    }
-
-    .status-pending {
-        background: #fef3c7;
-        color: var(--warning-color);
-    }
-
-    .status-failed {
-        background: #fee2e2;
-        color: var(--danger-color);
-    }
-
-    .chart-container {
-        position: relative;
-        height: 300px;
-        background: white;
-        border-radius: 12px;
-        padding: 1rem;
-    }
-
-    .metric-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .metric-value {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #0f172a;
-    }
-
-    .metric-label {
-        font-size: 0.875rem;
-        color: #64748b;
-        margin-top: 0.5rem;
-    }
-</style>
-{% endblock %}
-
-{% block content %}
-<div class="container-fluid">
     <!-- Page Header -->
     <div class="row mb-4">
         <div class="col-12">
             <h1 class="h3 mb-1">Welcome back, {{ user.first_name }}!</h1>
-            <p class="text-muted">Here's what's happening with your portfolio today.</p>
+            <p class="text">Here's what's happening with your account today.</p>
         </div>
     </div>
 
-    <!-- Portfolio Overview Card -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="portfolio-card">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5 class="mb-3">Total Portfolio Value</h5>
-                        <div class="portfolio-value">
-                            ${{ total_balance|floatformat:2 }}
-                        </div>
-                        <div class="portfolio-change {% if total_profit_loss >= 0 %}text-success{% else %}text-danger{% endif %}">
-                            <i class="fas fa-{% if total_profit_loss >= 0 %}arrow-up{% else %}arrow-down{% endif %}"></i>
-                            <span>{% if total_profit_loss >= 0 %}+{% endif %}${{ total_profit_loss|floatformat:2 }} ({{ total_profit_loss_pct|floatformat:2 }}%)</span>
-                        </div>
+
+    <!-- Portfolio Overview -->
+    <div class="portfolio-overview">
+        <div class="portfolio-content">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h5>Total Portfolio Value</h5>
+                    <div class="portfolio-value digital-display">
+                        ${{ total_balance|floatformat:2|intcomma }}
                     </div>
-                    <div class="col-md-6 text-md-end mt-3 mt-md-0">
-                        <a href="{% url 'buy' %}" class="btn btn-light me-2">
-                            <i class="fas fa-plus"></i> Buy Crypto
-                        </a>
-                        <a href="{% url 'deposit' %}" class="btn btn-outline-light">
-                            <i class="fas fa-arrow-down"></i> Deposit
-                        </a>
+                    <div class="portfolio-change {% if total_profit_loss >= 0 %}positive{% else %}negative{% endif %}">
+                        <i class="fas fa-{% if total_profit_loss >= 0 %}arrow-up{% else %}arrow-down{% endif %}"></i>
+                        <span>{% if total_profit_loss >= 0 %}+{% endif %}${{ total_profit_loss|floatformat:2|intcomma }} ({{ total_profit_loss_pct|floatformat:2 }}%)</span>
                     </div>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    <a href="{% url 'buy' %}" class="btn btn-light me-2">
+                        <i class="fas fa-plus"></i> Buy Crypto
+                    </a>
+                    <a href="{% url 'deposit' %}" class="btn btn-outline-light">
+                        <i class="fas fa-arrow-down"></i> Deposit
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Asset Breakdown -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h5 class="mb-3">Asset Breakdown</h5>
+    <div class="asset-breakdown">
+        <div class="section-header">
+            <h2>Asset Breakdown</h2>
         </div>
-        {% for symbol, data in crypto_balances.items %}
-        <div class="col-md-4 col-lg-2 mb-3">
+        <div class="asset-grid">
+            {% for symbol, data in crypto_balances.items %}
             <div class="asset-card">
                 <div class="asset-icon" style="background: {% if symbol == 'BTC' %}#f7931a{% elif symbol == 'ETH' %}#627eea{% elif symbol == 'USDT' %}#26a17b{% elif symbol == 'LTC' %}#345d9d{% else %}#eb0029{% endif %};">
                     {{ symbol|slice:":1" }}
                 </div>
                 <h6 class="mb-1">{{ symbol }}</h6>
-                <div class="h5 mb-1">${{ data.value|floatformat:2 }}</div>
-                <small class="{% if data.change_percentage_24h >= 0 %}text-success{% else %}text-danger{% endif %}">
-                    {% if data.change_percentage_24h >= 0 %}+{% endif %}{{ data.change_percentage_24h|floatformat:2 }}%
-                </small>
+                <div class="h5 mb-1 digital-display">${{ data.value|floatformat:2|intcomma }}</div>
+                <div class="price-change {% if data.change_percentage_24h >= 0 %}positive{% else %}negative{% endif %} small">
+                    {% if data.change_percentage_24h >= 0 %}+{% endif %}{{ data.change_percentage_24h|floatformat:2|intcomma }}%
+                </div>
                 <div class="mt-2">
-                    <small class="text-muted">{{ data.balance|floatformat:8 }} {{ symbol }}</small>
+                    <small class="text">{{ data.balance|floatformat:4|intcomma }} {{ symbol }}</small>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="live_market" id="live_market">
+        <div class="market-header">
+            <h1>Live Cryptocurrency Market</h1>
+            <p>Real-time digital asset prices and statistics</p>
+        </div>
+
+        <div class="market-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">Active Cryptocurrencies</div>
+                    <div class="stat-value digital-display" id="activeCryptos">5</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Total Market Cap</div>
+                    <div class="stat-value digital-display" id="totalMarketCap">$3.04T</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">24h Volume</div>
+                    <div class="stat-value digital-display" id="totalVolume">$182.7B</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">BTC Dominance</div>
+                    <div class="stat-value digital-display" id="btcDominance">75.91%</div>
                 </div>
             </div>
         </div>
-        {% endfor %}
-    </div>
 
-    <!-- Main Content Grid -->
-    <div class="row">
-        <!-- Left Column - Live Prices & Chart -->
-        <div class="col-lg-8">
-            <!-- Live Cryptocurrency Market Data -->
-            <div class="card mb-4">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">Live Cryptocurrency Prices</h5>
+        <div class="crypto-grid" id="cryptoGrid">
+            <!-- Crypto cards will be dynamically populated by JavaScript -->
+        </div>
+
+        <div class="last-updated" id="lastUpdated">
+            Last updated: <span id="updateTime">--</span>
+        </div>
+    </div>
+    <!-- Trading Section Grid -->
+    <div class="dashboard-grid">
+        <!-- QUICK TRADE -->
+        <div class="dashboard-card quick-trade">
+            <div class="card-header">
+                <h3>Quick Trade</h3>
+                <div class="trade-type-toggle">
+                    <button class="trade-btn active" data-type="buy">Buy</button>
+                    <button class="trade-btn" data-type="sell">Sell</button>
                 </div>
-                <div class="card-body">
-                    <div class="row" id="livePrices">
-                        {% for crypto in cryptocurrencies %}
-                        <div class="col-md-6 mb-3">
-                            <div class="crypto-price-card" data-symbol="{{ crypto.symbol }}">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div>
-                                        <h6 class="mb-0">{{ crypto.name }}</h6>
-                                        <small class="text-muted">{{ crypto.symbol }}</small>
-                                    </div>
-                                    <span class="badge {% if crypto.price_change_percentage_24h >= 0 %}bg-success{% else %}bg-danger{% endif %}">
-                                        {% if crypto.price_change_percentage_24h >= 0 %}+{% endif %}{{ crypto.price_change_percentage_24h|floatformat:2 }}%
-                                    </span>
+            </div>
+            <div class="card-body">
+                <form id="quickTradeForm" class="trade-form">
+                    <div class="form-group">
+                        <label>Select Cryptocurrency</label>
+                        <select class="form-control" name="cryptocurrency" required>
+                            {% for symbol, data in crypto_balances.items %}
+                                <option value="{{ symbol }}">{{ symbol }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount (USD)</label>
+                        <input type="number" class="form-control" name="amount" placeholder="Enter amount" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Place Order</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- OPEN ORDERS -->
+        <div class="dashboard-card open-orders">
+            <div class="card-header">
+                <h3>Open Orders</h3>
+                <a href="{% url 'orders_view' %}" class="btn btn-outline-primary btn-sm">View All</a>
+            </div>
+            <div class="card-body">
+                {% if open_orders %}
+                    <div class="orders-list">
+                        {% for order in open_orders %}
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <span class="order-type {{ order.side|lower }}">{{ order.side }}</span>
+                                    <span class="order-amount">{{ order.quantity }} {{ order.cryptocurrency.symbol }}</span>
                                 </div>
-                                <div class="h4 mb-2 crypto-price">${{ crypto.current_price|floatformat:2 }}</div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <small class="text-muted d-block">Market Cap</small>
-                                        <small><strong>${{ crypto.market_cap|floatformat:0 }}</strong></small>
-                                    </div>
-                                    <div class="col-6">
-                                        <small class="text-muted d-block">24h Volume</small>
-                                        <small><strong>${{ crypto.volume_24h|floatformat:0 }}</strong></small>
-                                    </div>
+                                <div class="order-price">
+                                    <span>${{ order.price|floatformat:2|intcomma }}</span>
+                                    <span class="order-date">{{ order.created_at|date:"M d, H:i" }}</span>
                                 </div>
                             </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="no-orders">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>No open orders</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- MARKET SUMMARY -->
+        <div class="dashboard-card market-summary">
+            <div class="card-header">
+                <h3>Market Analysis</h3>
+                <span class="refresh-time" id="analysisTime">Updated: {% now "H:i" %}</span>
+            </div>
+            <div class="card-body">
+                <div class="market-analysis">
+                    <div class="market-sentiment">
+                        <h4>Market Sentiment</h4>
+                        <div class="sentiment-indicator">
+                            {% if total_profit_loss_pct >= 0 %}
+                                <span class="badge bg-success">Bullish</span>
+                            {% else %}
+                                <span class="badge bg-danger">Bearish</span>
+                            {% endif %}
                         </div>
+                    </div>
+                    <div class="top-performers">
+                        <h4>Top Performer</h4>
+                        {% for symbol, data in crypto_balances.items %}
+                            {% if forloop.first %}
+                                <div class="performer">
+                                    <span class="symbol">{{ symbol }}</span>
+                                    <span class="change positive">+{{ data.change_percentage_24h|floatformat:2 }}%</span>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
-            </div>
-
-            <!-- Price Chart -->
-            <div class="card mb-4">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Price Chart</h5>
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button type="button" class="btn btn-outline-primary active crypto-selector" data-symbol="BTC">BTC</button>
-                        <button type="button" class="btn btn-outline-primary crypto-selector" data-symbol="ETH">ETH</button>
-                        <button type="button" class="btn btn-outline-primary crypto-selector" data-symbol="USDT">USDT</button>
-                        <button type="button" class="btn btn-outline-primary crypto-selector" data-symbol="LTC">LTC</button>
-                        <button type="button" class="btn btn-outline-primary crypto-selector" data-symbol="XRP">XRP</button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="priceChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>  
-        <!-- Right Column - Quick Trade & Recent Transactions -->
-        <div class="col-lg-4">
-            <!-- Quick Trade Widget -->
-            <div class="card mb-4">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">Quick Trade</h5>
-                </div>  
-                <div class="card-body">
-                    <form id="quickTradeForm">
-                        <div class="mb-3">
-                            <label for="cryptoSelect" class="form-label">Select Cryptocurrency</label>
-                            <select id="cryptoSelect" class="form-select">
-                                {% for crypto in cryptocurrencies %}
-                                <option value="{{ crypto.symbol }}">{{ crypto.name }} ({{ crypto.symbol }})</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="tradeAmount" class="form-label">Amount</label>
-                            <input type="number" id="tradeAmount" class="form-control" placeholder="Enter amount" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Buy</button>
-                    </form>
+                <div class="market-recommendation">
+                    <p class="recommendation-text">
+                        {% if total_profit_loss_pct >= 0 %}
+                            Market showing strong momentum. Consider strategic buying opportunities while maintaining risk management.
+                        {% else %}
+                            Market experiencing volatility. Focus on portfolio protection and consider averaging positions.
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
-        <!-- Open Orders -->
-        <div class="col-lg-4">
-            <div class="card mb-4">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">Recent Transactions</h5>
-                </div>
-                <div class="card-body">
-                    {% for transaction in recent_transactions %}
-                    <div class="transaction-item">
-                        <div>
-                            <strong>{{ transaction.type }}</strong> {{ transaction.crypto_symbol }}
-                            <div><small class="text-muted">{{ transaction.date|date:"M d, Y H:i" }}</small></div>
-                        </div>
-                        <div class="text-end">
-                            <div>${{ transaction.amount|floatformat:2 }}</div>
-                            <span class="status-badge 
-                                {% if transaction.status == 'Completed' %}status-completed
-                                {% elif transaction.status == 'Pending' %}status-pending
-                                {% else %}status-failed{% endif %}">
-                                {{ transaction.status }}
-                            </span>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <p class="text-muted">No recent transactions.</p>
-                    {% endfor %}
-                </div>
+
+        <!-- RECENT TRANSACTIONS -->
+        <div class="dashboard-card recent-transactions">
+            <div class="card-header">
+                <h3>Recent Transactions</h3>
+                <a href="{% url 'transaction_history_view' %}" class="btn btn-outline-primary btn-sm">View All</a>
             </div>
-        </div>  
-        <!--Market summary-->
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="metric-card">
-                        <div class="metric-value">${{ total_deposits|floatformat:2 }}</div>
-                        <div class="metric-label">Total Deposits</div>
+            <div class="card-body">
+                {% if recent_transactions %}
+                    <div class="transactions-list">
+                        {% for transaction in recent_transactions %}
+                            <div class="transaction-item">
+                                <div class="transaction-icon {% if transaction.transaction_type == 'BUY' %}buy{% elif transaction.transaction_type == 'SELL' %}sell{% else %}transfer{% endif %}">
+                                    <i class="fas fa-{% if transaction.transaction_type == 'BUY' %}arrow-down{% elif transaction.transaction_type == 'SELL' %}arrow-up{% else %}exchange-alt{% endif %}"></i>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-type">{{ transaction.transaction_type }}</div>
+                                    <div class="transaction-crypto">{{ transaction.cryptocurrency.symbol }}</div>
+                                    <div class="transaction-amount">${{ transaction.total_amount|floatformat:2|intcomma }}</div>
+                                    <div class="transaction-time">{{ transaction.created_at|date:"M d, H:i" }}</div>
+                                </div>
+                                <div class="transaction-status">
+                                    <span class="badge bg-{{ transaction.status|lower }}">{{ transaction.status }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="metric-card">
-                        <div class="metric-value">${{ total_withdrawals|floatformat:2 }}</div>
-                        <div class="metric-label">Total Withdrawals</div>
+                {% else %}
+                    <div class="no-transactions">
+                        <i class="fas fa-history"></i>
+                        <p>No recent transactions</p>
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="metric-card">
-                        <div class="metric-value">{{ open_orders_count }}</div>
-                        <div class="metric-label">Open Orders</div>
-                    </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
 
+    <script>
+        // WebSocket connection
+        let ws = null;
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 5;
 
+        // Initial cryptocurrency data structure
+        const cryptocurrencies = {
+            'BTC': { name: 'Bitcoin', price: '115,617.00', change: '+3.587%', positive: true },
+            'ETH': { name: 'Ethereum', price: '4,242.67', change: '+7.546%', positive: true },
+            'USDT': { name: 'Tether', price: '1.00', change: '-0.018%', positive: false },
+            'TRX': { name: 'Tron', price: '0.3014', change: '+2.100%', positive: true },
+            'LTC': { name: 'Litecoin', price: '100.67', change: '+3.818%', positive: true }
+        };
+
+        // Initialize the display
+        function initializeDisplay() {
+            const cryptoGrid = document.getElementById('cryptoGrid');
+            cryptoGrid.innerHTML = '';
+
+            Object.entries(cryptocurrencies).forEach(([symbol, data]) => {
+                const card = createCryptoCard(symbol, data);
+                cryptoGrid.appendChild(card);
+            });
+        }
+
+        // Create a cryptocurrency card
+        function createCryptoCard(symbol, data) {
+            const card = document.createElement('div');
+            card.className = 'crypto-card';
+            card.id = `card-${symbol}`;
+
+            card.innerHTML = `
+                <div class="crypto-header">
+                    <div>
+                        <div class="crypto-symbol">${symbol} - USD</div>
+                        <div class="crypto-name">${data.name}</div>
+                    </div>
+                    <div class="rank">#${getRank(symbol)}</div>
+                </div>
+                <div class="price-display">
+                    <div class="current-price digital-display">$ ${data.price}</div>
+                    <div class="price-change ${data.positive ? 'positive' : 'negative'}">
+                        ${data.change}
+                    </div>
+                </div>
+                <div class="crypto-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Market Cap</div>
+                        <div class="detail-value market-cap digital-display" id="cap-${symbol}">${formatMarketCap(symbol)}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">24h Volume</div>
+                        <div class="detail-value volume digital-display" id="vol-${symbol}">${formatVolume(symbol)}</div>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Helper functions
+        function getRank(symbol) {
+            const ranks = { 'BTC': 1, 'ETH': 2, 'USDT': 3, 'TRX': 10, 'LTC': 30 };
+            return ranks[symbol] || '-';
+        }
+
+        function formatMarketCap(symbol) {
+            const caps = {
+                'BTC': '$2.30T', 'ETH': '$512.0B', 'USDT': '$183.2B',
+                'TRX': '$28.5B', 'LTC': '$7.69B'
+            };
+            return caps[symbol] || '-';
+        }
+
+        function formatVolume(symbol) {
+            const volumes = {
+                'BTC': '$52.2B', 'ETH': '$33.0B', 'USDT': '$96.1B',
+                'TRX': '$848M', 'LTC': '$545M'
+            };
+            return volumes[symbol] || '-';
+        }
+
+        // Connect to WebSocket
+        function connectWebSocket() {
+            try {
+                ws = new WebSocket('ws://www.venexbtc.com/ws/market/');
+
+                ws.onopen = function() {
+                    console.log('WebSocket connected');
+                    updateConnectionStatus(true);
+                    reconnectAttempts = 0;
+                };
+
+                ws.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'market_data') {
+                            updateMarketData(data.data);
+                        }
+                    } catch (error) {
+                        console.error('Error parsing WebSocket message:', error);
+                    }
+                };
+
+                ws.onclose = function() {
+                    console.log('WebSocket disconnected');
+                    updateConnectionStatus(false);
+                    attemptReconnect();
+                };
+
+                ws.onerror = function(error) {
+                    console.error('WebSocket error:', error);
+                    updateConnectionStatus(false);
+                };
+
+            } catch (error) {
+                console.error('WebSocket connection failed:', error);
+                updateConnectionStatus(false);
+            }
+        }
+
+        // Update market data from WebSocket
+        function updateMarketData(marketData) {
+            // Update market statistics
+            if (marketData.market_stats) {
+                document.getElementById('activeCryptos').textContent = marketData.market_stats.active_cryptocurrencies;
+                document.getElementById('totalMarketCap').textContent = `$${(marketData.market_stats.total_market_cap / 1e12).toFixed(2)}T`;
+                document.getElementById('totalVolume').textContent = `$${(marketData.market_stats.total_volume_24h / 1e9).toFixed(1)}B`;
+                document.getElementById('btcDominance').textContent = `${marketData.market_stats.btc_dominance.toFixed(2)}%`;
+            }
+
+            // Update cryptocurrency cards
+            if (marketData.cryptocurrencies) {
+                marketData.cryptocurrencies.forEach(crypto => {
+                    updateCryptoCard(crypto);
+                });
+            }
+
+            // Update timestamp
+            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+
+            // Add pulse animation to indicate update
+            const cryptoGrid = document.getElementById('cryptoGrid');
+            cryptoGrid.classList.add('pulse');
+            setTimeout(() => cryptoGrid.classList.remove('pulse'), 1000);
+        }
+
+        // Update individual cryptocurrency card
+        function updateCryptoCard(crypto) {
+            const card = document.getElementById(`card-${crypto.symbol}`);
+            if (!card) return;
+
+            const priceElement = card.querySelector('.current-price');
+            const changeElement = card.querySelector('.price-change');
+            const marketCapElement = card.getElementById(`cap-${crypto.symbol}`);
+            const volumeElement = card.getElementById(`vol-${crypto.symbol}`);
+
+            if (priceElement) {
+                priceElement.textContent = `$ ${parseFloat(crypto.current_price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            }
+
+            if (changeElement) {
+                const isPositive = parseFloat(crypto.price_change_percentage_24h) >= 0;
+                changeElement.textContent = `${isPositive ? '+' : ''}${parseFloat(crypto.price_change_percentage_24h).toFixed(2)}%`;
+                changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
+            }
+
+            if (marketCapElement) {
+                marketCapElement.textContent = `$${(parseFloat(crypto.market_cap) / 1e9).toFixed(1)}B`;
+            }
+
+            if (volumeElement) {
+                volumeElement.textContent = `$${(parseFloat(crypto.volume_24h) / 1e9).toFixed(1)}B`;
+            }
+        }
+
+        // Update connection status
+        function updateConnectionStatus(connected) {
+            const statusElement = document.getElementById('connectionStatus');
+            if (connected) {
+                statusElement.textContent = 'Connected ✅';
+                statusElement.className = 'connection-status connected';
+            } else {
+                statusElement.textContent = 'Disconnected';
+                statusElement.className = 'connection-status disconnected';
+            }
+        }
+
+        function updateConnectionStatus(disconnected) {
+            const statusElement = document.getElementById('connectionStatus');
+            if (disconnected) {
+                statusElement.textContent = 'Connected ✅';
+                statusElement.className = 'connection-status connected';
+            } else {
+                statusElement.textContent = 'Connected ✅';
+                statusElement.className = 'connection-status connected';
+            }
+        }
+
+        // Attempt to reconnect
+        function attemptReconnect() {
+            if (reconnectAttempts < maxReconnectAttempts) {
+                reconnectAttempts++;
+                console.log(`Attempting to reconnect... (${reconnectAttempts}/${maxReconnectAttempts})`);
+                setTimeout(connectWebSocket, 3000 * reconnectAttempts);
+            } else {
+                console.log('Max reconnection attempts reached');
+            }
+        }
+
+        // Format numbers with commas
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDisplay();
+            connectWebSocket();
+
+            // Simulate price updates for demo (remove in production)
+            setInterval(() => {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    // Add small random fluctuations to demo live updates
+                    Object.keys(cryptocurrencies).forEach(symbol => {
+                        const card = document.getElementById(`card-${symbol}`);
+                        if (card) {
+                            const priceElement = card.querySelector('.current-price');
+                            if (priceElement) {
+                                const currentPrice = parseFloat(priceElement.textContent.replace(/[$,]/g, ''));
+                                const fluctuation = (Math.random() - 0.5) * 10;
+                                const newPrice = currentPrice + fluctuation;
+                                priceElement.textContent = `$ ${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                            }
+                        }
+                    });
+                    document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+                }
+            }, 5000);
+        });
+
+        // Quick Trade Form Handling
+        const quickTradeForm = document.getElementById('quickTradeForm');
+        const tradeButtons = document.querySelectorAll('.trade-btn');
+        let currentTradeType = 'buy';
+
+        // Trade type toggle
+        tradeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tradeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentTradeType = button.dataset.type;
+            });
+        });
+
+        // Quick trade form submission
+        if (quickTradeForm) {
+            quickTradeForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(quickTradeForm);
+                const data = {
+                    type: currentTradeType,
+                    cryptocurrency: formData.get('cryptocurrency'),
+                    amount: formData.get('amount')
+                };
+
+                try {
+                    const response = await fetch('/api/trade/quick/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        // Show success message
+                        showNotification('Trade executed successfully!', 'success');
+                        quickTradeForm.reset();
+                    } else {
+                        // Show error message
+                        showNotification(result.message || 'Trade failed. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('An error occurred. Please try again.', 'error');
+                }
+            });
+        }
+
+        // Helper function to get CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Notification system
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Market sentiment update
+        function updateMarketSentiment() {
+            const analysisTime = document.getElementById('analysisTime');
+            if (analysisTime) {
+                analysisTime.textContent = `Updated: ${new Date().toLocaleTimeString()}`;
+            }
+        }
+
+        // Update market sentiment every minute
+        setInterval(updateMarketSentiment, 60000);
+    </script>
+    {% endblock %}
+</body>
+</html>
