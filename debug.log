@@ -713,3 +713,565 @@ INFO 2025-10-24 14:02:06,491 autoreload 29278 4363834880 Watching for file chang
 WARNING 2025-10-24 14:02:08,567 log 29278 123145485402112 Not Found: /ws/market/
 WARNING 2025-10-24 14:02:09,911 log 29278 123145485402112 Not Found: /ws/market/
 WARNING 2025-10-24 14:02:15,152 log 29278 123145485402112 Not Found: /ws/market/
+INFO 2025-10-27 04:20:11,275 autoreload 12367 4542936576 Watching for file changes with StatReloader
+WARNING 2025-10-27 04:20:22,674 log 12367 123145614757888 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 04:20:22,831 log 12367 123145581178880 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 04:22:04,540 log 12367 123145665126400 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 04:22:05,540 log 12367 123145681915904 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 04:22:14,907 log 12367 123145581178880 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 04:22:15,138 log 12367 123145631547392 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 04:22:15,180 log 12367 123145581178880 Not Found: /login/gtranslate.net/flags/24.png
+INFO 2025-10-27 04:22:25,101 crypto_api_service 12367 123145564389376 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 04:22:25,104 crypto_api_service 12367 123145564389376 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 04:22:25,133 crypto_api_service 12367 123145564389376 Updated 5 cryptocurrencies
+INFO 2025-10-27 04:22:25,134 user_views 12367 123145564389376 Cryptocurrency data updated successfully
+INFO 2025-10-27 04:22:25,695 crypto_api_service 12367 123145564389376 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 04:22:25,698 crypto_api_service 12367 123145564389376 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 04:22:25,716 crypto_api_service 12367 123145564389376 Updated 5 cryptocurrencies
+WARNING 2025-10-27 04:22:26,619 log 12367 123145615831040 Not Found: /ws/market/
+WARNING 2025-10-27 04:22:31,741 log 12367 123145615831040 Not Found: /ws/market/
+INFO 2025-10-27 04:22:51,387 cli 12552 4532934144 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:22:51,388 server 12552 4532934144 HTTP/2 support enabled
+INFO 2025-10-27 04:22:51,388 server 12552 4532934144 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:22:51,389 server 12552 4532934144 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 04:22:55,991 crypto_api_service 12552 123145416151040 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 04:22:55,994 crypto_api_service 12552 123145416151040 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 04:22:56,015 crypto_api_service 12552 123145416151040 Updated 5 cryptocurrencies
+WARNING 2025-10-27 04:22:56,601 log 12552 123145467592704 Not Found: /static/js/chart.js
+INFO 2025-10-27 04:23:00,770 consumers 12552 4532934144 Market WebSocket connected: specific..inmemory!vmFxtCuizYgL
+INFO 2025-10-27 04:23:51,119 cli 13181 4474844672 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:23:51,120 server 13181 4474844672 HTTP/2 support enabled
+INFO 2025-10-27 04:23:51,120 server 13181 4474844672 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:23:51,121 server 13181 4474844672 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 04:23:55,905 consumers 13181 4474844672 Market WebSocket connected: specific..inmemory!RpEPoimBIqjl
+INFO 2025-10-27 04:24:12,624 server 13181 4474844672 Killed 1 pending application instances
+INFO 2025-10-27 04:24:38,873 cli 13857 4545394176 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:24:38,874 server 13857 4545394176 HTTP/2 support enabled
+INFO 2025-10-27 04:24:38,875 server 13857 4545394176 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:24:38,876 server 13857 4545394176 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-27 04:24:42,956 base 13857 123145515073536 Session data corrupted
+INFO 2025-10-27 04:24:42,961 consumers 13857 4545394176 Market WebSocket connected: specific..inmemory!IAxsIyjaUDZb
+INFO 2025-10-27 04:25:11,395 server 13857 4545394176 Killed 1 pending application instances
+INFO 2025-10-27 04:25:16,795 cli 13991 4682872320 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:25:16,796 server 13991 4682872320 HTTP/2 support enabled
+INFO 2025-10-27 04:25:16,797 server 13991 4682872320 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:25:16,798 server 13991 4682872320 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-27 04:25:22,619 base 13991 123145378672640 Session data corrupted
+INFO 2025-10-27 04:25:22,621 consumers 13991 4682872320 Market WebSocket connected: specific..inmemory!fPgfcwWTOpcK
+ERROR 2025-10-27 04:25:28,244 log 13991 123145412251648 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 552, in thread_handler
+    raise exc_info[1]
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 132, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 502, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 556, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/security.py", line 28, in process_request
+    host = self.redirect_host or request.get_host()
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+INFO 2025-10-27 04:25:28,579 consumers 13991 4682872320 Market WebSocket disconnected: specific..inmemory!fPgfcwWTOpcK
+ERROR 2025-10-27 04:25:28,826 log 13991 123145412251648 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 552, in thread_handler
+    raise exc_info[1]
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 132, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 502, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 556, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/security.py", line 28, in process_request
+    host = self.redirect_host or request.get_host()
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+INFO 2025-10-27 04:25:37,506 server 13991 4682872320 Killed 0 pending application instances
+INFO 2025-10-27 04:26:16,305 cli 14159 4439258624 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:26:16,306 server 14159 4439258624 HTTP/2 support enabled
+INFO 2025-10-27 04:26:16,306 server 14159 4439258624 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 04:26:16,307 server 14159 4439258624 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 04:26:28,746 server 14159 4439258624 Killed 0 pending application instances
+INFO 2025-10-27 04:26:45,679 autoreload 14298 4775396864 Watching for file changes with StatReloader
+INFO 2025-10-27 04:27:32,548 autoreload 14922 4355458560 Watching for file changes with StatReloader
+INFO 2025-10-27 04:27:42,498 autoreload 15030 4600468992 Watching for file changes with StatReloader
+INFO 2025-10-27 04:28:01,252 autoreload 15030 4600468992 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:28:03,446 autoreload 15050 4598883840 Watching for file changes with StatReloader
+INFO 2025-10-27 04:37:16,483 autoreload 15050 4598883840 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:37:19,211 autoreload 15134 4444284416 Watching for file changes with StatReloader
+ERROR 2025-10-27 04:37:39,744 log 15134 123145583386624 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/security.py", line 28, in process_request
+    host = self.redirect_host or request.get_host()
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+ERROR 2025-10-27 04:37:41,538 log 15134 123145600176128 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/security.py", line 28, in process_request
+    host = self.redirect_host or request.get_host()
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+INFO 2025-10-27 04:37:59,918 autoreload 15134 4444284416 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:38:03,066 autoreload 15160 4465112576 Watching for file changes with StatReloader
+INFO 2025-10-27 04:38:07,185 autoreload 15265 4601558528 Watching for file changes with StatReloader
+ERROR 2025-10-27 04:38:09,426 log 15265 123145583845376 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/security.py", line 28, in process_request
+    host = self.redirect_host or request.get_host()
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+ERROR 2025-10-27 04:38:09,732 log 15265 123145600634880 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/security.py", line 28, in process_request
+    host = self.redirect_host or request.get_host()
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+INFO 2025-10-27 04:38:21,786 autoreload 15265 4601558528 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:38:31,646 autoreload 15386 4518110720 Watching for file changes with StatReloader
+INFO 2025-10-27 04:38:52,974 autoreload 15509 4694042112 Watching for file changes with StatReloader
+INFO 2025-10-27 04:42:59,319 autoreload 15509 4694042112 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:43:02,875 autoreload 15593 4488422912 Watching for file changes with StatReloader
+INFO 2025-10-27 04:44:17,069 autoreload 15738 4559406592 Watching for file changes with StatReloader
+INFO 2025-10-27 04:44:46,380 autoreload 15738 4559406592 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:44:47,989 autoreload 15753 4406302208 Watching for file changes with StatReloader
+INFO 2025-10-27 04:48:39,984 autoreload 15930 4629800448 Watching for file changes with StatReloader
+INFO 2025-10-27 04:49:08,886 autoreload 15930 4629800448 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:49:17,915 autoreload 16052 4578883072 Watching for file changes with StatReloader
+INFO 2025-10-27 04:49:52,322 autoreload 16174 4512507392 Watching for file changes with StatReloader
+INFO 2025-10-27 04:50:10,089 autoreload 16290 4593649152 Watching for file changes with StatReloader
+INFO 2025-10-27 04:51:00,676 autoreload 16414 4600538624 Watching for file changes with StatReloader
+INFO 2025-10-27 04:58:33,347 autoreload 16414 4600538624 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:58:35,710 autoreload 16544 4799260160 Watching for file changes with StatReloader
+INFO 2025-10-27 04:58:50,185 autoreload 16544 4799260160 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:58:53,028 autoreload 16561 4499531264 Watching for file changes with StatReloader
+INFO 2025-10-27 04:58:58,137 autoreload 16561 4499531264 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:58:59,694 autoreload 16574 4742460928 Watching for file changes with StatReloader
+INFO 2025-10-27 04:59:03,709 autoreload 16574 4742460928 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 04:59:05,096 autoreload 16582 4469593600 Watching for file changes with StatReloader
+INFO 2025-10-27 04:59:43,840 autoreload 16711 4461798912 Watching for file changes with StatReloader
+INFO 2025-10-27 05:00:20,187 autoreload 16711 4461798912 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 05:00:20,996 autoreload 16730 4380964352 Watching for file changes with StatReloader
+INFO 2025-10-27 05:00:32,552 autoreload 16730 4380964352 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 05:01:43,354 autoreload 16974 4502803968 Watching for file changes with StatReloader
+INFO 2025-10-27 05:02:04,200 autoreload 16974 4502803968 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 05:02:05,318 autoreload 16993 4307457536 Watching for file changes with StatReloader
+INFO 2025-10-27 05:02:07,387 autoreload 16993 4307457536 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 05:02:08,381 autoreload 17001 4405941760 Watching for file changes with StatReloader
+INFO 2025-10-27 05:02:10,982 autoreload 17001 4405941760 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 05:02:12,302 autoreload 17009 4524606976 Watching for file changes with StatReloader
+INFO 2025-10-27 05:02:21,140 autoreload 17111 4654048768 Watching for file changes with StatReloader
+INFO 2025-10-27 05:02:31,031 autoreload 17111 4654048768 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 05:02:33,197 autoreload 17121 4332930560 Watching for file changes with StatReloader
+INFO 2025-10-27 05:02:38,305 autoreload 17121 4332930560 /Users/emmidev/Desktop/Projects/venexpro/venexpro/settings.py changed, reloading.
+INFO 2025-10-27 05:02:47,152 autoreload 17248 4559197696 Watching for file changes with StatReloader
+WARNING 2025-10-27 05:03:15,253 log 17248 123145511591936 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 05:03:16,593 log 17248 123145561960448 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 05:03:36,967 log 17248 123145561960448 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 05:03:37,175 log 17248 123145461223424 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 05:03:37,178 log 17248 123145561960448 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 05:03:42,999 log 17248 123145461223424 Not Found: /password-reset/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 05:03:43,169 log 17248 123145461223424 Not Found: /password-reset/gtranslate.net/flags/24.png
+WARNING 2025-10-27 05:03:47,547 log 17248 123145478012928 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 05:03:47,685 log 17248 123145478012928 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 05:03:47,754 log 17248 123145511591936 Not Found: /login/er.lrticker.html
+INFO 2025-10-27 05:03:58,488 crypto_api_service 17248 123145461223424 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:03:58,491 crypto_api_service 17248 123145461223424 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:03:58,509 crypto_api_service 17248 123145461223424 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:03:58,510 user_views 17248 123145461223424 Cryptocurrency data updated successfully
+INFO 2025-10-27 05:03:59,068 crypto_api_service 17248 123145461223424 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:03:59,070 crypto_api_service 17248 123145461223424 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:03:59,089 crypto_api_service 17248 123145461223424 Updated 5 cryptocurrencies
+WARNING 2025-10-27 05:04:01,239 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:04:08,229 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:04:15,413 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:04:25,688 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:04:33,779 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:04:43,645 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:04:51,029 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:04:59,480 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:05:08,739 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:05:16,639 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:05:25,364 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:05:33,225 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:05:41,233 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:05:48,178 log 17248 123145478012928 Not Found: /ws/market/
+WARNING 2025-10-27 05:05:56,485 log 17248 123145478012928 Not Found: /ws/market/
+INFO 2025-10-27 05:05:58,728 crypto_api_service 17248 123145512665088 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:05:58,733 crypto_api_service 17248 123145512665088 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:05:58,764 crypto_api_service 17248 123145512665088 Updated 5 cryptocurrencies
+WARNING 2025-10-27 05:05:59,781 log 17248 123145512665088 Not Found: /favicon.ico
+INFO 2025-10-27 05:06:41,692 autoreload 17987 4555265536 Watching for file changes with StatReloader
+INFO 2025-10-27 05:06:53,138 autoreload 18092 4734871040 Watching for file changes with StatReloader
+INFO 2025-10-27 05:06:59,841 crypto_api_service 18092 123145373712384 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:06:59,844 crypto_api_service 18092 123145373712384 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:06:59,864 crypto_api_service 18092 123145373712384 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:10:06,849 crypto_api_service 18092 123145373712384 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:10:06,852 crypto_api_service 18092 123145373712384 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:10:06,877 crypto_api_service 18092 123145373712384 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:10:21,860 autoreload 18244 4504897024 Watching for file changes with StatReloader
+INFO 2025-10-27 05:10:27,133 crypto_api_service 18244 123145502932992 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:10:27,135 crypto_api_service 18244 123145502932992 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:10:27,159 crypto_api_service 18244 123145502932992 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:10:38,239 cli 18364 4617688576 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 05:10:38,240 server 18364 4617688576 HTTP/2 support enabled
+INFO 2025-10-27 05:10:38,241 server 18364 4617688576 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 05:10:38,242 server 18364 4617688576 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 05:10:44,053 crypto_api_service 18364 123145456594944 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:10:44,057 crypto_api_service 18364 123145456594944 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:10:44,078 crypto_api_service 18364 123145456594944 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:12:38,850 crypto_api_service 18364 123145456594944 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:12:38,857 crypto_api_service 18364 123145456594944 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:12:38,871 crypto_api_service 18364 123145456594944 Updated 5 cryptocurrencies
+WARNING 2025-10-27 05:13:14,424 log 18364 123145473921024 Not Found: /static/assets/css.css
+WARNING 2025-10-27 05:13:14,706 log 18364 123145541079040 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 05:13:14,706 log 18364 123145473921024 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 05:13:14,941 log 18364 123145473921024 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 05:13:14,954 log 18364 123145541079040 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 05:13:15,149 log 18364 123145541079040 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 05:13:15,167 log 18364 123145473921024 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 05:13:15,258 log 18364 123145541079040 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 05:13:15,312 log 18364 123145541079040 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 05:13:15,344 log 18364 123145473921024 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 05:13:15,445 log 18364 123145541079040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 05:13:15,541 log 18364 123145541079040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 05:13:15,627 log 18364 123145541079040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 05:13:25,464 crypto_api_service 18364 123145456594944 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:13:25,466 crypto_api_service 18364 123145456594944 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:13:25,499 crypto_api_service 18364 123145456594944 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:14:16,540 crypto_api_service 18364 123145456594944 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:14:16,544 crypto_api_service 18364 123145456594944 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:14:16,558 crypto_api_service 18364 123145456594944 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:14:55,221 crypto_api_service 18364 123145456594944 CoinGecko: Fetched 721 data points for BTC
+INFO 2025-10-27 05:15:10,849 crypto_api_service 18364 123145456594944 CoinGecko: Fetched 721 data points for BTC
+INFO 2025-10-27 05:15:38,975 crypto_api_service 18364 123145490710528 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 05:15:38,979 crypto_api_service 18364 123145490710528 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 05:15:38,992 crypto_api_service 18364 123145490710528 Updated 5 cryptocurrencies
+INFO 2025-10-27 05:15:49,771 server 18364 4617688576 Killed 0 pending application instances
+INFO 2025-10-27 05:38:38,319 cli 19980 4551587328 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 05:38:38,320 server 19980 4551587328 HTTP/2 support enabled
+INFO 2025-10-27 05:38:38,320 server 19980 4551587328 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 05:38:38,321 server 19980 4551587328 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 05:39:04,319 crypto_api_service 19980 123145398194176 CoinGecko: Fetched 721 data points for BTC
+INFO 2025-10-27 05:40:30,893 crypto_api_service 19980 123145398194176 CoinGecko: Fetched 721 data points for BTC
+INFO 2025-10-27 05:40:44,272 consumers 19980 4551587328 Market WebSocket connected: specific..inmemory!LiRaCKVsgvVm
+INFO 2025-10-27 05:40:46,205 consumers 19980 4551587328 Market WebSocket disconnected: specific..inmemory!LiRaCKVsgvVm
+ERROR 2025-10-27 05:53:44,595 server 19980 4551587328 Exception inside application: No route found for path 'ws/prices'.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/routing.py", line 48, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/sessions.py", line 44, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/sessions.py", line 261, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/middleware.py", line 24, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/channels/routing.py", line 136, in __call__
+    raise ValueError("No route found for path %r." % path)
+ValueError: No route found for path 'ws/prices'.
+INFO 2025-10-27 05:53:51,560 server 19980 4551587328 Killed 0 pending application instances
+INFO 2025-10-27 05:53:55,118 cli 21162 4777338368 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 05:53:55,119 server 21162 4777338368 HTTP/2 support enabled
+INFO 2025-10-27 05:53:55,119 server 21162 4777338368 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 05:53:55,120 server 21162 4777338368 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 05:54:03,231 crypto_api_service 21162 123145528827904 CoinGecko: Fetched 721 data points for BTC
+INFO 2025-10-27 05:55:25,131 consumers 21162 4777338368 Market WebSocket connected: specific..inmemory!bKmBLpkStqex
+INFO 2025-10-27 06:16:53,763 server 21162 4777338368 Killed 1 pending application instances
+INFO 2025-10-27 06:16:57,526 cli 22215 4608517632 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:16:57,527 server 22215 4608517632 HTTP/2 support enabled
+INFO 2025-10-27 06:16:57,527 server 22215 4608517632 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:16:57,528 server 22215 4608517632 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-27 06:17:13,362 log 22215 123145542115328 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:17:13,372 log 22215 123145542115328 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:17:13,383 log 22215 123145558904832 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:17:14,109 log 22215 123145558904832 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 06:17:14,239 log 22215 123145542115328 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:17:14,278 log 22215 123145558904832 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 06:17:14,432 log 22215 123145542115328 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 06:17:14,529 log 22215 123145542115328 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:17:15,893 log 22215 123145558904832 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 06:17:15,898 log 22215 123145542115328 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 06:17:15,903 log 22215 123145558904832 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 06:17:16,174 log 22215 123145558904832 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 06:17:16,220 log 22215 123145558904832 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 06:17:33,366 crypto_api_service 22215 123145441378304 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:17:33,368 crypto_api_service 22215 123145441378304 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:17:33,385 crypto_api_service 22215 123145441378304 Updated 5 cryptocurrencies
+INFO 2025-10-27 06:17:33,386 user_views 22215 123145441378304 Cryptocurrency data updated successfully
+INFO 2025-10-27 06:17:33,982 crypto_api_service 22215 123145441378304 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:17:33,985 crypto_api_service 22215 123145441378304 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:17:34,021 crypto_api_service 22215 123145441378304 Updated 5 cryptocurrencies
+INFO 2025-10-27 06:17:34,299 consumers 22215 4608517632 Market WebSocket connected: specific..inmemory!sCCrEVhsxMBV
+INFO 2025-10-27 06:18:21,918 server 22215 4608517632 Killed 1 pending application instances
+INFO 2025-10-27 06:20:59,048 cli 22396 4489147904 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:20:59,049 server 22396 4489147904 HTTP/2 support enabled
+INFO 2025-10-27 06:20:59,049 server 22396 4489147904 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:20:59,050 server 22396 4489147904 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 06:20:59,288 consumers 22396 4489147904 Market WebSocket connected: specific..inmemory!OeIqkTWmaGTs
+INFO 2025-10-27 06:21:05,606 crypto_api_service 22396 123145377570816 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:21:05,609 crypto_api_service 22396 123145377570816 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:21:05,622 crypto_api_service 22396 123145377570816 Updated 5 cryptocurrencies
+INFO 2025-10-27 06:21:05,881 consumers 22396 4489147904 Market WebSocket disconnected: specific..inmemory!OeIqkTWmaGTs
+WARNING 2025-10-27 06:21:05,916 log 22396 123145395433472 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-27 06:21:23,743 server 22396 4489147904 Killed 0 pending application instances
+INFO 2025-10-27 06:21:37,416 cli 22528 4684940800 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:21:37,416 server 22528 4684940800 HTTP/2 support enabled
+INFO 2025-10-27 06:21:37,417 server 22528 4684940800 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:21:37,418 server 22528 4684940800 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-27 06:21:40,920 log 22528 123145592971264 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:21:40,922 log 22528 123145576181760 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:21:40,925 log 22528 123145592971264 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:21:41,575 log 22528 123145592971264 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:21:41,589 log 22528 123145576181760 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 06:21:41,592 log 22528 123145592971264 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 06:21:41,821 log 22528 123145592971264 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:21:41,843 log 22528 123145576181760 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 06:21:41,845 log 22528 123145592971264 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 06:21:41,895 log 22528 123145576181760 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 06:21:41,901 log 22528 123145592971264 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 06:21:42,102 log 22528 123145592971264 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 06:21:43,170 log 22528 123145592971264 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 06:21:50,652 crypto_api_service 22528 123145475444736 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:21:50,654 crypto_api_service 22528 123145475444736 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:21:50,671 crypto_api_service 22528 123145475444736 Updated 5 cryptocurrencies
+INFO 2025-10-27 06:22:24,863 crypto_api_service 22528 123145475444736 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:22:24,866 crypto_api_service 22528 123145475444736 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:22:24,880 crypto_api_service 22528 123145475444736 Updated 5 cryptocurrencies
+WARNING 2025-10-27 06:22:37,616 log 22528 123145576181760 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:22:37,657 log 22528 123145592971264 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:22:37,782 log 22528 123145592971264 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:22:38,024 log 22528 123145592971264 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 06:22:38,026 log 22528 123145576181760 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 06:22:38,087 log 22528 123145576181760 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 06:22:38,088 log 22528 123145576181760 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:22:38,127 log 22528 123145576181760 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:22:38,320 log 22528 123145592971264 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 06:22:38,321 log 22528 123145576181760 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 06:22:38,359 log 22528 123145576181760 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 06:22:38,602 log 22528 123145576181760 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 06:22:38,816 log 22528 123145592971264 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 06:22:49,739 crypto_api_service 22528 123145475444736 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:22:49,742 crypto_api_service 22528 123145475444736 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:22:49,758 crypto_api_service 22528 123145475444736 Updated 5 cryptocurrencies
+INFO 2025-10-27 06:23:24,864 server 22528 4684940800 Killed 0 pending application instances
+INFO 2025-10-27 06:23:29,936 cli 22734 4679562752 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:23:29,936 server 22734 4679562752 HTTP/2 support enabled
+INFO 2025-10-27 06:23:29,937 server 22734 4679562752 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:23:29,938 server 22734 4679562752 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-27 06:24:03,605 log 22734 123145647767552 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:24:03,735 log 22734 123145647767552 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:24:03,752 log 22734 123145647767552 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:24:04,048 log 22734 123145647767552 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 06:24:04,237 log 22734 123145647767552 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:24:04,288 log 22734 123145647767552 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 06:24:04,450 log 22734 123145647767552 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 06:24:04,536 log 22734 123145647767552 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:24:05,724 log 22734 123145647767552 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 06:24:05,726 log 22734 123145614188544 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 06:24:05,734 log 22734 123145597399040 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 06:24:05,878 log 22734 123145597399040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 06:24:05,977 log 22734 123145597399040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 06:26:42,659 cli 23406 4563801600 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:26:42,660 server 23406 4563801600 HTTP/2 support enabled
+INFO 2025-10-27 06:26:42,660 server 23406 4563801600 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:26:42,661 server 23406 4563801600 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-27 06:27:44,167 log 23406 123145533243392 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:27:44,167 log 23406 123145550032896 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:27:44,167 log 23406 123145566822400 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:27:44,633 log 23406 123145566822400 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 06:27:44,648 log 23406 123145566822400 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 06:27:44,722 log 23406 123145566822400 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:27:44,788 log 23406 123145566822400 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:27:44,849 log 23406 123145566822400 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 06:27:44,892 log 23406 123145566822400 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 06:27:45,098 log 23406 123145566822400 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 06:27:45,268 log 23406 123145566822400 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 06:27:45,418 log 23406 123145566822400 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 06:27:46,576 log 23406 123145566822400 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+WARNING 2025-10-27 06:27:52,039 log 23406 123145550032896 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:27:52,040 log 23406 123145533243392 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:27:52,048 log 23406 123145566822400 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:27:52,443 log 23406 123145566822400 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:27:52,657 log 23406 123145550032896 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:27:53,200 log 23406 123145550032896 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 06:27:53,200 log 23406 123145566822400 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 06:27:53,368 log 23406 123145566822400 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 06:27:53,407 log 23406 123145533243392 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 06:27:53,754 log 23406 123145533243392 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 06:27:53,755 log 23406 123145566822400 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 06:27:54,594 log 23406 123145566822400 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:27:54,717 log 23406 123145566822400 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:27:54,718 log 23406 123145533243392 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:27:55,074 log 23406 123145533243392 Not Found: /assets/js/default.js
+WARNING 2025-10-27 06:27:55,074 log 23406 123145550032896 Not Found: /assets/js/element.js
+WARNING 2025-10-27 06:27:55,077 log 23406 123145533243392 Not Found: /about/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:27:55,343 log 23406 123145533243392 Not Found: /about/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:27:55,677 log 23406 123145533243392 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 06:27:55,677 log 23406 123145550032896 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 06:27:56,030 log 23406 123145533243392 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 06:27:56,030 log 23406 123145550032896 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 06:27:56,119 log 23406 123145550032896 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 06:27:56,119 log 23406 123145533243392 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 06:27:58,377 log 23406 123145550032896 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:27:58,378 log 23406 123145533243392 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:27:58,477 log 23406 123145533243392 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:27:58,633 log 23406 123145550032896 Not Found: /assets/js/element.js
+WARNING 2025-10-27 06:27:58,634 log 23406 123145533243392 Not Found: /assets/js/default.js
+WARNING 2025-10-27 06:27:58,639 log 23406 123145550032896 Not Found: /faq/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:27:58,863 log 23406 123145550032896 Not Found: /static/assets/css/images/faq_plus.png
+WARNING 2025-10-27 06:27:59,145 log 23406 123145550032896 Not Found: /faq/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:27:59,522 log 23406 123145566822400 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 06:27:59,592 log 23406 123145566822400 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 06:27:59,679 log 23406 123145550032896 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 06:28:02,253 log 23406 123145533243392 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 06:28:02,254 log 23406 123145566822400 Not Found: /static/assets/css.css
+WARNING 2025-10-27 06:28:02,258 log 23406 123145550032896 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 06:28:02,627 log 23406 123145566822400 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 06:28:02,640 log 23406 123145550032896 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 06:28:02,732 log 23406 123145550032896 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 06:28:02,946 log 23406 123145550032896 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 06:28:02,946 log 23406 123145566822400 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 06:28:03,343 log 23406 123145550032896 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 06:28:03,344 log 23406 123145566822400 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 06:28:03,346 log 23406 123145533243392 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 06:28:03,509 log 23406 123145533243392 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 06:28:03,646 log 23406 123145533243392 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 06:28:12,559 crypto_api_service 23406 123145432506368 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:28:12,561 crypto_api_service 23406 123145432506368 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:28:12,578 crypto_api_service 23406 123145432506368 Updated 5 cryptocurrencies
+INFO 2025-10-27 06:28:12,579 user_views 23406 123145432506368 Cryptocurrency data updated successfully
+INFO 2025-10-27 06:28:13,125 crypto_api_service 23406 123145432506368 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 06:28:13,129 crypto_api_service 23406 123145432506368 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 06:28:13,146 crypto_api_service 23406 123145432506368 Updated 5 cryptocurrencies
+INFO 2025-10-27 06:28:13,498 consumers 23406 4563801600 Market WebSocket connected: specific..inmemory!QkjnJpQjslTs
+INFO 2025-10-27 06:28:23,563 server 23406 4563801600 Killed 1 pending application instances
+INFO 2025-10-27 06:30:43,616 cli 23626 4472129024 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:30:43,617 server 23626 4472129024 HTTP/2 support enabled
+INFO 2025-10-27 06:30:43,617 server 23626 4472129024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:30:43,619 server 23626 4472129024 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 06:31:21,182 consumers 23626 4472129024 Market WebSocket connected: specific..inmemory!VXQwgvdVYhYd
+INFO 2025-10-27 06:31:46,271 consumers 23626 4472129024 Market WebSocket disconnected: specific..inmemory!VXQwgvdVYhYd
+INFO 2025-10-27 06:37:35,412 server 23626 4472129024 Killed 0 pending application instances
+INFO 2025-10-27 06:37:41,623 cli 23948 4560037376 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:37:41,624 server 23948 4560037376 HTTP/2 support enabled
+INFO 2025-10-27 06:37:41,624 server 23948 4560037376 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:37:41,625 server 23948 4560037376 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 06:37:58,478 consumers 23948 4560037376 Market WebSocket connected: specific..inmemory!yyiXrioTdOmj
+INFO 2025-10-27 06:38:47,104 server 23948 4560037376 Killed 1 pending application instances
+INFO 2025-10-27 06:39:05,252 cli 24818 4602107392 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:39:05,253 server 24818 4602107392 HTTP/2 support enabled
+INFO 2025-10-27 06:39:05,253 server 24818 4602107392 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 06:39:05,254 server 24818 4602107392 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-27 06:39:18,882 crypto_api_service 24818 123145395113984 CoinGecko: Fetched 721 data points for BTC
+INFO 2025-10-27 07:18:02,517 server 24818 4602107392 Killed 1 pending application instances
+INFO 2025-10-27 07:18:06,879 cli 26008 4530648576 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 07:18:06,880 server 26008 4530648576 HTTP/2 support enabled
+INFO 2025-10-27 07:18:06,880 server 26008 4530648576 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-27 07:18:06,881 server 26008 4530648576 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-10-27 07:18:25,924 log 26008 123145668116480 Not Found: /static/assets/css.css
+WARNING 2025-10-27 07:18:25,929 log 26008 123145668116480 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 07:18:26,007 log 26008 123145668116480 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 07:18:26,427 log 26008 123145668116480 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 07:18:26,603 log 26008 123145668116480 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 07:18:26,977 log 26008 123145668116480 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 07:18:26,980 log 26008 123145617747968 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 07:18:27,091 log 26008 123145668116480 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 07:18:27,096 log 26008 123145668116480 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 07:18:27,210 log 26008 123145668116480 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 07:18:27,210 log 26008 123145617747968 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 07:18:29,363 log 26008 123145668116480 Not Found: /static/assets/css.css
+WARNING 2025-10-27 07:18:29,435 log 26008 123145617747968 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 07:18:29,722 log 26008 123145668116480 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 07:18:29,923 log 26008 123145617747968 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 07:18:29,924 log 26008 123145668116480 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 07:18:30,298 log 26008 123145617747968 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 07:18:30,300 log 26008 123145668116480 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 07:18:30,301 log 26008 123145617747968 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 07:18:30,801 log 26008 123145617747968 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 07:18:30,811 log 26008 123145668116480 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 07:18:30,819 log 26008 123145617747968 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 07:18:30,871 log 26008 123145617747968 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 07:18:30,940 log 26008 123145617747968 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 07:18:39,358 crypto_api_service 26008 123145567379456 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 07:18:39,365 crypto_api_service 26008 123145567379456 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 07:18:39,397 crypto_api_service 26008 123145567379456 Updated 5 cryptocurrencies
+INFO 2025-10-27 07:18:39,399 user_views 26008 123145567379456 Cryptocurrency data updated successfully
+INFO 2025-10-27 07:18:39,982 crypto_api_service 26008 123145567379456 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 07:18:39,990 crypto_api_service 26008 123145567379456 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 07:18:40,003 crypto_api_service 26008 123145567379456 Updated 5 cryptocurrencies
+INFO 2025-10-27 07:18:40,255 consumers 26008 4530648576 Market WebSocket connected: specific..inmemory!SXFUYFKphrdJ
+WARNING 2025-10-27 07:20:17,800 log 26008 123145617747968 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-27 07:20:30,448 crypto_api_service 26008 123145584705536 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 07:20:30,451 crypto_api_service 26008 123145584705536 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 07:20:30,468 crypto_api_service 26008 123145584705536 Updated 5 cryptocurrencies
+INFO 2025-10-27 07:20:30,621 consumers 26008 4530648576 Market WebSocket disconnected: specific..inmemory!SXFUYFKphrdJ
+WARNING 2025-10-27 07:20:30,646 log 26008 123145617747968 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-27 07:20:31,028 consumers 26008 4530648576 Market WebSocket connected: specific..inmemory!mJZvAbuGjsat
+INFO 2025-10-27 07:21:29,766 crypto_api_service 26008 123145584705536 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 07:21:29,770 crypto_api_service 26008 123145584705536 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 07:21:29,801 crypto_api_service 26008 123145584705536 Updated 5 cryptocurrencies
+INFO 2025-10-27 07:21:29,932 consumers 26008 4530648576 Market WebSocket disconnected: specific..inmemory!mJZvAbuGjsat
+WARNING 2025-10-27 07:21:29,987 log 26008 123145617747968 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-27 07:21:30,414 consumers 26008 4530648576 Market WebSocket connected: specific..inmemory!WddxjTDrXMmc
+INFO 2025-10-27 07:21:46,889 server 26008 4530648576 Killed 1 pending application instances

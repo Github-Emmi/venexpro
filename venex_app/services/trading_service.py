@@ -1,3 +1,4 @@
+# venex_app/services/trading_service.py
 from django.db import transaction
 from django.utils import timezone
 from decimal import Decimal

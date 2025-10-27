@@ -21,7 +21,7 @@ SECRET_KEY = env('SECRET_KEY', default="your_dev_secret_key_here") # type: ignor
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True) # type: ignore
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*']) # type: ignore
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] # type: ignore
 
 # Application definition
 INSTALLED_APPS = [
@@ -223,7 +223,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:8000', 'http://127.0.0.1:8000', 'https://www.venexbtc.com']
 
 # Security Settings
 if not DEBUG:
@@ -236,6 +236,23 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 
+else:
+    # Ensure no accidental redirects in dev
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_BROWSER_XSS_FILTER = False
+    SECURE_CONTENT_TYPE_NOSNIFF = False
+    SECURE_HSTS_SECONDS = 0
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_PRELOAD = False
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
 
 
 # ===========================
@@ -258,7 +275,7 @@ SUPPORT_EMAIL = 'venexbtc@venexbtc.com'
 ADMIN_EMAIL = 'venexbtc@venexbtc.com'
 
 # Site URL for email templates
-SITE_URL = ['https://www.venexbtc.com', 'https://venexbtc.com'] # Change to your actual domain
+# SITE_URL = ['https://www.venexbtc.com', 'https://venexbtc.com'] # Change to your actual domain
 
 # Authentication settings
 LOGIN_URL = '/login/'

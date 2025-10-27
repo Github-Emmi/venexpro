@@ -117,18 +117,18 @@ class PortfolioService:
                 holding.total_cost -= cost_reduction
                 
                 # Update realized P/L
-                portfolio.realized_pl += (total_amount - cost_reduction)
+                portfolio.realized_pl += (total_amount - cost_reduction) # type: ignore
                 portfolio.save()
             
             holding.save()
-            
+             
             # Recalculate portfolio value
             PortfolioService.calculate_portfolio_value(portfolio)
             
             # Add to portfolio history
             PortfolioHistory.objects.create(
                 portfolio=portfolio,
-                total_value=portfolio.total_value
+                total_value=portfolio.total_value # type: ignore
             )
             
             return transaction_obj

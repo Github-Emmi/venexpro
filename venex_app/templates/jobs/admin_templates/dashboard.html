@@ -1,1056 +1,521 @@
-<!-- venex_app/templates/jobs/admin_templates/dashboard.html -->
-{% extends 'jobs/admin_templates/base.html' %}
-{% load humanize %}
-{% load static %}
-
-{% block title %}VENEX | Dashboard{% endblock %}
-
-{% block extra_css %}
-<style>
-    .portfolio-overview {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 2rem;
-        border-radius: 15px;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .total-balance-display {
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
-    
-    .balance-amount {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-    
-    .balance-change {
-        font-size: 1.2rem;
-        font-weight: 600;
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-        display: inline-block;
-    }
-    
-    .balance-change.positive {
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-    }
-    
-    .balance-change.negative {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
-    }
-    
-    .crypto-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin: 1rem 0;
-    }
-    
-    .crypto-card {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 1.5rem 1rem;
-        border-radius: 12px;
-        text-align: center;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .crypto-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .crypto-symbol {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-    }
-    
-    .crypto-amount {
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
-        opacity: 0.9;
-    }
-    
-    .crypto-price {
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
-    
-    .crypto-value {
-        font-size: 0.9rem;
-        opacity: 0.9;
-        margin-bottom: 0.5rem;
-    }
-    
-    .price-change {
-        font-size: 0.85rem;
-        font-weight: 500;
-        padding: 0.25rem 0.75rem;
-        border-radius: 15px;
-        display: inline-block;
-    }
-    
-    .price-change.positive {
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-    }
-    
-    .price-change.negative {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
-    }
-    
-    .live-indicator {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background: #10b981;
-        border-radius: 50%;
-        margin-right: 8px;
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.5; }
-        100% { opacity: 1; }
-    }
-    
-    .chart-controls {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-    }
-    
-    .timeframe-selector {
-        display: flex;
-        gap: 0.5rem;
-    }
-    
-    .timeframe-btn {
-        padding: 0.5rem 1rem;
-        border: 1px solid #e5e7eb;
-        background: white;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-size: 0.9rem;
-    }
-    
-    .timeframe-btn.active {
-        background: #667eea;
-        color: white;
-        border-color: #667eea;
-    }
-    
-    .dashboard-widgets {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 2rem;
-        margin-bottom: 2rem;
-    }
-    
-    @media (max-width: 768px) {
-        .dashboard-widgets {
-            grid-template-columns: 1fr;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Cryptocurrency Market</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        
+
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .live_market {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .market-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .market-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #00b4db, #0083b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .market-stats {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 15px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #8899a6;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00b4db;
+        }
+
         .crypto-grid {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-        
-        .balance-amount {
-            font-size: 2rem;
-        }
-    }
-    
-    .widget {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-    
-    .widget-header {
-        padding: 1.5rem;
-        border-bottom: 1px solid #e5e7eb;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .widget-header h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #1f2937;
-    }
-    
-    .widget-body {
-        padding: 1.5rem;
-    }
-    
-    .trade-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .form-group label {
-        font-weight: 500;
-        color: #1f2937;
-    }
-    
-    .form-group select,
-    .form-group input {
-        padding: 0.75rem;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        font-size: 1rem;
-        transition: border-color 0.2s;
-    }
-    
-    .form-group select:focus,
-    .form-group input:focus {
-        outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-    
-    .trade-buttons {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .btn-buy,
-    .btn-sell {
-        padding: 1rem;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .btn-buy {
-        background: linear-gradient(135deg, #10b981, #059669);
-        color: white;
-    }
-    
-    .btn-buy:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
-    }
-    
-    .btn-sell {
-        background: linear-gradient(135deg, #ef4444, #dc2626);
-        color: white;
-    }
-    
-    .btn-sell:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
-    }
-    
-    .transactions-list,
-    .orders-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .transaction-item,
-    .order-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        background: #f8fafc;
-        border-radius: 8px;
-        border-left: 4px solid #e5e7eb;
-        transition: all 0.2s ease;
-    }
-    
-    .transaction-item:hover,
-    .order-item:hover {
-        background: #f1f5f9;
-        transform: translateX(4px);
-    }
-    
-    .transaction-type {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 500;
-        min-width: 120px;
-    }
-    
-    .transaction-type.buy {
-        color: #10b981;
-        border-left-color: #10b981;
-    }
-    
-    .transaction-type.sell {
-        color: #ef4444;
-        border-left-color: #ef4444;
-    }
-    
-    .transaction-type.deposit {
-        color: #667eea;
-        border-left-color: #667eea;
-    }
-    
-    .transaction-type.withdrawal {
-        color: #f59e0b;
-        border-left-color: #f59e0b;
-    }
-    
-    .order-side {
-        padding: 0.25rem 0.75rem;
-        border-radius: 15px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-    
-    .order-side.buy {
-        background: #d1fae5;
-        color: #059669;
-    }
-    
-    .order-side.sell {
-        background: #fee2e2;
-        color: #dc2626;
-    }
-    
-    .status {
-        padding: 0.25rem 0.75rem;
-        border-radius: 15px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        text-transform: uppercase;
-    }
-    
-    .status.completed {
-        background: rgba(16, 185, 129, 0.1);
-        color: #10b981;
-    }
-    
-    .status.pending {
-        background: rgba(245, 158, 11, 0.1);
-        color: #f59e0b;
-    }
-    
-    .status.open {
-        background: rgba(59, 130, 246, 0.1);
-        color: #3b82f6;
-    }
-    
-    .no-transactions,
-    .no-orders {
-        text-align: center;
-        padding: 2rem;
-        color: #6b7280;
-        font-style: italic;
-    }
-    
-    .view-all {
-        color: #667eea;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
-    }
-    
-    .view-all:hover {
-        color: #5a6fd8;
-    }
-</style>
-{% endblock %}
-
-{% block content %}
-<div class="dashboard-page">
-    <!-- Portfolio Overview Section -->
-    <section class="portfolio-overview">
-        <div class="total-balance-display">
-            <div class="balance-amount">
-                {{ user.currency_type }} ${{ total_balance|floatformat:2|intcomma }}
-            </div>
-            <div class="balance-change {% if total_profit_loss_pct >= 0 %}positive{% else %}negative{% endif %}">
-                {% if total_profit_loss_pct >= 0 %}+{% endif %}{{ total_profit_loss_pct|floatformat:2 }}%
-                ({{ user.currency_type }} ${{ total_profit_loss|floatformat:2|intcomma }})
-            </div>
-        </div>
-        
-        <!-- Live Crypto Prices Grid -->
-        <div class="crypto-grid">
-            {% for symbol, data in crypto_balances.items %}
-            <div class="crypto-card" id="crypto-card-{{ symbol }}" data-symbol="{{ symbol }}">
-                <div class="crypto-symbol">{{ symbol }}</div>
-                <div class="crypto-amount">${{ data.balance|floatformat:6 }}</div>
-                <div class="crypto-price">{{ user.currency_type }} <span id="price-{{ symbol }}">{{ data.current_price|floatformat:2 }}</span></div>
-                <div class="crypto-value">{{ user.currency_type }} ${{ data.value|floatformat:2|intcomma }}</div>
-                <div class="price-change {% if data.change_percentage_24h >= 0 %}positive{% else %}negative{% endif %}" 
-                     id="change-{{ symbol }}">
-                    {% if data.change_percentage_24h >= 0 %}+{% endif %}{{ data.change_percentage_24h|floatformat:2 }}%
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <!-- Charts & Quick Trade Section -->
-    <section class="dashboard-widgets">
-        <!-- Live Price Chart -->
-        <div class="widget chart-widget">
-            <div class="widget-header">
-                <h3>
-                    <span class="live-indicator"></span>
-                    Live Price Chart - <span id="current-crypto-name">Bitcoin (BTC)</span>
-                </h3>
-                <div class="chart-controls">
-                    <select id="chart-crypto-select">
-                        {% for crypto in cryptocurrencies %}
-                        <option value="{{ crypto.symbol }}" data-name="{{ crypto.name }}">
-                            {{ crypto.name }} ({{ crypto.symbol }})
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <div class="timeframe-selector">
-                        <button class="timeframe-btn active" data-timeframe="1d">1D</button>
-                        <button class="timeframe-btn" data-timeframe="1w">1W</button>
-                        <button class="timeframe-btn" data-timeframe="1m">1M</button>
-                        <button class="timeframe-btn" data-timeframe="3m">3M</button>
-                    </div>
-                </div>
-            </div>
-            <div class="widget-body">
-                <canvas id="priceChart" width="400" height="200"></canvas>
-                <div id="chart-loading" style="display: none; text-align: center; padding: 2rem;">
-                    <div class="loading-spinner">Loading chart data...</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Trade -->
-        <div class="widget trade-widget">
-            <div class="widget-header">
-                <h3>Quick Trade</h3>
-                <div class="current-price">
-                    Price: <span id="quick-trade-price">${{ current_prices.BTC.price|default:0|floatformat:2|intcomma }}</span>
-                </div>
-            </div>
-            <div class="widget-body">
-                <form id="quick-trade-form" class="trade-form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label>Cryptocurrency</label>
-                        <select name="crypto" id="trade-crypto-select" required>
-                            {% for crypto in cryptocurrencies %}
-                            <option value="{{ crypto.symbol }}" data-price="{{ crypto.current_price }}">
-                                {{ crypto.symbol }} - ${{ crypto.current_price|floatformat:2|intcomma }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Quantity</label>
-                        <input type="number" name="quantity" step="0.0001" placeholder="0.0000" required 
-                               id="trade-quantity">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Current Price</label>
-                        <div id="current-price-display">${{ current_prices.BTC.price|default:0|floatformat:2|intcomma }}</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Total Amount</label>
-                        <div id="total-amount-display">$0.00</div>
-                    </div>
-                    
-                    <div class="trade-buttons">
-                        <button type="button" class="btn-buy" data-side="BUY">Buy</button>
-                        <button type="button" class="btn-sell" data-side="SELL">Sell</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recent Activity Section -->
-    <section class="dashboard-widgets">
-        <!-- Recent Transactions -->
-        <div class="widget">
-            <div class="widget-header">
-                <h3>Recent Transactions</h3>
-                <a href="{% url 'transaction_history_view' %}" class="view-all">View All</a>
-            </div>
-            <div class="widget-body">
-                <div class="transactions-list">
-                    {% for transaction in recent_transactions %}
-                    <div class="transaction-item">
-                        <div class="transaction-type {{ transaction.transaction_type|lower }}">
-                            <span class="type-icon">
-                                {% if transaction.transaction_type == 'BUY' %}⬇️
-                                {% elif transaction.transaction_type == 'SELL' %}⬆️
-                                {% elif transaction.transaction_type == 'DEPOSIT' %}📥
-                                {% else %}📤{% endif %}
-                            </span>
-                            {{ transaction.transaction_type }}
-                        </div>
-                        <div class="transaction-details">
-                            <span class="crypto">{{ transaction.cryptocurrency }}</span>
-                            <span class="amount">
-                                {% if transaction.quantity %}
-                                {{ transaction.quantity|floatformat:6 }}
-                                {% else %}
-                                ${{ transaction.fiat_amount|floatformat:2 }}
-                                {% endif %}
-                            </span>
-                        </div>
-                        <div class="transaction-meta">
-                            <span class="status {{ transaction.status|lower }}">{{ transaction.status }}</span>
-                            <span class="time">{{ transaction.created_at|timesince }} ago</span>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <div class="no-transactions">
-                        No recent transactions
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-
-        <!-- Open Orders -->
-        <div class="widget">
-            <div class="widget-header">
-                <h3>Open Orders</h3>
-                <a href="{% url 'orders_view' %}" class="view-all">View All</a>
-            </div>
-            <div class="widget-body">
-                <div class="orders-list">
-                    {% for order in open_orders %}
-                    <div class="order-item">
-                        <div class="order-side {{ order.side|lower }}">
-                            {{ order.side }} {{ order.order_type }}
-                        </div>
-                        <div class="order-details">
-                            <span class="crypto">{{ order.cryptocurrency }}</span>
-                            <span class="quantity">{{ order.quantity|floatformat:6 }}</span>
-                        </div>
-                        <div class="order-meta">
-                            <span class="price">
-                                {% if order.price %}
-                                ${{ order.price|floatformat:2 }}
-                                {% else %}
-                                Market
-                                {% endif %}
-                            </span>
-                            <span class="time">{{ order.created_at|timesince }} ago</span>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <div class="no-orders">
-                        No open orders
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-{% endblock %}
-
-{% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{% static 'js/chart.js' %}"></script>
-<script>
-    // Global configuration
-    const VENEX_CONFIG = {
-        user: {
-            id: "{{ user.id }}",
-            username: "{{ user.username }}",
-            email: "{{ user.email }}"
-        },
-        api: {
-            baseUrl: "/api/",
-            marketChart: "/api/market/chart/",  // CORRECTED: Fixed endpoint
-            trade: "/api/trade/quick/",
-            dashboard: "/api/dashboard/"
-        },
-        csrfToken: "{{ csrf_token }}"
-    };
-
-    class VenexDashboard {
-        constructor() {
-            this.currentChart = null;
-            this.currentSymbol = 'BTC';
-            this.currentTimeframe = '1d';
-            this.priceUpdateInterval = null;
-            this.init();
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        init() {
-            this.initializeCharts();
-            this.setupEventListeners();
-            this.startPriceUpdates();
-            this.loadInitialData();
+        .crypto-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        initializeCharts() {
-            // Use the VenexChartManager from chart.js
-            if (window.venexCharts) {
-                this.chartManager = window.venexCharts;
-            } else {
-                console.warn('VenexChartManager not found, initializing basic chart');
-                this.loadChartData(this.currentSymbol, this.currentTimeframe);
+        .crypto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 180, 219, 0.3);
+            border-color: #00b4db;
+        }
+
+        .crypto-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .crypto-symbol {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .crypto-name {
+            font-size: 0.9rem;
+            color: #8899a6;
+        }
+
+        .price-display {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .current-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00b4db, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .price-change {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .positive {
+            background: rgba(0, 255, 135, 0.2);
+            color: #00ff87;
+            border: 1px solid #00ff87;
+        }
+
+        .negative {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+
+        .crypto-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            color: #8899a6;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .market-cap {
+            color: #00b4db;
+        }
+
+        .volume {
+            color: #00ff87;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 20px;
+            color: #8899a6;
+            font-size: 0.8rem;
+        }
+
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .connected {
+            background: rgba(0, 255, 135, 0.2);
+            color: #00ff87;
+            border: 1px solid #00ff87;
+        }
+
+        .disconnected {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+
+        /* Digital display effect */
+        .digital-display {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .crypto-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .current-price {
+                font-size: 1.8rem;
+            }
+            
+            .market-header h1 {
+                font-size: 2rem;
             }
         }
+    </style>
+</head>
+<body>
+    <div class="connection-status disconnected" id="connectionStatus">
+        Disconnected
+    </div>
 
-        setupEventListeners() {
-            // Chart cryptocurrency selector
-            const chartSelect = document.getElementById('chart-crypto-select');
-            if (chartSelect) {
-                chartSelect.addEventListener('change', (e) => {
-                    this.currentSymbol = e.target.value;
-                    const selectedOption = e.target.options[e.target.selectedIndex];
-                    document.getElementById('current-crypto-name').textContent = 
-                        selectedOption.getAttribute('data-name');
-                    this.loadChartData(this.currentSymbol, this.currentTimeframe);
-                });
-            }
+    <div class="live_market" id="live_market">
+        <div class="market-header">
+            <h1>Live Cryptocurrency Market</h1>
+            <p>Real-time digital asset prices and statistics</p>
+        </div>
 
-            // Timeframe buttons
-            document.querySelectorAll('.timeframe-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.timeframe-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    this.currentTimeframe = e.target.getAttribute('data-timeframe');
-                    this.loadChartData(this.currentSymbol, this.currentTimeframe);
-                });
+        <div class="market-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">Active Cryptocurrencies</div>
+                    <div class="stat-value digital-display" id="activeCryptos">5</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Total Market Cap</div>
+                    <div class="stat-value digital-display" id="totalMarketCap">$3.04T</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">24h Volume</div>
+                    <div class="stat-value digital-display" id="totalVolume">$182.7B</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">BTC Dominance</div>
+                    <div class="stat-value digital-display" id="btcDominance">75.91%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="crypto-grid" id="cryptoGrid">
+            <!-- Crypto cards will be dynamically populated by JavaScript -->
+        </div>
+
+        <div class="last-updated" id="lastUpdated">
+            Last updated: <span id="updateTime">--</span>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket connection
+        let ws = null;
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 5;
+
+        // Initial cryptocurrency data structure
+        const cryptocurrencies = {
+            'BTC': { name: 'Bitcoin', price: '115,617.00', change: '+3.587%', positive: true },
+            'ETH': { name: 'Ethereum', price: '4,242.67', change: '+7.546%', positive: true },
+            'USDT': { name: 'Tether', price: '1.00', change: '-0.018%', positive: false },
+            'TRX': { name: 'Tron', price: '0.3014', change: '+2.100%', positive: true },
+            'LTC': { name: 'Litecoin', price: '100.67', change: '+3.818%', positive: true }
+        };
+
+        // Initialize the display
+        function initializeDisplay() {
+            const cryptoGrid = document.getElementById('cryptoGrid');
+            cryptoGrid.innerHTML = '';
+
+            Object.entries(cryptocurrencies).forEach(([symbol, data]) => {
+                const card = createCryptoCard(symbol, data);
+                cryptoGrid.appendChild(card);
             });
-
-            // Trade form interactions
-            this.setupTradeForm();
         }
 
-        async loadChartData(symbol, timeframe) {
-            const chartElement = document.getElementById('priceChart');
-            const loadingElement = document.getElementById('chart-loading');
-            
-            if (!chartElement) return;
+        // Create a cryptocurrency card
+        function createCryptoCard(symbol, data) {
+            const card = document.createElement('div');
+            card.className = 'crypto-card';
+            card.id = `card-${symbol}`;
 
-            try {
-                loadingElement.style.display = 'block';
-                
-                // CORRECTED: Use the proper endpoint
-                const response = await fetch(`${VENEX_CONFIG.api.marketChart}${symbol}/?range=${timeframe}`);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    this.renderChart(data);
-                } else {
-                    console.error('Chart data error:', data.error);
-                    this.showToast('Failed to load chart data: ' + (data.error || 'Unknown error'), 'error');
-                }
-            } catch (error) {
-                console.error('Error loading chart data:', error);
-                this.showToast('Error loading chart data: ' + error.message, 'error');
-                
-                // Fallback: Try to use the chart manager if available
-                if (this.chartManager) {
-                    this.chartManager.loadChartData(symbol, timeframe);
-                }
-            } finally {
-                loadingElement.style.display = 'none';
-            }
-        }
-
-        renderChart(data) {
-            const ctx = document.getElementById('priceChart').getContext('2d');
-            
-            // Destroy existing chart
-            if (this.currentChart) {
-                this.currentChart.destroy();
-            }
-
-            // Process the data for Chart.js
-            const chartData = this.processChartData(data);
-            
-            const config = {
-                type: 'line',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                            titleColor: '#ffffff',
-                            bodyColor: '#ffffff',
-                            borderColor: '#667eea',
-                            borderWidth: 1,
-                            callbacks: {
-                                label: function(context) {
-                                    return `Price: $${context.parsed.y.toLocaleString('en-US', { 
-                                        minimumFractionDigits: 2, 
-                                        maximumFractionDigits: 2 
-                                    })}`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            display: true,
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                maxTicksLimit: 8,
-                                callback: function(value, index, values) {
-                                    // Format date labels
-                                    if (chartData.labels.length > 30) {
-                                        return new Date(chartData.labels[index]).toLocaleDateString();
-                                    } else {
-                                        return new Date(chartData.labels[index]).toLocaleTimeString();
-                                    }
-                                }
-                            }
-                        },
-                        y: {
-                            display: true,
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.1)'
-                            },
-                            ticks: {
-                                callback: function(value) {
-                                    if (value >= 1000) {
-                                        return '$' + (value / 1000).toFixed(1) + 'K';
-                                    }
-                                    return '$' + value.toLocaleString();
-                                }
-                            },
-                            position: 'right'
-                        }
-                    },
-                    interaction: {
-                        mode: 'nearest',
-                        axis: 'x',
-                        intersect: false
-                    },
-                    elements: {
-                        point: {
-                            radius: 0,
-                            hoverRadius: 4,
-                            hitRadius: 8
-                        }
-                    }
-                }
-            };
-
-            this.currentChart = new Chart(ctx, config);
-        }
-
-        processChartData(apiData) {
-            let labels = [];
-            let prices = [];
-            
-            // Handle different data formats from API
-            if (apiData.prices && apiData.timestamps) {
-                // Format: { prices: [], timestamps: [] }
-                labels = apiData.timestamps.map(ts => {
-                    const date = new Date(ts * 1000); // Convert to milliseconds
-                    return date.toISOString();
-                });
-                prices = apiData.prices;
-            } else if (apiData.data && Array.isArray(apiData.data)) {
-                // Format: { data: [{timestamp, price}, ...] }
-                apiData.data.forEach(item => {
-                    labels.push(new Date(item.timestamp * 1000).toISOString());
-                    prices.push(item.price);
-                });
-            } else {
-                console.warn('Unknown data format:', apiData);
-                return { labels: [], datasets: [] };
-            }
-            
-            return {
-                labels: labels,
-                datasets: [{
-                    label: `${apiData.symbol || this.currentSymbol} Price`,
-                    data: prices,
-                    borderColor: '#667eea',
-                    backgroundColor: this.createGradient(),
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: '#667eea',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 2,
-                    pointRadius: 0,
-                    pointHoverRadius: 6
-                }]
-            };
-        }
-
-        createGradient() {
-            const ctx = document.getElementById('priceChart').getContext('2d');
-            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(102, 126, 234, 0.3)');
-            gradient.addColorStop(1, 'rgba(102, 126, 234, 0.05)');
-            return gradient;
-        }
-
-        setupTradeForm() {
-            const tradeSelect = document.getElementById('trade-crypto-select');
-            const quantityInput = document.getElementById('trade-quantity');
-            const currentPriceDisplay = document.getElementById('current-price-display');
-            const totalAmountDisplay = document.getElementById('total-amount-display');
-
-            const updateTradeCalculation = () => {
-                const selectedOption = tradeSelect.options[tradeSelect.selectedIndex];
-                const price = parseFloat(selectedOption.getAttribute('data-price')) || 0;
-                const quantity = parseFloat(quantityInput.value) || 0;
-                const total = price * quantity;
-
-                currentPriceDisplay.textContent = `$${price.toFixed(2)}`;
-                totalAmountDisplay.textContent = `$${total.toFixed(2)}`;
-                
-                // Update quick trade price display
-                document.getElementById('quick-trade-price').textContent = `$${price.toFixed(2)}`;
-            };
-
-            tradeSelect.addEventListener('change', updateTradeCalculation);
-            quantityInput.addEventListener('input', updateTradeCalculation);
-
-            // Trade execution
-            document.querySelectorAll('.trade-buttons button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const side = e.target.getAttribute('data-side');
-                    this.executeTrade(side);
-                });
-            });
-
-            // Initial calculation
-            updateTradeCalculation();
-        }
-
-        async executeTrade(side) {
-            const form = document.getElementById('quick-trade-form');
-            const formData = new FormData(form);
-            
-            // Add trade side to form data
-            formData.append('side', side);
-            
-            const button = document.querySelector(`.btn-${side.toLowerCase()}`);
-            const originalText = button.textContent;
-            
-            try {
-                button.textContent = 'Processing...';
-                button.disabled = true;
-                
-                const response = await fetch(VENEX_CONFIG.api.trade, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': VENEX_CONFIG.csrfToken
-                    }
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    this.showToast(`Trade ${side} executed successfully!`, 'success');
-                    // Reload page to update balances and orders
-                    setTimeout(() => location.reload(), 2000);
-                } else {
-                    throw new Error(result.error);
-                }
-            } catch (error) {
-                this.showToast(`Trade failed: ${error.message}`, 'error');
-            } finally {
-                button.textContent = originalText;
-                button.disabled = false;
-            }
-        }
-
-        startPriceUpdates() {
-            // Update prices every 10 seconds
-            this.priceUpdateInterval = setInterval(() => {
-                this.updateCurrentPrices();
-            }, 10000);
-        }
-
-        async updateCurrentPrices() {
-            try {
-                const response = await fetch(VENEX_CONFIG.api.dashboard);
-                const data = await response.json();
-                
-                if (data.crypto_balances) {
-                    this.updatePriceDisplays(data.crypto_balances);
-                }
-            } catch (error) {
-                console.error('Error updating prices:', error);
-            }
-        }
-
-        updatePriceDisplays(cryptoBalances) {
-            for (const [symbol, data] of Object.entries(cryptoBalances)) {
-                const priceElement = document.getElementById(`price-${symbol}`);
-                const changeElement = document.getElementById(`change-${symbol}`);
-                const cardElement = document.getElementById(`crypto-card-${symbol}`);
-                
-                if (priceElement && data.current_price) {
-                    priceElement.textContent = data.current_price.toFixed(2);
-                }
-                
-                if (changeElement && data.change_percentage_24h !== undefined) {
-                    const isPositive = data.change_percentage_24h >= 0;
-                    changeElement.textContent = `${isPositive ? '+' : ''}${data.change_percentage_24h.toFixed(2)}%`;
-                    changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
-                }
-                
-                if (cardElement && data.change_percentage_24h !== 0) {
-                    cardElement.style.animation = 'none';
-                    setTimeout(() => {
-                        cardElement.style.animation = 'pulse 0.5s ease-in-out';
-                    }, 10);
-                }
-            }
-        }
-
-        loadInitialData() {
-            this.updateCurrentPrices();
-        }
-
-        showToast(message, type = 'info') {
-            // Create toast container if it doesn't exist
-            let container = document.querySelector('.toast-container');
-            if (!container) {
-                container = document.createElement('div');
-                container.className = 'toast-container';
-                container.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    z-index: 1000;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                `;
-                document.body.appendChild(container);
-            }
-
-            // Create toast element
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.style.cssText = `
-                padding: 12px 20px;
-                background: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                border-left: 4px solid ${this.getToastColor(type)};
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                animation: slideIn 0.3s ease;
+            card.innerHTML = `
+                <div class="crypto-header">
+                    <div>
+                        <div class="crypto-symbol">${symbol} - USD</div>
+                        <div class="crypto-name">${data.name}</div>
+                    </div>
+                    <div class="rank">#${getRank(symbol)}</div>
+                </div>
+                <div class="price-display">
+                    <div class="current-price digital-display">$ ${data.price}</div>
+                    <div class="price-change ${data.positive ? 'positive' : 'negative'}">
+                        ${data.change}
+                    </div>
+                </div>
+                <div class="crypto-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Market Cap</div>
+                        <div class="detail-value market-cap digital-display" id="cap-${symbol}">${formatMarketCap(symbol)}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">24h Volume</div>
+                        <div class="detail-value volume digital-display" id="vol-${symbol}">${formatVolume(symbol)}</div>
+                    </div>
+                </div>
             `;
 
-            const icon = this.getToastIcon(type);
-            toast.innerHTML = `
-                <span style="font-size: 1.2em;">${icon}</span>
-                <span>${message}</span>
-            `;
+            return card;
+        }
 
-            container.appendChild(toast);
+        // Helper functions
+        function getRank(symbol) {
+            const ranks = { 'BTC': 1, 'ETH': 2, 'USDT': 3, 'TRX': 10, 'LTC': 30 };
+            return ranks[symbol] || '-';
+        }
 
-            // Remove toast after 5 seconds
-            setTimeout(() => {
-                toast.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => toast.remove(), 300);
+        function formatMarketCap(symbol) {
+            const caps = {
+                'BTC': '$2.30T', 'ETH': '$512.0B', 'USDT': '$183.2B', 
+                'TRX': '$28.5B', 'LTC': '$7.69B'
+            };
+            return caps[symbol] || '-';
+        }
+
+        function formatVolume(symbol) {
+            const volumes = {
+                'BTC': '$52.2B', 'ETH': '$33.0B', 'USDT': '$96.1B', 
+                'TRX': '$848M', 'LTC': '$545M'
+            };
+            return volumes[symbol] || '-';
+        }
+
+        // Connect to WebSocket
+        function connectWebSocket() {
+            try {
+                ws = new WebSocket('ws://127.0.0.1:8000/ws/market/');
+                
+                ws.onopen = function() {
+                    console.log('WebSocket connected');
+                    updateConnectionStatus(true);
+                    reconnectAttempts = 0;
+                };
+
+                ws.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'market_data') {
+                            updateMarketData(data.data);
+                        }
+                    } catch (error) {
+                        console.error('Error parsing WebSocket message:', error);
+                    }
+                };
+
+                ws.onclose = function() {
+                    console.log('WebSocket disconnected');
+                    updateConnectionStatus(false);
+                    attemptReconnect();
+                };
+
+                ws.onerror = function(error) {
+                    console.error('WebSocket error:', error);
+                    updateConnectionStatus(false);
+                };
+
+            } catch (error) {
+                console.error('WebSocket connection failed:', error);
+                updateConnectionStatus(false);
+            }
+        }
+
+        // Update market data from WebSocket
+        function updateMarketData(marketData) {
+            // Update market statistics
+            if (marketData.market_stats) {
+                document.getElementById('activeCryptos').textContent = marketData.market_stats.active_cryptocurrencies;
+                document.getElementById('totalMarketCap').textContent = `$${(marketData.market_stats.total_market_cap / 1e12).toFixed(2)}T`;
+                document.getElementById('totalVolume').textContent = `$${(marketData.market_stats.total_volume_24h / 1e9).toFixed(1)}B`;
+                document.getElementById('btcDominance').textContent = `${marketData.market_stats.btc_dominance.toFixed(2)}%`;
+            }
+
+            // Update cryptocurrency cards
+            if (marketData.cryptocurrencies) {
+                marketData.cryptocurrencies.forEach(crypto => {
+                    updateCryptoCard(crypto);
+                });
+            }
+
+            // Update timestamp
+            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+            
+            // Add pulse animation to indicate update
+            const cryptoGrid = document.getElementById('cryptoGrid');
+            cryptoGrid.classList.add('pulse');
+            setTimeout(() => cryptoGrid.classList.remove('pulse'), 1000);
+        }
+
+        // Update individual cryptocurrency card
+        function updateCryptoCard(crypto) {
+            const card = document.getElementById(`card-${crypto.symbol}`);
+            if (!card) return;
+
+            const priceElement = card.querySelector('.current-price');
+            const changeElement = card.querySelector('.price-change');
+            const marketCapElement = card.getElementById(`cap-${crypto.symbol}`);
+            const volumeElement = card.getElementById(`vol-${crypto.symbol}`);
+
+            if (priceElement) {
+                priceElement.textContent = `$ ${parseFloat(crypto.current_price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            }
+
+            if (changeElement) {
+                const isPositive = parseFloat(crypto.price_change_percentage_24h) >= 0;
+                changeElement.textContent = `${isPositive ? '+' : ''}${parseFloat(crypto.price_change_percentage_24h).toFixed(2)}%`;
+                changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
+            }
+
+            if (marketCapElement) {
+                marketCapElement.textContent = `$${(parseFloat(crypto.market_cap) / 1e9).toFixed(1)}B`;
+            }
+
+            if (volumeElement) {
+                volumeElement.textContent = `$${(parseFloat(crypto.volume_24h) / 1e9).toFixed(1)}B`;
+            }
+        }
+
+        // Update connection status
+        function updateConnectionStatus(connected) {
+            const statusElement = document.getElementById('connectionStatus');
+            if (connected) {
+                statusElement.textContent = 'Connected';
+                statusElement.className = 'connection-status connected';
+            } else {
+                statusElement.textContent = 'Disconnected';
+                statusElement.className = 'connection-status disconnected';
+            }
+        }
+
+        // Attempt to reconnect
+        function attemptReconnect() {
+            if (reconnectAttempts < maxReconnectAttempts) {
+                reconnectAttempts++;
+                console.log(`Attempting to reconnect... (${reconnectAttempts}/${maxReconnectAttempts})`);
+                setTimeout(connectWebSocket, 3000 * reconnectAttempts);
+            } else {
+                console.log('Max reconnection attempts reached');
+            }
+        }
+
+        // Format numbers with commas
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDisplay();
+            connectWebSocket();
+            
+            // Simulate price updates for demo (remove in production)
+            setInterval(() => {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    // Add small random fluctuations to demo live updates
+                    Object.keys(cryptocurrencies).forEach(symbol => {
+                        const card = document.getElementById(`card-${symbol}`);
+                        if (card) {
+                            const priceElement = card.querySelector('.current-price');
+                            if (priceElement) {
+                                const currentPrice = parseFloat(priceElement.textContent.replace(/[$,]/g, ''));
+                                const fluctuation = (Math.random() - 0.5) * 10;
+                                const newPrice = currentPrice + fluctuation;
+                                priceElement.textContent = `$ ${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                            }
+                        }
+                    });
+                    document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+                }
             }, 5000);
-        }
-
-        getToastColor(type) {
-            const colors = {
-                'success': '#10b981',
-                'error': '#ef4444',
-                'warning': '#f59e0b',
-                'info': '#667eea'
-            };
-            return colors[type] || '#667eea';
-        }
-
-        getToastIcon(type) {
-            const icons = {
-                'success': '✅',
-                'error': '❌',
-                'warning': '⚠️',
-                'info': 'ℹ️'
-            };
-            return icons[type] || '💡';
-        }
-
-        destroy() {
-            if (this.priceUpdateInterval) {
-                clearInterval(this.priceUpdateInterval);
-            }
-            if (this.currentChart) {
-                this.currentChart.destroy();
-            }
-        }
-    }
-
-    // Initialize dashboard when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        window.venexDashboard = new VenexDashboard();
-        
-        // Add CSS animations for toasts
-        if (!document.querySelector('#toast-animations')) {
-            const style = document.createElement('style');
-            style.id = 'toast-animations';
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-    });
-</script>
-{% endblock %}
+        });
+    </script>
+</body>
+</html>
