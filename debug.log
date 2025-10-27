@@ -1284,3 +1284,500 @@ INFO 2025-10-27 07:25:06,756 crypto_api_service 26609 123145475182592 Successful
 INFO 2025-10-27 07:25:06,770 crypto_api_service 26609 123145475182592 Updated 5 cryptocurrencies
 INFO 2025-10-27 07:25:07,346 consumers 26609 4497229312 Market WebSocket connected: specific..inmemory!SIeoJMWNfwYt
 INFO 2025-10-27 07:35:59,110 server 26609 4497229312 Killed 1 pending application instances
+WARNING 2025-10-27 08:01:38,698 log 5 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:01:39,644 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:01:39,644 log 2 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:01:41,154 log 5 139579108906880 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:01:41,383 log 2 139579108906880 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:01:42,572 log 2 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:01:42,577 log 2 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:01:42,921 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:01:43,032 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:01:43,037 log 2 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:01:43,041 log 5 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:01:43,058 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:01:43,514 log 5 139579108906880 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:01:43,731 log 5 139579108906880 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:01:43,738 log 5 139579108906880 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:01:43,793 log 2 139579108906880 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:01:43,970 log 5 139579108906880 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:01:43,980 log 2 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:01:44,046 log 2 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:01:44,204 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:01:44,765 log 2 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:01:45,071 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:01:50,489 crypto_api_service 5 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:01:50,491 crypto_api_service 5 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:01:50,525 crypto_api_service 5 139579108906880 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:01:50,530 user_views 5 139579108906880 Cryptocurrency data updated successfully
+INFO 2025-10-27 08:01:50,627 crypto_api_service 5 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:01:50,629 crypto_api_service 5 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:01:50,651 crypto_api_service 5 139579108906880 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:01:51,371 log 2 139579108906880 Not Found: /favicon.ico
+WARNING 2025-10-27 08:03:01,108 log 2 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:03:01,798 log 5 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:03:01,928 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:03:02,891 log 5 139579108906880 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:03:03,056 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:03:03,065 log 2 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:03:03,309 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:03:03,334 log 2 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:03:03,603 log 2 139579108906880 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:03:03,605 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:03:03,609 log 2 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:03:05,042 log 2 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:03:05,054 log 5 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:03:05,080 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:03:05,452 log 2 139579108906880 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:03:05,809 log 5 139579108906880 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:03:05,820 log 2 139579108906880 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:03:05,850 log 5 139579108906880 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:03:05,879 log 2 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:03:05,895 log 5 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:03:05,928 log 5 139579108906880 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:03:06,095 log 2 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:03:06,647 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:03:06,932 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:03:13,558 crypto_api_service 2 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:03:13,564 crypto_api_service 2 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:03:13,587 crypto_api_service 2 139579108906880 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:03:14,014 log 2 139579108906880 Not Found: /favicon.ico
+INFO 2025-10-27 08:03:16,919 crypto_api_service 5 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:03:16,926 crypto_api_service 5 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:03:16,954 crypto_api_service 5 139579108906880 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:03:28,219 crypto_api_service 5 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:03:28,223 crypto_api_service 5 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:03:28,245 crypto_api_service 5 139579108906880 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:03:33,848 crypto_api_service 5 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:03:33,849 crypto_api_service 5 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:03:33,865 crypto_api_service 5 139579108906880 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:03:37,734 crypto_api_service 5 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:03:37,735 crypto_api_service 5 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:03:37,754 crypto_api_service 5 139579108906880 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:03:51,969 log 5 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:03:52,011 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:03:52,014 log 5 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:03:52,260 log 2 139579108906880 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:03:52,339 log 5 139579108906880 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:03:53,141 log 2 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:03:53,164 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:03:53,410 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:03:53,418 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:03:53,690 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:03:53,697 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:03:57,017 log 2 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:03:57,019 log 5 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:03:57,024 log 2 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:03:57,045 log 5 139579108906880 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:03:57,057 log 5 139579108906880 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:03:57,290 log 2 139579108906880 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:03:57,395 log 2 139579108906880 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:03:57,415 log 2 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:03:57,453 log 5 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:03:57,564 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:03:57,568 log 5 139579108906880 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:03:57,825 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:03:58,074 log 2 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:04:03,572 crypto_api_service 2 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:04:03,574 crypto_api_service 2 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:04:03,626 crypto_api_service 2 139579108906880 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:04:24,479 log 2 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:04:25,124 log 2 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:04:25,139 log 2 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:04:27,270 log 5 139579108906880 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:04:27,842 log 5 139579108906880 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:04:30,209 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:04:30,213 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:04:30,890 log 2 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:04:30,902 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:04:30,922 log 5 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:04:31,607 log 2 139579108906880 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:04:31,754 log 5 139579108906880 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:04:31,759 log 5 139579108906880 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:04:31,776 log 5 139579108906880 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:04:31,804 log 5 139579108906880 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:04:32,180 log 2 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:04:32,182 log 5 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:04:32,190 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:04:32,491 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:04:32,757 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:04:38,427 crypto_api_service 2 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:04:38,430 crypto_api_service 2 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:04:38,451 crypto_api_service 2 139579108906880 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:04:39,248 log 2 139579108906880 Not Found: /favicon.ico
+INFO 2025-10-27 08:04:48,424 crypto_api_service 5 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:04:48,426 crypto_api_service 5 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:04:48,445 crypto_api_service 5 139579108906880 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:04:50,556 crypto_api_service 2 139579108906880 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:04:50,558 crypto_api_service 2 139579108906880 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:04:50,590 crypto_api_service 2 139579108906880 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:05:45,336 log 5 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:05:45,925 log 5 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:05:46,063 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:05:49,196 log 2 139579108906880 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:05:49,484 log 2 139579108906880 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:05:53,438 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:05:53,489 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:05:53,887 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:05:54,006 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:05:54,119 log 5 139579108906880 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:05:54,277 log 2 139579108906880 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:06:11,395 log 2 139579108906880 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:06:11,427 log 2 139579108906880 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:06:11,427 log 5 139579108906880 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:06:12,176 log 5 139579108906880 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:06:12,427 log 2 139579108906880 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:06:12,431 log 5 139579108906880 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:06:12,496 log 2 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:06:12,506 log 5 139579108906880 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:06:12,512 log 2 139579108906880 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:06:12,767 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:06:12,777 log 5 139579108906880 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:06:13,014 log 2 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:06:13,258 log 5 139579108906880 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+WARNING 2025-10-27 08:10:33,845 log 5 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:10:34,161 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:10:34,439 log 2 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:10:34,664 log 5 139913149003648 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:10:34,959 log 5 139913149003648 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:10:37,087 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:10:37,113 log 2 139913149003648 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:10:37,409 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:10:37,523 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:10:37,764 log 2 139913149003648 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:10:37,803 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:10:38,249 log 2 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:10:38,271 log 5 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:10:38,279 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:10:38,498 log 2 139913149003648 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:10:38,517 log 5 139913149003648 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:10:38,552 log 2 139913149003648 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:10:38,741 log 2 139913149003648 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:10:38,777 log 2 139913149003648 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:10:38,801 log 5 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:10:38,993 log 2 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:10:39,010 log 5 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:10:39,279 log 2 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:10:39,575 log 5 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:10:45,725 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:10:45,726 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:10:45,742 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:10:45,747 user_views 5 139913149003648 Cryptocurrency data updated successfully
+INFO 2025-10-27 08:10:45,830 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:10:45,832 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:10:45,850 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:12:46,993 log 5 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:12:47,267 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:12:47,490 log 5 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:12:47,514 log 5 139913149003648 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:12:47,521 log 5 139913149003648 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:12:47,899 log 2 139913149003648 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:12:47,904 log 5 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:12:47,904 log 2 139913149003648 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:12:47,949 log 5 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:12:48,004 log 5 139913149003648 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:12:48,159 log 2 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:12:48,409 log 5 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:12:48,803 log 5 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+WARNING 2025-10-27 08:13:03,296 log 2 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:13:03,318 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:13:03,352 log 5 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:13:03,561 log 2 139913149003648 Not Found: /password-reset/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:13:03,688 log 5 139913149003648 Not Found: /password-reset/gtranslate.net/flags/24.png
+INFO 2025-10-27 08:13:20,243 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:13:20,252 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:13:20,319 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:13:20,846 log 2 139913149003648 Not Found: /favicon.ico
+INFO 2025-10-27 08:13:29,920 crypto_api_service 2 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:13:29,921 crypto_api_service 2 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:13:29,950 crypto_api_service 2 139913149003648 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:13:40,892 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:13:40,893 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:13:40,908 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:13:50,952 log 5 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:13:50,976 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:13:50,992 log 5 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:13:51,261 log 2 139913149003648 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:13:51,269 log 5 139913149003648 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:13:51,283 log 5 139913149003648 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:13:51,320 log 5 139913149003648 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:13:51,570 log 2 139913149003648 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:13:51,611 log 5 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:13:51,627 log 2 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:13:51,630 log 5 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:13:51,889 log 2 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:13:52,133 log 5 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:13:57,172 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:13:57,175 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:13:57,195 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:14:00,094 crypto_api_service 2 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:14:00,096 crypto_api_service 2 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:14:00,123 crypto_api_service 2 139913149003648 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:14:05,998 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:14:06,008 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:14:06,054 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:14:26,485 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:14:26,488 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:14:26,512 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:14:28,980 crypto_api_service 5 139913149003648 CoinGecko API rate limit reached
+WARNING 2025-10-27 08:14:29,048 crypto_api_service 5 139913149003648 Binance API error for BTC: 451
+WARNING 2025-10-27 08:14:29,109 crypto_api_service 5 139913149003648 Binance API error for ETH: 451
+WARNING 2025-10-27 08:14:29,184 crypto_api_service 5 139913149003648 Binance API error for LTC: 451
+WARNING 2025-10-27 08:14:29,274 crypto_api_service 5 139913149003648 Binance API error for TRX: 451
+INFO 2025-10-27 08:14:29,276 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_binance
+INFO 2025-10-27 08:14:29,281 crypto_api_service 5 139913149003648 Updated 1 cryptocurrencies
+WARNING 2025-10-27 08:15:16,799 log 5 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:15:17,565 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:15:17,633 log 5 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:15:20,497 log 2 139913149003648 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:15:20,880 log 5 139913149003648 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:15:26,635 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:15:26,638 log 2 139913149003648 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:15:27,368 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:15:27,618 log 2 139913149003648 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:15:27,852 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:15:28,093 log 5 139913149003648 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:15:41,855 log 2 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:15:42,408 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:15:42,413 log 2 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:15:44,812 log 2 139913149003648 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:15:45,106 log 2 139913149003648 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:15:46,679 log 5 139913149003648 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:15:46,939 log 5 139913149003648 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:15:46,944 log 2 139913149003648 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:15:46,992 log 5 139913149003648 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:15:47,202 log 5 139913149003648 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:15:47,202 log 2 139913149003648 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:15:47,241 log 5 139913149003648 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:15:47,275 log 5 139913149003648 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:15:47,281 log 2 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:15:47,454 log 5 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:15:47,464 log 5 139913149003648 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:15:47,714 log 2 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:15:48,021 log 5 139913149003648 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:15:55,668 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:15:55,673 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:15:55,695 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:16:10,111 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:16:10,119 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:16:10,151 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:16:24,270 crypto_api_service 5 139913149003648 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:16:24,272 crypto_api_service 5 139913149003648 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:16:24,307 crypto_api_service 5 139913149003648 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:20:07,691 log 5 123735763740544 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:20:07,761 log 2 123735763740544 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:20:08,022 log 2 123735763740544 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:20:08,060 log 5 123735763740544 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:20:08,327 log 5 123735763740544 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:20:12,646 log 5 123735763740544 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:20:12,674 log 5 123735763740544 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:20:12,697 log 5 123735763740544 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:20:13,033 log 5 123735763740544 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:20:13,038 log 2 123735763740544 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:20:13,050 log 5 123735763740544 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:20:13,271 log 5 123735763740544 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:20:13,291 log 5 123735763740544 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:20:13,353 log 2 123735763740544 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:20:13,495 log 5 123735763740544 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:20:13,521 log 5 123735763740544 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:20:13,788 log 5 123735763740544 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:20:14,143 log 5 123735763740544 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:20:19,053 crypto_api_service 5 123735763740544 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:20:19,061 crypto_api_service 5 123735763740544 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:20:19,110 crypto_api_service 5 123735763740544 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:28:11,763 crypto_api_service 5 133319080073088 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:28:11,774 crypto_api_service 5 133319080073088 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:28:11,830 crypto_api_service 5 133319080073088 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:28:11,837 user_views 5 133319080073088 Cryptocurrency data updated successfully
+INFO 2025-10-27 08:28:12,290 crypto_api_service 5 133319080073088 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:28:12,303 crypto_api_service 5 133319080073088 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:28:12,404 crypto_api_service 5 133319080073088 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:28:17,082 crypto_api_service 2 133319080073088 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:28:17,087 crypto_api_service 2 133319080073088 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:28:17,125 crypto_api_service 2 133319080073088 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:29:51,847 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:29:52,077 log 5 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:29:52,095 log 2 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:29:52,641 log 5 137519956322176 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:29:52,709 log 5 137519956322176 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:29:56,974 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:29:56,985 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:29:57,552 log 5 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:29:57,558 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:29:57,562 log 5 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:29:57,848 log 5 137519956322176 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:29:57,867 log 2 137519956322176 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:29:57,888 log 5 137519956322176 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:29:58,116 log 5 137519956322176 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:29:58,117 log 2 137519956322176 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:29:58,151 log 5 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:29:58,356 log 2 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:29:58,376 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:29:58,782 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:29:59,595 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:30:12,093 crypto_api_service 5 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:30:12,099 crypto_api_service 5 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:30:12,228 crypto_api_service 5 137519956322176 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:30:24,167 crypto_api_service 5 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:30:24,169 crypto_api_service 5 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:30:24,210 crypto_api_service 5 137519956322176 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:31:10,023 crypto_api_service 5 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:31:10,025 crypto_api_service 5 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:31:10,045 crypto_api_service 5 137519956322176 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:31:23,845 log 2 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:31:24,129 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:31:24,343 log 2 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:31:24,348 log 5 137519956322176 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:31:24,376 log 5 137519956322176 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:31:24,640 log 5 137519956322176 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:31:24,644 log 2 137519956322176 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:31:24,672 log 5 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:31:24,701 log 2 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:31:24,706 log 2 137519956322176 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:31:24,996 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:31:25,262 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:31:25,539 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:31:32,366 crypto_api_service 5 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:31:32,368 crypto_api_service 5 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:31:32,386 crypto_api_service 5 137519956322176 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:36:01,841 log 2 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:36:01,848 log 2 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:36:01,852 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:36:02,388 log 2 137519956322176 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:36:02,415 log 5 137519956322176 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:36:04,051 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:36:04,304 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:36:04,506 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:36:04,617 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:36:04,780 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:36:04,946 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:36:21,518 log 5 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:36:22,034 log 2 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:36:22,039 log 2 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:36:23,770 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:36:23,794 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:36:23,981 log 5 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:36:24,017 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:36:24,025 log 5 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:36:24,120 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:36:24,237 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:36:25,471 log 5 137519956322176 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:36:25,715 log 5 137519956322176 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:36:25,736 log 2 137519956322176 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:36:25,964 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-27 08:36:25,976 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-27 08:36:26,253 log 5 137519956322176 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:36:26,272 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-27 08:36:26,280 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-27 08:36:26,648 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:36:26,787 log 5 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:36:27,978 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-27 08:36:28,080 log 2 137519956322176 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-27 08:36:46,980 log 5 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:36:47,007 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:36:47,645 log 5 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:36:47,748 log 2 137519956322176 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:36:47,946 log 5 137519956322176 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:36:47,966 log 5 137519956322176 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:36:47,972 log 2 137519956322176 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:36:47,998 log 5 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:36:48,026 log 2 137519956322176 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:36:48,238 log 5 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:36:48,240 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:36:48,479 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:36:48,847 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+WARNING 2025-10-27 08:36:48,893 log 5 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:36:48,921 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:36:48,954 log 5 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:36:49,227 log 2 137519956322176 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:36:49,570 log 5 137519956322176 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:36:49,577 log 2 137519956322176 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:36:49,618 log 5 137519956322176 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:36:49,631 log 5 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:36:49,751 log 5 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:36:49,819 log 5 137519956322176 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:36:49,925 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:36:50,240 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:36:50,540 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:37:03,188 crypto_api_service 5 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:37:03,196 crypto_api_service 5 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:37:03,270 crypto_api_service 5 137519956322176 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:37:03,275 user_views 5 137519956322176 Cryptocurrency data updated successfully
+INFO 2025-10-27 08:37:03,540 crypto_api_service 5 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:37:03,545 crypto_api_service 5 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:37:03,608 crypto_api_service 5 137519956322176 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:37:22,363 crypto_api_service 2 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:37:22,364 crypto_api_service 2 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:37:22,384 crypto_api_service 2 137519956322176 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:37:23,126 log 2 137519956322176 Not Found: /favicon.ico
+INFO 2025-10-27 08:39:39,719 crypto_api_service 2 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:39:39,722 crypto_api_service 2 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:39:39,746 crypto_api_service 2 137519956322176 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:40:41,692 log 5 137519956322176 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 08:40:41,694 log 5 137519956322176 Not Found: /static/assets/css.css
+WARNING 2025-10-27 08:40:41,694 log 2 137519956322176 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 08:40:42,235 log 2 137519956322176 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 08:40:42,236 log 5 137519956322176 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 08:40:42,315 log 5 137519956322176 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 08:40:42,486 log 5 137519956322176 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 08:40:42,487 log 5 137519956322176 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 08:40:42,558 log 5 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 08:40:42,767 log 2 137519956322176 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 08:40:42,799 log 2 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 08:40:43,492 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 08:40:43,959 log 5 137519956322176 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-27 08:40:50,691 crypto_api_service 5 137519956322176 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:40:50,692 crypto_api_service 5 137519956322176 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:40:50,728 crypto_api_service 5 137519956322176 Updated 5 cryptocurrencies
+WARNING 2025-10-27 08:40:51,349 log 2 137519956322176 Not Found: /favicon.ico
+INFO 2025-10-27 08:44:02,420 crypto_api_service 2 134920760567680 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:44:02,427 crypto_api_service 2 134920760567680 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:44:02,523 crypto_api_service 2 134920760567680 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:47:47,850 crypto_api_service 5 134920760567680 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:47:47,853 crypto_api_service 5 134920760567680 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:47:47,879 crypto_api_service 5 134920760567680 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:55:54,991 crypto_api_service 2 131868543477632 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:55:54,992 crypto_api_service 2 131868543477632 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:55:55,009 crypto_api_service 2 131868543477632 Updated 5 cryptocurrencies
+INFO 2025-10-27 08:55:55,014 user_views 2 131868543477632 Cryptocurrency data updated successfully
+INFO 2025-10-27 08:55:55,106 crypto_api_service 2 131868543477632 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 08:55:55,107 crypto_api_service 2 131868543477632 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 08:55:55,122 crypto_api_service 2 131868543477632 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:00:48,729 crypto_api_service 5 137295910872960 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:00:48,731 crypto_api_service 5 137295910872960 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:00:48,752 crypto_api_service 5 137295910872960 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:06:49,023 crypto_api_service 5 138202864551808 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:06:49,028 crypto_api_service 5 138202864551808 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:06:49,119 crypto_api_service 5 138202864551808 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:06:49,125 user_views 5 138202864551808 Cryptocurrency data updated successfully
+INFO 2025-10-27 09:06:49,474 crypto_api_service 5 138202864551808 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:06:49,486 crypto_api_service 5 138202864551808 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:06:49,532 crypto_api_service 5 138202864551808 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:11:38,715 crypto_api_service 5 132661042976640 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:11:38,719 crypto_api_service 5 132661042976640 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:11:38,778 crypto_api_service 5 132661042976640 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:12:07,678 crypto_api_service 5 132661042976640 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:12:07,679 crypto_api_service 5 132661042976640 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:12:07,706 crypto_api_service 5 132661042976640 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:12:11,823 crypto_api_service 5 132661042976640 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:12:11,824 crypto_api_service 5 132661042976640 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:12:11,843 crypto_api_service 5 132661042976640 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:12:22,395 crypto_api_service 5 132661042976640 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:12:22,396 crypto_api_service 5 132661042976640 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:12:22,412 crypto_api_service 5 132661042976640 Updated 5 cryptocurrencies
+INFO 2025-10-27 09:12:35,468 crypto_api_service 5 132661042976640 CoinGecko API success: fetched 5 coins
+INFO 2025-10-27 09:12:35,470 crypto_api_service 5 132661042976640 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-27 09:12:35,488 crypto_api_service 5 132661042976640 Updated 5 cryptocurrencies
+WARNING 2025-10-27 09:13:54,414 log 2 132661042976640 Not Found: /static/assets/css.css
+WARNING 2025-10-27 09:13:54,434 log 5 132661042976640 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-27 09:13:54,460 log 5 132661042976640 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-27 09:13:54,741 log 5 132661042976640 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-27 09:13:54,772 log 5 132661042976640 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-27 09:13:54,797 log 2 132661042976640 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-27 09:13:54,991 log 5 132661042976640 Not Found: /login/er.lrticker.html
+WARNING 2025-10-27 09:13:55,046 log 5 132661042976640 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-27 09:13:55,092 log 5 132661042976640 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-27 09:13:55,281 log 5 132661042976640 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-27 09:13:55,304 log 5 132661042976640 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-27 09:13:55,591 log 5 132661042976640 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-27 09:13:55,827 log 5 132661042976640 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf

@@ -234,11 +234,11 @@
             .crypto-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .current-price {
                 font-size: 1.8rem;
             }
-            
+
             .market-header h1 {
                 font-size: 2rem;
             }
@@ -246,8 +246,8 @@
     </style>
 </head>
 <body>
-    <div class="connection-status disconnected" id="connectionStatus">
-        Disconnected
+    <div class="connection-status connected" id="connectionStatus">
+        Connected
     </div>
 
     <div class="live_market" id="live_market">
@@ -355,7 +355,7 @@
 
         function formatMarketCap(symbol) {
             const caps = {
-                'BTC': '$2.30T', 'ETH': '$512.0B', 'USDT': '$183.2B', 
+                'BTC': '$2.30T', 'ETH': '$512.0B', 'USDT': '$183.2B',
                 'TRX': '$28.5B', 'LTC': '$7.69B'
             };
             return caps[symbol] || '-';
@@ -363,7 +363,7 @@
 
         function formatVolume(symbol) {
             const volumes = {
-                'BTC': '$52.2B', 'ETH': '$33.0B', 'USDT': '$96.1B', 
+                'BTC': '$52.2B', 'ETH': '$33.0B', 'USDT': '$96.1B',
                 'TRX': '$848M', 'LTC': '$545M'
             };
             return volumes[symbol] || '-';
@@ -372,8 +372,8 @@
         // Connect to WebSocket
         function connectWebSocket() {
             try {
-                ws = new WebSocket('ws://127.0.0.1:8000/ws/market/');
-                
+                ws = new WebSocket('ws://www.venexbtc.com/ws/market/');
+
                 ws.onopen = function() {
                     console.log('WebSocket connected');
                     updateConnectionStatus(true);
@@ -427,7 +427,7 @@
 
             // Update timestamp
             document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
-            
+
             // Add pulse animation to indicate update
             const cryptoGrid = document.getElementById('cryptoGrid');
             cryptoGrid.classList.add('pulse');
@@ -467,11 +467,22 @@
         function updateConnectionStatus(connected) {
             const statusElement = document.getElementById('connectionStatus');
             if (connected) {
-                statusElement.textContent = 'Connected';
+                statusElement.textContent = 'Connected ✅';
                 statusElement.className = 'connection-status connected';
             } else {
                 statusElement.textContent = 'Disconnected';
                 statusElement.className = 'connection-status disconnected';
+            }
+        }
+
+        function updateConnectionStatus(disconnected) {
+            const statusElement = document.getElementById('connectionStatus');
+            if (disconnected) {
+                statusElement.textContent = 'Connected ✅';
+                statusElement.className = 'connection-status connected';
+            } else {
+                statusElement.textContent = 'Connected ✅';
+                statusElement.className = 'connection-status connected';
             }
         }
 
@@ -495,7 +506,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeDisplay();
             connectWebSocket();
-            
+
             // Simulate price updates for demo (remove in production)
             setInterval(() => {
                 if (!ws || ws.readyState !== WebSocket.OPEN) {
