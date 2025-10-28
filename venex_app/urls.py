@@ -51,8 +51,6 @@ urlpatterns = [
     path('sell/', user_views.sell_crypto_view, name='sell'),
     path('deposit/', user_views.deposit_funds_view, name='deposit'),
     path('withdraw/', user_views.withdraw_funds_view, name='withdraw'),
-    path('markets/', user_views.market_data_view, name='markets'),
-    path('portfolio/', user_views.portfolio_view, name='portfolio'),
     path('history/', user_views.transaction_history_view, name='transaction_history_view'),
     path('wallet/', user_views.wallet_management_view, name='wallet'),
     path('security/', user_views.security_settings_view, name='security'),
@@ -72,7 +70,7 @@ urlpatterns = [
     # MARKET & PORTFOLIO URLs (HTML Views)
     ###########################################
     # User Market & Portfolio URLs
-    path('market/', user_views.market_data_view, name='market_data'),
+    path('markets/', user_views.market_data_view, name='market_data'),
     path('portfolio/', user_views.portfolio_view, name='portfolio'),
     path('transactions/', user_views.transaction_history_view, name='transaction_history'),
     

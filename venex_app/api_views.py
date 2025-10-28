@@ -35,7 +35,7 @@ def dashboard_data(request):
         user = request.user
         portfolio = Portfolio.objects.filter(user=user)
         transactions = Transaction.objects.filter(user=user).order_by('-completed_at')[:10]
-        market_overview = crypto_service.get_market_overview() if hasattr(crypto_service, 'get_market_overview') else {}
+        market_overview = crypto_service.get_market_overview() if hasattr(crypto_service, 'get_market_overview') else {} # type: ignore
 
         portfolio_serializer = PortfolioSerializer(portfolio, many=True)
         transaction_serializer = TransactionSerializer(transactions, many=True)

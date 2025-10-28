@@ -16,7 +16,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/base.css' %}">  
+    <link rel="stylesheet" href="{% static 'assets/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -43,13 +44,14 @@
 
     <!-- Footer -->
     {% include "jobs/admin_templates/includes/footer.html" %}
-    {% comment %} <footer class="main-footer">
-        <p>&copy; 2025 VENEX Brokerage. All rights reserved. | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
-    </footer> {% endcomment %}
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Custom JS -->
+    <script src="{% static 'assets/js/base.js' %}"></script>
+    <script src="{% static 'assets/js/responsive.js' %}"></script>
+
     <!-- WebSocket Connection -->
     {% block extra_js %}{% endblock %}
 </body>

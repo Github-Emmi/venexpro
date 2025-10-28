@@ -1,634 +1,405 @@
-// static/js/portfolio.js - Portfolio Main Functionality
-class VenexPortfolio {
+// Portfolio Management Class
+class PortfolioManager {
     constructor() {
-        this.portfolioData = null;
-        this.analyticsData = null;
-        this.currentTimeframe = '1D';
-        this.socket = null;
-        this.isConnected = false;
-        this.chartManager = null;
-        this.socketManager = null;
-        this.init();
-    }
-
-    init() {
-        console.log('VENEX Portfolio Initialized');
+        this.initializeWebSocket();
+        this.fetchInitialData();
         this.setupEventListeners();
-        this.initializeCharts();
-        this.connectWebSocket();
-        this.loadInitialData();
-        this.setupModal();
+        this.charts = {};
+        this.currentTimeframe = '1D';
+        this.portfolioData = null;
     }
 
+    // Initialize WebSocket connection
+    initializeWebSocket() {
+        this.socket = new WebSocket(
+            `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/portfolio/`
+        );
+
+        this.socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            this.handleWebSocketMessage(data);
+        };
+
+        this.socket.onclose = () => {
+            console.log('WebSocket connection closed');
+            setTimeout(() => this.initializeWebSocket(), 5000); // Reconnect after 5 seconds
+        };
+    }
+
+    // Set up event listeners
     setupEventListeners() {
-        // Timeframe buttons
-        document.querySelectorAll('.timeframe-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                this.handleTimeframeChange(e.target.dataset.timeframe);
+        // Timeframe selector buttons
+        document.querySelectorAll('.timeframe-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                this.updateTimeframe(button.dataset.timeframe);
             });
         });
 
-        // Add transaction button
-        document.getElementById('add-transaction-btn').addEventListener('click', () => {
-            this.showTransactionModal();
-        });
+        // Holdings table search
+        const searchInput = document.getElementById('holdingsSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', () => {
+                this.filterHoldings(searchInput.value);
+            });
+        }
 
-        document.getElementById('empty-add-btn').addEventListener('click', () => {
-            this.showTransactionModal();
-        });
-
-        // Transaction form
-        document.getElementById('transaction-form').addEventListener('submit', (e) => {
-            this.handleTransactionSubmit(e);
-        });
-
-        // Modal close events
-        document.querySelector('.close').addEventListener('click', () => {
-            this.hideTransactionModal();
-        });
-
-        document.getElementById('cancel-transaction').addEventListener('click', () => {
-            this.hideTransactionModal();
-        });
-
-        // Auto-calculate total amount
-        document.getElementById('transaction-amount').addEventListener('input', () => {
-            this.calculateTransactionTotal();
-        });
-
-        document.getElementById('transaction-price').addEventListener('input', () => {
-            this.calculateTransactionTotal();
-        });
-    }
-
-    initializeCharts() {
-        // Initialize chart manager
-        if (typeof PortfolioCharts !== 'undefined') {
-            this.chartManager = new PortfolioCharts();
-        } else {
-            console.warn('PortfolioCharts not found');
+        // Transaction modal events
+        const addTransactionBtn = document.getElementById('add-transaction-btn');
+        if (addTransactionBtn) {
+            addTransactionBtn.addEventListener('click', () => this.showTransactionModal());
         }
     }
 
-    connectWebSocket() {
-        // Initialize socket manager
-        if (typeof PortfolioSocket !== 'undefined') {
-            this.socketManager = new PortfolioSocket(this);
-        } else {
-            console.warn('PortfolioSocket not found, using REST API only');
-            this.startPolling();
-        }
-    }
-
-    async loadInitialData() {
-        await this.fetchPortfolioData();
-        await this.fetchAnalyticsData(this.currentTimeframe);
-    }
-
-    async fetchPortfolioData() {
+    // Fetch initial portfolio data
+    async fetchInitialData() {
         try {
-            const response = await fetch('/api/portfolio/');
-            const data = await response.json();
-            
-            if (data.success) {
-                this.portfolioData = data;
-                this.updatePortfolioUI();
-            } else {
-                throw new Error(data.error || 'Failed to fetch portfolio data');
-            }
+            // Fetch portfolio overview
+            const overviewResponse = await fetch('/api/portfolio/overview/');
+            const overviewData = await overviewResponse.json();
+
+            // Fetch detailed portfolio data
+            const dataResponse = await fetch('/api/portfolio/data/');
+            const portfolioData = await dataResponse.json();
+
+            // Fetch performance data
+            const performanceResponse = await fetch('/api/portfolio/performance/');
+            const performanceData = await performanceResponse.json();
+
+            // Update UI with fetched data
+            this.updatePortfolioOverview(overviewData);
+            this.updateHoldingsTable(portfolioData.portfolio);
+            this.initializeCharts(portfolioData, performanceData);
+            this.generateAIInsights(portfolioData);
+
         } catch (error) {
             console.error('Error fetching portfolio data:', error);
-            this.showToast('Failed to load portfolio data', 'error');
+            this.showError('Failed to load portfolio data');
         }
     }
 
-    async fetchAnalyticsData(timeframe) {
-        try {
-            const response = await fetch(`/api/portfolio/analytics/?timeframe=${timeframe}`);
-            const data = await response.json();
-            
-            if (data.success) {
-                this.analyticsData = data.analytics;
-                this.updateAnalyticsUI();
-                
-                if (this.chartManager) {
-                    this.chartManager.updatePerformanceChart(this.analyticsData);
-                    this.chartManager.updateRiskMetrics(this.analyticsData.risk_metrics);
-                }
-            } else {
-                throw new Error(data.error || 'Failed to fetch analytics data');
-            }
-        } catch (error) {
-            console.error('Error fetching analytics data:', error);
-        }
+    // Update portfolio overview section
+    updatePortfolioOverview(data) {
+        document.getElementById('totalValue').textContent = this.formatCurrency(data.total_balance);
+        document.getElementById('profitLossPercent').textContent = this.formatPercentage(data.total_profit_loss_pct);
+        document.getElementById('totalInvested').textContent = this.formatCurrency(data.total_invested);
+        document.getElementById('totalProfitLoss').textContent = this.formatCurrency(data.total_profit_loss);
+
+        // Update profit/loss styling
+        const plElement = document.getElementById('totalProfitLoss');
+        plElement.classList.remove('positive', 'negative');
+        plElement.classList.add(data.total_profit_loss >= 0 ? 'positive' : 'negative');
     }
 
-    updatePortfolioUI() {
-        if (!this.portfolioData) return;
-
-        const portfolio = this.portfolioData.portfolio;
-        const holdings = this.portfolioData.holdings;
-
-        // Update summary cards
-        document.getElementById('total-value').textContent = 
-            `$${portfolio.total_value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        
-        document.getElementById('unrealized-pl').textContent = 
-            `$${portfolio.unrealized_pl.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        
-        // Update daily change
-        const dailyChangeElement = document.getElementById('daily-change');
-        const isPositive = portfolio.daily_change_percentage >= 0;
-        dailyChangeElement.textContent = `${isPositive ? '+' : ''}${portfolio.daily_change_percentage.toFixed(2)}%`;
-        dailyChangeElement.className = `card-change ${isPositive ? 'positive' : 'negative'}`;
-
-        // Update P/L percentage
-        const plPercentageElement = document.getElementById('pl-percentage');
-        const plIsPositive = portfolio.unrealized_pl >= 0;
-        const plPercentage = portfolio.initial_investment > 0 ? 
-            (portfolio.unrealized_pl / portfolio.initial_investment * 100) : 0;
-        plPercentageElement.textContent = `${plIsPositive ? '+' : ''}${plPercentage.toFixed(2)}%`;
-        plPercentageElement.className = `card-change ${plIsPositive ? 'positive' : 'negative'}`;
-
-        // Update holdings table
-        this.updateHoldingsTable(holdings);
-
-        // Update allocation chart
-        if (this.chartManager) {
-            this.chartManager.updateAllocationChart(holdings);
-        }
-    }
-
+    // Update holdings table
     updateHoldingsTable(holdings) {
-        const tbody = document.getElementById('holdings-table-body');
-        const emptyRow = document.getElementById('empty-holdings');
-        
+        const tableBody = document.getElementById('holdings-table-body');
+        const emptyState = document.getElementById('empty-holdings');
+
         if (!holdings || holdings.length === 0) {
-            tbody.innerHTML = '';
-            emptyRow.style.display = '';
+            tableBody.innerHTML = '';
+            emptyState.style.display = 'table-row';
             return;
         }
 
-        emptyRow.style.display = 'none';
-        tbody.innerHTML = '';
-
-        holdings.forEach(holding => {
-            const row = document.createElement('tr');
-            const isPLPositive = holding.unrealized_pl >= 0;
-            const is24hPositive = holding['24h_change'] >= 0;
-
-            row.innerHTML = `
-                <td>
-                    <div class="coin-info">
-                        <div class="coin-logo">
-                            ${holding.symbol.slice(0, 3)}
-                        </div>
-                        <div class="coin-name">
-                            <span class="coin-symbol">${holding.symbol}</span>
-                            <span class="coin-full-name">${holding.name}</span>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div>${parseFloat(holding.amount).toLocaleString('en-US', { 
-                        minimumFractionDigits: 4, 
-                        maximumFractionDigits: 8 
-                    })}</div>
-                    <small class="coin-full-name">${holding.symbol}</small>
-                </td>
-                <td>
-                    $${parseFloat(holding.current_price).toLocaleString('en-US', { 
-                        minimumFractionDigits: 2, 
-                        maximumFractionDigits: 2 
-                    })}
-                </td>
-                <td>
-                    $${parseFloat(holding.value_usd).toLocaleString('en-US', { 
-                        minimumFractionDigits: 2, 
-                        maximumFractionDigits: 2 
-                    })}
-                </td>
-                <td>
-                    ${parseFloat(holding.allocation).toFixed(2)}%
-                </td>
-                <td>
-                    <div class="performance-indicator ${isPLPositive ? 'performance-positive' : 'performance-negative'}">
-                        $${parseFloat(holding.unrealized_pl).toLocaleString('en-US', { 
-                            minimumFractionDigits: 2, 
-                            maximumFractionDigits: 2 
-                        })}
-                    </div>
-                    <small>${isPLPositive ? '+' : ''}${parseFloat(holding.unrealized_pl_percentage).toFixed(2)}%</small>
-                </td>
-                <td>
-                    <div class="performance-indicator ${is24hPositive ? 'performance-positive' : 'performance-negative'}">
-                        ${is24hPositive ? '+' : ''}${parseFloat(holding['24h_change']).toFixed(2)}%
-                    </div>
-                </td>
-            `;
-
-            tbody.appendChild(row);
-        });
+        emptyState.style.display = 'none';
+        tableBody.innerHTML = holdings.map(holding => this.createHoldingRow(holding)).join('');
     }
 
-    updateAnalyticsUI() {
-        if (!this.analyticsData) return;
+    // Create a single holding row HTML
+    createHoldingRow(holding) {
+        const profitLossClass = holding.profit_loss >= 0 ? 'positive' : 'negative';
+        const priceChangeClass = holding.price_change_24h >= 0 ? 'positive' : 'negative';
 
-        const riskMetrics = this.analyticsData.risk_metrics;
-        const insights = this.analyticsData.insights;
-
-        // Update risk metrics
-        this.updateRiskMetrics(riskMetrics);
-
-        // Update insights
-        this.updateInsights(insights);
+        return `
+            <tr data-symbol="${holding.cryptocurrency}">
+                <td class="asset-cell">
+                    <img src="/static/assets/images/crypto/${holding.cryptocurrency.toLowerCase()}.png" 
+                         alt="${holding.cryptocurrency}" 
+                         class="crypto-icon">
+                    <span class="asset-name">${holding.cryptocurrency}</span>
+                </td>
+                <td>${this.formatNumber(holding.total_quantity, 8)}</td>
+                <td>${this.formatCurrency(holding.average_buy_price)}</td>
+                <td>${this.formatCurrency(holding.current_price)}</td>
+                <td>${this.formatCurrency(holding.current_value)}</td>
+                <td class="profit-loss ${profitLossClass}">
+                    ${this.formatCurrency(holding.profit_loss)}
+                    <small>(${this.formatPercentage(holding.profit_loss_percentage)})</small>
+                </td>
+                <td class="price-change ${priceChangeClass}">
+                    ${this.formatPercentage(holding.price_change_24h)}
+                </td>
+            </tr>
+        `;
     }
 
-    updateRiskMetrics(riskMetrics) {
-        document.getElementById('risk-score').textContent = `${riskMetrics.risk_score}/100`;
-        document.getElementById('volatility-value').textContent = `${(riskMetrics.volatility * 100).toFixed(2)}%`;
-        document.getElementById('diversification-value').textContent = `${riskMetrics.diversification_score}%`;
-        document.getElementById('max-drawdown-value').textContent = `${riskMetrics.max_drawdown}%`;
-        document.getElementById('sharpe-value').textContent = riskMetrics.sharpe_ratio.toFixed(2);
-
-        // Update risk level
-        const riskLevelElement = document.getElementById('risk-level');
-        let riskLevel = 'Low Risk';
-        let riskClass = 'risk-low';
-
-        if (riskMetrics.risk_score >= 70) {
-            riskLevel = 'High Risk';
-            riskClass = 'risk-high';
-        } else if (riskMetrics.risk_score >= 40) {
-            riskLevel = 'Medium Risk';
-            riskClass = 'risk-medium';
-        }
-
-        riskLevelElement.textContent = riskLevel;
-        riskLevelElement.className = `card-label ${riskClass}`;
-    }
-
-    updateInsights(insights) {
-        const insightsList = document.getElementById('insights-list');
+    // Initialize charts
+    initializeCharts(portfolioData, performanceData) {
+        // Distribution chart
+        this.initializeDistributionChart(portfolioData.portfolio);
         
-        if (!insights || insights.length === 0) {
-            insightsList.innerHTML = `
-                <div class="insight-item">
-                    <strong>No insights available</strong><br>
-                    Add more transactions to get personalized portfolio insights.
-                </div>
-            `;
-            return;
-        }
-
-        insightsList.innerHTML = '';
-
-        insights.forEach(insight => {
-            const insightElement = document.createElement('div');
-            
-            // Determine insight type based on content
-            let insightClass = 'insight-item';
-            if (insight.toLowerCase().includes('consider') || insight.toLowerCase().includes('suggest')) {
-                insightClass += ' warning';
-            } else if (insight.toLowerCase().includes('great') || insight.toLowerCase().includes('strong')) {
-                insightClass += ' success';
-            }
-
-            insightElement.className = insightClass;
-            insightElement.innerHTML = insight;
-            
-            insightsList.appendChild(insightElement);
-        });
+        // Performance chart
+        this.initializePerformanceChart(performanceData);
     }
 
-    handleTimeframeChange(timeframe) {
-        this.currentTimeframe = timeframe;
+    // Initialize portfolio distribution chart
+    initializeDistributionChart(holdings) {
+        const ctx = document.getElementById('portfolioDistributionChart').getContext('2d');
         
-        // Update active state
-        document.querySelectorAll('.timeframe-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelector(`[data-timeframe="${timeframe}"]`).classList.add('active');
-
-        // Load new analytics data
-        this.fetchAnalyticsData(timeframe);
-    }
-
-    setupModal() {
-        const modal = document.getElementById('transaction-modal');
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                this.hideTransactionModal();
-            }
-        });
-
-        // Transaction type change
-        document.getElementById('transaction-type').addEventListener('change', (e) => {
-            this.handleTransactionTypeChange(e.target.value);
-        });
-    }
-
-    showTransactionModal() {
-        const modal = document.getElementById('transaction-modal');
-        modal.style.display = 'block';
-    }
-
-    hideTransactionModal() {
-        const modal = document.getElementById('transaction-modal');
-        modal.style.display = 'none';
-        document.getElementById('transaction-form').reset();
-    }
-
-    handleTransactionTypeChange(type) {
-        const symbolField = document.getElementById('transaction-symbol');
-        const amountField = document.getElementById('transaction-amount');
-        const priceField = document.getElementById('transaction-price');
-
-        if (type === 'DEPOSIT' || type === 'WITHDRAWAL') {
-            symbolField.disabled = true;
-            amountField.disabled = true;
-            priceField.disabled = true;
-            symbolField.value = '';
-            amountField.value = '';
-            priceField.value = '';
-        } else {
-            symbolField.disabled = false;
-            amountField.disabled = false;
-            priceField.disabled = false;
-        }
-    }
-
-    calculateTransactionTotal() {
-        const amount = parseFloat(document.getElementById('transaction-amount').value) || 0;
-        const price = parseFloat(document.getElementById('transaction-price').value) || 0;
-        const total = amount * price;
-        
-        document.getElementById('transaction-total').value = total.toFixed(2);
-    }
-
-    async handleTransactionSubmit(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(e.target);
-        const transactionData = {
-            symbol: formData.get('symbol'),
-            type: formData.get('type'),
-            amount: formData.get('amount'),
-            price: formData.get('price'),
-            total_amount: formData.get('total_amount'),
-            fee: formData.get('fee') || '0.00'
+        const data = {
+            labels: holdings.map(h => h.cryptocurrency),
+            datasets: [{
+                data: holdings.map(h => h.current_value),
+                backgroundColor: this.generateChartColors(holdings.length)
+            }]
         };
 
-        try {
-            const response = await fetch('/api/portfolio/transaction/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                },
-                body: JSON.stringify(transactionData)
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                this.showToast('Transaction added successfully!', 'success');
-                this.hideTransactionModal();
-                
-                // Reload portfolio data
-                await this.fetchPortfolioData();
-                await this.fetchAnalyticsData(this.currentTimeframe);
-                
-                // Notify WebSocket if connected
-                if (this.socketManager) {
-                    this.socketManager.requestPortfolioUpdate();
+        this.charts.distribution = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Portfolio Distribution'
+                    }
                 }
-            } else {
-                throw new Error(result.error);
             }
-        } catch (error) {
-            console.error('Error adding transaction:', error);
-            this.showToast(`Failed to add transaction: ${error.message}`, 'error');
-        }
+        });
     }
 
-    startPolling() {
-        // Fallback polling if WebSocket is not available
-        setInterval(() => {
-            this.fetchPortfolioData();
-        }, 30000); // Every 30 seconds
-    }
-
-    showToast(message, type = 'info') {
-        // Create toast container if it doesn't exist
-        let container = document.querySelector('.toast-container');
-        if (!container) {
-            container = document.createElement('div');
-            container.className = 'toast-container';
-            container.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 1000;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            `;
-            document.body.appendChild(container);
-        }
-
-        // Create toast element
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.style.cssText = `
-            padding: 12px 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid ${this.getToastColor(type)};
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideIn 0.3s ease;
-        `;
-
-        const icon = this.getToastIcon(type);
-        toast.innerHTML = `
-            <span style="font-size: 1.2em;">${icon}</span>
-            <span>${message}</span>
-        `;
-
-        container.appendChild(toast);
-
-        // Remove toast after 5 seconds
-        setTimeout(() => {
-            toast.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => toast.remove(), 300);
-        }, 5000);
-    }
-
-    getToastColor(type) {
-        const colors = {
-            'success': '#10b981',
-            'error': '#ef4444',
-            'warning': '#f59e0b',
-            'info': '#667eea'
-        };
-        return colors[type] || '#667eea';
-    }
-
-    getToastIcon(type) {
-        const icons = {
-            'success': '✅',
-            'error': '❌',
-            'warning': '⚠️',
-            'info': 'ℹ️'
-        };
-        return icons[type] || '💡';
-    }
-
-    // Method to handle updates from WebSocket
-    handlePortfolioUpdate(portfolioData) {
-        this.portfolioData = portfolioData;
-        this.updatePortfolioUI();
-    }
-
-    handleAnalyticsUpdate(analyticsData) {
-        this.analyticsData = analyticsData;
-        this.updateAnalyticsUI();
+    // Initialize performance chart
+    initializePerformanceChart(performanceData) {
+        const ctx = document.getElementById('portfolioPerformanceChart').getContext('2d');
         
-        if (this.chartManager) {
-            this.chartManager.updatePerformanceChart(analyticsData);
+        // Extract timestamps and values from performance data
+        const timestamps = performanceData.map(p => p.timestamp);
+        const values = performanceData.map(p => p.value);
+
+        const data = {
+            labels: timestamps,
+            datasets: [{
+                label: 'Portfolio Value',
+                data: values,
+                borderColor: '#10B981',
+                tension: 0.4
+            }]
+        };
+
+        this.charts.performance = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => {
+                                return `${this.formatCurrency(context.raw)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: (value) => this.formatCurrency(value)
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Generate AI insights
+    async generateAIInsights(portfolioData) {
+        try {
+            const insights = await this.calculatePortfolioInsights(portfolioData);
+            this.updateInsightsUI(insights);
+        } catch (error) {
+            console.error('Error generating insights:', error);
+            this.showError('Failed to generate portfolio insights');
         }
     }
 
-    destroy() {
-        if (this.socketManager) {
-            this.socketManager.disconnect();
+    // Calculate portfolio insights
+    async calculatePortfolioInsights(portfolioData) {
+        const holdings = portfolioData.portfolio;
+        const totalValue = holdings.reduce((sum, h) => sum + h.current_value, 0);
+        
+        // Calculate risk metrics
+        const riskMetrics = {
+            diversification: this.calculateDiversificationScore(holdings, totalValue),
+            volatility: await this.calculatePortfolioVolatility(holdings),
+            concentration: this.calculateConcentrationRisk(holdings, totalValue)
+        };
+
+        // Generate insights based on metrics
+        return {
+            risk: this.generateRiskInsight(riskMetrics),
+            diversification: this.generateDiversificationInsight(riskMetrics.diversification),
+            performance: this.generatePerformanceInsight(portfolioData)
+        };
+    }
+
+    // Update insights UI
+    updateInsightsUI(insights) {
+        document.getElementById('riskAnalysis').innerHTML = insights.risk;
+        document.getElementById('diversificationInsight').innerHTML = insights.diversification;
+        document.getElementById('performanceInsight').innerHTML = insights.performance;
+    }
+
+    // Helper functions for formatting
+    formatCurrency(value) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(value);
+    }
+
+    formatPercentage(value) {
+        return `${(value || 0).toFixed(2)}%`;
+    }
+
+    formatNumber(value, decimals = 2) {
+        return Number(value).toFixed(decimals);
+    }
+
+    // WebSocket message handler
+    handleWebSocketMessage(data) {
+        switch (data.type) {
+            case 'price_update':
+                this.updatePrices(data.data);
+                break;
+            case 'portfolio_update':
+                this.updatePortfolio(data.data);
+                break;
+            case 'performance_update':
+                this.updatePerformance(data.data);
+                break;
         }
-        if (this.chartManager) {
-            this.chartManager.destroy();
+    }
+
+    // Show error message
+    showError(message) {
+        // Implement error notification UI
+        console.error(message);
+    }
+
+    // Generate chart colors
+    generateChartColors(count) {
+        const colors = [
+            '#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#F59E0B',
+            '#6366F1', '#14B8A6', '#06B6D4', '#6B7280', '#EF4444'
+        ];
+        
+        // Repeat colors if we need more than available
+        return Array(count).fill().map((_, i) => colors[i % colors.length]);
+    }
+
+    // Calculate portfolio metrics
+    calculateDiversificationScore(holdings, totalValue) {
+        // Calculate Herfindahl-Hirschman Index (HHI)
+        const hhi = holdings.reduce((sum, holding) => {
+            const weight = holding.current_value / totalValue;
+            return sum + weight * weight;
+        }, 0);
+
+        // Convert HHI to a 0-100 score (inverse relationship)
+        return Math.round((1 - hhi) * 100);
+    }
+
+    async calculatePortfolioVolatility(holdings) {
+        // Implement volatility calculation based on historical price data
+        return 15; // Placeholder
+    }
+
+    calculateConcentrationRisk(holdings, totalValue) {
+        // Find largest holding as percentage of portfolio
+        const maxConcentration = Math.max(
+            ...holdings.map(h => (h.current_value / totalValue) * 100)
+        );
+        return maxConcentration;
+    }
+
+    // Generate insight messages
+    generateRiskInsight(metrics) {
+        const { volatility, concentration } = metrics;
+        let riskLevel = 'Low';
+        if (volatility > 30 || concentration > 50) riskLevel = 'High';
+        else if (volatility > 20 || concentration > 30) riskLevel = 'Medium';
+
+        return `
+            <div class="risk-analysis">
+                <p>Portfolio Risk Level: <strong>${riskLevel}</strong></p>
+                <ul>
+                    <li>Volatility: ${volatility.toFixed(1)}%</li>
+                    <li>Max Concentration: ${concentration.toFixed(1)}%</li>
+                </ul>
+            </div>
+        `;
+    }
+
+    generateDiversificationInsight(score) {
+        let message = '';
+        if (score < 50) {
+            message = 'Your portfolio could benefit from more diversification. Consider adding different assets to reduce risk.';
+        } else if (score < 75) {
+            message = 'Your portfolio has decent diversification, but there\'s room for improvement.';
+        } else {
+            message = 'Excellent diversification! Your portfolio risk is well distributed.';
         }
+
+        return `
+            <div class="diversification-insight">
+                <p>Diversification Score: <strong>${score}/100</strong></p>
+                <p>${message}</p>
+            </div>
+        `;
+    }
+
+    generatePerformanceInsight(portfolioData) {
+        const { total_profit_loss_percentage } = portfolioData.summary;
+        let message = '';
+        
+        if (total_profit_loss_percentage > 20) {
+            message = 'Strong performance! Consider taking some profits to rebalance.';
+        } else if (total_profit_loss_percentage > 0) {
+            message = 'Your portfolio is performing well. Keep monitoring market conditions.';
+        } else {
+            message = 'Consider dollar-cost averaging to take advantage of lower prices.';
+        }
+
+        return `
+            <div class="performance-insight">
+                <p>Overall Return: <strong>${total_profit_loss_percentage.toFixed(2)}%</strong></p>
+                <p>${message}</p>
+            </div>
+        `;
     }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    window.venexPortfolio = new VenexPortfolio();
-    
-    // Add CSS animations
-    if (!document.querySelector('#portfolio-animations')) {
-        const style = document.createElement('style');
-        style.id = 'portfolio-animations';
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-            
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 1000;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0,0,0,0.5);
-            }
-            
-            .modal-content {
-                background-color: white;
-                margin: 5% auto;
-                padding: 0;
-                border-radius: 12px;
-                width: 90%;
-                max-width: 500px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            
-            .modal-header {
-                padding: 1.5rem;
-                border-bottom: 1px solid #e5e7eb;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .modal-header h3 {
-                margin: 0;
-                font-size: 1.25rem;
-                font-weight: 600;
-            }
-            
-            .close {
-                font-size: 1.5rem;
-                font-weight: bold;
-                cursor: pointer;
-                color: #6b7280;
-            }
-            
-            .close:hover {
-                color: #374151;
-            }
-            
-            .modal-body {
-                padding: 1.5rem;
-            }
-            
-            .form-group {
-                margin-bottom: 1rem;
-            }
-            
-            .form-group label {
-                display: block;
-                margin-bottom: 0.5rem;
-                font-weight: 500;
-                color: #374151;
-            }
-            
-            .form-group input,
-            .form-group select {
-                width: 100%;
-                padding: 0.75rem;
-                border: 1px solid #d1d5db;
-                border-radius: 6px;
-                font-size: 1rem;
-            }
-            
-            .form-actions {
-                display: flex;
-                gap: 1rem;
-                justify-content: flex-end;
-                margin-top: 1.5rem;
-            }
-            
-            .btn-primary {
-                background: #667eea;
-                color: white;
-                border: none;
-                padding: 0.75rem 1.5rem;
-                border-radius: 6px;
-                cursor: pointer;
-                font-weight: 500;
-            }
-            
-            .btn-secondary {
-                background: #6b7280;
-                color: white;
-                border: none;
-                padding: 0.75rem 1.5rem;
-                border-radius: 6px;
-                cursor: pointer;
-                font-weight: 500;
-            }
-        `;
-        document.head.appendChild(style);
-    }
+// Initialize portfolio manager when document is ready
+document.addEventListener('DOMContentLoaded', () => {
+    window.portfolioManager = new PortfolioManager();
 });

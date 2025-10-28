@@ -1,321 +1,325 @@
-// static/js/venex-dashboard.js - Unified Dashboard Functionality
-class VenexDashboard {
-    constructor() {
-        this.priceUpdateInterval = null;
-        this.currentTradeSymbol = 'BTC';
-        this.currentTradePrice = VENEX_CONFIG.initialPrices.BTC || 0;
-        this.init();
-    }
+// WebSocket connection
+        let ws = null;
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 5;
 
-    init() {
-        console.log('VENEX Dashboard Initialized');
-        this.setupEventListeners();
-        this.startPriceUpdates();
-        this.setupTradeForm();
-        this.loadInitialData();
-    }
+        // Initial cryptocurrency data structure
+        const cryptocurrencies = {
+            'BTC': { name: 'Bitcoin', price: '115,617.00', change: '+3.587%', positive: true },
+            'ETH': { name: 'Ethereum', price: '4,242.67', change: '+7.546%', positive: true },
+            'USDT': { name: 'Tether', price: '1.00', change: '-0.018%', positive: false },
+            'TRX': { name: 'Tron', price: '0.3014', change: '+2.100%', positive: true },
+            'LTC': { name: 'Litecoin', price: '100.67', change: '+3.818%', positive: true }
+        };
 
-    setupEventListeners() {
-        // Trade form cryptocurrency selector
-        const tradeSelect = document.getElementById('trade-crypto-select');
-        if (tradeSelect) {
-            tradeSelect.addEventListener('change', (e) => {
-                this.handleTradeCryptoChange(e.target.value);
+        // Initialize the display
+        function initializeDisplay() {
+            const cryptoGrid = document.getElementById('cryptoGrid');
+            cryptoGrid.innerHTML = '';
+
+            Object.entries(cryptocurrencies).forEach(([symbol, data]) => {
+                const card = createCryptoCard(symbol, data);
+                cryptoGrid.appendChild(card);
             });
         }
 
-        // Auto-refresh dashboard data every 30 seconds
-        setInterval(() => this.refreshDashboardData(), 30000);
-    }
+        // Create a cryptocurrency card
+        function createCryptoCard(symbol, data) {
+            const card = document.createElement('div');
+            card.className = 'crypto-card';
+            card.id = `card-${symbol}`;
 
-    setupTradeForm() {
-        const tradeSelect = document.getElementById('trade-crypto-select');
-        const quantityInput = document.getElementById('trade-quantity');
-        const currentPriceDisplay = document.getElementById('current-price-display');
-        const totalAmountDisplay = document.getElementById('total-amount-display');
+            card.innerHTML = `
+                <div class="crypto-header">
+                    <div>
+                        <div class="crypto-symbol">${symbol} - USD</div>
+                        <div class="crypto-name">${data.name}</div>
+                    </div>
+                    <div class="rank">#${getRank(symbol)}</div>
+                </div>
+                <div class="price-display">
+                    <div class="current-price digital-display">$ ${data.price}</div>
+                    <div class="price-change ${data.positive ? 'positive' : 'negative'}">
+                        ${data.change}
+                    </div>
+                </div>
+                <div class="crypto-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Market Cap</div>
+                        <div class="detail-value market-cap digital-display" id="cap-${symbol}">${formatMarketCap(symbol)}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">24h Volume</div>
+                        <div class="detail-value volume digital-display" id="vol-${symbol}">${formatVolume(symbol)}</div>
+                    </div>
+                </div>
+            `;
 
-        const updateTradeCalculation = () => {
-            const selectedOption = tradeSelect.options[tradeSelect.selectedIndex];
-            const price = parseFloat(selectedOption.getAttribute('data-price')) || this.currentTradePrice;
-            const quantity = parseFloat(quantityInput.value) || 0;
-            const total = price * quantity;
-
-            currentPriceDisplay.textContent = `$${price.toFixed(2)}`;
-            totalAmountDisplay.textContent = `$${total.toFixed(2)}`;
-            
-            // Update quick trade price display
-            document.getElementById('quick-trade-price').textContent = `$${price.toFixed(2)}`;
-        };
-
-        if (tradeSelect) {
-            tradeSelect.addEventListener('change', updateTradeCalculation);
+            return card;
         }
-        if (quantityInput) {
-            quantityInput.addEventListener('input', updateTradeCalculation);
+
+        // Helper functions
+        function getRank(symbol) {
+            const ranks = { 'BTC': 1, 'ETH': 2, 'USDT': 3, 'TRX': 10, 'LTC': 30 };
+            return ranks[symbol] || '-';
         }
 
-        // Trade execution
-        document.querySelectorAll('.trade-buttons button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const side = e.target.getAttribute('data-side');
-                this.executeTrade(side);
+        function formatMarketCap(symbol) {
+            const caps = {
+                'BTC': '$2.30T', 'ETH': '$512.0B', 'USDT': '$183.2B',
+                'TRX': '$28.5B', 'LTC': '$7.69B'
+            };
+            return caps[symbol] || '-';
+        }
+
+        function formatVolume(symbol) {
+            const volumes = {
+                'BTC': '$52.2B', 'ETH': '$33.0B', 'USDT': '$96.1B',
+                'TRX': '$848M', 'LTC': '$545M'
+            };
+            return volumes[symbol] || '-';
+        }
+
+        // Connect to WebSocket
+        function connectWebSocket() {
+            try {
+                ws = new WebSocket('ws://www.venexbtc.com/ws/market/');
+
+                ws.onopen = function() {
+                    console.log('WebSocket connected');
+                    updateConnectionStatus(true);
+                    reconnectAttempts = 0;
+                };
+
+                ws.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'market_data') {
+                            updateMarketData(data.data);
+                        }
+                    } catch (error) {
+                        console.error('Error parsing WebSocket message:', error);
+                    }
+                };
+
+                ws.onclose = function() {
+                    console.log('WebSocket disconnected');
+                    updateConnectionStatus(false);
+                    attemptReconnect();
+                };
+
+                ws.onerror = function(error) {
+                    console.error('WebSocket error:', error);
+                    updateConnectionStatus(false);
+                };
+
+            } catch (error) {
+                console.error('WebSocket connection failed:', error);
+                updateConnectionStatus(false);
+            }
+        }
+
+        // Update market data from WebSocket
+        function updateMarketData(marketData) {
+            // Update market statistics
+            if (marketData.market_stats) {
+                document.getElementById('activeCryptos').textContent = marketData.market_stats.active_cryptocurrencies;
+                document.getElementById('totalMarketCap').textContent = `$${(marketData.market_stats.total_market_cap / 1e12).toFixed(2)}T`;
+                document.getElementById('totalVolume').textContent = `$${(marketData.market_stats.total_volume_24h / 1e9).toFixed(1)}B`;
+                document.getElementById('btcDominance').textContent = `${marketData.market_stats.btc_dominance.toFixed(2)}%`;
+            }
+
+            // Update cryptocurrency cards
+            if (marketData.cryptocurrencies) {
+                marketData.cryptocurrencies.forEach(crypto => {
+                    updateCryptoCard(crypto);
+                });
+            }
+
+            // Update timestamp
+            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+
+            // Add pulse animation to indicate update
+            const cryptoGrid = document.getElementById('cryptoGrid');
+            cryptoGrid.classList.add('pulse');
+            setTimeout(() => cryptoGrid.classList.remove('pulse'), 1000);
+        }
+
+        // Update individual cryptocurrency card
+        function updateCryptoCard(crypto) {
+            const card = document.getElementById(`card-${crypto.symbol}`);
+            if (!card) return;
+
+            const priceElement = card.querySelector('.current-price');
+            const changeElement = card.querySelector('.price-change');
+            const marketCapElement = card.getElementById(`cap-${crypto.symbol}`);
+            const volumeElement = card.getElementById(`vol-${crypto.symbol}`);
+
+            if (priceElement) {
+                priceElement.textContent = `$ ${parseFloat(crypto.current_price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            }
+
+            if (changeElement) {
+                const isPositive = parseFloat(crypto.price_change_percentage_24h) >= 0;
+                changeElement.textContent = `${isPositive ? '+' : ''}${parseFloat(crypto.price_change_percentage_24h).toFixed(2)}%`;
+                changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
+            }
+
+            if (marketCapElement) {
+                marketCapElement.textContent = `$${(parseFloat(crypto.market_cap) / 1e9).toFixed(1)}B`;
+            }
+
+            if (volumeElement) {
+                volumeElement.textContent = `$${(parseFloat(crypto.volume_24h) / 1e9).toFixed(1)}B`;
+            }
+        }
+
+        //
+
+        // Attempt to reconnect
+        function attemptReconnect() {
+            if (reconnectAttempts < maxReconnectAttempts) {
+                reconnectAttempts++;
+                console.log(`Attempting to reconnect... (${reconnectAttempts}/${maxReconnectAttempts})`);
+                setTimeout(connectWebSocket, 3000 * reconnectAttempts);
+            } else {
+                console.log('Max reconnection attempts reached');
+            }
+        }
+
+        // Format numbers with commas
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Initialize when page loads
+        // Populate initial market stats from backend context
+        function populateInitialMarketStats() {
+            if (window.initialMarketStats) {
+                document.getElementById('activeCryptos').textContent = window.initialMarketStats.activeCryptos;
+                document.getElementById('totalMarketCap').textContent = '$' + window.initialMarketStats.totalMarketCap;
+                document.getElementById('totalVolume').textContent = '$' + window.initialMarketStats.totalVolume;
+                document.getElementById('btcDominance').textContent = window.initialMarketStats.btcDominance + '%';
+                document.getElementById('updateTime').textContent = window.initialMarketStats.lastUpdated;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateInitialMarketStats();
+            initializeDisplay();
+            connectWebSocket();
+
+            // Simulate price updates for demo (remove in production)
+            setInterval(() => {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    // Add small random fluctuations to demo live updates
+                    Object.keys(cryptocurrencies).forEach(symbol => {
+                        const card = document.getElementById(`card-${symbol}`);
+                        if (card) {
+                            const priceElement = card.querySelector('.current-price');
+                            if (priceElement) {
+                                const currentPrice = parseFloat(priceElement.textContent.replace(/[$,]/g, ''));
+                                const fluctuation = (Math.random() - 0.5) * 10;
+                                const newPrice = currentPrice + fluctuation;
+                                priceElement.textContent = `$ ${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                            }
+                        }
+                    });
+                    document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+                }
+            }, 5000);
+        });
+
+        // Quick Trade Form Handling
+        const quickTradeForm = document.getElementById('quickTradeForm');
+        const tradeButtons = document.querySelectorAll('.trade-btn');
+        let currentTradeType = 'buy';
+
+        // Trade type toggle
+        tradeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tradeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentTradeType = button.dataset.type;
             });
         });
 
-        // Initial calculation
-        updateTradeCalculation();
-    }
+        // Quick trade form submission
+        if (quickTradeForm) {
+            quickTradeForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(quickTradeForm);
+                const data = {
+                    type: currentTradeType,
+                    cryptocurrency: formData.get('cryptocurrency'),
+                    amount: formData.get('amount')
+                };
 
-    handleTradeCryptoChange(symbol) {
-        this.currentTradeSymbol = symbol;
-        this.currentTradePrice = VENEX_CONFIG.initialPrices[symbol] || 0;
-        this.updateTradePriceDisplay();
-    }
+                try {
+                    const response = await fetch('/api/trade/quick/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify(data)
+                    });
 
-    updateTradePriceDisplay() {
-        const currentPriceDisplay = document.getElementById('current-price-display');
-        const quickTradePrice = document.getElementById('quick-trade-price');
-        
-        if (currentPriceDisplay) {
-            currentPriceDisplay.textContent = `$${this.currentTradePrice.toFixed(2)}`;
-        }
-        if (quickTradePrice) {
-            quickTradePrice.textContent = `$${this.currentTradePrice.toFixed(2)}`;
-        }
-        
-        // Trigger calculation update
-        this.triggerTradeCalculation();
-    }
-
-    triggerTradeCalculation() {
-        const quantityInput = document.getElementById('trade-quantity');
-        if (quantityInput && quantityInput.value) {
-            quantityInput.dispatchEvent(new Event('input'));
-        }
-    }
-
-    async executeTrade(side) {
-        const form = document.getElementById('quick-trade-form');
-        if (!form) return;
-
-        const formData = new FormData(form);
-        
-        // Add trade side to form data
-        formData.append('side', side);
-        
-        const button = document.querySelector(`.btn-${side.toLowerCase()}`);
-        const originalText = button.textContent;
-        
-        try {
-            button.textContent = 'Processing...';
-            button.disabled = true;
-            
-            const response = await fetch(VENEX_CONFIG.api.trade, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': VENEX_CONFIG.csrfToken
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        // Show success message
+                        showNotification('Trade executed successfully!', 'success');
+                        quickTradeForm.reset();
+                    } else {
+                        // Show error message
+                        showNotification(result.message || 'Trade failed. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('An error occurred. Please try again.', 'error');
                 }
             });
-            
-            const result = await response.json();
-            
-            if (result.success) {
-                this.showToast(`Trade ${side} executed successfully!`, 'success');
-                // Refresh dashboard data
-                setTimeout(() => this.refreshDashboardData(), 1000);
-            } else {
-                throw new Error(result.error || 'Trade execution failed');
-            }
-        } catch (error) {
-            this.showToast(`Trade failed: ${error.message}`, 'error');
-            console.error('Trade error:', error);
-        } finally {
-            button.textContent = originalText;
-            button.disabled = false;
         }
-    }
 
-    startPriceUpdates() {
-        // Update prices every 10 seconds
-        this.priceUpdateInterval = setInterval(() => {
-            this.updateCurrentPrices();
-        }, 10000);
-    }
-
-    async updateCurrentPrices() {
-        try {
-            const response = await fetch(VENEX_CONFIG.api.dashboard);
-            const data = await response.json();
-            
-            if (data.crypto_balances) {
-                this.updatePriceDisplays(data.crypto_balances);
-            }
-        } catch (error) {
-            console.error('Error updating prices:', error);
-        }
-    }
-
-    updatePriceDisplays(cryptoBalances) {
-        for (const [symbol, data] of Object.entries(cryptoBalances)) {
-            const priceElement = document.getElementById(`price-${symbol}`);
-            const changeElement = document.getElementById(`change-${symbol}`);
-            const cardElement = document.getElementById(`crypto-card-${symbol}`);
-            
-            if (priceElement && data.current_price !== undefined) {
-                priceElement.textContent = data.current_price.toFixed(2);
-                // Update trade data attribute if this is the current trade symbol
-                if (symbol === this.currentTradeSymbol) {
-                    this.currentTradePrice = data.current_price;
-                    this.updateTradePriceDisplay();
+        // Helper function to get CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
                 }
             }
+            return cookieValue;
+        }
+
+        // Notification system
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
             
-            if (changeElement && data.change_percentage_24h !== undefined) {
-                const isPositive = data.change_percentage_24h >= 0;
-                changeElement.textContent = `${isPositive ? '+' : ''}${data.change_percentage_24h.toFixed(2)}%`;
-                changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
-            }
+            document.body.appendChild(notification);
             
-            if (cardElement && data.change_percentage_24h !== undefined && data.change_percentage_24h !== 0) {
-                // Add visual feedback for price changes
-                cardElement.style.animation = 'none';
-                setTimeout(() => {
-                    cardElement.style.animation = 'pulse 0.5s ease-in-out';
-                }, 10);
-            }
-        }
-    }
-
-    async refreshDashboardData() {
-        try {
-            const response = await fetch(VENEX_CONFIG.api.dashboard);
-            const data = await response.json();
-            
-            if (data) {
-                this.updateDashboardUI(data);
-            }
-        } catch (error) {
-            console.error('Error refreshing dashboard data:', error);
-        }
-    }
-
-    updateDashboardUI(data) {
-        // Update total balance if available
-        if (data.total_balance !== undefined) {
-            const balanceElement = document.querySelector('.balance-amount');
-            if (balanceElement) {
-                balanceElement.textContent = `$${data.total_balance.toLocaleString()}`;
-            }
-        }
-
-        // Update crypto balances
-        if (data.crypto_balances) {
-            this.updatePriceDisplays(data.crypto_balances);
-        }
-    }
-
-    loadInitialData() {
-        this.updateCurrentPrices();
-    }
-
-    showToast(message, type = 'info') {
-        // Create toast container if it doesn't exist
-        let container = document.querySelector('.toast-container');
-        if (!container) {
-            container = document.createElement('div');
-            container.className = 'toast-container';
-            container.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 10000;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            `;
-            document.body.appendChild(container);
-        }
-
-        // Create toast element
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.style.cssText = `
-            padding: 12px 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid ${this.getToastColor(type)};
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideIn 0.3s ease;
-            font-family: system-ui, -apple-system, sans-serif;
-        `;
-
-        const icon = this.getToastIcon(type);
-        toast.innerHTML = `
-            <span style="font-size: 1.2em;">${icon}</span>
-            <span>${message}</span>
-        `;
-
-        container.appendChild(toast);
-
-        // Remove toast after 5 seconds
-        setTimeout(() => {
-            toast.style.animation = 'slideOut 0.3s ease forwards';
+            // Remove notification after 3 seconds
             setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.parentNode.removeChild(toast);
-                }
-            }, 300);
-        }, 5000);
-    }
-
-    getToastColor(type) {
-        const colors = {
-            'success': '#10b981',
-            'error': '#ef4444',
-            'warning': '#f59e0b',
-            'info': '#667eea'
-        };
-        return colors[type] || '#667eea';
-    }
-
-    getToastIcon(type) {
-        const icons = {
-            'success': '✅',
-            'error': '❌',
-            'warning': '⚠️',
-            'info': 'ℹ️'
-        };
-        return icons[type] || '💡';
-    }
-
-    destroy() {
-        if (this.priceUpdateInterval) {
-            clearInterval(this.priceUpdateInterval);
+                notification.remove();
+            }, 3000);
         }
-    }
-}
 
-// Add CSS animations for toasts
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    
-    @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-    }
-    
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-        100% { transform: scale(1); }
-    }
-`;
-document.head.appendChild(style);
+        // Market sentiment update
+        function updateMarketSentiment() {
+            const analysisTime = document.getElementById('analysisTime');
+            if (analysisTime) {
+                analysisTime.textContent = `Updated: ${new Date().toLocaleTimeString()}`;
+            }
+        }
+
+        // Update market sentiment every minute
+        setInterval(updateMarketSentiment, 60000);

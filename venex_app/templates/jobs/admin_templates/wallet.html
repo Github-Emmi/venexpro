@@ -1,0 +1,250 @@
+{% extends "jobs/admin_templates/base.html" %}
+{% load static %}
+
+{% block title %}Wallet Management - Venex Broker{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/wallet.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="wallet-container">
+    <div class="section-header">
+        <h1>Wallet Management</h1>
+        <p>Manage your cryptocurrency wallets and addresses</p>
+    </div>
+
+    <div class="wallet-overview">
+        <!-- Bitcoin Wallet Card -->
+        <div class="wallet-card">
+            <div class="wallet-card-header">
+                <div class="crypto-icon">₿</div>
+                <div class="crypto-info">
+                    <h3>Bitcoin (BTC)</h3>
+                    <p>Network: Bitcoin</p>
+                </div>
+            </div>
+            <div class="wallet-balance">{{ user.btc_balance }} BTC</div>
+            <div class="wallet-value">≈ ${{ user.btc_balance|floatformat:2 }}</div>
+            <div class="wallet-address">
+                <span class="wallet-address-label">Wallet Address</span>
+                {{ user.btc_wallet|default:"No address set" }}
+                {% if user.btc_wallet %}
+                <button class="copy-btn" data-address="{{ user.btc_wallet }}">Copy</button>
+                {% endif %}
+            </div>
+            <div class="wallet-actions">
+                <a href="{% url 'deposit' %}" class="action-btn deposit-btn">Deposit</a>
+                <a href="{% url 'withdraw' %}" class="action-btn withdraw-btn">Withdraw</a>
+            </div>
+            <button class="edit-address-btn" data-crypto="BTC">Edit Address</button>
+        </div>
+
+        <!-- Ethereum Wallet Card -->
+        <div class="wallet-card">
+            <div class="wallet-card-header">
+                <div class="crypto-icon">Ξ</div>
+                <div class="crypto-info">
+                    <h3>Ethereum (ETH)</h3>
+                    <p>Network: Ethereum</p>
+                </div>
+            </div>
+            <div class="wallet-balance">{{ user.ethereum_balance }} ETH</div>
+            <div class="wallet-value">≈ ${{ user.ethereum_balance|floatformat:2 }}</div>
+            <div class="wallet-address">
+                <span class="wallet-address-label">Wallet Address</span>
+                {{ user.ethereum_wallet|default:"No address set" }}
+                {% if user.ethereum_wallet %}
+                <button class="copy-btn" data-address="{{ user.ethereum_wallet }}">Copy</button>
+                {% endif %}
+            </div>
+            <div class="wallet-actions">
+                <a href="{% url 'deposit' %}" class="action-btn deposit-btn">Deposit</a>
+                <a href="{% url 'withdraw' %}" class="action-btn withdraw-btn">Withdraw</a>
+            </div>
+            <button class="edit-address-btn" data-crypto="ETH">Edit Address</button>
+        </div>
+
+        <!-- USDT Wallet Card -->
+        <div class="wallet-card">
+            <div class="wallet-card-header">
+                <div class="crypto-icon">₮</div>
+                <div class="crypto-info">
+                    <h3>Tether (USDT)</h3>
+                    <p>Network: Ethereum (ERC20)</p>
+                </div>
+            </div>
+            <div class="wallet-balance">{{ user.usdt_balance }} USDT</div>
+            <div class="wallet-value">≈ ${{ user.usdt_balance|floatformat:2 }}</div>
+            <div class="wallet-address">
+                <span class="wallet-address-label">Wallet Address</span>
+                {{ user.usdt_wallet|default:"No address set" }}
+                {% if user.usdt_wallet %}
+                <button class="copy-btn" data-address="{{ user.usdt_wallet }}">Copy</button>
+                {% endif %}
+            </div>
+            <div class="wallet-actions">
+                <a href="{% url 'deposit' %}" class="action-btn deposit-btn">Deposit</a>
+                <a href="{% url 'withdraw' %}" class="action-btn withdraw-btn">Withdraw</a>
+            </div>
+            <button class="edit-address-btn" data-crypto="USDT">Edit Address</button>
+        </div>
+
+        <!-- Litecoin Wallet Card -->
+        <div class="wallet-card">
+            <div class="wallet-card-header">
+                <div class="crypto-icon">Ł</div>
+                <div class="crypto-info">
+                    <h3>Litecoin (LTC)</h3>
+                    <p>Network: Litecoin</p>
+                </div>
+            </div>
+            <div class="wallet-balance">{{ user.litecoin_balance }} LTC</div>
+            <div class="wallet-value">≈ ${{ user.litecoin_balance|floatformat:2 }}</div>
+            <div class="wallet-address">
+                <span class="wallet-address-label">Wallet Address</span>
+                {{ user.litecoin_wallet|default:"No address set" }}
+                {% if user.litecoin_wallet %}
+                <button class="copy-btn" data-address="{{ user.litecoin_wallet }}">Copy</button>
+                {% endif %}
+            </div>
+            <div class="wallet-actions">
+                <a href="{% url 'deposit' %}" class="action-btn deposit-btn">Deposit</a>
+                <a href="{% url 'withdraw' %}" class="action-btn withdraw-btn">Withdraw</a>
+            </div>
+            <button class="edit-address-btn" data-crypto="LTC">Edit Address</button>
+        </div>
+
+        <!-- Tron Wallet Card -->
+        <div class="wallet-card">
+            <div class="wallet-card-header">
+                <div class="crypto-icon">T</div>
+                <div class="crypto-info">
+                    <h3>Tron (TRX)</h3>
+                    <p>Network: Tron</p>
+                </div>
+            </div>
+            <div class="wallet-balance">{{ user.tron_balance }} TRX</div>
+            <div class="wallet-value">≈ ${{ user.tron_balance|floatformat:2 }}</div>
+            <div class="wallet-address">
+                <span class="wallet-address-label">Wallet Address</span>
+                {{ user.tron_wallet|default:"No address set" }}
+                {% if user.tron_wallet %}
+                <button class="copy-btn" data-address="{{ user.tron_wallet }}">Copy</button>
+                {% endif %}
+            </div>
+            <div class="wallet-actions">
+                <a href="{% url 'deposit' %}" class="action-btn deposit-btn">Deposit</a>
+                <a href="{% url 'withdraw' %}" class="action-btn withdraw-btn">Withdraw</a>
+            </div>
+            <button class="edit-address-btn" data-crypto="TRX">Edit Address</button>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Address Modal -->
+<div id="editAddressModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Edit Wallet Address</h2>
+            <button class="close-modal">&times;</button>
+        </div>
+        <form id="editAddressForm" method="POST" action="{% url 'wallet' %}">
+            {% csrf_token %}
+            <input type="hidden" id="cryptoType" name="crypto_type">
+            <div class="form-group">
+                <label class="form-label" for="walletAddress">Wallet Address</label>
+                <input type="text" id="walletAddress" name="wallet_address" class="form-input" required>
+            </div>
+            <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<!-- Toast Notifications -->
+<div id="toast" class="toast"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal functionality
+    const modal = document.getElementById('editAddressModal');
+    const editButtons = document.querySelectorAll('.edit-address-btn');
+    const closeModal = document.querySelector('.close-modal');
+    const form = document.getElementById('editAddressForm');
+
+    // Copy functionality
+    const copyButtons = document.querySelectorAll('.copy-btn');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            const address = this.dataset.address;
+            try {
+                await navigator.clipboard.writeText(address);
+                showToast('Address copied to clipboard!', 'success');
+            } catch (err) {
+                showToast('Failed to copy address', 'error');
+            }
+        });
+    });
+
+    // Edit address functionality
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const crypto = this.dataset.crypto;
+            document.getElementById('cryptoType').value = crypto;
+            modal.style.display = 'flex';
+        });
+    });
+
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Form submission
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('{% url "wallet" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            });
+
+            if (response.ok) {
+                showToast('Wallet address updated successfully!', 'success');
+                modal.style.display = 'none';
+                setTimeout(() => window.location.reload(), 1500);
+            } else {
+                showToast('Failed to update wallet address', 'error');
+            }
+        } catch (error) {
+            showToast('An error occurred', 'error');
+        }
+    });
+
+    // Toast notification function
+    function showToast(message, type) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = `toast ${type}`;
+        toast.style.display = 'block';
+
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 3000);
+    }
+});
+</script>
+{% endblock %}

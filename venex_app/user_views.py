@@ -198,32 +198,50 @@ def market_data_view(request):
         cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('rank')
         
         # Calculate market statistics
-        total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
-        total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies)
+        total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies if crypto.market_cap)
+        total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies if crypto.volume_24h)
         
         # Calculate Bitcoin dominance
         btc = cryptocurrencies.filter(symbol='BTC').first()
-        btc_dominance = (float(btc.market_cap) / total_market_cap * 100) if btc and total_market_cap > 0 else 0
+        btc_dominance = (float(btc.market_cap) / total_market_cap * 100) if btc and btc.market_cap and total_market_cap > 0 else 0
         
         # Get top gainers and losers
         top_gainers = cryptocurrencies.filter(price_change_percentage_24h__gt=0).order_by('-price_change_percentage_24h')[:5]
         top_losers = cryptocurrencies.filter(price_change_percentage_24h__lt=0).order_by('price_change_percentage_24h')[:5]
         
-        # Prepare market stats
+        # Prepare market stats matching market.js expectations
         market_stats = {
-            'total_market_cap': total_market_cap,
-            'total_volume_24h': total_volume,
-            'btc_dominance': round(btc_dominance, 2),
+            'total_market_cap': float(total_market_cap),  # Ensure float for JS
+            'total_volume_24h': float(total_volume),  # Ensure float for JS
+            'btc_dominance': float(round(btc_dominance, 2)),  # Ensure float for JS
             'active_cryptocurrencies': cryptocurrencies.count(),
-            'timestamp': timezone.now()
+            'timestamp': timezone.now().strftime('%Y-%m-%d %H:%M:%S')
         }
         
+        # Prepare cryptocurrency data for JSON serialization
+        crypto_list = [{
+            'symbol': crypto.symbol,
+            'name': crypto.name,
+            'rank': crypto.rank,
+            'current_price': float(crypto.current_price),
+            'price_change_percentage_24h': float(crypto.price_change_percentage_24h) if crypto.price_change_percentage_24h else 0,
+            'market_cap': float(crypto.market_cap) if crypto.market_cap else 0,
+            'volume_24h': float(crypto.volume_24h) if crypto.volume_24h else 0
+        } for crypto in cryptocurrencies]
+
+        # Convert data to JSON strings for template
+        from django.core.serializers.json import DjangoJSONEncoder
+        import json
+        
         context = {
-            'cryptocurrencies': cryptocurrencies,
-            'market_stats': market_stats,
+            'cryptocurrencies': json.dumps(crypto_list, cls=DjangoJSONEncoder),
+            'market_stats': json.dumps(market_stats, cls=DjangoJSONEncoder),
             'top_gainers': top_gainers,
             'top_losers': top_losers,
-            'current_prices': {crypto.symbol: {'price': crypto.current_price} for crypto in cryptocurrencies},
+            'current_prices': json.dumps({
+                crypto.symbol: {'price': float(crypto.current_price)} 
+                for crypto in cryptocurrencies
+            }, cls=DjangoJSONEncoder),
         }
         
         return render(request, 'jobs/admin_templates/market.html', context)

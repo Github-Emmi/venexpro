@@ -30,15 +30,20 @@ class CryptoDataService:
         self.binance_api_key = os.getenv('BINANCE_API_KEY', '')
         self.binance_secret_key = os.getenv('BINANCE_SECRET_KEY', '')
     
-    def get_market_overview(self):
+    @staticmethod
+    def get_market_overview(self): # type: ignore
         """
         Get market overview data for dashboard
         """
         try:
             cryptocurrencies = Cryptocurrency.objects.filter(is_active=True)
             
-            total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
-            total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies)
+            total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies if crypto.market_cap)
+            total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies if crypto.volume_24h)
+            
+            # Calculate BTC dominance
+            btc = cryptocurrencies.filter(symbol='BTC').first()
+            btc_dominance = (float(btc.market_cap) / total_market_cap * 100) if btc and btc.market_cap and total_market_cap > 0 else 0
             
             # Get top gainers and losers
             gainers = cryptocurrencies.filter(price_change_percentage_24h__gt=0).order_by('-price_change_percentage_24h')[:5]

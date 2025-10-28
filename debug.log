@@ -1,0 +1,940 @@
+INFO 2025-10-28 00:55:24,621 autoreload 11242 4597970432 Watching for file changes with StatReloader
+WARNING 2025-10-28 00:55:30,276 log 11242 123145447149568 Not Found: /ws/market/
+INFO 2025-10-28 01:01:19,906 autoreload 11402 4384912896 Watching for file changes with StatReloader
+WARNING 2025-10-28 01:01:26,313 log 11402 123145394974720 Not Found: /ws/market/
+INFO 2025-10-28 01:02:00,195 cli 11515 4389213696 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:02:00,196 server 11515 4389213696 HTTP/2 support enabled
+INFO 2025-10-28 01:02:00,196 server 11515 4389213696 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:02:00,197 server 11515 4389213696 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-28 01:02:05,822 consumers 11515 4389213696 Market WebSocket connected: specific..inmemory!UiNBsWRcXftO
+WARNING 2025-10-28 01:02:34,781 log 11515 123145547501568 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-28 01:02:38,869 consumers 11515 4389213696 Market WebSocket disconnected: specific..inmemory!UiNBsWRcXftO
+WARNING 2025-10-28 01:02:39,000 log 11515 123145547501568 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-28 01:02:40,256 consumers 11515 4389213696 Market WebSocket connected: specific..inmemory!IRlswQuqDFBR
+INFO 2025-10-28 01:03:19,118 consumers 11515 4389213696 Market WebSocket disconnected: specific..inmemory!IRlswQuqDFBR
+WARNING 2025-10-28 01:03:19,176 log 11515 123145547501568 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-10-28 01:03:20,670 consumers 11515 4389213696 Market WebSocket connected: specific..inmemory!xBXVDkNfUoux
+INFO 2025-10-28 01:03:52,209 server 11515 4389213696 Killed 1 pending application instances
+INFO 2025-10-28 01:03:57,873 autoreload 11684 4518192640 Watching for file changes with StatReloader
+INFO 2025-10-28 01:04:05,625 cli 11834 4421522944 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:04:05,626 server 11834 4421522944 HTTP/2 support enabled
+INFO 2025-10-28 01:04:05,626 server 11834 4421522944 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:04:05,627 server 11834 4421522944 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-28 01:04:10,775 consumers 11834 4421522944 Market WebSocket connected: specific..inmemory!nfqePGHAiJix
+INFO 2025-10-28 01:10:19,722 consumers 11834 4421522944 Market WebSocket disconnected: specific..inmemory!nfqePGHAiJix
+INFO 2025-10-28 01:10:21,461 consumers 11834 4421522944 Market WebSocket connected: specific..inmemory!pcvLapRGRIrL
+INFO 2025-10-28 01:10:29,085 server 11834 4421522944 Killed 1 pending application instances
+INFO 2025-10-28 01:10:33,188 cli 12054 4583683584 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:10:33,188 server 12054 4583683584 HTTP/2 support enabled
+INFO 2025-10-28 01:10:33,188 server 12054 4583683584 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:10:33,190 server 12054 4583683584 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-28 01:10:38,796 consumers 12054 4583683584 Market WebSocket connected: specific..inmemory!IwKjZoyyhbrO
+INFO 2025-10-28 01:22:01,708 server 12054 4583683584 Killed 1 pending application instances
+INFO 2025-10-28 01:22:10,804 autoreload 12352 4575770112 Watching for file changes with StatReloader
+WARNING 2025-10-28 01:22:16,217 log 12352 123145565908992 Not Found: /ws/market/
+INFO 2025-10-28 01:22:31,310 cli 12466 4522882560 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:22:31,310 server 12466 4522882560 HTTP/2 support enabled
+INFO 2025-10-28 01:22:31,310 server 12466 4522882560 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:22:31,311 server 12466 4522882560 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-28 01:22:35,893 consumers 12466 4522882560 Market WebSocket connected: specific..inmemory!GHpiBPsYMSXf
+INFO 2025-10-28 01:22:39,950 consumers 12466 4522882560 Market WebSocket disconnected: specific..inmemory!GHpiBPsYMSXf
+INFO 2025-10-28 01:22:49,532 crypto_api_service 12466 123145520218112 CoinGecko API success: fetched 5 coins
+INFO 2025-10-28 01:22:49,537 crypto_api_service 12466 123145520218112 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-28 01:22:49,560 crypto_api_service 12466 123145520218112 Updated 5 cryptocurrencies
+INFO 2025-10-28 01:22:49,562 user_views 12466 123145520218112 Cryptocurrency data updated successfully
+INFO 2025-10-28 01:22:50,145 crypto_api_service 12466 123145520218112 CoinGecko API success: fetched 5 coins
+INFO 2025-10-28 01:22:50,147 crypto_api_service 12466 123145520218112 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-28 01:22:50,161 crypto_api_service 12466 123145520218112 Updated 5 cryptocurrencies
+WARNING 2025-10-28 01:22:59,025 log 12466 123145639354368 Not Found: /static/assets/css.css
+WARNING 2025-10-28 01:22:59,031 log 12466 123145656143872 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-28 01:22:59,123 log 12466 123145656143872 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-28 01:22:59,381 log 12466 123145656143872 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-28 01:23:00,073 log 12466 123145656143872 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-28 01:23:00,837 log 12466 123145656143872 Not Found: /static/assets/css.css
+WARNING 2025-10-28 01:23:00,920 log 12466 123145656143872 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-28 01:23:00,921 log 12466 123145639354368 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-28 01:23:01,000 log 12466 123145639354368 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-28 01:23:01,101 log 12466 123145656143872 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-28 01:23:01,132 log 12466 123145656143872 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-28 01:23:01,237 log 12466 123145639354368 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-28 01:23:01,272 log 12466 123145656143872 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-28 01:23:01,294 log 12466 123145639354368 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-28 01:23:01,303 log 12466 123145656143872 Not Found: /login/er.lrticker.html
+WARNING 2025-10-28 01:23:01,523 log 12466 123145656143872 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-28 01:23:01,617 log 12466 123145656143872 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-28 01:23:01,984 log 12466 123145639354368 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-28 01:23:12,000 crypto_api_service 12466 123145520218112 CoinGecko API success: fetched 5 coins
+INFO 2025-10-28 01:23:12,005 crypto_api_service 12466 123145520218112 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-28 01:23:12,021 crypto_api_service 12466 123145520218112 Updated 5 cryptocurrencies
+INFO 2025-10-28 01:23:23,611 consumers 12466 4522882560 Market WebSocket connected: specific..inmemory!QPZcFKnvunTm
+INFO 2025-10-28 01:23:26,689 consumers 12466 4522882560 Market WebSocket disconnected: specific..inmemory!QPZcFKnvunTm
+INFO 2025-10-28 01:23:26,915 consumers 12466 4522882560 Market WebSocket connected: specific..inmemory!lhLEbmNrPPcR
+INFO 2025-10-28 01:27:10,635 server 12466 4522882560 Killed 1 pending application instances
+INFO 2025-10-28 01:27:15,071 autoreload 12741 4538058240 Watching for file changes with StatReloader
+WARNING 2025-10-28 01:27:21,345 log 12741 123145406857216 Not Found: /ws/market/
+ERROR 2025-10-28 01:27:59,783 user_views 12741 123145373278208 Error in market_data_view: Invalid filter: 'intcomma'
+ERROR 2025-10-28 01:28:00,258 log 12741 123145373278208 Internal Server Error: /markets/
+Traceback (most recent call last):
+  File "/Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py", line 229, in market_data_view
+    return render(request, 'jobs/admin_templates/market.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 489, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'intcomma'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py", line 234, in market_data_view
+    return render(request, 'jobs/admin_templates/market.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 489, in parse
+    raise self.error(token, e)
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'intcomma'
+WARNING 2025-10-28 01:28:42,160 log 12741 123145406857216 Not Found: /ws/market/
+WARNING 2025-10-28 01:38:17,296 log 12741 123145457225728 Not Found: /ws/market/
+INFO 2025-10-28 01:39:06,383 cli 13119 4631590400 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:39:06,383 server 13119 4631590400 HTTP/2 support enabled
+INFO 2025-10-28 01:39:06,384 server 13119 4631590400 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 01:39:06,385 server 13119 4631590400 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-28 01:39:14,080 consumers 13119 4631590400 Market WebSocket connected: specific..inmemory!RONrzSeVWYWo
+INFO 2025-10-28 01:39:35,888 consumers 13119 4631590400 Market WebSocket disconnected: specific..inmemory!RONrzSeVWYWo
+INFO 2025-10-28 01:44:40,387 consumers 13119 4631590400 Market WebSocket connected: specific..inmemory!ANqouUxLOKRq
+INFO 2025-10-28 01:59:23,065 consumers 13119 4631590400 Market WebSocket disconnected: specific..inmemory!ANqouUxLOKRq
+INFO 2025-10-28 02:19:06,695 consumers 13119 4631590400 Market WebSocket connected: specific..inmemory!QfTNxHfndhuw
+INFO 2025-10-28 02:24:37,613 server 13119 4631590400 Killed 1 pending application instances
+INFO 2025-10-28 02:24:41,580 cli 13624 4560741888 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 02:24:41,581 server 13624 4560741888 HTTP/2 support enabled
+INFO 2025-10-28 02:24:41,581 server 13624 4560741888 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 02:24:41,582 server 13624 4560741888 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-28 02:24:49,792 server 13624 4560741888 Killed 0 pending application instances
+INFO 2025-10-28 02:24:54,240 autoreload 13759 4549711360 Watching for file changes with StatReloader
+INFO 2025-10-28 02:25:02,529 cli 13861 4559906304 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 02:25:02,529 server 13861 4559906304 HTTP/2 support enabled
+INFO 2025-10-28 02:25:02,529 server 13861 4559906304 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-10-28 02:25:02,530 server 13861 4559906304 Listening on TCP address 127.0.0.1:8000
+INFO 2025-10-28 02:25:09,735 consumers 13861 4559906304 Market WebSocket connected: specific..inmemory!OVrIalZyVxKq
+INFO 2025-10-28 02:25:26,058 server 13861 4559906304 Killed 1 pending application instances
+INFO 2025-10-28 02:25:30,244 autoreload 13999 4722009600 Watching for file changes with StatReloader
+WARNING 2025-10-28 02:25:35,283 log 13999 123145516126208 Not Found: /ws/market/
+WARNING 2025-10-28 02:26:26,061 log 13999 123145516126208 Not Found: /ws/market/
+WARNING 2025-10-28 02:27:33,858 log 13999 123145516126208 Not Found: /ws/market/
+WARNING 2025-10-28 02:29:58,337 log 13999 123145616863232 Not Found: /ws/market/
+INFO 2025-10-28 02:33:00,848 autoreload 13999 4722009600 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:33:02,423 autoreload 14109 4500329984 Watching for file changes with StatReloader
+INFO 2025-10-28 02:33:07,104 autoreload 14109 4500329984 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:33:08,166 autoreload 14118 4465235456 Watching for file changes with StatReloader
+INFO 2025-10-28 02:33:37,424 autoreload 14229 4615185920 Watching for file changes with StatReloader
+WARNING 2025-10-28 02:33:43,726 log 14229 123145508859904 Not Found: /ws/market/
+INFO 2025-10-28 02:39:16,069 autoreload 14229 4615185920 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:39:17,576 autoreload 14294 4540884480 Watching for file changes with StatReloader
+INFO 2025-10-28 02:39:24,338 autoreload 14294 4540884480 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:39:25,113 autoreload 14308 4594923008 Watching for file changes with StatReloader
+INFO 2025-10-28 02:39:31,961 autoreload 14308 4594923008 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:39:32,750 autoreload 14319 4516943360 Watching for file changes with StatReloader
+INFO 2025-10-28 02:39:34,235 autoreload 14319 4516943360 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:39:35,005 autoreload 14322 4522845696 Watching for file changes with StatReloader
+WARNING 2025-10-28 02:40:07,923 log 14322 123145616076800 Not Found: /ws/market/
+ERROR 2025-10-28 02:40:14,799 log 14322 123145582497792 Internal Server Error: /wallet/
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py", line 374, in wallet_management_view
+    return render(request, 'jobs/admin_templates/wallet.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'deposite' not found. 'deposite' is not a valid view function or pattern name.
+ERROR 2025-10-28 02:41:11,336 log 14322 123145582497792 Internal Server Error: /wallet/
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py", line 374, in wallet_management_view
+    return render(request, 'jobs/admin_templates/wallet.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'deposite' not found. 'deposite' is not a valid view function or pattern name.
+ERROR 2025-10-28 02:41:14,576 log 14322 123145582497792 Internal Server Error: /wallet/
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py", line 374, in wallet_management_view
+    return render(request, 'jobs/admin_templates/wallet.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'deposite' not found. 'deposite' is not a valid view function or pattern name.
+INFO 2025-10-28 02:45:01,866 autoreload 14585 4554757632 Watching for file changes with StatReloader
+INFO 2025-10-28 02:50:19,689 autoreload 14585 4554757632 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/urls.py changed, reloading.
+INFO 2025-10-28 02:50:21,721 autoreload 14702 4483438080 Watching for file changes with StatReloader
+INFO 2025-10-28 02:53:51,227 autoreload 14702 4483438080 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:53:53,558 autoreload 14773 4754949632 Watching for file changes with StatReloader
+INFO 2025-10-28 02:53:57,493 autoreload 14773 4754949632 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-10-28 02:53:59,654 autoreload 14793 4382746112 Watching for file changes with StatReloader
+INFO 2025-10-28 02:54:01,835 autoreload 14793 4382746112 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-10-28 02:54:04,194 autoreload 14801 4363658752 Watching for file changes with StatReloader
+INFO 2025-10-28 02:54:07,297 autoreload 14801 4363658752 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:54:08,596 autoreload 14811 4606551552 Watching for file changes with StatReloader
+INFO 2025-10-28 02:54:14,268 autoreload 14811 4606551552 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-10-28 02:54:15,042 autoreload 14822 4645033472 Watching for file changes with StatReloader
+INFO 2025-10-28 02:54:21,810 autoreload 14822 4645033472 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:54:22,968 autoreload 14830 4714976768 Watching for file changes with StatReloader
+ERROR 2025-10-28 02:55:17,423 log 14830 123145432887296 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py", line 271, in portfolio_view
+    total_invested = sum(float(item.total_invested) for item in user_portfolio)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 766, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 85, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 74, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+                                                            ^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 299, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1230, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Non-relational field given in select_related: 'cryptocurrency'. Choices are: user
+INFO 2025-10-28 02:56:44,088 autoreload 14830 4714976768 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:56:45,273 autoreload 14872 4669695488 Watching for file changes with StatReloader
+INFO 2025-10-28 02:56:46,881 autoreload 14872 4669695488 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:56:47,627 autoreload 14879 4555425280 Watching for file changes with StatReloader
+INFO 2025-10-28 02:56:51,191 autoreload 14879 4555425280 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/user_views.py changed, reloading.
+INFO 2025-10-28 02:56:52,112 autoreload 14889 4536428032 Watching for file changes with StatReloader
+INFO 2025-10-28 02:57:37,065 crypto_api_service 14889 123145528692736 CoinGecko API success: fetched 5 coins
+INFO 2025-10-28 02:57:37,068 crypto_api_service 14889 123145528692736 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-28 02:57:37,099 crypto_api_service 14889 123145528692736 Updated 5 cryptocurrencies
+INFO 2025-10-28 02:57:37,100 user_views 14889 123145528692736 Cryptocurrency data updated successfully
+INFO 2025-10-28 02:57:37,740 crypto_api_service 14889 123145528692736 CoinGecko API success: fetched 5 coins
+INFO 2025-10-28 02:57:37,747 crypto_api_service 14889 123145528692736 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-28 02:57:37,758 crypto_api_service 14889 123145528692736 Updated 5 cryptocurrencies
+WARNING 2025-10-28 02:57:39,936 log 14889 123145563344896 Not Found: /ws/market/
+INFO 2025-10-28 04:10:41,972 autoreload 15870 4345390592 Watching for file changes with StatReloader
+INFO 2025-10-28 04:21:16,700 autoreload 16411 4575802880 Watching for file changes with StatReloader
+INFO 2025-10-28 04:27:15,788 autoreload 16690 4609902080 Watching for file changes with StatReloader
+WARNING 2025-10-28 04:27:21,519 log 16690 123145383305216 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:21,628 log 16690 123145416884224 Not Found: /ws/portfolio/
+INFO 2025-10-28 04:27:22,410 crypto_api_service 16690 123145366515712 CoinGecko API success: fetched 5 coins
+INFO 2025-10-28 04:27:22,413 crypto_api_service 16690 123145366515712 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-28 04:27:22,443 crypto_api_service 16690 123145366515712 Updated 5 cryptocurrencies
+WARNING 2025-10-28 04:27:27,909 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:27,950 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:33,108 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:33,152 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:38,380 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:38,422 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:43,545 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:43,569 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:49,563 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:49,781 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:56,115 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:27:56,416 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:03,640 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:04,274 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:11,630 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:14,381 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:20,333 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:20,894 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:29,229 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:30,063 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:39,245 log 16690 123145416884224 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:28:39,267 log 16690 123145416884224 Not Found: /ws/portfolio/
+INFO 2025-10-28 04:28:52,500 autoreload 16979 4490409472 Watching for file changes with StatReloader
+WARNING 2025-10-28 04:28:55,436 log 16979 123145529806848 Not Found: /ws/portfolio/
+INFO 2025-10-28 04:29:01,374 crypto_api_service 16979 123145563385856 CoinGecko API success: fetched 5 coins
+INFO 2025-10-28 04:29:01,379 crypto_api_service 16979 123145563385856 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-28 04:29:01,405 crypto_api_service 16979 123145563385856 Updated 5 cryptocurrencies
+WARNING 2025-10-28 04:29:01,527 log 16979 123145581248512 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:02,222 log 16979 123145581248512 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:11,049 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:11,198 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:18,811 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:19,975 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:23,826 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:24,989 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:28,840 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:30,004 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:34,519 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:35,526 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:40,593 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:40,623 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:46,596 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:46,618 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:52,652 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:52,707 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:59,554 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:29:59,588 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:06,783 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:11,111 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:17,631 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:20,438 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:27,178 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:27,487 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:35,447 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:37,014 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:44,090 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:44,728 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:50,928 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:54,088 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:30:58,468 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:03,108 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:08,910 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:10,674 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:17,052 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:20,846 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:27,765 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:29,090 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:34,998 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:36,691 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:42,874 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:46,611 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:50,501 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:56,871 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:31:59,986 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:05,992 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:09,808 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:14,077 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:18,800 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:22,203 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:28,287 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:29,478 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:35,142 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:36,961 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:43,440 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:45,279 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:51,702 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:32:52,498 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:00,145 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:01,574 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:09,489 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:11,112 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:19,416 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:21,157 log 16979 123145580711936 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:24,912 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:27,574 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:31,993 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:33,790 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:37,277 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:39,359 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:43,286 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:45,286 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:49,312 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:51,389 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:55,321 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:33:57,575 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:01,491 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:04,176 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:09,263 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:13,440 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:16,594 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:21,618 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:24,237 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:31,688 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:32,690 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:41,945 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:42,862 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:50,333 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:52,037 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:34:57,629 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:01,536 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:06,806 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:09,335 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:14,473 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:16,622 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:22,973 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:25,232 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:28,279 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:31,285 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:34,287 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:37,274 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:40,275 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:43,282 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:46,280 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:49,285 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:52,295 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:55,312 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:35:58,324 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:01,441 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:04,754 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:07,752 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:12,604 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:17,740 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:19,733 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:26,828 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:27,516 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:34,715 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:35,149 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:43,750 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:44,157 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:51,037 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:52,607 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:58,220 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:36:59,592 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:04,650 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:07,429 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:11,825 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:14,411 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:22,182 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:23,347 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:27,277 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:29,277 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:33,281 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:35,278 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:39,326 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:41,279 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:45,293 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:47,282 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:51,333 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:53,337 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:57,367 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:37:59,633 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:03,508 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:06,376 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:09,898 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:16,449 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:19,603 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:26,753 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:28,120 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:35,291 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:36,458 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:44,412 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:44,800 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:51,826 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:38:53,376 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:00,253 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:00,311 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:07,465 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:10,524 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:15,736 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:17,308 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:23,197 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:26,141 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:28,282 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:31,282 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:34,280 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:37,301 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:40,281 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:43,285 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:46,293 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:49,295 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:52,317 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:55,350 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:39:58,414 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:01,528 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:04,553 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:07,652 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:12,004 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:14,973 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:21,512 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:23,376 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:30,164 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:34,265 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:39,111 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:42,400 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:48,825 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:51,056 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:57,509 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:40:57,968 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:04,922 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:08,152 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:13,651 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:17,744 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:20,471 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:24,296 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:28,706 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:34,779 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:37,498 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:42,578 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:45,719 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:50,136 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:54,487 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:41:56,941 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:04,158 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:06,678 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:10,885 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:15,023 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:17,400 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:23,116 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:26,803 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:29,871 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:36,210 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:37,725 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:45,195 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:48,597 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:53,858 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:42:57,404 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:03,114 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:06,264 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:10,107 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:13,626 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:18,145 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:22,638 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:25,801 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:32,369 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:33,167 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:40,691 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:42,316 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:49,510 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:43:50,744 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:00,273 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:01,247 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:08,753 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:09,146 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:15,706 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:18,674 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:25,688 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:26,425 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:33,428 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:33,512 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:41,612 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:42,902 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:48,638 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:51,766 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:44:58,052 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:01,220 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:06,626 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:11,285 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:13,884 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:20,663 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:22,256 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:30,636 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:32,132 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:39,221 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:39,666 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:45,859 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:49,297 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:45:55,288 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:00,106 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:02,456 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:08,060 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:09,761 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:14,431 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:18,949 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:24,378 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:29,180 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:35,238 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:38,303 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:43,971 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:48,471 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:53,065 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:46:58,361 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:01,536 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:07,604 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:08,368 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:14,959 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:18,972 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:24,541 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:26,998 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:30,285 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:32,285 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:36,288 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:38,333 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:42,286 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:44,287 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:48,292 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:50,290 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:54,305 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:47:56,326 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:00,448 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:02,378 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:06,867 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:08,846 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:13,054 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:17,980 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:21,799 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:25,551 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:29,112 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:35,782 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:37,819 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:44,118 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:46,085 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:53,140 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:48:54,349 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:02,409 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:04,193 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:11,101 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:13,133 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:19,156 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:21,599 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:25,289 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:29,615 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:30,336 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:35,288 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:36,289 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:41,287 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:42,290 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:47,292 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:48,297 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:53,299 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:54,317 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:59,380 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:49:59,407 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:05,459 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:05,691 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:12,205 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:13,398 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:20,512 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:21,239 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:28,015 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 04:50:28,131 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 05:40:03,754 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 05:40:04,281 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 07:28:00,167 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 07:28:00,376 log 16979 123145546596352 Not Found: /ws/portfolio/
+WARNING 2025-10-28 07:50:37,394 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 07:50:39,974 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:24:21,868 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:24:22,272 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:30,890 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:30,954 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:39,107 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:39,134 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:44,794 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:45,691 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:50,722 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:51,720 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:57,203 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:26:58,103 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:27:03,257 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:27:04,343 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:27:10,299 log 16979 123145529806848 Not Found: /ws/portfolio/
+WARNING 2025-10-28 08:27:13,804 log 16979 123145529806848 Not Found: /ws/portfolio/

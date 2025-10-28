@@ -317,12 +317,12 @@ class MarketConsumer(AsyncWebsocketConsumer):
 
 class PortfolioConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.user = self.scope["user"]
-        if self.user.is_anonymous:
+        self.user = self.scope["user"] # type: ignore
+        if self.user.is_anonymous: # type: ignore
             await self.close()
             return
             
-        self.portfolio_group_name = f'portfolio_{self.user.id}'
+        self.portfolio_group_name = f'portfolio_{self.user.id}' # type: ignore
         
         # Join portfolio group
         await self.channel_layer.group_add(
@@ -331,20 +331,20 @@ class PortfolioConsumer(AsyncWebsocketConsumer):
         )
         
         await self.accept()
-        logger.info(f"Portfolio WebSocket connected for user: {self.user.username}")
+        logger.info(f"Portfolio WebSocket connected for user: {self.user.username}") # type: ignore
         
         # Send initial portfolio data
         await self.send_initial_portfolio_data()
 
-    async def disconnect(self, close_code):
+    async def disconnect(self, close_code): # type: ignore
         # Leave portfolio group
         await self.channel_layer.group_discard(
             self.portfolio_group_name,
             self.channel_name
         )
-        logger.info(f"Portfolio WebSocket disconnected for user: {self.user.username}")
+        logger.info(f"Portfolio WebSocket disconnected for user: {self.user.username}") # type: ignore
 
-    async def receive(self, text_data):
+    async def receive(self, text_data): # type: ignore
         try:
             data = json.loads(text_data)
             message_type = data.get('type')

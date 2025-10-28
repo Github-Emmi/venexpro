@@ -1,280 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Cryptocurrency Market</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+{% extends "jobs/admin_templates/base.html" %}
+{% load static %}
 
-        body {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-        }
+{% block title %}Market Overview - Venex Broker{% endblock %}
 
-        .live_market {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/market.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}"
+{% endblock %}
 
-        .market-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+{% block head_js %}
+<script>
+    window.marketData = {
+        market_stats: {{ market_stats|safe }},
+        cryptocurrencies: {{ cryptocurrencies|safe }},
+        current_prices: {{ current_prices|safe }}
+    };
+</script>
+{% endblock %}
 
-        .market-header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #00b4db, #0083b0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
+{% block main_content %}
+<div class="market-container">
 
-        .market-stats {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    <!-- Market Overview Header -->
+    <section class="market-overview">
+        <div class="section-header">
+            <h1 class="section-title">Market Overview</h1>
+            <div class="last-updated" id="lastUpdated">
+                Last updated: <span id="updateTime">--</span>
+            </div>
+        </div>
+        
+        <div class="stats-grid" id="marketStats">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <div class="stat-label">Global Market Cap</div>
+                    <div class="stat-value" id="globalMarketCap">--</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💹</div>
+                <div class="stat-info">
+                    <div class="stat-label">24h Volume</div>
+                    <div class="stat-value" id="totalVolume">--</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">₿</div>
+                <div class="stat-info">
+                    <div class="stat-label">BTC Dominance</div>
+                    <div class="stat-value" id="btcDominance">--</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🪙</div>
+                <div class="stat-info">
+                    <div class="stat-label">Active Cryptos</div>
+                    <div class="stat-value" id="activeCryptos">--</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 15px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #8899a6;
-            margin-bottom: 5px;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00b4db;
-        }
-
-        .crypto-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .crypto-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .crypto-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 180, 219, 0.3);
-            border-color: #00b4db;
-        }
-
-        .crypto-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .crypto-symbol {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .crypto-name {
-            font-size: 0.9rem;
-            color: #8899a6;
-        }
-
-        .price-display {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .current-price {
-            font-size: 2.2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #00b4db, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Courier New', monospace;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-        }
-
-        .price-change {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .positive {
-            background: rgba(0, 255, 135, 0.2);
-            color: #00ff87;
-            border: 1px solid #00ff87;
-        }
-
-        .negative {
-            background: rgba(255, 0, 0, 0.2);
-            color: #ff4444;
-            border: 1px solid #ff4444;
-        }
-
-        .crypto-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-            font-size: 0.85rem;
-        }
-
-        .detail-item {
-            text-align: center;
-        }
-
-        .detail-label {
-            color: #8899a6;
-            margin-bottom: 5px;
-        }
-
-        .detail-value {
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .market-cap {
-            color: #00b4db;
-        }
-
-        .volume {
-            color: #00ff87;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-
-        .last-updated {
-            text-align: center;
-            margin-top: 20px;
-            color: #8899a6;
-            font-size: 0.8rem;
-        }
-
-        .connection-status {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .connected {
-            background: rgba(0, 255, 135, 0.2);
-            color: #00ff87;
-            border: 1px solid #00ff87;
-        }
-
-        .disconnected {
-            background: rgba(255, 0, 0, 0.2);
-            color: #ff4444;
-            border: 1px solid #ff4444;
-        }
-
-        /* Digital display effect */
-        .digital-display {
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px currentColor;
-        }
-
-        /* Loading animation */
-        .loading {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        @media (max-width: 768px) {
-            .crypto-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .current-price {
-                font-size: 1.8rem;
-            }
-            
-            .market-header h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="connection-status disconnected" id="connectionStatus">
-        Disconnected
-    </div>
-
-    <div class="live_market" id="live_market">
+    <!-- Live Cryptocurrency Prices -->
+    <section class="crypto-prices-section">
+        <div class="live_market" id="live_market">
         <div class="market-header">
             <h1>Live Cryptocurrency Market</h1>
             <p>Real-time digital asset prices and statistics</p>
-        </div>
-
-        <div class="market-stats">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-label">Active Cryptocurrencies</div>
-                    <div class="stat-value digital-display" id="activeCryptos">5</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Total Market Cap</div>
-                    <div class="stat-value digital-display" id="totalMarketCap">$3.04T</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">24h Volume</div>
-                    <div class="stat-value digital-display" id="totalVolume">$182.7B</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">BTC Dominance</div>
-                    <div class="stat-value digital-display" id="btcDominance">75.91%</div>
-                </div>
-            </div>
         </div>
 
         <div class="crypto-grid" id="cryptoGrid">
@@ -285,237 +78,44 @@
             Last updated: <span id="updateTime">--</span>
         </div>
     </div>
+    </section>
 
-    <script>
-        // WebSocket connection
-        let ws = null;
-        let reconnectAttempts = 0;
-        const maxReconnectAttempts = 5;
-
-        // Initial cryptocurrency data structure
-        const cryptocurrencies = {
-            'BTC': { name: 'Bitcoin', price: '115,617.00', change: '+3.587%', positive: true },
-            'ETH': { name: 'Ethereum', price: '4,242.67', change: '+7.546%', positive: true },
-            'USDT': { name: 'Tether', price: '1.00', change: '-0.018%', positive: false },
-            'TRX': { name: 'Tron', price: '0.3014', change: '+2.100%', positive: true },
-            'LTC': { name: 'Litecoin', price: '100.67', change: '+3.818%', positive: true }
-        };
-
-        // Initialize the display
-        function initializeDisplay() {
-            const cryptoGrid = document.getElementById('cryptoGrid');
-            cryptoGrid.innerHTML = '';
-
-            Object.entries(cryptocurrencies).forEach(([symbol, data]) => {
-                const card = createCryptoCard(symbol, data);
-                cryptoGrid.appendChild(card);
-            });
-        }
-
-        // Create a cryptocurrency card
-        function createCryptoCard(symbol, data) {
-            const card = document.createElement('div');
-            card.className = 'crypto-card';
-            card.id = `card-${symbol}`;
-
-            card.innerHTML = `
-                <div class="crypto-header">
-                    <div>
-                        <div class="crypto-symbol">${symbol} - USD</div>
-                        <div class="crypto-name">${data.name}</div>
-                    </div>
-                    <div class="rank">#${getRank(symbol)}</div>
+    <!-- Top Gainers & Losers -->
+    <section class="performance-section">
+        <div class="performance-grid">
+            <!-- Top Gainers -->
+            <div class="performance-card gainers-card">
+                <div class="performance-header">
+                    <h3 class="performance-title">🚀 Top Gainers (24h)</h3>
+                    <div class="performance-subtitle">Biggest positive movements</div>
                 </div>
-                <div class="price-display">
-                    <div class="current-price digital-display">$ ${data.price}</div>
-                    <div class="price-change ${data.positive ? 'positive' : 'negative'}">
-                        ${data.change}
-                    </div>
+                <div class="performance-list" id="topGainers">
+                    <!-- Gainers will be populated by JavaScript -->
                 </div>
-                <div class="crypto-details">
-                    <div class="detail-item">
-                        <div class="detail-label">Market Cap</div>
-                        <div class="detail-value market-cap digital-display" id="cap-${symbol}">${formatMarketCap(symbol)}</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">24h Volume</div>
-                        <div class="detail-value volume digital-display" id="vol-${symbol}">${formatVolume(symbol)}</div>
-                    </div>
+            </div>
+
+            <!-- Top Losers -->
+            <div class="performance-card losers-card">
+                <div class="performance-header">
+                    <h3 class="performance-title">📉 Top Losers (24h)</h3>
+                    <div class="performance-subtitle">Biggest negative movements</div>
                 </div>
-            `;
+                <div class="performance-list" id="topLosers">
+                    <!-- Losers will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
 
-            return card;
-        }
+    <!-- Loading State -->
+    <div class="loading-state" id="loadingState">
+        <div class="loading-spinner"></div>
+        <p>Loading market data...</p>
+    </div>
+</div>
+{% endblock %}
 
-        // Helper functions
-        function getRank(symbol) {
-            const ranks = { 'BTC': 1, 'ETH': 2, 'USDT': 3, 'TRX': 10, 'LTC': 30 };
-            return ranks[symbol] || '-';
-        }
-
-        function formatMarketCap(symbol) {
-            const caps = {
-                'BTC': '$2.30T', 'ETH': '$512.0B', 'USDT': '$183.2B', 
-                'TRX': '$28.5B', 'LTC': '$7.69B'
-            };
-            return caps[symbol] || '-';
-        }
-
-        function formatVolume(symbol) {
-            const volumes = {
-                'BTC': '$52.2B', 'ETH': '$33.0B', 'USDT': '$96.1B', 
-                'TRX': '$848M', 'LTC': '$545M'
-            };
-            return volumes[symbol] || '-';
-        }
-
-        // Connect to WebSocket
-        function connectWebSocket() {
-            try {
-                ws = new WebSocket('ws://127.0.0.1:8000/ws/market/');
-                
-                ws.onopen = function() {
-                    console.log('WebSocket connected');
-                    updateConnectionStatus(true);
-                    reconnectAttempts = 0;
-                };
-
-                ws.onmessage = function(event) {
-                    try {
-                        const data = JSON.parse(event.data);
-                        if (data.type === 'market_data') {
-                            updateMarketData(data.data);
-                        }
-                    } catch (error) {
-                        console.error('Error parsing WebSocket message:', error);
-                    }
-                };
-
-                ws.onclose = function() {
-                    console.log('WebSocket disconnected');
-                    updateConnectionStatus(false);
-                    attemptReconnect();
-                };
-
-                ws.onerror = function(error) {
-                    console.error('WebSocket error:', error);
-                    updateConnectionStatus(false);
-                };
-
-            } catch (error) {
-                console.error('WebSocket connection failed:', error);
-                updateConnectionStatus(false);
-            }
-        }
-
-        // Update market data from WebSocket
-        function updateMarketData(marketData) {
-            // Update market statistics
-            if (marketData.market_stats) {
-                document.getElementById('activeCryptos').textContent = marketData.market_stats.active_cryptocurrencies;
-                document.getElementById('totalMarketCap').textContent = `$${(marketData.market_stats.total_market_cap / 1e12).toFixed(2)}T`;
-                document.getElementById('totalVolume').textContent = `$${(marketData.market_stats.total_volume_24h / 1e9).toFixed(1)}B`;
-                document.getElementById('btcDominance').textContent = `${marketData.market_stats.btc_dominance.toFixed(2)}%`;
-            }
-
-            // Update cryptocurrency cards
-            if (marketData.cryptocurrencies) {
-                marketData.cryptocurrencies.forEach(crypto => {
-                    updateCryptoCard(crypto);
-                });
-            }
-
-            // Update timestamp
-            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
-            
-            // Add pulse animation to indicate update
-            const cryptoGrid = document.getElementById('cryptoGrid');
-            cryptoGrid.classList.add('pulse');
-            setTimeout(() => cryptoGrid.classList.remove('pulse'), 1000);
-        }
-
-        // Update individual cryptocurrency card
-        function updateCryptoCard(crypto) {
-            const card = document.getElementById(`card-${crypto.symbol}`);
-            if (!card) return;
-
-            const priceElement = card.querySelector('.current-price');
-            const changeElement = card.querySelector('.price-change');
-            const marketCapElement = card.getElementById(`cap-${crypto.symbol}`);
-            const volumeElement = card.getElementById(`vol-${crypto.symbol}`);
-
-            if (priceElement) {
-                priceElement.textContent = `$ ${parseFloat(crypto.current_price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            }
-
-            if (changeElement) {
-                const isPositive = parseFloat(crypto.price_change_percentage_24h) >= 0;
-                changeElement.textContent = `${isPositive ? '+' : ''}${parseFloat(crypto.price_change_percentage_24h).toFixed(2)}%`;
-                changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
-            }
-
-            if (marketCapElement) {
-                marketCapElement.textContent = `$${(parseFloat(crypto.market_cap) / 1e9).toFixed(1)}B`;
-            }
-
-            if (volumeElement) {
-                volumeElement.textContent = `$${(parseFloat(crypto.volume_24h) / 1e9).toFixed(1)}B`;
-            }
-        }
-
-        // Update connection status
-        function updateConnectionStatus(connected) {
-            const statusElement = document.getElementById('connectionStatus');
-            if (connected) {
-                statusElement.textContent = 'Connected';
-                statusElement.className = 'connection-status connected';
-            } else {
-                statusElement.textContent = 'Disconnected';
-                statusElement.className = 'connection-status disconnected';
-            }
-        }
-
-        // Attempt to reconnect
-        function attemptReconnect() {
-            if (reconnectAttempts < maxReconnectAttempts) {
-                reconnectAttempts++;
-                console.log(`Attempting to reconnect... (${reconnectAttempts}/${maxReconnectAttempts})`);
-                setTimeout(connectWebSocket, 3000 * reconnectAttempts);
-            } else {
-                console.log('Max reconnection attempts reached');
-            }
-        }
-
-        // Format numbers with commas
-        function formatNumber(number) {
-            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeDisplay();
-            connectWebSocket();
-            
-            // Simulate price updates for demo (remove in production)
-            setInterval(() => {
-                if (!ws || ws.readyState !== WebSocket.OPEN) {
-                    // Add small random fluctuations to demo live updates
-                    Object.keys(cryptocurrencies).forEach(symbol => {
-                        const card = document.getElementById(`card-${symbol}`);
-                        if (card) {
-                            const priceElement = card.querySelector('.current-price');
-                            if (priceElement) {
-                                const currentPrice = parseFloat(priceElement.textContent.replace(/[$,]/g, ''));
-                                const fluctuation = (Math.random() - 0.5) * 10;
-                                const newPrice = currentPrice + fluctuation;
-                                priceElement.textContent = `$ ${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                            }
-                        }
-                    });
-                    document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
-                }
-            }, 5000);
-        });
-    </script>
-</body>
-</html>
+{% block extra_js %}
+<script src="{% static 'assets/js/market.js' %}"></script>
+<script src="{% static 'assets/js/venex-dashboard.js' %}"></script>
+{% endblock %}

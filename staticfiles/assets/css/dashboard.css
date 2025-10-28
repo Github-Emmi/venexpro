@@ -358,3 +358,291 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
+    /* Dashboard Grid Layout */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    /* Card Styles */
+    .dashboard-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    /* Quick Trade Section */
+    .quick-trade .trade-type-toggle {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .trade-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #fff;
+    }
+
+    .trade-btn.active {
+        background: #00b4db;
+        color: white;
+        border-color: #00b4db;
+    }
+
+    .trade-form .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .trade-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #8899a6;
+    }
+
+    .trade-form select,
+    .trade-form input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    /* Open Orders */
+    .orders-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .order-type {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .order-type.buy {
+        background: rgba(0, 255, 135, 0.2);
+        color: #00ff87;
+    }
+
+    .order-type.sell {
+        background: rgba(255, 68, 68, 0.2);
+        color: #ff4444;
+    }
+
+    .order-date {
+        font-size: 0.85rem;
+        color: #8899a6;
+    }
+
+    /* Market Summary */
+    .market-analysis {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .market-sentiment,
+    .top-performers {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .sentiment-indicator {
+        margin-top: 0.5rem;
+    }
+
+    .market-recommendation {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        margin-top: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .recommendation-text {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #8899a6;
+    }
+
+    /* Recent Transactions */
+    .transactions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .transaction-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .transaction-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+    .transaction-icon.buy {
+        background: rgba(0, 255, 135, 0.2);
+        color: #00ff87;
+    }
+
+    .transaction-icon.sell {
+        background: rgba(255, 68, 68, 0.2);
+        color: #ff4444;
+    }
+
+    .transaction-icon.transfer {
+        background: rgba(0, 180, 219, 0.2);
+        color: #00b4db;
+    }
+
+    .transaction-details {
+        display: grid;
+        gap: 0.25rem;
+    }
+
+    .transaction-type {
+        font-weight: 500;
+        color: #fff;
+    }
+
+    .transaction-crypto {
+        font-size: 0.85rem;
+        color: #8899a6;
+    }
+
+    .transaction-time {
+        font-size: 0.85rem;
+        color: #8899a6;
+    }
+
+    /* Empty States */
+    .no-orders,
+    .no-transactions {
+        text-align: center;
+        padding: 2rem;
+        color: #8899a6;
+    }
+
+    .no-orders i,
+    .no-transactions i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Badge Styles */
+    .badge {
+        padding: 0.35rem 0.65rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .bg-success {
+        background: rgba(0, 255, 135, 0.2);
+        color: #00ff87;
+        border: 1px solid #00ff87;
+    }
+
+    .bg-danger {
+        background: rgba(255, 68, 68, 0.2);
+        color: #ff4444;
+        border: 1px solid #ff4444;
+    }
+
+    .bg-pending {
+        background: rgba(255, 193, 7, 0.2);
+        color: #ffc107;
+        border: 1px solid #ffc107;
+    }
+
+    .bg-completed {
+        background: rgba(0, 255, 135, 0.2);
+        color: #00ff87;
+        border: 1px solid #00ff87;
+    }
+
+    /* Refresh Time */
+    .refresh-time {
+        font-size: 0.85rem;
+        color: #8899a6;
+    }
+
+    /* Responsive Design for New Sections */
+    @media (max-width: 768px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .market-analysis {
+            grid-template-columns: 1fr;
+        }
+
+        .transaction-item {
+            grid-template-columns: auto 1fr;
+        }
+
+        .transaction-status {
+            grid-column: span 2;
+            text-align: right;
+        }
+    }
