@@ -288,7 +288,7 @@ class VenexAdminSite(admin.AdminSite):
     site_title = "Venex Admin"
     index_title = "Platform Dashboard"
     
-    def get_urls(self):
+    def get_urls(self): #type: ignore
         urls = super().get_urls()
         custom_urls = [
             path('admin-dashboard/', self.admin_view(self.admin_dashboard), name='admin-dashboard'),
@@ -411,7 +411,7 @@ class TransactionInline(admin.TabularInline):
             color,
             obj.get_status_display()
         )
-    get_status_badge.short_description = 'Status'
+    get_status_badge.short_description = 'Status' # type: ignore
 
 
 class PortfolioInline(admin.TabularInline):
@@ -507,6 +507,7 @@ class CustomUserAdmin(UserAdmin):
         'credit_usdt_balance', 'debit_usdt_balance',
         'credit_litecoin_balance', 'debit_litecoin_balance',
         'credit_tron_balance', 'debit_tron_balance',
+        'credit_currency_balance', 'debit_currency_balance',
         'reset_balances', 'send_bulk_notification'
     ]
     
@@ -518,11 +519,14 @@ class CustomUserAdmin(UserAdmin):
         )}),
         ('Wallet Addresses', {'fields': (
             'btc_wallet', 'ethereum_wallet', 'usdt_wallet', 
-            'litecoin_wallet', 'tron_wallet', 'currency_type'
+            'litecoin_wallet', 'tron_wallet'
         )}),
-        ('Wallet Balances', {'fields': (
+        ('Crypto Balances', {'fields': (
             'btc_balance', 'ethereum_balance', 'usdt_balance', 
             'litecoin_balance', 'tron_balance'
+        )}),
+        ('Fiat Currency Balance', {'fields': (
+            'currency_balance', 'currency_type'
         )}),
         ('Permissions', {'fields': (
             'is_active', 'is_staff', 'is_superuser', 'is_blocked', 
@@ -570,15 +574,25 @@ class CustomUserAdmin(UserAdmin):
 
     def get_balance_summary(self, obj):
         balances = []
+        
+        # Add currency balance (fiat)
+        if obj.currency_balance > 0:
+            balances.append(f"💵 {obj.currency_type} {float(obj.currency_balance):.2f}")
+        
+        # Add crypto balances
         if obj.btc_balance > 0:
             balances.append(f"₿{float(obj.btc_balance):.4f}")
         if obj.ethereum_balance > 0:
             balances.append(f"Ξ{float(obj.ethereum_balance):.4f}")
         if obj.usdt_balance > 0:
-            balances.append(f"${float(obj.usdt_balance):.2f}")
+            balances.append(f"💲{float(obj.usdt_balance):.2f}")
+        if obj.litecoin_balance > 0:
+            balances.append(f"Ł{float(obj.litecoin_balance):.4f}")
+        if obj.tron_balance > 0:
+            balances.append(f"⚡{float(obj.tron_balance):.4f}")
         
         if balances:
-            return ", ".join(balances)
+            return format_html('<br>'.join(balances))
         return format_html('<span style="color: gray;">No Balance</span>')
     get_balance_summary.short_description = 'Balances' # type: ignore
 
@@ -769,6 +783,72 @@ class CustomUserAdmin(UserAdmin):
         self._debit_balance(request, queryset, 'TRX', 100.0, 'TRX')
     debit_tron_balance.short_description = "💸 Debit 100 TRX"
 
+    def credit_currency_balance(self, request, queryset):
+        """Credit fiat currency balance to users"""
+        success_count = 0
+        amount = 1000.00  # Default credit amount in fiat currency
+        
+        for user in queryset:
+            user.currency_balance += amount
+            user.save()
+            
+            # Create transaction record
+            Transaction.objects.create(
+                user=user,
+                transaction_type='DEPOSIT',
+                fiat_amount=amount,
+                currency=user.currency_type,
+                status='COMPLETED',
+                completed_at=timezone.now(),
+                description=f'Admin credit - {amount} {user.currency_type}'
+            )
+            
+            # Send notification email
+            AdminEmailService.send_balance_credit_notification(user, amount, user.currency_type)
+            success_count += 1
+        
+        self.message_user(
+            request, 
+            f"💰 Successfully credited {amount} fiat currency to {success_count} users.", 
+            messages.SUCCESS
+        )
+    credit_currency_balance.short_description = "💰 Credit 1000 Currency Balance"
+
+    def debit_currency_balance(self, request, queryset):
+        """Debit fiat currency balance from users"""
+        success_count = 0
+        amount = 1000.00  # Default debit amount in fiat currency
+        
+        for user in queryset:
+            if user.currency_balance >= amount:
+                user.currency_balance -= amount
+                user.save()
+                
+                # Create transaction record
+                Transaction.objects.create(
+                    user=user,
+                    transaction_type='WITHDRAWAL',
+                    fiat_amount=amount,
+                    currency=user.currency_type,
+                    status='COMPLETED',
+                    completed_at=timezone.now(),
+                    description=f'Admin debit - {amount} {user.currency_type}'
+                )
+                success_count += 1
+            else:
+                self.message_user(
+                    request, 
+                    f"User {user.email} has insufficient currency balance (has {user.currency_balance}, needs {amount})", 
+                    messages.WARNING
+                )
+        
+        self.message_user(
+            request, 
+            f"💸 Successfully debited {amount} currency balance from {success_count} users.", 
+            messages.SUCCESS
+        )
+    debit_currency_balance.short_description = "💸 Debit 1000 Currency Balance"
+
     def reset_balances(self, request, queryset):
         """Reset all balances to zero"""
         for user in queryset:
@@ -777,11 +857,12 @@ class CustomUserAdmin(UserAdmin):
             user.usdt_balance = 0
             user.litecoin_balance = 0
             user.tron_balance = 0
+            user.currency_balance = 0
             user.save()
         
         self.message_user(
             request, 
-            f"🔄 Successfully reset balances for {queryset.count()} users.", 
+            f"🔄 Successfully reset all balances (crypto + fiat) for {queryset.count()} users.", 
             messages.SUCCESS
         )
     reset_balances.short_description = "🔄 Reset all balances to zero"
@@ -798,7 +879,7 @@ class CustomUserAdmin(UserAdmin):
     def export_users_csv(self, request, queryset):
         field_names = [
             'Email', 'Username', 'Full Name', 'Phone', 'Country', 
-            'BTC Balance', 'ETH Balance', 'USDT Balance', 
+            'Currency Balance', 'BTC Balance', 'ETH Balance', 'USDT Balance', 
             'LTC Balance', 'TRX Balance', 'Verified', 'Blocked', 
             'Active', 'Joined Date'
         ]

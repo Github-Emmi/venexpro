@@ -64,6 +64,42 @@ class EmailService:
     
     
     @staticmethod
+    def send_verification_notification(user, verification_code):
+        """
+        Send verification code email for buy transaction
+        """
+        try:
+            context = {
+                'user': user,
+                'verification_code': verification_code,
+                'site_url': settings.SITE_URL,
+                'support_email': settings.SUPPORT_EMAIL,
+                'timestamp': timezone.now(),
+            }
+            subject = "Your Venex Trading Verification Code"
+            html_content = render_to_string('emails/verification_code.html', context)
+            text_content = strip_tags(html_content)
+            
+            logger.info(f"Attempting to send verification email to {user.email}")
+            logger.info(f"Using SMTP: {settings.EMAIL_HOST}:{settings.EMAIL_PORT}")
+            logger.info(f"From: {settings.DEFAULT_FROM_EMAIL}")
+            
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=text_content,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[user.email],
+                reply_to=[settings.SUPPORT_EMAIL],
+            )
+            email.attach_alternative(html_content, "text/html")
+            email.send(fail_silently=False)
+            
+            logger.info(f"Verification code email sent successfully to {user.email}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to send verification code email: {str(e)}", exc_info=True)
+            return False
+    @staticmethod
     def send_contact_notification(contact_data):
         """
         Send notification to admin about new contact form submission

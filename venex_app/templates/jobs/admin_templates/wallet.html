@@ -1,5 +1,6 @@
 {% extends "jobs/admin_templates/base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}Wallet Management - Venex Broker{% endblock %}
 
@@ -11,8 +12,26 @@
 {% block main_content %}
 <div class="wallet-container">
     <div class="section-header">
-        <h1>Wallet Management</h1>
-        <p>Manage your cryptocurrency wallets and addresses</p>
+        <div>
+            <h1>Wallet Management</h1>
+            <p>Manage your cryptocurrency wallets and addresses</p>
+        </div>
+        <div class="balance-info-header">
+            <div class="currency-balance-card">
+                <span class="balance-label">Available {{ user.currency_type }} Balance:</span>
+                <span class="balance-amount">
+                    <span class="currency-symbol">{{ user.currency_type }}</span>
+                    <span class="balance-value">{{ currency_balance|floatformat:2|intcomma }}</span>
+                </span>
+            </div>
+            <div class="currency-balance-card" style="margin-left: 1rem;">
+                <span class="balance-label">Total Portfolio Value:</span>
+                <span class="balance-amount">
+                    <span class="currency-symbol">{{ user.currency_type }}</span>
+                    <span class="balance-value">{{ total_portfolio_value|floatformat:2|intcomma }}</span>
+                </span>
+            </div>
+        </div>
     </div>
 
     <div class="wallet-overview">
@@ -25,8 +44,10 @@
                     <p>Network: Bitcoin</p>
                 </div>
             </div>
-            <div class="wallet-balance">{{ user.btc_balance }} BTC</div>
-            <div class="wallet-value">≈ ${{ user.btc_balance|floatformat:2 }}</div>
+            <!-- This should show the user's currency conversion to btc current live market price updating in real-time
+             price updates when it has e.g +3.587% green, and -1.234% red and for other cryptocurrencies implement similar logic -->
+            <div class="wallet-balance">{{ user.btc_balance }} // make the change here! BTC</div>
+            <div class="wallet-value">≈ {{ user.currency_type }} {{ user.btc_balance|floatformat:6 }}</div>
             <div class="wallet-address">
                 <span class="wallet-address-label">Wallet Address</span>
                 {{ user.btc_wallet|default:"No address set" }}

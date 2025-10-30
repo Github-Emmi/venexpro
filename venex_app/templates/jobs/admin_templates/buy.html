@@ -1,0 +1,246 @@
+{% extends "jobs/admin_templates/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Buy Cryptocurrency - Venex Trading{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/trading.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="trading-container">
+    <!-- Page Header -->
+    <div class="trading-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-shopping-cart"></i>
+                Buy Cryptocurrency
+            </h1>
+            <p class="page-subtitle">Purchase cryptocurrencies at real-time market prices</p>
+        </div>
+        <div class="balance-info">
+            <div class="balance-card">
+                <span class="balance-label">Available Balance:</span>
+                <span class="balance-amount" id="available-balance">
+                    <span class="currency-symbol">{{ user.currency_type }}</span>
+                    <span id="currency-balance">{{ currency_balance|floatformat:2|intcomma }}</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="trading-content">
+        <!-- Market Overview Section -->
+        <div class="market-overview-section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Live Market Prices
+            </h2>
+            <div class="crypto-cards-grid" id="crypto-cards-container">
+                <!-- Create a js that fetches cryptocurrency data and populates the cards dynamically -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading market data...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buy Form Section -->
+        <div class="trading-form-section">
+            <div class="form-card">
+                <h2 class="form-title">
+                    <i class="fas fa-coins"></i>
+                    Execute Buy Order
+                </h2>
+                
+                <form id="buy-crypto-form" class="trading-form">
+                    {% csrf_token %}
+                    
+                    <!-- Cryptocurrency Selection -->
+                    <div class="form-group">
+                        <label for="crypto-select" class="form-label">
+                            <i class="fas fa-bitcoin"></i>
+                            Select Cryptocurrency
+                        </label>
+                        <select id="crypto-select" name="cryptocurrency" class="form-control" required>
+                            <option value="">-- Select Crypto --</option>
+                        </select>
+                        <div class="selected-crypto-info" id="selected-crypto-info" style="display: none;">
+                            <div class="info-row">
+                                <span class="info-label">Current Price:</span>
+                                <span class="info-value" id="current-price">$0.00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">24h Change:</span>
+                                <span class="info-value" id="price-change">0.00%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amount Input -->
+                    <div class="form-group">
+                        <label for="quantity-input" class="form-label">
+                            <i class="fas fa-calculator"></i>
+                            Amount to Buy
+                        </label>
+                        <div class="input-group">
+                            <input type="number" 
+                                   id="quantity-input" 
+                                   name="quantity" 
+                                   class="form-control" 
+                                   placeholder="0.00000000" 
+                                   step="0.00000001" 
+                                   min="0.00000001" 
+                                   required>
+                            <span class="input-group-text" id="crypto-symbol">CRYPTO</span>
+                        </div>
+                        <small class="form-text">Minimum: 0.000001</small>
+                    </div>
+
+                    <!-- Total Amount Display -->
+                    <div class="form-group total-section">
+                        <div class="total-display">
+                            <div class="total-row">
+                                <span class="total-label">Subtotal:</span>
+                                <span class="total-value" id="subtotal-amount">$0.00</span>
+                            </div>
+                            <div class="total-row">
+                                <span class="total-label">Network Fee (0.1%):</span>
+                                <span class="total-value" id="network-fee">$0.00</span>
+                            </div>
+                            <div class="total-row total-final">
+                                <span class="total-label">Total Cost:</span>
+                                <span class="total-value" id="total-cost">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-submit" id="buy-submit-btn">
+                        <i class="fas fa-check-circle"></i>
+                        Buy Cryptocurrency
+                    </button>
+                </form>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="recent-transactions">
+                <h3 class="section-subtitle">
+                    <i class="fas fa-history"></i>
+                    Recent Buy Orders
+                </h3>
+                <div class="transactions-list" id="recent-transactions">
+                    <p class="empty-state">No recent transactions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Buy Confirmation Modal -->
+<div class="modal fade" id="buyConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    Confirm Purchase
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Cryptocurrency:</span>
+                        <span class="detail-value" id="confirm-crypto">BTC</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Amount:</span>
+                        <span class="detail-value" id="confirm-quantity">0.00</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Price per Unit:</span>
+                        <span class="detail-value" id="confirm-price">$0.00</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Total Cost:</span>
+                        <span class="detail-value highlight" id="confirm-total">$0.00</span>
+                    </div>
+                </div>
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle"></i>
+                    A confirmation code will be sent to your email: <strong>{{ user.email }}</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirm-buy-btn">
+                    <i class="fas fa-check"></i>
+                    Confirm Purchase
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Verification Modal -->
+<div class="modal fade" id="emailVerificationModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-envelope"></i>
+                    Email Verification
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center mb-3">Enter the 6-digit code sent to your email</p>
+                <div class="verification-code-input">
+                    <input type="text" maxlength="1" class="code-digit" data-index="0">
+                    <input type="text" maxlength="1" class="code-digit" data-index="1">
+                    <input type="text" maxlength="1" class="code-digit" data-index="2">
+                    <input type="text" maxlength="1" class="code-digit" data-index="3">
+                    <input type="text" maxlength="1" class="code-digit" data-index="4">
+                    <input type="text" maxlength="1" class="code-digit" data-index="5">
+                </div>
+                <p class="text-center mt-3">
+                    <small>Didn't receive code? <a href="#" id="resend-code">Resend</a></small>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="verify-code-btn">
+                    <i class="fas fa-check"></i>
+                    Verify & Complete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center py-5">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="mt-3">Purchase Successful!</h3>
+                <p class="text-muted">Your cryptocurrency has been added to your portfolio</p>
+                <button type="button" class="btn btn-primary mt-3" data-bs-dismiss="modal">
+                    Continue Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'assets/js/buySocket.js' %}"></script>
+<script src="{% static 'assets/js/buy.js' %}"></script>
+{% endblock %}

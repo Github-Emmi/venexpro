@@ -224,12 +224,22 @@ class TransactionSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'user', 'created_at', 'updated_at', 'completed_at']
 
 class TransactionCreateSerializer(serializers.ModelSerializer):
+    cryptocurrency = serializers.CharField()  # Accept symbol as string
+    
     class Meta:
         model = Transaction  # type: ignore
         fields = [
             'transaction_type', 'cryptocurrency', 'quantity', 'price_per_unit',
             'fiat_amount', 'currency', 'wallet_address'
         ]
+    
+    def validate_cryptocurrency(self, value):
+        """Convert cryptocurrency symbol to Cryptocurrency instance"""
+        try:
+            crypto = Cryptocurrency.objects.get(symbol=value.upper())
+            return crypto
+        except Cryptocurrency.DoesNotExist:
+            raise serializers.ValidationError(f"Cryptocurrency '{value}' not found.")
     
     def validate(self, attrs):
         transaction_type = attrs.get('transaction_type')
@@ -278,6 +288,8 @@ class OrderSerializer(serializers.ModelSerializer):
         ]
 
 class OrderCreateSerializer(serializers.ModelSerializer):
+    cryptocurrency = serializers.CharField()  # Accept symbol as string
+    
     class Meta:
         model = Order  # type: ignore
         fields = [
@@ -287,6 +299,14 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'side': {'required': True},
         }
+
+    def validate_cryptocurrency(self, value):
+        """Convert cryptocurrency symbol to Cryptocurrency instance"""
+        try:
+            crypto = Cryptocurrency.objects.get(symbol=value.upper())
+            return crypto
+        except Cryptocurrency.DoesNotExist:
+            raise serializers.ValidationError(f"Cryptocurrency '{value}' not found.")
 
     def validate(self, attrs):
         order_type = attrs.get('order_type')

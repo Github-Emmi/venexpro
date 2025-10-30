@@ -1,0 +1,79 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .email-header {
+            background-color: #4a90e2;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .email-logo {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .email-body {
+            padding: 20px;
+        }
+        .email-body h1 {
+            color: #333333;
+        }
+        .email-body p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555555;
+        }
+        .email-footer {
+            background-color: #f9f9f9;
+            color: #777777;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+        }
+        .email-footer a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <a href="{{ site_url }}/dashboard" class="email-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>VENEX</span>
+            </a>
+        </div>
+        <div class="email-body">
+            <h1>Email Verification Code</h1>
+            <p>Your verification code is: <strong>{{ verification_code }}</strong></p>
+            <p>Please enter this code in the application to verify your email address.</p>
+        </div>
+        <div class="email-footer">
+            <p>If you did not request this code, please ignore this email or contact support at {{ support_email }}.</p>
+            <p>&copy; {% now "Y" %} VENEX. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

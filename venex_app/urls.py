@@ -6,6 +6,8 @@ from . import consumers
 
 urlpatterns = [
     ###########################################
+    # Buy Code Verification API
+    path('api/trading/verify-buy-code/', api_views.api_verify_buy_code, name='api_verify_buy_code'),
     # Landing Page URLs
     ###########################################
     path('', views.index, name='index'),
@@ -46,9 +48,6 @@ urlpatterns = [
     # User Dashboard URLs
     path('dashboard/', user_views.dashboard, name='dashboard'),
     path('profile/', user_views.user_profile_view, name='profile'),
-    path('trading/', user_views.trading_dashboard, name='trading'),
-    path('buy/', user_views.buy_crypto_view, name='buy'),
-    path('sell/', user_views.sell_crypto_view, name='sell'),
     path('deposit/', user_views.deposit_funds_view, name='deposit'),
     path('withdraw/', user_views.withdraw_funds_view, name='withdraw'),
     path('history/', user_views.transaction_history_view, name='transaction_history_view'),
@@ -59,9 +58,8 @@ urlpatterns = [
     # TRADING INTERFACE URLs (HTML Views)
     ###########################################
     # User Trading URLs
-    path('trading/', user_views.trading_dashboard, name='trading_dashboard'),
-    path('trading/buy/', user_views.buy_crypto_view, name='buy_crypto'),
-    path('trading/sell/', user_views.sell_crypto_view, name='sell_crypto'),
+    path('trading/buy/', user_views.buy_crypto_view, name='buy'),
+    path('trading/sell/', user_views.sell_crypto_view, name='sell'),
     path('trading/deposit/', user_views.deposit_funds_view, name='deposit_funds'),
     path('trading/withdraw/', user_views.withdraw_funds_view, name='withdraw_funds'),
     path('trading/orders/', user_views.orders_view, name='orders_view'),

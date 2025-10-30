@@ -117,17 +117,6 @@ def user_profile_view(request):
 # ================================
 
 @login_required
-def trading_dashboard(request):
-    """
-    Trading interface dashboard
-    """
-    context = {
-        'user': request.user,
-        'cryptocurrencies': Cryptocurrency.objects.filter(is_active=True),
-    }
-    return render(request, 'jobs/admin_templates/trading.html', context)
-
-@login_required
 def buy_crypto_view(request):
     """
     Buy cryptocurrency page
@@ -135,6 +124,7 @@ def buy_crypto_view(request):
     context = {
         'user': request.user,
         'cryptocurrencies': Cryptocurrency.objects.filter(is_active=True),
+        'currency_balance': request.user.currency_balance,  # Use currency_balance instead
     }
     return render(request, 'jobs/admin_templates/buy.html', context)
 
@@ -315,8 +305,13 @@ def wallet_management_view(request):
     """
     Wallet addresses management page
     """
+    # Get user's portfolio value for display
+    portfolio_data = DashboardService.get_user_portfolio_value(request.user)
+    
     context = {
         'user': request.user,
+        'currency_balance': request.user.currency_balance,
+        'total_portfolio_value': portfolio_data['total_balance'],
     }
     return render(request, 'jobs/admin_templates/wallet.html', context)
 

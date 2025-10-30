@@ -262,28 +262,43 @@ else:
 
 
 # ===========================
-# EMAIL CONFIGURATION (Zoho)
+# EMAIL CONFIGURATION
 # ===========================
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.zoho.com"
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_USE_TLS = False  # must be False when using SSL
-EMAIL_HOST_USER = "venexbtc@venexbtc.com"
-EMAIL_HOST_PASSWORD = "a4siJdTwe4KA"  # your Zoho app password
-DEFAULT_FROM_EMAIL = "venexbtc@venexbtc.com"
+# DEVELOPMENT: Console Backend (emails print to terminal - SMTP blocked)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+# PRODUCTION: Gmail SMTP (when SMTP ports are unblocked)
+# EMAIL_HOST = "smtp.zoho.com"
+# EMAIL_PORT = 587   # TLS port
+# EMAIL_USE_SSL = False
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "venexbtc@venexbtc.com"
+# EMAIL_HOST_PASSWORD = "a4siJdTwe4KA"
+# DEFAULT_FROM_EMAIL = "venexbtc@venexbtc.com"
+
+# Alternative: Gmail SMTP (if you fix the credentials)
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_PORT = 587
+# EMAIL_USE_SSL = False
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "aghason.emmanuel@gmail.com"
+# EMAIL_HOST_PASSWORD = "qsct ktvm evkz qorl"
+# DEFAULT_FROM_EMAIL = "aghason.emmanuel@gmail.com"
+
+# Settings (used by console backend too)
+EMAIL_HOST_USER = "aghason.emmanuel@gmail.com"
+DEFAULT_FROM_EMAIL = "aghason.emmanuel@gmail.com"
+    
 
 # Email recipients
-CONTACT_EMAIL = 'venexbtc@venexbtc.com'
-SUPPORT_EMAIL = 'venexbtc@venexbtc.com'
-ADMIN_EMAIL = 'venexbtc@venexbtc.com'
+CONTACT_EMAIL = 'emmidevcodes@gmail.com'
+SUPPORT_EMAIL = 'emmidevcodes@gmail.com'
+ADMIN_EMAIL = 'emmidevcodes@gmail.com'
 
 # Site URL for email templates
-# SITE_URL = ['https://www.venexbtc.com', 'https://venexbtc.com'] # Change to your actual domain
-
-SITE_URL = ['https://www.localhost', 'https://127.0.0.1:8000'] # Change to your actual domain
+SITE_URL = 'http://127.0.0.1:8000'  # Change to your actual domain in production
 
 
 # Authentication settings

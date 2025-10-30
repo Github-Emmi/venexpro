@@ -1,0 +1,25 @@
+/* trading-dark.css - Dark mode for Buy Crypto page */
+body.dark-mode .crypto-card {
+    background: #23272b;
+    color: #f8f9fa;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+body.dark-mode .crypto-header {
+    color: #f8f9fa;
+}
+body.dark-mode .crypto-symbol {
+    color: #ffc107;
+}
+body.dark-mode .btn-buy {
+    background: #ffc107;
+    color: #23272b;
+}
+body.dark-mode .btn-buy:hover {
+    background: #e0a800;
+}
+body.dark-mode .positive {
+    color: #28a745;
+}
+body.dark-mode .negative {
+    color: #dc3545;
+}

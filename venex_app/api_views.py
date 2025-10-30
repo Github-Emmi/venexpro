@@ -21,8 +21,103 @@ from .serializers import (
     TransactionSerializer, OrderSerializer, PortfolioSerializer, 
     CryptocurrencySerializer, TransactionCreateSerializer, OrderCreateSerializer
 )
+from .models import PasswordResetCode
 
 logger = logging.getLogger(__name__)
+
+# ================================
+# BUY CODE VERIFICATION ENDPOINT
+# ================================
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.utils import timezone
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def api_verify_buy_code(request):
+    """
+    API endpoint to verify buy transaction code and complete the purchase
+    """
+    user = request.user
+    code = request.data.get('code')
+    
+    if not code or len(code) != 6:
+        return Response(
+            {
+                'error': 'Invalid code',
+                'message': 'Please enter a valid 6-digit verification code.'
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    try:
+        # Find the most recent unused code for this user
+        reset_code = PasswordResetCode.objects.filter(
+            user=user,
+            code=code,
+            is_used=False
+        ).order_by('-created_at').first()
+        
+        if not reset_code:
+            return Response(
+                {
+                    'error': 'Invalid code',
+                    'message': 'The verification code you entered is incorrect.'
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        if not reset_code.is_valid():
+            return Response(
+                {
+                    'error': 'Code expired',
+                    'message': 'This verification code has expired. Please request a new one.'
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Mark code as used
+        reset_code.mark_used()
+        
+        # Find the most recent PENDING transaction and mark it as COMPLETED
+        pending_transaction = Transaction.objects.filter(
+            user=user,
+            status='PENDING'
+        ).order_by('-created_at').first()
+        
+        if pending_transaction:
+            pending_transaction.status = 'COMPLETED'
+            pending_transaction.completed_at = timezone.now()
+            pending_transaction.save()
+            
+            return Response(
+                {
+                    'success': True,
+                    'message': 'Purchase verified successfully! Your cryptocurrency has been added to your wallet.',
+                    'transaction': TransactionSerializer(pending_transaction).data
+                },
+                status=status.HTTP_200_OK
+            )
+        else:
+            return Response(
+                {
+                    'success': True,
+                    'message': 'Code verified successfully.',
+                    'warning': 'No pending transaction found.'
+                },
+                status=status.HTTP_200_OK
+            )
+            
+    except Exception as e:
+        logger.error(f"Verification error: {str(e)}", exc_info=True)
+        return Response(
+            {
+                'error': 'Verification failed',
+                'message': f'An error occurred while verifying your code: {str(e)}'
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -57,54 +152,113 @@ def dashboard_data(request):
 @permission_classes([IsAuthenticated])
 def api_buy_crypto(request):
     """
-    API endpoint for buying cryptocurrency
+    API endpoint for buying cryptocurrency with currency_balance validation
     """
     try:
+        logger.info(f"Buy API called with data: {request.data}")
         serializer = TransactionCreateSerializer(data=request.data)
         if serializer.is_valid():
             data = serializer.validated_data
             
             with transaction.atomic():
                 # Get current price if not provided
-                if not data.get('price_per_unit'): ## type:ignore
-                    current_price = get_current_price(data['cryptocurrency']) ## type:ignore
-                    data['price_per_unit'] = current_price ## type:ignore
-                 ## type:ignore
-                if not data.get('total_amount'): ## type:ignore
-                    data['total_amount'] = data['quantity'] * data['price_per_unit'] ## type:ignore
+                if not data.get('price_per_unit'): # type: ignore
+                    current_price = get_current_price(data['cryptocurrency'])  # type: ignore
+                    data['price_per_unit'] = current_price  # type: ignore
+                if not data.get('total_amount'):  # type: ignore
+                    data['total_amount'] = data['quantity'] * data['price_per_unit']  # type: ignore
+
+                # Calculate total cost including fees
+                total_cost = Decimal(str(data['total_amount']))  # type: ignore
+                network_fee = total_cost * Decimal('0.001')  # 0.1% network fee
+                final_cost = total_cost + network_fee
                 
-                # Create buy transaction
+                # Validate sufficient currency_balance
+                if request.user.currency_balance < final_cost:
+                    return Response(
+                        {
+                            'error': 'Insufficient balance',
+                            'message': f'You need {final_cost:.2f} {request.user.currency_type} but only have {request.user.currency_balance:.2f} {request.user.currency_type}.',
+                            'required': float(final_cost),
+                            'available': float(request.user.currency_balance),
+                            'currency': request.user.currency_type
+                        },
+                        status=status.HTTP_400_BAD_REQUEST
+                    )
+
+                # Create buy transaction with PENDING status (will be COMPLETED after email verification)
                 buy_transaction = Transaction.objects.create(
                     user=request.user,
                     transaction_type='BUY',
-                    cryptocurrency=data['cryptocurrency'], ## type:ignore
-                    quantity=data['quantity'], ## type:ignore
-                    price_per_unit=data['price_per_unit'], ## type:ignore
-                    total_amount=data['total_amount'], ## type:ignore
-                    currency=data.get('currency', 'USD'), ## type:ignore
-                    status='COMPLETED',
-                    completed_at=timezone.now()
+                    cryptocurrency=data['cryptocurrency'],  # type: ignore
+                    quantity=data['quantity'],  # type: ignore
+                    price_per_unit=data['price_per_unit'],  # type: ignore
+                    total_amount=data['total_amount'],  # type: ignore
+                    currency=data.get('currency', request.user.currency_type),  # type: ignore
+                    network_fee=network_fee,
+                    status='PENDING',  # Changed to PENDING until email verification
                 )
-                
-                # Update user balances
-                update_user_balances_after_buy(request.user, data)
-                
+
+                # Update user balances (deduct currency_balance, add crypto)
+                update_user_balances_after_buy(request.user, data, network_fee)
+
                 # Update portfolio
-                update_user_portfolio(request.user, data['cryptocurrency']) ## type:ignore
-                
+                update_user_portfolio(request.user, data['cryptocurrency'])  # type: ignore
+
+                # Generate verification code (6 digits)
+                import random
+                verification_code = str(random.randint(100000, 999999))
+
+                # Save code to DB for later verification
+                from .models import PasswordResetCode
+                PasswordResetCode.objects.create(
+                    user=request.user,
+                    code=verification_code
+                )
+
+                # Send verification code email
+                from .services.email_service import EmailService
+                EmailService.send_verification_notification(request.user, verification_code)
+                logger.info(f"Verification code sent to {request.user.email}")
+
                 return Response(
                     {
-                        'message': 'Buy order executed successfully',
-                        'transaction': TransactionSerializer(buy_transaction).data
+                        'success': True,
+                        'message': 'Purchase initiated successfully. Please check your email for the verification code.',
+                        'transaction': TransactionSerializer(buy_transaction).data,
+                        'verification_code': verification_code,
+                        'total_cost': float(final_cost),
+                        'network_fee': float(network_fee),
+                        'remaining_balance': float(request.user.currency_balance)
                     },
                     status=status.HTTP_201_CREATED
                 )
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            logger.error(f"Buy API serializer errors: {serializer.errors}")
+            return Response(
+                {
+                    'error': 'Validation failed',
+                    'details': serializer.errors
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
             
-    except Exception as e:
+    except ValueError as ve:
+        logger.error(f"Buy API validation error: {str(ve)}")
         return Response(
-            {'error': f'Failed to execute buy order: {str(e)}'},
+            {
+                'error': 'Transaction failed',
+                'message': str(ve)
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    except Exception as e:
+        logger.error(f"Buy API exception: {str(e)}", exc_info=True)
+        return Response(
+            {
+                'error': 'Transaction failed',
+                'message': f'An unexpected error occurred: {str(e)}'
+            },
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
@@ -158,7 +312,7 @@ def get_multiple_prices(request):
 @permission_classes([IsAuthenticated])
 def api_sell_crypto(request):
     """
-    API endpoint for selling cryptocurrency
+    API endpoint for selling cryptocurrency with currency_balance credits
     """
     try:
         serializer = TransactionCreateSerializer(data=request.data)
@@ -166,56 +320,109 @@ def api_sell_crypto(request):
             data = serializer.validated_data
             
             with transaction.atomic():
-                # Get current price if not provided ## type:ignore
-                if not data.get('price_per_unit'): ## type:ignore
-                    current_price = get_current_price(data['cryptocurrency']) ## type:ignore
-                    data['price_per_unit'] = current_price ## type:ignore
+                # Get current price if not provided
+                if not data.get('price_per_unit'): # type:ignore
+                    current_price = get_current_price(data['cryptocurrency']) # type:ignore
+                    data['price_per_unit'] = current_price # type:ignore
                 
-                if not data.get('total_amount'): ## type:ignore
-                    data['total_amount'] = data['quantity'] * data['price_per_unit'] ## type:ignore
+                if not data.get('total_amount'): # type:ignore
+                    data['total_amount'] = data['quantity'] * data['price_per_unit'] # type:ignore
                 
-                # Check if user has sufficient balance to sell
-                crypto_field = f"{data['cryptocurrency'].lower()}_balance" ## type:ignore
-                current_balance = getattr(request.user, crypto_field)
-                 ## type:ignore
-                if current_balance >= data['quantity']: ## type:ignore
-                    # Create sell transaction
-                    sell_transaction = Transaction.objects.create(
-                        user=request.user,
-                        transaction_type='SELL',
-                        cryptocurrency=data['cryptocurrency'], ## type:ignore
-                        quantity=data['quantity'], ## type:ignore
-                        price_per_unit=data['price_per_unit'], ## type:ignore
-                        total_amount=data['total_amount'], ## type:ignore
-                        currency=data.get('currency', 'USD'), ## type:ignore
-                        status='COMPLETED',
-                        completed_at=timezone.now()
-                    )
-                    
-                    # Update user balances
-                    update_user_balances_after_sell(request.user, data)
-                    
-                    # Update portfolio
-                    update_user_portfolio(request.user, data['cryptocurrency']) ## type:ignore
-                    
+                # Calculate network fee
+                sale_amount = Decimal(str(data['total_amount'])) # type:ignore
+                network_fee = sale_amount * Decimal('0.001')  # 0.1% network fee
+                net_proceeds = sale_amount - network_fee
+                
+                # Check if user has sufficient cryptocurrency balance to sell
+                crypto_symbol = data['cryptocurrency'].symbol if hasattr(data['cryptocurrency'], 'symbol') else data['cryptocurrency']
+                
+                # Map crypto symbols to model field names
+                crypto_field_map = {
+                    'BTC': 'btc_balance',
+                    'ETH': 'ethereum_balance',
+                    'USDT': 'usdt_balance',
+                    'LTC': 'litecoin_balance',
+                    'TRX': 'tron_balance',
+                }
+                crypto_field = crypto_field_map.get(crypto_symbol.upper())
+                if not crypto_field:
                     return Response(
-                        {
-                            'message': 'Sell order executed successfully',
-                            'transaction': TransactionSerializer(sell_transaction).data
-                        },
-                        status=status.HTTP_201_CREATED
-                    )
-                else:
-                    return Response(
-                        {'error': f'Insufficient {data["cryptocurrency"]} balance'}, ## type:ignore
+                        {'error': 'Unsupported cryptocurrency', 'message': f'{crypto_symbol} is not supported.'},
                         status=status.HTTP_400_BAD_REQUEST
                     )
+                
+                current_balance = getattr(request.user, crypto_field, Decimal('0'))
+                
+                # Validate sufficient cryptocurrency balance
+                if current_balance < data['quantity']: # type:ignore
+                    return Response(
+                        {
+                            'error': 'Insufficient cryptocurrency balance',
+                            'message': f'You need {data["quantity"]:.8f} {crypto_symbol} but only have {current_balance:.8f} {crypto_symbol}.',
+                            'required': float(data['quantity']), # type:ignore
+                            'available': float(current_balance),
+                            'cryptocurrency': crypto_symbol
+                        },
+                        status=status.HTTP_400_BAD_REQUEST
+                    )
+                
+                # Create sell transaction
+                sell_transaction = Transaction.objects.create(
+                    user=request.user,
+                    transaction_type='SELL',
+                    cryptocurrency=data['cryptocurrency'], # type:ignore
+                    quantity=data['quantity'], # type:ignore
+                    price_per_unit=data['price_per_unit'], # type:ignore
+                    total_amount=data['total_amount'], # type:ignore
+                    currency=data.get('currency', request.user.currency_type), # type:ignore
+                    network_fee=network_fee,
+                    status='COMPLETED',
+                    completed_at=timezone.now()
+                )
+                
+                # Update user balances (deduct crypto, add currency_balance)
+                update_user_balances_after_sell(request.user, data, network_fee)
+                
+                # Update portfolio
+                update_user_portfolio(request.user, data['cryptocurrency']) # type:ignore
+                
+                return Response(
+                    {
+                        'success': True,
+                        'message': 'Cryptocurrency sold successfully',
+                        'transaction': TransactionSerializer(sell_transaction).data,
+                        'sale_proceeds': float(net_proceeds),
+                        'network_fee': float(network_fee),
+                        'new_balance': float(request.user.currency_balance),
+                        'currency': request.user.currency_type
+                    },
+                    status=status.HTTP_201_CREATED
+                )
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {
+                    'error': 'Validation failed',
+                    'details': serializer.errors
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
             
-    except Exception as e:
+    except ValueError as ve:
+        logger.error(f"Sell API validation error: {str(ve)}")
         return Response(
-            {'error': f'Failed to execute sell order: {str(e)}'},
+            {
+                'error': 'Transaction failed',
+                'message': str(ve)
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    except Exception as e:
+        logger.error(f"Sell API exception: {str(e)}", exc_info=True)
+        return Response(
+            {
+                'error': 'Transaction failed',
+                'message': f'An unexpected error occurred: {str(e)}'
+            },
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
@@ -594,7 +801,7 @@ def api_transaction_history(request):
 @permission_classes([IsAuthenticated])
 def api_user_profile(request):
     """
-    API endpoint for user profile data
+    API endpoint for user profile data including currency_balance
     """
     try:
         user = request.user
@@ -605,7 +812,9 @@ def api_user_profile(request):
             'last_name': user.last_name,
             'phone_no': user.phone_no,
             'is_verified': user.is_verified,
+            'currency_type': user.currency_type,
             'balances': {
+                'currency_balance': float(user.currency_balance),
                 'btc_balance': float(user.btc_balance),
                 'ethereum_balance': float(user.ethereum_balance),
                 'usdt_balance': float(user.usdt_balance),
@@ -659,51 +868,107 @@ def api_update_profile(request):
 # UTILITY FUNCTIONS
 # ================================
 
-def update_user_balances_after_buy(user, data):
+def update_user_balances_after_buy(user, data, network_fee=None):
     """
     Update user balances after a buy transaction
+    Uses currency_balance to purchase cryptocurrency
     """
-    crypto_field = f"{data['cryptocurrency'].lower()}_balance"
+    # Get the cryptocurrency symbol (data['cryptocurrency'] is now a Cryptocurrency object)
+    crypto_symbol = data['cryptocurrency'].symbol if hasattr(data['cryptocurrency'], 'symbol') else data['cryptocurrency']
     
-    # For crypto buys, deduct USDT and add crypto
-    if data['cryptocurrency'] != 'USDT':
-        total_cost = data['quantity'] * data['price_per_unit']
-        if user.usdt_balance >= total_cost:
-            user.usdt_balance -= total_cost
-            current_balance = getattr(user, crypto_field)
-            setattr(user, crypto_field, current_balance + data['quantity'])
-        else:
-            raise ValueError('Insufficient USDT balance')
-    else:
-        # For USDT buy (deposit scenario)
-        user.usdt_balance += data['quantity']
+    # Map crypto symbols to model field names
+    crypto_field_map = {
+        'BTC': 'btc_balance',
+        'ETH': 'ethereum_balance',
+        'USDT': 'usdt_balance',
+        'LTC': 'litecoin_balance',
+        'TRX': 'tron_balance',
+    }
+    
+    crypto_field = crypto_field_map.get(crypto_symbol.upper())
+    if not crypto_field:
+        raise ValueError(f'Unsupported cryptocurrency: {crypto_symbol}')
+    
+    # Calculate total cost
+    total_cost = data['quantity'] * data['price_per_unit']
+    if network_fee:
+        total_cost += network_fee
+    
+    # Validate sufficient currency_balance
+    if user.currency_balance < total_cost:
+        raise ValueError(
+            f'Insufficient balance. Required: {total_cost:.2f} {user.currency_type}, '
+            f'Available: {user.currency_balance:.2f} {user.currency_type}'
+        )
+    
+    # Deduct from currency_balance
+    user.currency_balance -= total_cost
+    
+    # Add cryptocurrency to user's crypto balance
+    current_crypto_balance = getattr(user, crypto_field, Decimal('0'))
+    setattr(user, crypto_field, current_crypto_balance + data['quantity'])
     
     user.save()
+    logger.info(
+        f"Balance updated for {user.email}: -{total_cost:.2f} {user.currency_type}, "
+        f"+{data['quantity']:.8f} {crypto_symbol}"
+    )
 
-def update_user_balances_after_sell(user, data):
+def update_user_balances_after_sell(user, data, network_fee=None):
     """
     Update user balances after a sell transaction
+    Adds to currency_balance when selling cryptocurrency
     """
-    crypto_field = f"{data['cryptocurrency'].lower()}_balance"
-    current_balance = getattr(user, crypto_field)
+    # Get the cryptocurrency symbol (data['cryptocurrency'] is now a Cryptocurrency object)
+    crypto_symbol = data['cryptocurrency'].symbol if hasattr(data['cryptocurrency'], 'symbol') else data['cryptocurrency']
     
-    if current_balance >= data['quantity']:
-        # Deduct sold crypto
-        setattr(user, crypto_field, current_balance - data['quantity'])
-        
-        # Add USDT from sale
-        sale_proceeds = data['quantity'] * data['price_per_unit']
-        user.usdt_balance += sale_proceeds
-        
-        user.save()
-    else:
-        raise ValueError(f'Insufficient {data["cryptocurrency"]} balance')
+    # Map crypto symbols to model field names
+    crypto_field_map = {
+        'BTC': 'btc_balance',
+        'ETH': 'ethereum_balance',
+        'USDT': 'usdt_balance',
+        'LTC': 'litecoin_balance',
+        'TRX': 'tron_balance',
+    }
+    
+    crypto_field = crypto_field_map.get(crypto_symbol.upper())
+    if not crypto_field:
+        raise ValueError(f'Unsupported cryptocurrency: {crypto_symbol}')
+    
+    current_crypto_balance = getattr(user, crypto_field, Decimal('0'))
+    
+    # Validate sufficient cryptocurrency balance
+    if current_crypto_balance < data['quantity']:
+        raise ValueError(
+            f'Insufficient {crypto_symbol} balance. Required: {data["quantity"]:.8f} {crypto_symbol}, '
+            f'Available: {current_crypto_balance:.8f} {crypto_symbol}'
+        )
+    
+    # Deduct sold cryptocurrency
+    setattr(user, crypto_field, current_crypto_balance - data['quantity'])
+    
+    # Calculate sale proceeds
+    sale_proceeds = data['quantity'] * data['price_per_unit']
+    if network_fee:
+        sale_proceeds -= network_fee
+    
+    # Add to currency_balance
+    user.currency_balance += sale_proceeds
+    
+    user.save()
+    logger.info(
+        f"Balance updated for {user.email}: -{data['quantity']:.8f} {crypto_symbol}, "
+        f"+{sale_proceeds:.2f} {user.currency_type}"
+    )
 
 def update_user_portfolio(user, cryptocurrency):
     """
     Update user's portfolio for a specific cryptocurrency
     """
     try:
+        # Handle both Cryptocurrency object and symbol string
+        crypto_symbol = cryptocurrency.symbol if hasattr(cryptocurrency, 'symbol') else cryptocurrency
+        
         # Get all completed transactions for this crypto
         transactions = Transaction.objects.filter(
             user=user, 
@@ -728,10 +993,10 @@ def update_user_portfolio(user, cryptocurrency):
         # Get current price
         current_price = get_current_price(cryptocurrency)
         
-        # Update or create portfolio
+        # Update or create portfolio (use symbol string for CharField)
         portfolio, created = Portfolio.objects.get_or_create(
             user=user,
-            cryptocurrency=cryptocurrency,
+            cryptocurrency=crypto_symbol,
             defaults={
                 'total_quantity': total_quantity,
                 'average_buy_price': total_invested / total_quantity if total_quantity > 0 else Decimal('0'),
@@ -750,12 +1015,15 @@ def update_user_portfolio(user, cryptocurrency):
         portfolio.save()
         
     except Exception as e:
-        print(f"Error updating portfolio: {e}")
+        logger.error(f"Error updating portfolio: {e}", exc_info=True)
 
 def get_user_wallet_address(user, cryptocurrency):
     """
     Get user's wallet address for a specific cryptocurrency
     """
+    # Handle both Cryptocurrency object and symbol string
+    crypto_symbol = cryptocurrency.symbol if hasattr(cryptocurrency, 'symbol') else cryptocurrency
+    
     wallet_fields = {
         'BTC': 'btc_wallet',
         'ETH': 'ethereum_wallet', 
@@ -764,7 +1032,7 @@ def get_user_wallet_address(user, cryptocurrency):
         'TRX': 'tron_wallet'
     }
     
-    field = wallet_fields.get(cryptocurrency)
+    field = wallet_fields.get(crypto_symbol)
     return getattr(user, field) if field else "Admin wallet address"
 
 def execute_market_order(user, order_data):
@@ -775,13 +1043,30 @@ def execute_market_order(user, order_data):
         with transaction.atomic():
             current_price = get_current_price(order_data['cryptocurrency'])
             
+            # Get the cryptocurrency symbol (order_data['cryptocurrency'] is now a Cryptocurrency object)
+            crypto_symbol = order_data['cryptocurrency'].symbol if hasattr(order_data['cryptocurrency'], 'symbol') else order_data['cryptocurrency']
+            
+            # Map crypto symbols to model field names
+            crypto_field_map = {
+                'BTC': 'btc_balance',
+                'ETH': 'ethereum_balance',
+                'USDT': 'usdt_balance',
+                'LTC': 'litecoin_balance',
+                'TRX': 'tron_balance',
+            }
+            crypto_field = crypto_field_map.get(crypto_symbol.upper())
+            if not crypto_field:
+                return Response(
+                    {'error': 'Unsupported cryptocurrency'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
             if order_data['side'] == 'BUY':
                 transaction_type = 'BUY'
                 # For buy: check USDT balance
                 total_cost = order_data['quantity'] * current_price
                 if user.usdt_balance >= total_cost:
                     user.usdt_balance -= total_cost
-                    crypto_field = f"{order_data['cryptocurrency'].lower()}_balance"
                     current_balance = getattr(user, crypto_field)
                     setattr(user, crypto_field, current_balance + order_data['quantity'])
                 else:
@@ -792,7 +1077,6 @@ def execute_market_order(user, order_data):
             else:  # SELL
                 transaction_type = 'SELL'
                 # For sell: check crypto balance
-                crypto_field = f"{order_data['cryptocurrency'].lower()}_balance"
                 current_balance = getattr(user, crypto_field)
                 if current_balance >= order_data['quantity']:
                     setattr(user, crypto_field, current_balance - order_data['quantity'])
@@ -800,7 +1084,7 @@ def execute_market_order(user, order_data):
                     user.usdt_balance += sale_proceeds
                 else:
                     return Response(
-                        {'error': f'Insufficient {order_data["cryptocurrency"]} balance'},
+                        {'error': f'Insufficient {crypto_symbol} balance'},
                         status=status.HTTP_400_BAD_REQUEST
                     )
             
@@ -854,8 +1138,14 @@ def get_current_price(cryptocurrency):
     Get current price for a cryptocurrency
     """
     try:
-        crypto = Cryptocurrency.objects.get(symbol=cryptocurrency)
-        return crypto.current_price
+        # Handle both Cryptocurrency object and symbol string
+        if hasattr(cryptocurrency, 'current_price'):
+            # It's already a Cryptocurrency object
+            return cryptocurrency.current_price
+        else:
+            # It's a symbol string, query the database
+            crypto = Cryptocurrency.objects.get(symbol=cryptocurrency)
+            return crypto.current_price
     except Cryptocurrency.DoesNotExist:
         return Decimal('0')
     

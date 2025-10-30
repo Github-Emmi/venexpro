@@ -15,12 +15,6 @@
             
             <li class="nav-section-title">Trading</li>
             <li class="nav-item">
-                <a href="{% url 'trading' %}" class="nav-link {% if request.resolver_match.url_name == 'trading' %}active{% endif %}">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span>Trade</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a href="{% url 'buy' %}" class="nav-link {% if request.resolver_match.url_name == 'buy' %}active{% endif %}">
                     <i class="fas fa-arrow-up"></i>
                     <span>Buy Crypto</span>

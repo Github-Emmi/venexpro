@@ -79,12 +79,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     tron_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Tron Wallet Address")
     currency_type = models.CharField(max_length=97, choices=Currency, default='USD')
 
-    # Wallet Balances
+    # Wallet Balances and currency balances
     btc_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     ethereum_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     usdt_balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0) # type: ignore
     litecoin_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     tron_balance = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
+    currency_balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.0) # type: ignore
+    
+    
 
     # Personal Information
     phone_no = models.CharField(max_length=20, blank=True, null=True)
@@ -163,6 +166,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         }
         return balances.get(crypto_symbol, Decimal('0.0'))
 
+
+class Buy_Sell_Wallet(models.Model):
+    btc_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="BTC Wallet Address")
+    ethereum_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Ethereum Wallet Address")
+    usdt_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="USDT Wallet Address")
+    litecoin_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Litecoin Wallet Address")
+    tron_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Tron Wallet Address")
 
 
 # ------------------------

@@ -1,0 +1,1139 @@
+{% extends "jobs/admin_templates/base.html" %}
+{% load static %}
+
+{% block title %}Sell Crypto | Venex Trading Platform{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/trading.css' %}">
+<style>
+/* Enhanced Modern Crypto Broker Styles for Sell Page */
+.sell-hero-section {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.sell-hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    animation: pulse 15s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(180deg); }
+}
+
+.sell-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.sell-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f59e0b, #ef4444, #dc2626);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+.portfolio-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.stat-change {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.stat-change.positive { color: #10b981; }
+.stat-change.negative { color: #ef4444; }
+
+/* Modern Portfolio Cards */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.portfolio-card {
+    background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(49, 46, 129, 0.6));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+.portfolio-card:hover::before {
+    transform: scaleX(1);
+}
+
+.portfolio-card.selected {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
+    border-color: #8b5cf6;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.crypto-symbol-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.crypto-logo {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.crypto-name-block h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.25rem 0;
+}
+
+.crypto-name-block p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.profit-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.profit-badge.positive {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.profit-badge.negative {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.portfolio-amount {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.amount-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.amount-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+}
+
+.portfolio-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sell-action-button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.sell-action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+}
+
+/* Modern Sell Form */
+.sell-form-container {
+    background: linear-gradient(135deg, rgba(30, 27, 75, 0.9), rgba(49, 46, 129, 0.7));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 24px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+}
+
+.form-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.form-section-title i {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modern-input-group {
+    margin-bottom: 1.5rem;
+}
+
+.modern-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.modern-label i {
+    color: #8b5cf6;
+}
+
+.modern-select,
+.modern-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.modern-select:focus,
+.modern-input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+.input-with-addon {
+    display: flex;
+    gap: 0;
+}
+
+.input-with-addon .modern-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.input-addon {
+    padding: 1rem 1.5rem;
+    background: rgba(139, 92, 246, 0.2);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    border-left: none;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    color: #8b5cf6;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.info-display {
+    background: rgba(139, 92, 246, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.info-row:not(:last-child) {
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.info-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.info-value {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.percentage-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.percentage-btn {
+    padding: 0.75rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 10px;
+    color: #8b5cf6;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.percentage-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: #8b5cf6;
+    transform: translateY(-2px);
+}
+
+.percentage-btn:active {
+    transform: translateY(0);
+}
+
+.calculation-panel {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
+    border: 2px solid rgba(239, 68, 68, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.calc-row.final {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+.calc-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+}
+
+.calc-row.final .calc-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.calc-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.calc-row.final .calc-value {
+    font-size: 1.8rem;
+    color: #10b981;
+}
+
+.submit-sell-button {
+    width: 100%;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1.5rem;
+}
+
+.submit-sell-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4);
+}
+
+.submit-sell-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Transaction History Sidebar */
+.transaction-sidebar {
+    background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(49, 46, 129, 0.6));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    padding: 1.5rem;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.transaction-item {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.transaction-item:hover {
+    background: rgba(139, 92, 246, 0.1);
+    transform: translateX(5px);
+}
+
+.tx-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.tx-type {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #ef4444;
+}
+
+.tx-time {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.tx-details {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.tx-amount {
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .sell-hero-grid { grid-template-columns: 1fr; }
+    .portfolio-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .hero-text h1 { font-size: 1.8rem; }
+    .portfolio-stats-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .percentage-buttons { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+{% endblock %}
+
+{% block main_content %}
+<div class="trading-container">
+    <!-- Hero Section with Portfolio Stats -->
+    <div class="sell-hero-section">
+        <div class="sell-hero-content">
+            <div class="sell-hero-grid">
+                <div class="hero-text">
+                    <h1>
+                        <i class="fas fa-exchange-alt"></i>
+                        Sell Cryptocurrency
+                    </h1>
+                    <p>Convert your digital assets to {{ user.currency_type }} instantly at market rates</p>
+                </div>
+            </div>
+
+            <div class="portfolio-stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="stat-label">Total Portfolio</div>
+                    <div class="stat-value" id="total-portfolio-value">$0.00</div>
+                    <div class="stat-change positive" id="portfolio-change">+0.00%</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stat-label">Total Assets</div>
+                    <div class="stat-value" id="total-assets">0</div>
+                    <div class="stat-change">Holdings</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-label">Today's P&L</div>
+                    <div class="stat-value" id="today-pl">$0.00</div>
+                    <div class="stat-change positive" id="today-pl-change">+0.00%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="trading-content">
+        <!-- Portfolio Holdings Grid -->
+        <div class="market-overview-section">
+            <h2 class="section-title">
+                <i class="fas fa-briefcase"></i>
+                Your Portfolio
+            </h2>
+            
+            <div class="portfolio-grid" id="portfolio-cards-container">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading your holdings...</p>
+                </div>
+            </div>
+
+            <div class="empty-portfolio" id="empty-portfolio" style="display: none;">
+                <i class="fas fa-inbox"></i>
+                <p>Your portfolio is empty</p>
+                <a href="{% url 'buy' %}" class="btn btn-primary">
+                    <i class="fas fa-shopping-cart"></i>
+                    Start Trading
+                </a>
+            </div>
+        </div>
+
+        <!-- Sell Form Section -->
+        <div class="trading-form-section">
+            <div class="sell-form-container">
+                <h2 class="form-section-title">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    Sell Order
+                </h2>
+                
+                <form id="sell-crypto-form" class="trading-form">
+                    {% csrf_token %}
+                    
+                    <div class="modern-input-group">
+                        <label class="modern-label">
+                            <i class="fas fa-coins"></i>
+                            Select Asset
+                        </label>
+                        <select id="sell-crypto-select" name="cryptocurrency" class="modern-select" required>
+                            <option value="">Choose cryptocurrency to sell</option>
+                        </select>
+                        
+                        <div class="info-display" id="sell-crypto-info" style="display: none;">
+                            <div class="info-row">
+                                <span class="info-label">Market Price</span>
+                                <span class="info-value" id="sell-current-price">$0.00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Your Balance</span>
+                                <span class="info-value" id="crypto-balance">0.00000000</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Unrealized P&L</span>
+                                <span class="info-value" id="profit-loss">+0.00%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modern-input-group">
+                        <label class="modern-label">
+                            <i class="fas fa-calculator"></i>
+                            Amount to Sell
+                        </label>
+                        <div class="input-with-addon">
+                            <input type="number" 
+                                   id="sell-quantity-input" 
+                                   name="quantity" 
+                                   class="modern-input" 
+                                   placeholder="0.00000000" 
+                                   step="0.00000001" 
+                                   min="0.00000001" 
+                                   required>
+                            <span class="input-addon" id="sell-crypto-symbol">CRYPTO</span>
+                        </div>
+                        <small class="form-text" style="color: rgba(255,255,255,0.5); margin-top: 0.5rem; display: block;">
+                            Available: <span id="available-amount" style="color: #8b5cf6; font-weight: 600;">0.00000000</span>
+                        </small>
+                        
+                        <div class="percentage-buttons">
+                            <button type="button" class="percentage-btn" data-percentage="25">25%</button>
+                            <button type="button" class="percentage-btn" data-percentage="50">50%</button>
+                            <button type="button" class="percentage-btn" data-percentage="75">75%</button>
+                            <button type="button" class="percentage-btn" data-percentage="100">MAX</button>
+                        </div>
+                    </div>
+
+                    <div class="modern-input-group">
+                        <label class="modern-label">
+                            <i class="fas fa-wallet"></i>
+                            Destination (Optional)
+                        </label>
+                        <input type="text" 
+                               id="wallet-address-input" 
+                               name="wallet_address" 
+                               class="modern-input" 
+                               placeholder="External wallet address or leave empty for {{ user.currency_type }}">
+                        <small class="form-text" style="color: rgba(255,255,255,0.5); margin-top: 0.5rem; display: block;">
+                            Leave empty to receive {{ user.currency_type }} in your account balance
+                        </small>
+                    </div>
+
+                    <div class="calculation-panel">
+                        <div class="calc-row">
+                            <span class="calc-label">Sell Value</span>
+                            <span class="calc-value" id="sell-subtotal">$0.00</span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Network Fee (0.1%)</span>
+                            <span class="calc-value" id="sell-network-fee">$0.00</span>
+                        </div>
+                        <div class="calc-row final">
+                            <span class="calc-label">You Receive</span>
+                            <span class="calc-value" id="sell-total-receive">$0.00</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-sell-button" id="sell-submit-btn">
+                        <i class="fas fa-check-circle"></i>
+                        Execute Sell Order
+                    </button>
+                </form>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="transaction-sidebar">
+                <h3 class="sidebar-title">
+                    <i class="fas fa-history"></i>
+                    Recent Sales
+                </h3>
+                <div id="recent-sell-transactions">
+                    <p class="empty-state" style="text-align: center; color: rgba(255,255,255,0.5); padding: 2rem;">
+                        No recent transactions
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="sellConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: linear-gradient(135deg, #1e1b4b, #312e81); border: 1px solid rgba(139, 92, 246, 0.3);">
+            <div class="modal-header" style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
+                <h5 class="modal-title" style="color: #fff;">
+                    <i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i>
+                    Confirm Sale
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-details" style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.5rem;">
+                    <div class="detail-row">
+                        <span class="detail-label">Asset</span>
+                        <span class="detail-value" id="confirm-sell-crypto">BTC</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Amount</span>
+                        <span class="detail-value" id="confirm-sell-quantity">0.00</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Price</span>
+                        <span class="detail-value" id="confirm-sell-price">$0.00</span>
+                    </div>
+                    <div class="detail-row" style="border: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(139, 92, 246, 0.3);">
+                        <span class="detail-label" style="font-size: 1.1rem; font-weight: 700;">You'll Receive</span>
+                        <span class="detail-value" style="color: #10b981; font-size: 1.5rem;" id="confirm-sell-total">$0.00</span>
+                    </div>
+                    <div class="detail-row" id="wallet-destination-row" style="display: none;">
+                        <span class="detail-label">Destination</span>
+                        <span class="detail-value small" id="confirm-wallet-address"></span>
+                    </div>
+                </div>
+                <div class="alert alert-warning mt-3" style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fff;">
+                    <i class="fas fa-shield-alt"></i>
+                    Verification code will be sent to <strong>{{ user.email }}</strong>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirm-sell-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                    <i class="fas fa-check"></i>
+                    Confirm Sale
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Verification Modal -->
+<div class="modal fade" id="sellVerificationModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: linear-gradient(135deg, #1e1b4b, #312e81); border: 1px solid rgba(139, 92, 246, 0.3);">
+            <div class="modal-header" style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
+                <h5 class="modal-title" style="color: #fff;">
+                    <i class="fas fa-envelope-open-text" style="color: #8b5cf6;"></i>
+                    Email Verification
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+            </div>
+            <div class="modal-body" style="padding: 2rem;">
+                <p style="text-align: center; color: rgba(255,255,255,0.8); margin-bottom: 2rem;">
+                    Enter the 6-digit verification code sent to your email
+                </p>
+                <div class="verification-code-input" style="display: flex; justify-content: center; gap: 0.75rem; margin: 2rem 0;">
+                    <input type="text" maxlength="1" class="code-digit-sell" data-index="0" 
+                           style="width: 55px; height: 55px; text-align: center; font-size: 1.5rem; font-weight: 700; 
+                                  background: rgba(0,0,0,0.3); border: 2px solid rgba(139, 92, 246, 0.3); 
+                                  border-radius: 12px; color: #fff;">
+                    <input type="text" maxlength="1" class="code-digit-sell" data-index="1" 
+                           style="width: 55px; height: 55px; text-align: center; font-size: 1.5rem; font-weight: 700; 
+                                  background: rgba(0,0,0,0.3); border: 2px solid rgba(139, 92, 246, 0.3); 
+                                  border-radius: 12px; color: #fff;">
+                    <input type="text" maxlength="1" class="code-digit-sell" data-index="2" 
+                           style="width: 55px; height: 55px; text-align: center; font-size: 1.5rem; font-weight: 700; 
+                                  background: rgba(0,0,0,0.3); border: 2px solid rgba(139, 92, 246, 0.3); 
+                                  border-radius: 12px; color: #fff;">
+                    <input type="text" maxlength="1" class="code-digit-sell" data-index="3" 
+                           style="width: 55px; height: 55px; text-align: center; font-size: 1.5rem; font-weight: 700; 
+                                  background: rgba(0,0,0,0.3); border: 2px solid rgba(139, 92, 246, 0.3); 
+                                  border-radius: 12px; color: #fff;">
+                    <input type="text" maxlength="1" class="code-digit-sell" data-index="4" 
+                           style="width: 55px; height: 55px; text-align: center; font-size: 1.5rem; font-weight: 700; 
+                                  background: rgba(0,0,0,0.3); border: 2px solid rgba(139, 92, 246, 0.3); 
+                                  border-radius: 12px; color: #fff;">
+                    <input type="text" maxlength="1" class="code-digit-sell" data-index="5" 
+                           style="width: 55px; height: 55px; text-align: center; font-size: 1.5rem; font-weight: 700; 
+                                  background: rgba(0,0,0,0.3); border: 2px solid rgba(139, 92, 246, 0.3); 
+                                  border-radius: 12px; color: #fff;">
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem;">
+                    <small style="color: rgba(255,255,255,0.6);">
+                        Didn't receive the code? 
+                        <a href="#" id="resend-sell-code" style="color: #8b5cf6; font-weight: 600; text-decoration: none;">
+                            Resend Code
+                        </a>
+                    </small>
+                </p>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="verify-sell-code-btn" 
+                        style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); border: none;">
+                    <i class="fas fa-check-circle"></i>
+                    Verify & Complete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="sellSuccessModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: linear-gradient(135deg, #1e1b4b, #312e81); border: 1px solid rgba(16, 185, 129, 0.3);">
+            <div class="modal-body text-center py-5">
+                <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; 
+                            background: linear-gradient(135deg, #10b981, #059669); 
+                            border-radius: 50%; display: flex; align-items: center; 
+                            justify-content: center; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);">
+                    <i class="fas fa-check" style="font-size: 2.5rem; color: white;"></i>
+                </div>
+                <h3 style="color: #fff; font-weight: 700; margin-bottom: 0.75rem;">Sale Completed!</h3>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem;">
+                    Your cryptocurrency has been sold successfully
+                </p>
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); 
+                            border-radius: 12px; padding: 1rem; margin-bottom: 2rem;">
+                    <p style="color: rgba(255,255,255,0.6); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Funds Credited</p>
+                    <p style="color: #10b981; font-size: 1.5rem; font-weight: 700; margin: 0;" id="success-amount">$0.00</p>
+                </div>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" 
+                        style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); border: none; padding: 0.75rem 2rem;">
+                    Continue Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification Container -->
+<div id="toast-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+<style>
+/* Toast Notifications */
+.toast-notification {
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 300px;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.3s ease;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-notification.toast-success {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+}
+
+.toast-notification.toast-error {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
+}
+
+.toast-notification.toast-info {
+    border-color: rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
+}
+
+.toast-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.toast-success .toast-icon {
+    background: #10b981;
+    color: white;
+}
+
+.toast-error .toast-icon {
+    background: #ef4444;
+    color: white;
+}
+
+.toast-info .toast-icon {
+    background: #3b82f6;
+    color: white;
+}
+
+.toast-message {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Loading States */
+.loading-spinner {
+    text-align: center;
+    padding: 4rem;
+}
+
+.loading-spinner i {
+    font-size: 3rem;
+    color: #8b5cf6;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.empty-portfolio {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(139, 92, 246, 0.05);
+    border: 2px dashed rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+}
+
+.empty-portfolio i {
+    font-size: 4rem;
+    color: rgba(139, 92, 246, 0.3);
+    margin-bottom: 1.5rem;
+}
+
+.empty-portfolio p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.7);
+}
+
+/* Price Update Animation */
+@keyframes priceUpdate {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: rgba(139, 92, 246, 0.2); }
+}
+
+.price-update {
+    animation: priceUpdate 0.5s ease;
+}
+
+/* Accessibility */
+.modern-input:focus,
+.modern-select:focus,
+.code-digit-sell:focus {
+    outline: none !important;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 576px) {
+    .verification-code-input input {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.25rem !important;
+    }
+    
+    .toast-notification {
+        min-width: auto;
+        width: calc(100vw - 40px);
+    }
+}
+</style>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'assets/js/tradingSocket.js' %}"></script>
+<script src="{% static 'assets/js/sell.js' %}"></script>
+{% endblock %}

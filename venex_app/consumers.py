@@ -283,7 +283,7 @@ class MarketConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def get_chart_data(self, symbol, timeframe):
         """Get chart data for specific symbol and timeframe"""
-        from services.crypto_api_service  import crypto_service
+        from .services.crypto_api_service import crypto_service
         return crypto_service.get_price_history(symbol, timeframe)
 
     async def send_initial_market_data(self):
