@@ -24,12 +24,16 @@ def dashboard(request):
     """
     user = request.user
     
+    # Initialize latest_crypto
+    latest_crypto = None
+    
     try:
         # Update cryptocurrency data if it's stale (older than 5 minutes)
         latest_crypto = Cryptocurrency.objects.order_by('-last_updated').first()
         if not latest_crypto or (timezone.now() - latest_crypto.last_updated).total_seconds() > 300:
             crypto_service.update_cryptocurrency_data()
             logger.info("Cryptocurrency data updated successfully")
+            latest_crypto = Cryptocurrency.objects.order_by('-last_updated').first()
     except Exception as e:
         logger.error(f"Failed to update crypto data: {e}")
     
@@ -98,6 +102,13 @@ def dashboard(request):
         'current_prices': current_prices,
         'crypto_balances': crypto_balances,
         'chart_choices': cryptocurrencies,
+        'market_overview': {
+            'active_cryptocurrencies': Cryptocurrency.objects.filter(is_active=True).count(),
+            'total_market_cap': sum(crypto.market_cap for crypto in cryptocurrencies if crypto.market_cap),
+            'total_volume_24h': sum(crypto.volume_24h for crypto in cryptocurrencies if crypto.volume_24h),
+            'btc_dominance': 0,  # This would need to be calculated from market cap ratios
+            'last_updated': latest_crypto.last_updated if latest_crypto else timezone.now()
+        }
     }
     
     return render(request, 'jobs/admin_templates/dashboard.html', context)

@@ -8,6 +8,7 @@ urlpatterns = [
     ###########################################
     # Buy Code Verification API
     path('api/trading/verify-buy-code/', api_views.api_verify_buy_code, name='api_verify_buy_code'),
+    path('api/trading/verify-sell-code/', api_views.api_verify_sell_code, name='api_verify_sell_code'),
     # Landing Page URLs
     ###########################################
     path('', views.index, name='index'),
@@ -50,7 +51,6 @@ urlpatterns = [
     path('profile/', user_views.user_profile_view, name='profile'),
     path('deposit/', user_views.deposit_funds_view, name='deposit'),
     path('withdraw/', user_views.withdraw_funds_view, name='withdraw'),
-    path('history/', user_views.transaction_history_view, name='transaction_history_view'),
     path('wallet/', user_views.wallet_management_view, name='wallet'),
     path('security/', user_views.security_settings_view, name='security'),
     
@@ -70,7 +70,7 @@ urlpatterns = [
     # User Market & Portfolio URLs
     path('markets/', user_views.market_data_view, name='market_data'),
     path('portfolio/', user_views.portfolio_view, name='portfolio'),
-    path('transactions/', user_views.transaction_history_view, name='transaction_history'),
+    path('history/', user_views.transaction_history_view, name='transaction_history_view'),
     
     ###########################################
     # API ENDPOINTS - Dash Board Features
@@ -103,6 +103,11 @@ urlpatterns = [
     ###########################################
     path('api/exchange-rate/', api_views.api_get_exchange_rate, name='api_get_exchange_rate'),
     path('api/convert-currency/', api_views.api_convert_currency, name='api_convert_currency'),
+    
+    ###########################################
+    # API ENDPOINTS - Transactions
+    ###########################################
+    path('api/transactions/recent/', api_views.api_recent_transactions, name='api_recent_transactions'),
     
     # API URLs
     path('api/v1/', include([

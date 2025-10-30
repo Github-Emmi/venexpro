@@ -2,7 +2,7 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation as DecimalException
 from django.utils import timezone
 import logging
 from rest_framework.decorators import api_view, permission_classes
@@ -14,6 +14,8 @@ from rest_framework.decorators import api_view, permission_classes
 from .services.crypto_api_service import crypto_service, CryptoDataService
 from .services.dashboard_service import DashboardService
 from .services.trading_service import ( TradingService, OrderMatchingEngine )
+from .services.currency_service import CurrencyConversionService
+from .services.email_service import EmailService
 from django.views.decorators.http import require_GET
 from django.http import JsonResponse
 from .models import CustomUser, Transaction, Order, Portfolio, Cryptocurrency
@@ -111,6 +113,137 @@ def api_verify_buy_code(request):
             
     except Exception as e:
         logger.error(f"Verification error: {str(e)}", exc_info=True)
+        return Response(
+            {
+                'error': 'Verification failed',
+                'message': f'An error occurred while verifying your code: {str(e)}'
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def api_verify_sell_code(request):
+    """
+    API endpoint to verify sell transaction code and complete the sale
+    """
+    user = request.user
+    code = request.data.get('code')
+    
+    if not code or len(code) != 6:
+        return Response(
+            {
+                'error': 'Invalid code',
+                'message': 'Please enter a valid 6-digit verification code.'
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    try:
+        # Find the most recent unused code for this user
+        reset_code = PasswordResetCode.objects.filter(
+            user=user,
+            code=code,
+            is_used=False
+        ).order_by('-created_at').first()
+        
+        if not reset_code:
+            return Response(
+                {
+                    'error': 'Invalid code',
+                    'message': 'The verification code you entered is incorrect.'
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        if not reset_code.is_valid():
+            return Response(
+                {
+                    'error': 'Code expired',
+                    'message': 'This verification code has expired. Please request a new one.'
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Mark code as used
+        reset_code.mark_used()
+        
+        # Find the most recent PENDING SELL transaction and mark it as COMPLETED
+        pending_transaction = Transaction.objects.filter(
+            user=user,
+            transaction_type='SELL',
+            status='PENDING'
+        ).order_by('-created_at').first()
+        
+        if pending_transaction:
+            with transaction.atomic():
+                # Update balances
+                crypto_symbol = pending_transaction.cryptocurrency.symbol
+                crypto_field_map = {
+                    'BTC': 'btc_balance',
+                    'ETH': 'ethereum_balance',
+                    'USDT': 'usdt_balance',
+                    'LTC': 'litecoin_balance',
+                    'TRX': 'tron_balance',
+                }
+                crypto_field = crypto_field_map.get(crypto_symbol.upper())
+                
+                if crypto_field:
+                    # Deduct cryptocurrency
+                    current_crypto = getattr(user, crypto_field, Decimal('0'))
+                    new_crypto = current_crypto - pending_transaction.quantity
+                    setattr(user, crypto_field, new_crypto)
+                    
+                    # Add net proceeds to currency_balance
+                    net_proceeds = pending_transaction.total_amount - pending_transaction.network_fee
+                    
+                    # Convert to user's currency if needed
+                    currency_service = CurrencyConversionService()
+                    try:
+                        net_proceeds_user_currency = currency_service.usd_to_user_currency(
+                            float(net_proceeds),
+                            user.currency_type
+                        )
+                    except Exception as e:
+                        logger.error(f"Currency conversion error in sell verification: {str(e)}")
+                        net_proceeds_user_currency = float(net_proceeds)
+                    
+                    user.currency_balance += Decimal(str(net_proceeds_user_currency))
+                    user.save()
+                    
+                    # Mark transaction as COMPLETED
+                    pending_transaction.status = 'COMPLETED'
+                    pending_transaction.completed_at = timezone.now()
+                    pending_transaction.save()
+                    
+                    # Update portfolio
+                    try:
+                        update_user_portfolio(user, pending_transaction.cryptocurrency)
+                    except Exception as e:
+                        logger.error(f"Portfolio update error: {str(e)}")
+                
+                return Response(
+                    {
+                        'success': True,
+                        'message': 'Sale verified successfully! Funds have been added to your balance.',
+                        'transaction': TransactionSerializer(pending_transaction).data,
+                        'new_currency_balance': float(user.currency_balance),
+                        'currency': user.currency_type
+                    },
+                    status=status.HTTP_200_OK
+                )
+        else:
+            return Response(
+                {
+                    'success': True,
+                    'message': 'Code verified successfully.',
+                    'warning': 'No pending sell transaction found.'
+                },
+                status=status.HTTP_200_OK
+            )
+            
+    except Exception as e:
+        logger.error(f"Sell verification error: {str(e)}", exc_info=True)
         return Response(
             {
                 'error': 'Verification failed',
@@ -360,100 +493,162 @@ def get_multiple_prices(request):
 @permission_classes([IsAuthenticated])
 def api_sell_crypto(request):
     """
-    API endpoint for selling cryptocurrency with currency_balance credits
+    API endpoint for selling cryptocurrency with email verification
+    Creates PENDING transaction and sends verification code
     """
     try:
-        serializer = TransactionCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            data = serializer.validated_data
-            
-            with transaction.atomic():
-                # Get current price if not provided
-                if not data.get('price_per_unit'): # type:ignore
-                    current_price = get_current_price(data['cryptocurrency']) # type:ignore
-                    data['price_per_unit'] = current_price # type:ignore
-                
-                if not data.get('total_amount'): # type:ignore
-                    data['total_amount'] = data['quantity'] * data['price_per_unit'] # type:ignore
-                
-                # Calculate network fee
-                sale_amount = Decimal(str(data['total_amount'])) # type:ignore
-                network_fee = sale_amount * Decimal('0.001')  # 0.1% network fee
-                net_proceeds = sale_amount - network_fee
-                
-                # Check if user has sufficient cryptocurrency balance to sell
-                crypto_symbol = data['cryptocurrency'].symbol if hasattr(data['cryptocurrency'], 'symbol') else data['cryptocurrency']
-                
-                # Map crypto symbols to model field names
-                crypto_field_map = {
-                    'BTC': 'btc_balance',
-                    'ETH': 'ethereum_balance',
-                    'USDT': 'usdt_balance',
-                    'LTC': 'litecoin_balance',
-                    'TRX': 'tron_balance',
-                }
-                crypto_field = crypto_field_map.get(crypto_symbol.upper())
-                if not crypto_field:
-                    return Response(
-                        {'error': 'Unsupported cryptocurrency', 'message': f'{crypto_symbol} is not supported.'},
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
-                
-                current_balance = getattr(request.user, crypto_field, Decimal('0'))
-                
-                # Validate sufficient cryptocurrency balance
-                if current_balance < data['quantity']: # type:ignore
-                    return Response(
-                        {
-                            'error': 'Insufficient cryptocurrency balance',
-                            'message': f'You need {data["quantity"]:.8f} {crypto_symbol} but only have {current_balance:.8f} {crypto_symbol}.',
-                            'required': float(data['quantity']), # type:ignore
-                            'available': float(current_balance),
-                            'cryptocurrency': crypto_symbol
-                        },
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
-                
-                # Create sell transaction
-                sell_transaction = Transaction.objects.create(
-                    user=request.user,
-                    transaction_type='SELL',
-                    cryptocurrency=data['cryptocurrency'], # type:ignore
-                    quantity=data['quantity'], # type:ignore
-                    price_per_unit=data['price_per_unit'], # type:ignore
-                    total_amount=data['total_amount'], # type:ignore
-                    currency=data.get('currency', request.user.currency_type), # type:ignore
-                    network_fee=network_fee,
-                    status='COMPLETED',
-                    completed_at=timezone.now()
-                )
-                
-                # Update user balances (deduct crypto, add currency_balance)
-                update_user_balances_after_sell(request.user, data, network_fee)
-                
-                # Update portfolio
-                update_user_portfolio(request.user, data['cryptocurrency']) # type:ignore
-                
-                return Response(
-                    {
-                        'success': True,
-                        'message': 'Cryptocurrency sold successfully',
-                        'transaction': TransactionSerializer(sell_transaction).data,
-                        'sale_proceeds': float(net_proceeds),
-                        'network_fee': float(network_fee),
-                        'new_balance': float(request.user.currency_balance),
-                        'currency': request.user.currency_type
-                    },
-                    status=status.HTTP_201_CREATED
-                )
-        else:
+        # Get data from request
+        cryptocurrency = request.data.get('cryptocurrency')
+        amount = request.data.get('amount')
+        wallet_address = request.data.get('wallet_address')
+        
+        if not all([cryptocurrency, amount, wallet_address]):
             return Response(
                 {
-                    'error': 'Validation failed',
-                    'details': serializer.errors
+                    'error': 'Missing required fields',
+                    'message': 'Please provide cryptocurrency, amount, and wallet address.'
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
+        
+        # Validate amount
+        try:
+            amount = Decimal(str(amount))
+            if amount <= 0:
+                raise ValueError("Amount must be positive")
+        except (ValueError, DecimalException) as e:
+            return Response(
+                {
+                    'error': 'Invalid amount',
+                    'message': 'Please enter a valid positive amount.'
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Get current price
+        try:
+            current_price = get_current_price(cryptocurrency)
+            if not current_price:
+                raise ValueError("Price not available")
+        except Exception as e:
+            logger.error(f"Error getting price for {cryptocurrency}: {str(e)}")
+            return Response(
+                {
+                    'error': 'Price unavailable',
+                    'message': f'Unable to get current price for {cryptocurrency}. Please try again.'
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        
+        # Calculate totals
+        total_usd = amount * Decimal(str(current_price))
+        network_fee = total_usd * Decimal('0.001')  # 0.1% network fee
+        net_proceeds_usd = total_usd - network_fee
+        
+        # Convert to user's currency using CurrencyConversionService
+        currency_service = CurrencyConversionService()
+        try:
+            net_proceeds_user_currency = currency_service.usd_to_user_currency(
+                float(net_proceeds_usd),
+                request.user.currency_type
+            )
+        except Exception as e:
+            logger.error(f"Currency conversion error: {str(e)}")
+            net_proceeds_user_currency = float(net_proceeds_usd)
+        
+        # Map crypto symbols to model field names
+        crypto_field_map = {
+            'BTC': 'btc_balance',
+            'ETH': 'ethereum_balance',
+            'USDT': 'usdt_balance',
+            'LTC': 'litecoin_balance',
+            'TRX': 'tron_balance',
+        }
+        crypto_field = crypto_field_map.get(cryptocurrency.upper())
+        if not crypto_field:
+            return Response(
+                {
+                    'error': 'Unsupported cryptocurrency',
+                    'message': f'{cryptocurrency} is not supported.'
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Check if user has sufficient cryptocurrency balance
+        current_crypto_balance = getattr(request.user, crypto_field, Decimal('0'))
+        if current_crypto_balance < amount:
+            return Response(
+                {
+                    'error': 'Insufficient cryptocurrency balance',
+                    'message': f'You need {amount:.8f} {cryptocurrency} but only have {current_crypto_balance:.8f} {cryptocurrency}.',
+                    'required': float(amount),
+                    'available': float(current_crypto_balance),
+                    'cryptocurrency': cryptocurrency
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        with transaction.atomic():
+            # Get or create Cryptocurrency instance
+            crypto_obj, created = Cryptocurrency.objects.get_or_create(
+                symbol=cryptocurrency.upper(),
+                defaults={
+                    'name': cryptocurrency.upper(),
+                    'get_cryptocurrency_display': cryptocurrency.upper()
+                }
+            )
+            
+            # Create PENDING sell transaction
+            sell_transaction = Transaction.objects.create(
+                user=request.user,
+                transaction_type='SELL',
+                cryptocurrency=crypto_obj,
+                quantity=amount,
+                price_per_unit=Decimal(str(current_price)),
+                total_amount=total_usd,
+                currency=request.user.currency_type,
+                network_fee=network_fee,
+                status='PENDING',
+                wallet_address=wallet_address
+            )
+            
+            # Generate and send verification code
+            import random
+            verification_code = str(random.randint(100000, 999999))
+            
+            # Save code to DB for later verification
+            PasswordResetCode.objects.create(
+                user=request.user,
+                code=verification_code
+            )
+            
+            # Send verification code email
+            EmailService.send_verification_notification(request.user, verification_code)
+            logger.info(f"Sell verification code sent to {request.user.email}")
+            
+            return Response(
+                {
+                    'success': True,
+                    'message': 'Verification code sent to your email',
+                    'verification_code': verification_code,  # For development/testing
+                    'transaction': TransactionSerializer(sell_transaction).data,
+                    'email': request.user.email,
+                    'net_proceeds': float(net_proceeds_user_currency),
+                    'network_fee': float(network_fee),
+                    'currency': request.user.currency_type
+                },
+                status=status.HTTP_200_OK
+            )
+            
+    except Exception as e:
+        logger.error(f"Sell API error: {str(e)}", exc_info=True)
+        return Response(
+            {
+                'error': 'Sell failed',
+                'message': f'An error occurred while processing your sale: {str(e)}'
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
             
     except ValueError as ve:
         logger.error(f"Sell API validation error: {str(ve)}")
@@ -1556,3 +1751,61 @@ def portfolio_overview(request):
         return Response({
             'error': str(e)
         }, status=400)
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_recent_transactions(request):
+    """
+    API endpoint to get recent transactions for the authenticated user
+    GET /api/transactions/recent/?type=sell&limit=4
+    
+    Query params:
+        - type: Transaction type filter (buy, sell, all) - defaults to 'all'
+        - limit: Number of transactions to return - defaults to 10
+    
+    Returns:
+        - transactions: List of recent transactions
+    """
+    try:
+        user = request.user
+        transaction_type = request.GET.get('type', 'all').upper()
+        limit = int(request.GET.get('limit', 10))
+        
+        # Query transactions
+        transactions = Transaction.objects.filter(user=user).order_by('-created_at')
+        
+        # Filter by type if specified
+        if transaction_type == 'SELL':
+            transactions = transactions.filter(transaction_type='SELL')
+        elif transaction_type == 'BUY':
+            transactions = transactions.filter(transaction_type='BUY')
+        
+        # Limit results
+        transactions = transactions[:limit]
+        
+        # Serialize data
+        transactions_data = []
+        for txn in transactions:
+            transactions_data.append({
+                'id': str(txn.id),
+                'cryptocurrency': txn.cryptocurrency.symbol if txn.cryptocurrency else 'UNKNOWN',
+                'transaction_type': txn.transaction_type,
+                'quantity': str(txn.quantity),
+                'amount': str(txn.fiat_amount or txn.total_amount),
+                'status': txn.status,
+                'created_at': txn.created_at.isoformat(),
+                'wallet_address': txn.wallet_address,
+            })
+        
+        return Response({
+            'success': True,
+            'transactions': transactions_data,
+            'count': len(transactions_data)
+        })
+        
+    except Exception as e:
+        logger.error(f"Error fetching recent transactions: {e}")
+        return Response({
+            'success': False,
+            'error': str(e),
+            'message': 'Failed to fetch recent transactions'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

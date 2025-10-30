@@ -27,13 +27,32 @@
         <div class="portfolio-content">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h5>Total Portfolio Value</h5>
-                    <div class="portfolio-value digital-display">
-                        ${{ total_balance|floatformat:2|intcomma }}
-                    </div>
-                    <div class="portfolio-change {% if total_profit_loss >= 0 %}positive{% else %}negative{% endif %}">
-                        <i class="fas fa-{% if total_profit_loss >= 0 %}arrow-up{% else %}arrow-down{% endif %}"></i>
-                        <span>{% if total_profit_loss >= 0 %}+{% endif %}${{ total_profit_loss|floatformat:2|intcomma }} ({{ total_profit_loss_pct|floatformat:2 }}%)</span>
+                    <div class="d-flex align-items-baseline gap-4">
+                        <div>
+                            <h5>Total Portfolio Value</h5>
+                            <div class="portfolio-value digital-display">
+                                ${{ total_balance|floatformat:2|intcomma }}
+                            </div>
+                            <div class="portfolio-change {% if total_profit_loss >= 0 %}positive{% else %}negative{% endif %}">
+                                <i class="fas fa-{% if total_profit_loss >= 0 %}arrow-up{% else %}arrow-down{% endif %}"></i>
+                                <span>{% if total_profit_loss >= 0 %}+{% endif %}${{ total_profit_loss|floatformat:2|intcomma }} ({{ total_profit_loss_pct|floatformat:2 }}%)</span>
+                            </div>
+                        </div>
+                        <div class="vr" style="height: 80px; opacity: 0.2;"></div>
+                        <div>
+                            <h5>Available Balance</h5>
+                            <div class="portfolio-value digital-display" style="font-size: 2rem;">
+                                {% if user.currency_type != 'USD' %}
+                                    {{ user.get_currency_symbol }}{{ user.currency_balance|floatformat:2|intcomma }}
+                                {% else %}
+                                    ${{ user.currency_balance|floatformat:2|intcomma }}
+                                {% endif %}
+                            </div>
+                            <div class="portfolio-change" style="opacity: 0.6;">
+                                <i class="fas fa-wallet"></i>
+                                <span>Cash Balance</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-md-end mt-3 mt-md-0">
@@ -226,24 +245,53 @@
         <div class="dashboard-card recent-transactions">
             <div class="card-header">
                 <h3>Recent Transactions</h3>
-                <a href="{% url 'transaction_history_view' %}" class="btn btn-outline-primary btn-sm">View All</a>
+                <a href="{% url 'transaction_history_view' %}" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-history"></i> View All
+                </a>
             </div>
             <div class="card-body">
                 {% if recent_transactions %}
                     <div class="transactions-list">
-                        {% for transaction in recent_transactions %}
+                        {% for transaction in recent_transactions|slice:":4" %}
                             <div class="transaction-item">
                                 <div class="transaction-icon {% if transaction.transaction_type == 'BUY' %}buy{% elif transaction.transaction_type == 'SELL' %}sell{% else %}transfer{% endif %}">
                                     <i class="fas fa-{% if transaction.transaction_type == 'BUY' %}arrow-down{% elif transaction.transaction_type == 'SELL' %}arrow-up{% else %}exchange-alt{% endif %}"></i>
                                 </div>
                                 <div class="transaction-details">
-                                    <div class="transaction-type">{{ transaction.transaction_type }}</div>
-                                    <div class="transaction-crypto">{{ transaction.cryptocurrency.symbol }}</div>
-                                    <div class="transaction-amount">${{ transaction.total_amount|floatformat:2|intcomma }}</div>
-                                    <div class="transaction-time">{{ transaction.created_at|date:"M d, H:i" }}</div>
-                                </div>
-                                <div class="transaction-status">
-                                    <span class="badge bg-{{ transaction.status|lower }}">{{ transaction.status }}</span>
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <div class="transaction-type">
+                                                <strong>{{ transaction.transaction_type }}</strong> {{ transaction.cryptocurrency.symbol }}
+                                            </div>
+                                            <div class="transaction-amount" style="font-size: 0.95rem; margin-top: 0.25rem;">
+                                                {{ transaction.quantity|floatformat:6}} {{ transaction.cryptocurrency.symbol }}
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="transaction-amount" style="font-weight: 600; font-size: 1rem;">
+                                                {% if transaction.fiat_amount %}
+                                                    {% if user.currency_type != 'USD' %}
+                                                        {{ user.get_currency_symbol }}{{ transaction.fiat_amount|floatformat:2|intcomma }}
+                                                        <small style="font-size: 0.75em; opacity: 0.7; margin-left: 2px;">{{ user.currency_type }}</small>
+                                                    {% else %}
+                                                        ${{ transaction.fiat_amount|floatformat:2|intcomma }}
+                                                    {% endif %}
+                                                {% elif transaction.total_amount %}
+                                                    ${{ transaction.total_amount|floatformat:2|intcomma }}
+                                                {% else %}
+                                                    <span style="opacity: 0.5;">N/A</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="transaction-status mt-1">
+                                                <span class="badge bg-{% if transaction.status == 'COMPLETED' %}success{% elif transaction.status == 'PENDING' %}warning{% else %}danger{% endif %}">
+                                                    {{ transaction.status }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="transaction-time" style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+                                        <i class="fas fa-clock"></i> {{ transaction.created_at|date:"M d, Y H:i" }}
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -252,6 +300,9 @@
                     <div class="no-transactions">
                         <i class="fas fa-history"></i>
                         <p>No recent transactions</p>
+                        <a href="{% url 'buy' %}" class="btn btn-primary btn-sm mt-2">
+                            <i class="fas fa-shopping-cart"></i> Start Trading
+                        </a>
                     </div>
                 {% endif %}
             </div>

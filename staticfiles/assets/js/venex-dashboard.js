@@ -124,8 +124,8 @@
             // Update market statistics
             if (marketData.market_stats) {
                 document.getElementById('activeCryptos').textContent = marketData.market_stats.active_cryptocurrencies;
-                document.getElementById('totalMarketCap').textContent = `$${(marketData.market_stats.total_market_cap / 1e12).toFixed(2)}T`;
-                document.getElementById('totalVolume').textContent = `$${(marketData.market_stats.total_volume_24h / 1e9).toFixed(1)}B`;
+                document.getElementById('totalMarketCap').textContent = '$' + abbreviateNumber(marketData.market_stats.total_market_cap);
+                document.getElementById('totalVolume').textContent = '$' + abbreviateNumber(marketData.market_stats.total_volume_24h);
                 document.getElementById('btcDominance').textContent = `${marketData.market_stats.btc_dominance.toFixed(2)}%`;
             }
 
@@ -166,11 +166,11 @@
             }
 
             if (marketCapElement) {
-                marketCapElement.textContent = `$${(parseFloat(crypto.market_cap) / 1e9).toFixed(1)}B`;
+                marketCapElement.textContent = '$' + abbreviateNumber(parseFloat(crypto.market_cap));
             }
 
             if (volumeElement) {
-                volumeElement.textContent = `$${(parseFloat(crypto.volume_24h) / 1e9).toFixed(1)}B`;
+                volumeElement.textContent = '$' + abbreviateNumber(parseFloat(crypto.volume_24h));
             }
         }
 
@@ -192,13 +192,42 @@
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
+        // Abbreviate large numbers with K, M, B, T suffixes
+        function abbreviateNumber(value) {
+            const num = parseFloat(value);
+            if (isNaN(num)) return value;
+            
+            const absNum = Math.abs(num);
+            const isNegative = num < 0;
+            
+            let abbreviated, suffix;
+            
+            if (absNum >= 1e12) {  // Trillion
+                abbreviated = absNum / 1e12;
+                suffix = 'T';
+            } else if (absNum >= 1e9) {  // Billion
+                abbreviated = absNum / 1e9;
+                suffix = 'B';
+            } else if (absNum >= 1e6) {  // Million
+                abbreviated = absNum / 1e6;
+                suffix = 'M';
+            } else if (absNum >= 1e3) {  // Thousand
+                abbreviated = absNum / 1e3;
+                suffix = 'K';
+            } else {
+                return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+            
+            return `${isNegative ? '-' : ''}${abbreviated.toFixed(2)}${suffix}`;
+        }
+
         // Initialize when page loads
         // Populate initial market stats from backend context
         function populateInitialMarketStats() {
             if (window.initialMarketStats) {
                 document.getElementById('activeCryptos').textContent = window.initialMarketStats.activeCryptos;
-                document.getElementById('totalMarketCap').textContent = '$' + window.initialMarketStats.totalMarketCap;
-                document.getElementById('totalVolume').textContent = '$' + window.initialMarketStats.totalVolume;
+                document.getElementById('totalMarketCap').textContent = '$' + abbreviateNumber(window.initialMarketStats.totalMarketCap);
+                document.getElementById('totalVolume').textContent = '$' + abbreviateNumber(window.initialMarketStats.totalVolume);
                 document.getElementById('btcDominance').textContent = window.initialMarketStats.btcDominance + '%';
                 document.getElementById('updateTime').textContent = window.initialMarketStats.lastUpdated;
             }

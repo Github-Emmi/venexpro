@@ -165,6 +165,32 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             'TRX': self.tron_balance
         }
         return balances.get(crypto_symbol, Decimal('0.0'))
+    
+    def get_currency_symbol(self):
+        """Get currency symbol based on user's currency type"""
+        symbols = {
+            'USD': '$',
+            'EUR': '€',
+            'GBP': '£',
+            'JPY': '¥',
+            'CNY': '¥',
+            'NGN': '₦',
+            'INR': '₹',
+            'AUD': 'A$',
+            'CAD': 'C$',
+            'CHF': 'Fr',
+            'SEK': 'kr',
+            'NZD': 'NZ$',
+            'KRW': '₩',
+            'SGD': 'S$',
+            'HKD': 'HK$',
+            'NOK': 'kr',
+            'MXN': '$',
+            'BRL': 'R$',
+            'ZAR': 'R',
+            'RUB': '₽',
+        }
+        return symbols.get(self.currency_type, '$')
 
 
 class Buy_Sell_Wallet(models.Model):
