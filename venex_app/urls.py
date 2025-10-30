@@ -97,6 +97,13 @@ urlpatterns = [
     path('api/trading/sell/', api_views.api_sell_crypto, name='api_sell_crypto'),
     path('api/trading/deposit/', api_views.api_deposit_funds, name='api_deposit_funds'),
     path('api/trading/withdraw/', api_views.api_withdraw_funds, name='api_withdraw_funds'),
+    
+    ###########################################
+    # API ENDPOINTS - Currency Conversion
+    ###########################################
+    path('api/exchange-rate/', api_views.api_get_exchange_rate, name='api_get_exchange_rate'),
+    path('api/convert-currency/', api_views.api_convert_currency, name='api_convert_currency'),
+    
     # API URLs
     path('api/v1/', include([
         path('prices/<str:symbol>/', api_views.get_crypto_price_data, name='api_crypto_price'),

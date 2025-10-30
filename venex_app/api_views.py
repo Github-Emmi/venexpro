@@ -153,6 +153,7 @@ def dashboard_data(request):
 def api_buy_crypto(request):
     """
     API endpoint for buying cryptocurrency with currency_balance validation
+    Supports multi-currency with real-time exchange rate conversion
     """
     try:
         logger.info(f"Buy API called with data: {request.data}")
@@ -161,27 +162,63 @@ def api_buy_crypto(request):
             data = serializer.validated_data
             
             with transaction.atomic():
-                # Get current price if not provided
+                # Get current price if not provided (price is always in USD)
                 if not data.get('price_per_unit'): # type: ignore
                     current_price = get_current_price(data['cryptocurrency'])  # type: ignore
                     data['price_per_unit'] = current_price  # type: ignore
                 if not data.get('total_amount'):  # type: ignore
                     data['total_amount'] = data['quantity'] * data['price_per_unit']  # type: ignore
 
-                # Calculate total cost including fees
-                total_cost = Decimal(str(data['total_amount']))  # type: ignore
-                network_fee = total_cost * Decimal('0.001')  # 0.1% network fee
-                final_cost = total_cost + network_fee
+                # Calculate total cost in USD
+                total_cost_usd = Decimal(str(data['total_amount']))  # type: ignore
+                network_fee_usd = total_cost_usd * Decimal('0.001')  # 0.1% network fee
+                final_cost_usd = total_cost_usd + network_fee_usd
                 
-                # Validate sufficient currency_balance
-                if request.user.currency_balance < final_cost:
+                # Convert to user's currency if not USD
+                from .services.currency_service import currency_service
+                user_currency = request.user.currency_type
+                
+                if user_currency != 'USD':
+                    # Get exchange rate
+                    exchange_rate = currency_service.get_exchange_rate('USD', user_currency)
+                    
+                    # Convert all amounts to user's currency
+                    final_cost_in_user_currency = currency_service.usd_to_user_currency(
+                        final_cost_usd, 
+                        user_currency
+                    )
+                    network_fee_in_user_currency = currency_service.usd_to_user_currency(
+                        network_fee_usd,
+                        user_currency
+                    )
+                    
+                    logger.info(
+                        f"Currency conversion: {final_cost_usd:.2f} USD = "
+                        f"{final_cost_in_user_currency:.2f} {user_currency} "
+                        f"(rate: {exchange_rate})"
+                    )
+                else:
+                    # User has USD, no conversion needed
+                    final_cost_in_user_currency = final_cost_usd
+                    network_fee_in_user_currency = network_fee_usd
+                    exchange_rate = Decimal('1.00')
+                
+                # Validate sufficient currency_balance (in user's currency)
+                if request.user.currency_balance < final_cost_in_user_currency:
+                    shortfall = final_cost_in_user_currency - request.user.currency_balance
+                    currency_symbol = currency_service.get_currency_symbol(user_currency)
+                    
                     return Response(
                         {
                             'error': 'Insufficient balance',
-                            'message': f'You need {final_cost:.2f} {request.user.currency_type} but only have {request.user.currency_balance:.2f} {request.user.currency_type}.',
-                            'required': float(final_cost),
+                            'message': f'You need {currency_symbol}{final_cost_in_user_currency:.2f} but only have {currency_symbol}{request.user.currency_balance:.2f}. Shortfall: {currency_symbol}{shortfall:.2f}',
+                            'required': float(final_cost_in_user_currency),
                             'available': float(request.user.currency_balance),
-                            'currency': request.user.currency_type
+                            'shortfall': float(shortfall),
+                            'currency': user_currency,
+                            'currency_symbol': currency_symbol,
+                            'total_usd': float(final_cost_usd),
+                            'exchange_rate': float(exchange_rate)
                         },
                         status=status.HTTP_400_BAD_REQUEST
                     )
@@ -192,15 +229,20 @@ def api_buy_crypto(request):
                     transaction_type='BUY',
                     cryptocurrency=data['cryptocurrency'],  # type: ignore
                     quantity=data['quantity'],  # type: ignore
-                    price_per_unit=data['price_per_unit'],  # type: ignore
-                    total_amount=data['total_amount'],  # type: ignore
-                    currency=data.get('currency', request.user.currency_type),  # type: ignore
-                    network_fee=network_fee,
+                    price_per_unit=data['price_per_unit'],  # type: ignore (in USD)
+                    total_amount=final_cost_in_user_currency,  # Store in user's currency
+                    currency=user_currency,
+                    network_fee=network_fee_in_user_currency,
                     status='PENDING',  # Changed to PENDING until email verification
                 )
 
-                # Update user balances (deduct currency_balance, add crypto)
-                update_user_balances_after_buy(request.user, data, network_fee)
+                # Update user balances (deduct currency_balance in user's currency, add crypto)
+                update_user_balances_after_buy(
+                    request.user, 
+                    data, 
+                    network_fee_in_user_currency,
+                    final_cost_in_user_currency
+                )
 
                 # Update portfolio
                 update_user_portfolio(request.user, data['cryptocurrency'])  # type: ignore
@@ -220,6 +262,8 @@ def api_buy_crypto(request):
                 from .services.email_service import EmailService
                 EmailService.send_verification_notification(request.user, verification_code)
                 logger.info(f"Verification code sent to {request.user.email}")
+                
+                currency_symbol = currency_service.get_currency_symbol(user_currency)
 
                 return Response(
                     {
@@ -227,9 +271,13 @@ def api_buy_crypto(request):
                         'message': 'Purchase initiated successfully. Please check your email for the verification code.',
                         'transaction': TransactionSerializer(buy_transaction).data,
                         'verification_code': verification_code,
-                        'total_cost': float(final_cost),
-                        'network_fee': float(network_fee),
-                        'remaining_balance': float(request.user.currency_balance)
+                        'total_cost': float(final_cost_in_user_currency),
+                        'total_cost_usd': float(final_cost_usd),
+                        'network_fee': float(network_fee_in_user_currency),
+                        'remaining_balance': float(request.user.currency_balance),
+                        'currency': user_currency,
+                        'currency_symbol': currency_symbol,
+                        'exchange_rate': float(exchange_rate)
                     },
                     status=status.HTTP_201_CREATED
                 )
@@ -868,10 +916,16 @@ def api_update_profile(request):
 # UTILITY FUNCTIONS
 # ================================
 
-def update_user_balances_after_buy(user, data, network_fee=None):
+def update_user_balances_after_buy(user, data, network_fee=None, total_cost=None):
     """
     Update user balances after a buy transaction
     Uses currency_balance to purchase cryptocurrency
+    
+    Args:
+        user: User object
+        data: Transaction data dict
+        network_fee: Network fee in user's currency (optional)
+        total_cost: Total cost in user's currency (optional, if not provided will calculate)
     """
     # Get the cryptocurrency symbol (data['cryptocurrency'] is now a Cryptocurrency object)
     crypto_symbol = data['cryptocurrency'].symbol if hasattr(data['cryptocurrency'], 'symbol') else data['cryptocurrency']
@@ -889,10 +943,11 @@ def update_user_balances_after_buy(user, data, network_fee=None):
     if not crypto_field:
         raise ValueError(f'Unsupported cryptocurrency: {crypto_symbol}')
     
-    # Calculate total cost
-    total_cost = data['quantity'] * data['price_per_unit']
-    if network_fee:
-        total_cost += network_fee
+    # Calculate total cost if not provided
+    if total_cost is None:
+        total_cost = data['quantity'] * data['price_per_unit']
+        if network_fee:
+            total_cost += network_fee
     
     # Validate sufficient currency_balance
     if user.currency_balance < total_cost:
@@ -1341,6 +1396,86 @@ def quick_trade(request):
         return Response({
             'error': f'Trade execution failed: {str(e)}'
         }, status=400)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_get_exchange_rate(request):
+    """
+    API endpoint to get current exchange rate for user's currency
+    GET /api/exchange-rate/
+    
+    Returns:
+        - exchange_rate: Current rate from USD to user's currency
+        - user_currency: User's currency code
+        - currency_symbol: Currency symbol for display
+    """
+    try:
+        from .services.currency_service import currency_service
+        
+        user_currency = request.user.currency_type
+        exchange_rate = currency_service.get_exchange_rate('USD', user_currency)
+        currency_symbol = currency_service.get_currency_symbol(user_currency)
+        
+        # Get all available rates for reference
+        all_rates = currency_service.get_exchange_rates()
+        
+        return Response({
+            'success': True,
+            'exchange_rate': float(exchange_rate),
+            'user_currency': user_currency,
+            'currency_symbol': currency_symbol,
+            'all_rates': {k: float(v) for k, v in all_rates.items()} if len(all_rates) < 50 else {}
+        })
+        
+    except Exception as e:
+        logger.error(f"Error fetching exchange rate: {e}")
+        return Response({
+            'error': str(e),
+            'message': 'Failed to fetch exchange rate'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def api_convert_currency(request):
+    """
+    API endpoint to convert amount between currencies
+    POST /api/convert-currency/
+    
+    Payload:
+        - amount: Amount to convert
+        - from_currency: Source currency (optional, defaults to USD)
+        - to_currency: Target currency (optional, defaults to user's currency)
+    
+    Returns:
+        - converted_amount: Amount in target currency
+        - exchange_rate: Rate used for conversion
+    """
+    try:
+        from .services.currency_service import currency_service
+        
+        amount = Decimal(str(request.data.get('amount', 0)))
+        from_currency = request.data.get('from_currency', 'USD')
+        to_currency = request.data.get('to_currency', request.user.currency_type)
+        
+        converted_amount = currency_service.convert_amount(amount, from_currency, to_currency)
+        exchange_rate = currency_service.get_exchange_rate(from_currency, to_currency)
+        
+        return Response({
+            'success': True,
+            'original_amount': float(amount),
+            'converted_amount': float(converted_amount),
+            'from_currency': from_currency,
+            'to_currency': to_currency,
+            'exchange_rate': float(exchange_rate),
+            'formatted': currency_service.format_currency(converted_amount, to_currency)
+        })
+        
+    except Exception as e:
+        logger.error(f"Error converting currency: {e}")
+        return Response({
+            'error': str(e),
+            'message': 'Failed to convert currency'
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

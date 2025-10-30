@@ -178,6 +178,33 @@ let buyTotal = 0;
 let buyNetworkFee = 0;
 let buySubtotal = 0;
 let confirmationCode = '';
+let exchangeRate = 1.0; // USD to user's currency
+let userCurrency = 'USD';
+let currencySymbol = '$';
+
+// Fetch exchange rate on page load
+async function fetchExchangeRate() {
+    try {
+        const response = await fetch('/api/exchange-rate/', {
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        });
+        const data = await response.json();
+        if (data.success) {
+            exchangeRate = data.exchange_rate;
+            userCurrency = data.user_currency;
+            currencySymbol = data.currency_symbol;
+            console.log(`Exchange rate loaded: 1 USD = ${exchangeRate} ${userCurrency}`);
+        }
+    } catch (error) {
+        console.error('Failed to fetch exchange rate:', error);
+        // Use defaults (USD)
+    }
+}
+
+// Call on page load
+fetchExchangeRate();
 
 // Render crypto cards from market data
 window.renderCryptoCards = function(cryptos) {
@@ -272,12 +299,27 @@ function calculateTotals() {
         totalCost.textContent = '$0.00';
         return;
     }
+    // Calculate in USD first
     buySubtotal = buyAmount * buyPrice;
     buyNetworkFee = buySubtotal * 0.001;
     buyTotal = buySubtotal + buyNetworkFee;
-    subtotalAmount.textContent = `$${buySubtotal.toFixed(2)}`;
-    networkFee.textContent = `$${buyNetworkFee.toFixed(2)}`;
-    totalCost.textContent = `$${buyTotal.toFixed(2)}`;
+    
+    // Convert to user's currency
+    const subtotalInUserCurrency = buySubtotal * exchangeRate;
+    const feeInUserCurrency = buyNetworkFee * exchangeRate;
+    const totalInUserCurrency = buyTotal * exchangeRate;
+    
+    // Display in user's currency
+    subtotalAmount.textContent = `${currencySymbol}${subtotalInUserCurrency.toFixed(2)}`;
+    networkFee.textContent = `${currencySymbol}${feeInUserCurrency.toFixed(2)}`;
+    totalCost.textContent = `${currencySymbol}${totalInUserCurrency.toFixed(2)}`;
+    
+    // Show USD equivalent if not USD
+    if (userCurrency !== 'USD') {
+        subtotalAmount.title = `USD $${buySubtotal.toFixed(2)}`;
+        networkFee.title = `USD $${buyNetworkFee.toFixed(2)}`;
+        totalCost.title = `USD $${buyTotal.toFixed(2)}`;
+    }
 }
 
 buyForm.addEventListener('submit', function(e) {
@@ -297,11 +339,14 @@ buyForm.addEventListener('submit', function(e) {
         return;
     }
     
-    // Check if user has sufficient balance
-    if (buyTotal > availableBalance) {
-        const shortfall = buyTotal - availableBalance;
+    // Calculate total in user's currency
+    const totalInUserCurrency = buyTotal * exchangeRate;
+    
+    // Check if user has sufficient balance (comparing in user's currency)
+    if (totalInUserCurrency > availableBalance) {
+        const shortfall = totalInUserCurrency - availableBalance;
         showToast(
-            `Insufficient balance! You need $${buyTotal.toFixed(2)} but only have $${availableBalance.toFixed(2)}. Shortfall: $${shortfall.toFixed(2)}`,
+            `Insufficient balance! You need ${currencySymbol}${totalInUserCurrency.toFixed(2)} but only have ${currencySymbol}${availableBalance.toFixed(2)}. Shortfall: ${currencySymbol}${shortfall.toFixed(2)}`,
             'error',
             6000
         );
@@ -315,11 +360,11 @@ buyForm.addEventListener('submit', function(e) {
         3000
     );
     
-    // Show confirmation modal
+    // Show confirmation modal (amounts in user's currency)
     confirmCrypto.textContent = selectedCryptoData.symbol;
     confirmQuantity.textContent = buyAmount;
-    confirmPrice.textContent = `$${buyPrice.toFixed(2)}`;
-    confirmTotal.textContent = `$${buyTotal.toFixed(2)}`;
+    confirmPrice.textContent = `${currencySymbol}${(buyPrice * exchangeRate).toFixed(2)}`;
+    confirmTotal.textContent = `${currencySymbol}${totalInUserCurrency.toFixed(2)}`;
     showModal(buyConfirmModal);
 });
 
