@@ -885,32 +885,49 @@ def api_get_orders(request):
 # ================================
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def api_market_data(request):
     """
-    API endpoint for market data
+    API endpoint for market data (public endpoint, no authentication required)
+    Used by JavaScript polling as fallback when WebSocket is unavailable
     """
     try:
-        cryptocurrencies = Cryptocurrency.objects.filter(is_active=True)
+        # Update cryptocurrency data from external API
+        crypto_service.update_cryptocurrency_data()
+        
+        cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('symbol')
         serializer = CryptocurrencySerializer(cryptocurrencies, many=True)
         
         # Calculate market statistics
-        total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies)
-        total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies)
+        total_market_cap = sum(float(crypto.market_cap) for crypto in cryptocurrencies if crypto.market_cap)
+        total_volume = sum(float(crypto.volume_24h) for crypto in cryptocurrencies if crypto.volume_24h)
+        
+        # Calculate BTC dominance
+        btc_market_cap = 0
+        btc_crypto = cryptocurrencies.filter(symbol='BTC').first()
+        if btc_crypto and btc_crypto.market_cap:
+            btc_market_cap = float(btc_crypto.market_cap)
+        
+        btc_dominance = (btc_market_cap / total_market_cap * 100) if total_market_cap > 0 else 0
         
         return Response({
+            'success': True,
             'cryptocurrencies': serializer.data,
             'market_stats': {
+                'active_cryptocurrencies': cryptocurrencies.count(),
                 'total_market_cap': total_market_cap,
-                'total_volume': total_volume,
-                'total_cryptocurrencies': cryptocurrencies.count(),
-                'timestamp': timezone.now()
+                'total_volume_24h': total_volume,
+                'btc_dominance': btc_dominance,
+                'timestamp': timezone.now().isoformat()
             }
         })
         
     except Exception as e:
+        logger.error(f'Error in api_market_data: {str(e)}')
         return Response(
-            {'error': f'Failed to fetch market data: {str(e)}'},
+            {
+                'success': False,
+                'error': f'Failed to fetch market data: {str(e)}'
+            },
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 

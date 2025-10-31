@@ -311,5 +311,6 @@
     {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'assets/js/venex-dashboard.js' %}"></script>
+<!-- Use fallback version for PythonAnywhere (no WebSocket support on free tier) -->
+<script src="{% static 'assets/js/venex-dashboard-fallback.js' %}"></script>
 {% endblock %}
