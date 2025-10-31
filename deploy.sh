@@ -8,7 +8,7 @@ echo "========================================="
 echo ""
 
 # Navigate to project directory
-cd /home/emmidevcodes/RBC || exit
+cd /home/emmidevcodes/venexpro || exit
 
 echo "✅ In directory: $(pwd)"
 echo ""
