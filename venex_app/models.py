@@ -350,7 +350,7 @@ class Portfolio(models.Model):
     total_invested = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     current_value = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
     profit_loss = models.DecimalField(max_digits=20, decimal_places=8, default=0.0) # type: ignore
-    profit_loss_percentage = models.DecimalField(max_digits=10, decimal_places=4, default=0.0) # type: ignore
+    profit_loss_percentage = models.DecimalField(max_digits=12, decimal_places=4, default=0.0) # type: ignore
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -374,7 +374,15 @@ class Portfolio(models.Model):
         self.current_value = self.total_quantity * current_price
         self.profit_loss = self.current_value - self.total_invested
         if self.total_invested > 0:
-            self.profit_loss_percentage = (self.profit_loss / self.total_invested) * 100
+            calculated_percentage = (self.profit_loss / self.total_invested) * 100
+            # Cap percentage at reasonable limits to prevent database overflow
+            # Max: 99,999,999.9999 (12 digits, 4 decimals)
+            if calculated_percentage > Decimal('99999999.9999'):
+                self.profit_loss_percentage = Decimal('99999999.9999')
+            elif calculated_percentage < Decimal('-99999999.9999'):
+                self.profit_loss_percentage = Decimal('-99999999.9999')
+            else:
+                self.profit_loss_percentage = calculated_percentage
         else:
             self.profit_loss_percentage = Decimal('0.0')
         self.save()

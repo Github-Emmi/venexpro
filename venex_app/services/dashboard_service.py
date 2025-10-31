@@ -43,9 +43,17 @@ class DashboardService:
                 portfolio.profit_loss = current_value - portfolio.total_invested
                 
                 if portfolio.total_invested > 0:
-                    portfolio.profit_loss_percentage = (
+                    calculated_percentage = (
                         (portfolio.profit_loss / portfolio.total_invested) * 100
                     )
+                    # Cap percentage at reasonable limits to prevent database overflow
+                    # Max: 99,999,999.9999 (12 digits, 4 decimals)
+                    if calculated_percentage > Decimal('99999999.9999'):
+                        portfolio.profit_loss_percentage = Decimal('99999999.9999')
+                    elif calculated_percentage < Decimal('-99999999.9999'):
+                        portfolio.profit_loss_percentage = Decimal('-99999999.9999')
+                    else:
+                        portfolio.profit_loss_percentage = calculated_percentage
                 else:
                     portfolio.profit_loss_percentage = Decimal('0.0')
                 

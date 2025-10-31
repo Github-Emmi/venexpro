@@ -23,8 +23,12 @@ DEBUG = env.bool('DEBUG', default=False)
 
 # PythonAnywhere configuration
 ALLOWED_HOSTS = [
+    'emmidevcodes.pythonanywhere.com',
+    '*.pythonanywhere.com',
     'www.venexbtc.com',
     'venexbtc.com',
+    'localhost',
+    '127.0.0.1',
 ]
 
 # Application definition
@@ -227,7 +231,14 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:8000', 'https://www.venexbtc.com', 'https://venexbtc.com']
+CORS_ALLOWED_ORIGINS = [
+    'https://emmidevcodes.pythonanywhere.com',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:8000',
+    'https://www.venexbtc.com',
+    'https://venexbtc.com',
+]
 
 # Security Settings
 if not DEBUG:
@@ -252,6 +263,7 @@ else:
     SECURE_HSTS_PRELOAD = False
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://emmidevcodes.pythonanywhere.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
