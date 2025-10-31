@@ -82,6 +82,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'venexpro.wsgi.application'
+ASGI_APPLICATION = 'venexpro.asgi.application'
 
 # Channel layers (development configuration)
 CHANNEL_LAYERS = {
@@ -90,6 +91,7 @@ CHANNEL_LAYERS = {
     },
 }
 
+# For production, use Redis:
 # CHANNEL_LAYERS = {
 #     'default': {
 #         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -105,6 +107,8 @@ CHANNEL_LAYERS = {
 # Database
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'emmidevcodes$venexprodb',
         'USER': 'emmidevcodes',
@@ -117,14 +121,6 @@ DATABASES = {
         },
     }
 }
-
-# SQLite for local development (comment out when deploying)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Custom User Model
@@ -165,10 +161,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-# PythonAnywhere Static/Media paths (use these in production)
-STATIC_ROOT = '/home/emmidevcodes/venexpro/staticfiles'
-MEDIA_ROOT = '/home/emmidevcodes/venexpro/media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -235,17 +227,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-# CORS_ALLOWED_ORIGINS = ['https://www.venexbtc.com', 'https://venexbtc.com']
-
-CORS_ALLOWED_ORIGINS = [
-    'https://www.venexbtc.com',
-    'https://venexbtc.com',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://www.venexbtc.com',
-    'https://venexbtc.com',
-]
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:8000', 'https://www.venexbtc.com', 'https://venexbtc.com']
 
 # Security Settings
 if not DEBUG:
@@ -269,33 +251,37 @@ else:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_HSTS_PRELOAD = False
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://www.venexbtc.com",
+    "https://venexbtc.com",
+]
 
 
 # ===========================
-# EMAIL CONFIGURATION
+# EMAIL CONFIGURATION (Zoho)
 # ===========================
 
-# PRODUCTION: Gmail SMTP
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_SSL = False
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='aghason.emmanuel@gmail.com')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='qsct ktvm evkz qorl')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='aghason.emmanuel@gmail.com')
+EMAIL_HOST = "smtp.zoho.com"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False  # must be False when using SSL
+EMAIL_HOST_USER = "venexbtc@venexbtc.com"
+EMAIL_HOST_PASSWORD = "a4siJdTwe4KA"  # your Zoho app password
+DEFAULT_FROM_EMAIL = "venexbtc@venexbtc.com"
 
-# DEVELOPMENT: Console Backend (uncomment for local testing)
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Email recipients
-CONTACT_EMAIL = 'emmidevcodes@gmail.com'
-SUPPORT_EMAIL = 'emmidevcodes@gmail.com'
-ADMIN_EMAIL = 'emmidevcodes@gmail.com'
+CONTACT_EMAIL = 'venexbtc@venexbtc.com'
+SUPPORT_EMAIL = 'venexbtc@venexbtc.com'
+ADMIN_EMAIL = 'venexbtc@venexbtc.com'
 
 # Site URL for email templates
-SITE_URL = env('SITE_URL', default=['https://www.venexbtc.com','https://venexbtc.com' ])
-
+SITE_URL = ['https://www.venexbtc.com', 'https://venexbtc.com'] # Change to your actual domain
 
 # Authentication settings
 LOGIN_URL = '/login/'
@@ -303,9 +289,9 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-# API Configuration
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
+#  API Configuration
+# from requests.adapters import HTTPAdapter
+# from urllib3.util.retry import Retry
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', default='') # type: ignore
 COINGECKO_API_KEY = os.getenv('COINGECKO_API_KEY')
@@ -348,9 +334,9 @@ LOGGING = {
 # =====================================
 # CELERY CONFIGURATION
 # =====================================
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Use Redis as broker
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Use Redis as broker
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'UTC'

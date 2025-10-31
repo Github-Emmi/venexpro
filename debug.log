@@ -5,3 +5,93 @@ INFO 2025-10-31 15:28:09,099 currency_service 5 136647499663232 Cached 165 excha
 INFO 2025-10-31 15:30:32,397 currency_service 5 132647236069248 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
 INFO 2025-10-31 15:30:32,714 currency_service 5 132647236069248 Cached 165 exchange rates for 600 seconds
 INFO 2025-10-31 15:30:37,890 currency_service 5 132647236069248 Using cached exchange rates
+WARNING 2025-10-31 16:58:45,955 log 5 132647236069248 Not Found: /static/assets/css.css
+WARNING 2025-10-31 16:58:45,991 log 5 132647236069248 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 16:58:46,215 log 2 132647236069248 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 16:58:46,444 log 5 132647236069248 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 16:58:46,534 log 2 132647236069248 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-31 16:58:48,078 log 5 132647236069248 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-31 16:58:48,085 log 5 132647236069248 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-31 16:58:48,601 log 5 132647236069248 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-31 16:58:48,624 log 5 132647236069248 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-31 16:58:49,103 log 5 132647236069248 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-31 16:58:49,113 log 5 132647236069248 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-31 17:00:40,616 log 5 132647236069248 Not Found: /static/assets/css.css
+WARNING 2025-10-31 17:00:40,634 log 5 132647236069248 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 17:00:40,883 log 5 132647236069248 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 17:00:40,884 log 2 132647236069248 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-31 17:00:41,213 log 5 132647236069248 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-31 17:00:41,236 log 5 132647236069248 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 17:00:41,465 log 5 132647236069248 Not Found: /login/er.lrticker.html
+WARNING 2025-10-31 17:00:41,479 log 2 132647236069248 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-31 17:00:41,485 log 5 132647236069248 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-31 17:00:41,507 log 5 132647236069248 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-31 17:00:41,725 log 5 132647236069248 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-31 17:00:42,088 log 2 132647236069248 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-31 17:00:42,442 log 2 132647236069248 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-31 17:00:47,191 crypto_api_service 5 132647236069248 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 17:00:47,193 crypto_api_service 5 132647236069248 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 17:00:47,215 crypto_api_service 5 132647236069248 Updated 5 cryptocurrencies
+INFO 2025-10-31 17:00:47,220 user_views 5 132647236069248 Cryptocurrency data updated successfully
+INFO 2025-10-31 17:00:47,303 crypto_api_service 5 132647236069248 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 17:00:47,305 crypto_api_service 5 132647236069248 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 17:00:47,320 crypto_api_service 5 132647236069248 Updated 5 cryptocurrencies
+ERROR 2025-10-31 17:00:47,330 dashboard_service 5 132647236069248 Error calculating portfolio value: (1264, "Out of range value for column 'profit_loss_percentage' at row 1")
+WARNING 2025-10-31 17:00:48,668 log 5 132647236069248 Not Found: /wss/market/
+INFO 2025-10-31 17:00:59,862 currency_service 5 132647236069248 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-10-31 17:01:00,159 currency_service 5 132647236069248 Cached 165 exchange rates for 600 seconds
+INFO 2025-10-31 17:12:09,126 currency_service 5 132647236069248 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-10-31 17:12:09,392 currency_service 5 132647236069248 Cached 165 exchange rates for 600 seconds
+INFO 2025-10-31 17:12:30,851 crypto_api_service 5 132647236069248 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 17:12:30,853 crypto_api_service 5 132647236069248 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 17:12:30,870 crypto_api_service 5 132647236069248 Updated 5 cryptocurrencies
+INFO 2025-10-31 17:12:30,874 user_views 5 132647236069248 Cryptocurrency data updated successfully
+INFO 2025-10-31 17:12:30,954 crypto_api_service 5 132647236069248 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 17:12:30,955 crypto_api_service 5 132647236069248 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 17:12:30,971 crypto_api_service 5 132647236069248 Updated 5 cryptocurrencies
+ERROR 2025-10-31 17:12:30,979 dashboard_service 5 132647236069248 Error calculating portfolio value: (1264, "Out of range value for column 'profit_loss_percentage' at row 1")
+WARNING 2025-10-31 17:12:34,513 log 5 132647236069248 Not Found: /wss/market/
+WARNING 2025-10-31 17:12:56,037 log 5 132647236069248 Not Found: /ws/market/
+WARNING 2025-10-31 17:12:57,134 log 2 132647236069248 Not Found: /wss/market/
+INFO 2025-10-31 17:13:03,961 currency_service 2 132647236069248 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+WARNING 2025-10-31 17:13:04,401 log 5 132647236069248 Not Found: /wss/market/
+INFO 2025-10-31 17:13:04,794 currency_service 2 132647236069248 Cached 165 exchange rates for 600 seconds
+WARNING 2025-10-31 17:13:11,639 log 2 132647236069248 Not Found: /wss/market/
+INFO 2025-10-31 17:13:16,686 currency_service 5 132647236069248 Using cached exchange rates
+WARNING 2025-10-31 17:27:21,208 log 5 136204278478720 Not Found: /static/assets/css.css
+WARNING 2025-10-31 17:27:21,768 log 5 136204278478720 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 17:27:21,871 log 5 136204278478720 Not Found: /.well-known/traffic-advice
+WARNING 2025-10-31 17:27:22,425 log 2 136204278478720 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 17:27:23,745 log 2 136204278478720 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-31 17:27:23,840 log 5 136204278478720 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-31 17:27:24,017 log 5 136204278478720 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 17:27:24,089 log 5 136204278478720 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-31 17:27:24,211 log 2 136204278478720 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-10-31 17:27:24,379 log 5 136204278478720 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-31 17:27:24,464 log 5 136204278478720 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-10-31 17:27:25,048 log 5 136204278478720 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-10-31 17:27:27,797 log 5 136204278478720 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 17:27:27,796 log 2 136204278478720 Not Found: /static/assets/css.css
+WARNING 2025-10-31 17:27:27,803 log 2 136204278478720 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 17:27:28,321 log 2 136204278478720 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-31 17:27:28,589 log 5 136204278478720 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-31 17:27:28,597 log 2 136204278478720 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 17:27:28,641 log 5 136204278478720 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-31 17:27:28,869 log 2 136204278478720 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-31 17:27:28,874 log 5 136204278478720 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-31 17:27:28,876 log 2 136204278478720 Not Found: /login/er.lrticker.html
+WARNING 2025-10-31 17:27:28,905 log 5 136204278478720 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-31 17:27:29,153 log 2 136204278478720 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-31 17:27:29,394 log 5 136204278478720 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-31 17:27:41,575 crypto_api_service 2 136204278478720 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 17:27:41,577 crypto_api_service 2 136204278478720 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 17:27:41,600 crypto_api_service 2 136204278478720 Updated 5 cryptocurrencies
+INFO 2025-10-31 17:27:41,605 user_views 2 136204278478720 Cryptocurrency data updated successfully
+INFO 2025-10-31 17:27:41,695 crypto_api_service 2 136204278478720 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 17:27:41,704 crypto_api_service 2 136204278478720 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 17:27:41,727 crypto_api_service 2 136204278478720 Updated 5 cryptocurrencies
+ERROR 2025-10-31 17:27:41,739 dashboard_service 2 136204278478720 Error calculating portfolio value: (1264, "Out of range value for column 'profit_loss_percentage' at row 1")
+WARNING 2025-10-31 17:27:45,977 log 2 136204278478720 Not Found: /favicon.ico
+WARNING 2025-10-31 17:27:46,397 log 5 136204278478720 Not Found: /wss/market/
+INFO 2025-10-31 17:27:47,838 currency_service 5 136204278478720 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-10-31 17:27:48,141 currency_service 5 136204278478720 Cached 165 exchange rates for 600 seconds
