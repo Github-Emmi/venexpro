@@ -1,0 +1,49 @@
+WARNING 2025-10-31 19:17:22,424 log 2 130132632389504 Not Found: /static/assets/css.css
+WARNING 2025-10-31 19:17:22,959 log 2 130132632389504 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 19:17:23,147 log 2 130132632389504 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 19:17:24,161 log 5 130132632389504 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-31 19:17:24,165 log 2 130132632389504 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-31 19:17:24,432 log 5 130132632389504 Not Found: /login/er.lrticker.html
+WARNING 2025-10-31 19:17:24,873 log 5 130132632389504 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 19:17:24,957 log 5 130132632389504 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-31 19:17:26,000 log 5 130132632389504 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-31 19:17:26,197 log 2 130132632389504 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-31 19:17:26,200 log 5 130132632389504 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-31 19:17:26,439 log 5 130132632389504 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-31 19:17:26,691 log 5 130132632389504 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-31 19:17:51,269 crypto_api_service 5 130132632389504 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 19:17:51,271 crypto_api_service 5 130132632389504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 19:17:51,299 crypto_api_service 5 130132632389504 Updated 5 cryptocurrencies
+INFO 2025-10-31 19:17:51,304 user_views 5 130132632389504 Cryptocurrency data updated successfully
+INFO 2025-10-31 19:17:51,404 crypto_api_service 5 130132632389504 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 19:17:51,406 crypto_api_service 5 130132632389504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 19:17:51,426 crypto_api_service 5 130132632389504 Updated 5 cryptocurrencies
+WARNING 2025-10-31 19:17:55,002 log 5 130132632389504 Not Found: /ws/market/
+INFO 2025-10-31 19:17:56,259 currency_service 2 130132632389504 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-10-31 19:17:56,553 currency_service 2 130132632389504 Cached 165 exchange rates for 600 seconds
+WARNING 2025-10-31 19:17:56,853 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:00,744 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:05,509 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:10,195 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:15,013 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:20,919 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:25,014 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:28,892 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:33,804 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:39,053 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:43,945 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:48,138 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:53,893 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:18:58,033 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:03,604 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:08,943 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:15,299 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:25,130 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:34,848 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:41,850 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:50,546 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:19:58,944 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:20:07,446 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:20:15,345 log 2 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:20:21,659 log 5 130132632389504 Not Found: /ws/market/
+WARNING 2025-10-31 19:20:28,884 log 5 130132632389504 Not Found: /ws/market/
