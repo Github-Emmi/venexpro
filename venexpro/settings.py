@@ -90,23 +90,22 @@ ASGI_APPLICATION = 'venexpro.asgi.application'
 
 # Channel layers configuration
 # PythonAnywhere paid plan supports Redis for WebSocket channel layers
-if DEBUG:
-    # Development: Use in-memory channel layer
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'channels.layers.InMemoryChannelLayer',
-        },
-    }
-else:
-    # Production: Use Redis for WebSocket support
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'channels_redis.core.RedisChannelLayer',
-            'CONFIG': {
-                "hosts": [('127.0.0.1', 6379)],  # Redis on PythonAnywhere
-            },
-        },
-    }
+# Development: Use in-memory channel layer
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+
+# Production: Use Redis for WebSocket support
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],  # Redis on PythonAnywhere
+#         },
+#     },
+# }
 
 
 
