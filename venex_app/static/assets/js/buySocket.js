@@ -1,7 +1,7 @@
 // buySocket.js
 // Real-time WebSocket integration for Buy Crypto page
 
-const BUY_WS_URL = (window.location.protocol === 'https:' ? 'wss://' : 'wss://') + window.location.host + '/wss/market/';
+const BUY_WS_URL = (window.location.protocol === 'https:' ? 'wss://venexbtc.com/wss/' : 'wss://venexbtc.com/wss/') + 'market/';
 let buySocket = null;
 let marketData = {};
 
