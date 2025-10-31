@@ -1,6 +1,6 @@
 /**
  * sellSocket.js - WebSocket Real-Time Price Updates for Sell Page
- * 
+ *
  * This script:
  * - Connects to the market WebSocket
  * - Updates cryptocurrency prices in real-time
@@ -22,18 +22,18 @@ const RECONNECT_DELAY = 5000; // 5 seconds
  */
 function initializeSellSocket() {
     // Determine WebSocket protocol (ws or wss)
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsUrl = `${protocol}//${window.location.host}/ws/market/`;
-    
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'wss:';
+    const wsUrl = `${protocol}//${window.location.host}/wss/market/`;
+
     console.log('Connecting to market WebSocket:', wsUrl);
-    
+
     try {
         sellSocket = new WebSocket(wsUrl);
-        
+
         sellSocket.onopen = function(e) {
             console.log('✓ Market WebSocket connected');
             clearReconnectInterval();
-            
+
             // Request initial market data
             if (sellSocket.readyState === WebSocket.OPEN) {
                 sellSocket.send(JSON.stringify({
@@ -41,11 +41,11 @@ function initializeSellSocket() {
                 }));
             }
         };
-        
+
         sellSocket.onmessage = function(e) {
             try {
                 const data = JSON.parse(e.data);
-                
+
                 if (data.type === 'market_data') {
                     // Initial market data received
                     updateMarketData(data.data);
@@ -53,26 +53,26 @@ function initializeSellSocket() {
                     // Single price update
                     updateCryptoPrice(data.data.symbol, data.data.price);
                 }
-                
+
             } catch (error) {
                 console.error('Error processing WebSocket message:', error);
             }
         };
-        
+
         sellSocket.onerror = function(e) {
             console.error('WebSocket error:', e);
         };
-        
+
         sellSocket.onclose = function(e) {
             console.log('Market WebSocket closed');
-            
+
             if (e.code !== 1000) {
                 // Abnormal closure, attempt to reconnect
                 console.log('Attempting to reconnect in', RECONNECT_DELAY / 1000, 'seconds...');
                 scheduleReconnect();
             }
         };
-        
+
     } catch (error) {
         console.error('Failed to create WebSocket:', error);
         scheduleReconnect();
@@ -84,7 +84,7 @@ function initializeSellSocket() {
  */
 function scheduleReconnect() {
     clearReconnectInterval();
-    
+
     reconnectInterval = setInterval(() => {
         console.log('Reconnecting to market WebSocket...');
         initializeSellSocket();
@@ -112,7 +112,7 @@ function clearReconnectInterval() {
  */
 function updateCryptoPrice(symbol, price) {
     console.log(`Price update: ${symbol} = $${price}`);
-    
+
     // Call sell.js function if available
     if (typeof window.updateSellPagePrice === 'function') {
         window.updateSellPagePrice(symbol, price);
@@ -127,9 +127,9 @@ function updateMarketData(marketData) {
     if (!marketData || typeof marketData !== 'object') {
         return;
     }
-    
+
     console.log('Market data received:', marketData);
-    
+
     // Handle different data structures
     if (marketData.cryptocurrencies && Array.isArray(marketData.cryptocurrencies)) {
         // Array of crypto objects
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 window.addEventListener('beforeunload', function() {
     clearReconnectInterval();
-    
+
     if (sellSocket && sellSocket.readyState === WebSocket.OPEN) {
         sellSocket.close(1000, 'Page unload');
     }
@@ -182,7 +182,7 @@ document.addEventListener('visibilitychange', function() {
         console.log('Page hidden - WebSocket still active');
     } else {
         console.log('Page visible - WebSocket active');
-        
+
         // Reconnect if socket is closed
         if (!sellSocket || sellSocket.readyState === WebSocket.CLOSED) {
             initializeSellSocket();

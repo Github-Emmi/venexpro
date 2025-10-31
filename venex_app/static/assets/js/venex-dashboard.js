@@ -83,7 +83,7 @@
         // Connect to WebSocket
         function connectWebSocket() {
             try {
-                ws = new WebSocket('ws://www.venexbtc.com/ws/market/');
+                ws = new WebSocket('wss://www.venexbtc.com/wss/market/');
 
                 ws.onopen = function() {
                     console.log('WebSocket connected');
@@ -196,12 +196,12 @@
         function abbreviateNumber(value) {
             const num = parseFloat(value);
             if (isNaN(num)) return value;
-            
+
             const absNum = Math.abs(num);
             const isNegative = num < 0;
-            
+
             let abbreviated, suffix;
-            
+
             if (absNum >= 1e12) {  // Trillion
                 abbreviated = absNum / 1e12;
                 suffix = 'T';
@@ -217,7 +217,7 @@
             } else {
                 return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             }
-            
+
             return `${isNegative ? '-' : ''}${abbreviated.toFixed(2)}${suffix}`;
         }
 
@@ -238,25 +238,25 @@
             initializeDisplay();
             connectWebSocket();
 
-            // Simulate price updates for demo (remove in production)
-            setInterval(() => {
-                if (!ws || ws.readyState !== WebSocket.OPEN) {
-                    // Add small random fluctuations to demo live updates
-                    Object.keys(cryptocurrencies).forEach(symbol => {
-                        const card = document.getElementById(`card-${symbol}`);
-                        if (card) {
-                            const priceElement = card.querySelector('.current-price');
-                            if (priceElement) {
-                                const currentPrice = parseFloat(priceElement.textContent.replace(/[$,]/g, ''));
-                                const fluctuation = (Math.random() - 0.5) * 10;
-                                const newPrice = currentPrice + fluctuation;
-                                priceElement.textContent = `$ ${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                            }
-                        }
-                    });
-                    document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
-                }
-            }, 5000);
+            // // Simulate price updates for demo (remove in production)
+            // setInterval(() => {
+            //     if (!ws || ws.readyState !== WebSocket.OPEN) {
+            //         // Add small random fluctuations to demo live updates
+            //         Object.keys(cryptocurrencies).forEach(symbol => {
+            //             const card = document.getElementById(`card-${symbol}`);
+            //             if (card) {
+            //                 const priceElement = card.querySelector('.current-price');
+            //                 if (priceElement) {
+            //                     const currentPrice = parseFloat(priceElement.textContent.replace(/[$,]/g, ''));
+            //                     const fluctuation = (Math.random() - 0.5) * 10;
+            //                     const newPrice = currentPrice + fluctuation;
+            //                     priceElement.textContent = `$ ${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            //                 }
+            //             }
+            //         });
+            //         document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+            //     }
+            // }, 5000);
         });
 
         // Quick Trade Form Handling
@@ -277,7 +277,7 @@
         if (quickTradeForm) {
             quickTradeForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
                 const formData = new FormData(quickTradeForm);
                 const data = {
                     type: currentTradeType,
@@ -296,7 +296,7 @@
                     });
 
                     const result = await response.json();
-                    
+
                     if (response.ok) {
                         // Show success message
                         showNotification('Trade executed successfully!', 'success');
@@ -333,9 +333,9 @@
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
             notification.textContent = message;
-            
+
             document.body.appendChild(notification);
-            
+
             // Remove notification after 3 seconds
             setTimeout(() => {
                 notification.remove();

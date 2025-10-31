@@ -1,0 +1,133 @@
+WARNING 2025-10-31 14:32:35,842 log 2 134227423209344 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 14:32:35,852 log 2 134227423209344 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 14:32:35,921 log 5 134227423209344 Not Found: /static/assets/css.css
+WARNING 2025-10-31 14:32:37,536 log 2 134227423209344 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 14:32:37,691 log 5 134227423209344 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-31 14:32:39,284 log 5 134227423209344 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-10-31 14:32:39,795 log 5 134227423209344 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-10-31 14:32:39,896 log 2 134227423209344 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-10-31 14:32:40,041 log 5 134227423209344 Not Found: /static/assets/css.css
+WARNING 2025-10-31 14:32:40,466 log 5 134227423209344 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 14:32:40,725 log 5 134227423209344 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 14:32:40,779 log 5 134227423209344 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-31 14:32:40,857 log 2 134227423209344 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-31 14:32:41,059 log 2 134227423209344 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 14:32:41,094 log 2 134227423209344 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-31 14:32:41,126 log 5 134227423209344 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-31 14:32:41,163 log 2 134227423209344 Not Found: /login/er.lrticker.html
+WARNING 2025-10-31 14:32:41,212 log 5 134227423209344 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-31 14:32:41,449 log 5 134227423209344 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-31 14:32:41,970 log 2 134227423209344 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-31 14:32:42,514 log 5 134227423209344 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-31 14:32:50,404 crypto_api_service 5 134227423209344 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 14:32:50,405 crypto_api_service 5 134227423209344 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 14:32:50,449 crypto_api_service 5 134227423209344 Updated 5 cryptocurrencies
+INFO 2025-10-31 14:32:50,458 user_views 5 134227423209344 Cryptocurrency data updated successfully
+INFO 2025-10-31 14:32:50,550 crypto_api_service 5 134227423209344 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 14:32:50,551 crypto_api_service 5 134227423209344 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 14:32:50,570 crypto_api_service 5 134227423209344 Updated 5 cryptocurrencies
+ERROR 2025-10-31 14:32:50,579 dashboard_service 5 134227423209344 Error calculating portfolio value: (1264, "Out of range value for column 'profit_loss_percentage' at row 1")
+INFO 2025-10-31 14:33:01,376 currency_service 5 134227423209344 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-10-31 14:33:01,680 currency_service 5 134227423209344 Cached 165 exchange rates for 600 seconds
+WARNING 2025-10-31 14:33:02,049 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:05,918 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:10,760 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:15,764 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:20,354 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:24,477 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:28,657 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:33,362 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:38,251 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:42,743 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:49,675 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:33:58,037 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:03,575 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:11,313 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:19,448 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:25,987 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:32,770 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:41,799 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:49,308 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:34:55,511 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:02,543 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:10,700 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:20,321 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:26,395 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:36,056 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:44,494 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:51,184 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:35:58,983 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:36:09,849 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:36:19,657 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:36:28,676 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:36:39,243 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:36:48,488 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:36:56,490 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:37:03,579 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:37:12,718 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:37:20,897 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:37:26,493 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:37:40,134 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:37:45,671 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:37:55,402 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:38:05,053 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:38:10,457 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:38:18,251 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:38:26,766 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:38:35,124 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:38:46,164 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:38:54,550 log 2 134227423209344 Not Found: /ws/market/
+INFO 2025-10-31 14:39:00,691 currency_service 5 134227423209344 Using cached exchange rates
+WARNING 2025-10-31 14:39:05,711 log 5 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:39:13,570 log 2 134227423209344 Not Found: /ws/market/
+WARNING 2025-10-31 14:43:03,033 log 5 126845407168384 Not Found: /.well-known/traffic-advice
+WARNING 2025-10-31 14:43:03,031 log 2 126845407168384 Not Found: /.well-known/traffic-advice
+WARNING 2025-10-31 14:43:03,820 log 5 126845407168384 Not Found: /static/assets/css.css
+WARNING 2025-10-31 14:43:04,373 log 5 126845407168384 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 14:43:04,380 log 2 126845407168384 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 14:43:08,371 log 5 126845407168384 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 14:43:08,666 log 2 126845407168384 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-10-31 14:43:10,061 log 5 126845407168384 Not Found: /static/assets/css.css
+WARNING 2025-10-31 14:43:10,686 log 5 126845407168384 Not Found: /static/assets/js/wow.js
+WARNING 2025-10-31 14:43:10,700 log 5 126845407168384 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-10-31 14:43:10,885 log 5 126845407168384 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-10-31 14:43:10,968 log 2 126845407168384 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-10-31 14:43:10,981 log 5 126845407168384 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-10-31 14:43:10,994 log 2 126845407168384 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-10-31 14:43:11,043 log 5 126845407168384 Not Found: /login/er.lrticker.html
+WARNING 2025-10-31 14:43:11,851 log 5 126845407168384 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-10-31 14:43:11,859 log 2 126845407168384 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-10-31 14:43:11,958 log 5 126845407168384 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-10-31 14:43:12,283 log 5 126845407168384 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-10-31 14:43:12,534 log 2 126845407168384 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-10-31 14:43:33,597 crypto_api_service 5 126845407168384 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 14:43:33,599 crypto_api_service 5 126845407168384 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 14:43:33,620 crypto_api_service 5 126845407168384 Updated 5 cryptocurrencies
+INFO 2025-10-31 14:43:33,623 user_views 5 126845407168384 Cryptocurrency data updated successfully
+INFO 2025-10-31 14:43:33,715 crypto_api_service 5 126845407168384 CoinGecko API success: fetched 5 coins
+INFO 2025-10-31 14:43:33,717 crypto_api_service 5 126845407168384 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-10-31 14:43:33,736 crypto_api_service 5 126845407168384 Updated 5 cryptocurrencies
+ERROR 2025-10-31 14:43:33,744 dashboard_service 5 126845407168384 Error calculating portfolio value: (1264, "Out of range value for column 'profit_loss_percentage' at row 1")
+WARNING 2025-10-31 14:43:38,196 log 5 126845407168384 Not Found: /wss/market/
+INFO 2025-10-31 14:43:39,836 currency_service 5 126845407168384 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-10-31 14:43:40,134 currency_service 5 126845407168384 Cached 165 exchange rates for 600 seconds
+WARNING 2025-10-31 14:43:40,333 log 2 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:43:44,122 log 2 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:43:49,141 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:43:53,287 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:43:57,932 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:44:03,109 log 2 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:44:08,874 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:44:18,284 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:44:24,498 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:44:32,256 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:44:39,155 log 5 126845407168384 Not Found: /wss/market/
+                          WARNING 2025-10-31 14:44:48,102 log 2 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:44:54,508 log 2 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:45:07,491 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:45:11,516 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 14:45:17,869 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 15:19:48,205 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 15:19:56,524 log 5 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 15:20:04,285 log 2 126845407168384 Not Found: /wss/market/
+WARNING 2025-10-31 15:20:11,068 log 5 126845407168384 Not Found: /wss/market/

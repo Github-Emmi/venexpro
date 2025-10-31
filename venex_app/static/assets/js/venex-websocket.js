@@ -7,33 +7,33 @@ class VenexWebSocket {
         this.maxReconnectAttempts = 5;
         this.reconnectDelay = 3000;
         this.isAuthenticated = !!userId;
-        
+
         // Determine WebSocket URL based on authentication
         if (this.isAuthenticated) {
-            this.wsUrl = `ws://${window.location.host}/ws/dashboard/`;
+            this.wsUrl = `wss://${window.location.host}/wss/dashboard/`;
         } else {
-            this.wsUrl = `ws://${window.location.host}/ws/market/`;
+            this.wsUrl = `wss://${window.location.host}/wss/market/`;
         }
-        
+
         this.connect();
     }
-    
+
     connect() {
         try {
             console.log(`Connecting to WebSocket: ${this.wsUrl}`);
             this.socket = new WebSocket(this.wsUrl);
-            
+
             this.socket.onopen = () => {
                 console.log('WebSocket connected successfully');
                 this.reconnectAttempts = 0;
-                
+
                 if (this.isAuthenticated) {
                     console.log('Authenticated WebSocket session established');
                 } else {
                     console.log('Public market WebSocket session established');
                 }
             };
-            
+
             this.socket.onmessage = (event) => {
                 try {
                     const data = JSON.parse(event.data);
@@ -42,49 +42,49 @@ class VenexWebSocket {
                     console.error('Error parsing WebSocket message:', error);
                 }
             };
-            
+
             this.socket.onclose = (event) => {
                 console.log(`WebSocket disconnected: ${event.code} - ${event.reason}`);
                 this.handleReconnection();
             };
-            
+
             this.socket.onerror = (error) => {
                 console.error('WebSocket error:', error);
             };
-            
+
         } catch (error) {
             console.error('WebSocket connection failed:', error);
             this.handleReconnection();
         }
     }
-    
+
     handleMessage(data) {
         console.log('WebSocket message received:', data);
-        
+
         switch (data.type) {
             case 'dashboard_snapshot':
             case 'dashboard_update':
                 this.handleDashboardUpdate(data);
                 break;
-                
+
             case 'market_snapshot':
             case 'market_update':
                 this.handleMarketUpdate(data);
                 break;
-                
+
             case 'trade_update':
                 this.handleTradeUpdate(data);
                 break;
-                
+
             case 'portfolio_update':
                 this.handlePortfolioUpdate(data);
                 break;
-                
+
             default:
                 console.log('Unknown message type:', data.type);
         }
     }
-    
+
     handleDashboardUpdate(data) {
         // Update dashboard with real-time data
         if (data.data && data.data.portfolio_summary) {
@@ -97,7 +97,7 @@ class VenexWebSocket {
             this.updateDashboardSummary(data.payload.portfolio);
         }
     }
-    
+
     handleMarketUpdate(data) {
         // Update market data displays
         if (data.data && Array.isArray(data.data)) {
@@ -107,21 +107,21 @@ class VenexWebSocket {
             this.updateMarketGrid(data.payload.cryptos);
         }
     }
-    
+
     handleTradeUpdate(data) {
         // Show trade notifications
         if (data.payload && data.payload.trade) {
             this.showTradeNotification(data.payload.trade);
         }
     }
-    
+
     handlePortfolioUpdate(data) {
         // Update portfolio displays
         if (data.payload) {
             this.updatePortfolioDisplay(data.payload);
         }
     }
-    
+
     updateDashboardSummary(summary) {
         // Update DOM elements with portfolio summary
         const elements = {
@@ -130,7 +130,7 @@ class VenexWebSocket {
             totalProfitLoss: document.getElementById('total-profit-loss'),
             profitLossPercentage: document.getElementById('profit-loss-percentage')
         };
-        
+
         if (elements.totalValue && summary.total_value) {
             elements.totalValue.textContent = `$${summary.total_value.toLocaleString()}`;
         }
@@ -148,24 +148,24 @@ class VenexWebSocket {
             elements.profitLossPercentage.className = `profit-loss ${isPositive ? 'positive' : 'negative'}`;
         }
     }
-    
+
     updateMarketGrid(cryptos) {
         // Update each cryptocurrency card in the market grid
         cryptos.forEach(crypto => {
             const priceElement = document.getElementById(`price-${crypto.symbol}`);
             const changeElement = document.getElementById(`change-${crypto.symbol}`);
             const cardElement = document.getElementById(`crypto-card-${crypto.symbol}`);
-            
+
             if (priceElement) {
                 priceElement.textContent = `$${crypto.price.toFixed(2)}`;
             }
-            
+
             if (changeElement) {
                 const isPositive = crypto.change_percentage_24h >= 0;
                 changeElement.textContent = `${isPositive ? '+' : ''}${crypto.change_percentage_24h.toFixed(2)}%`;
                 changeElement.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
             }
-            
+
             // Visual feedback for price updates
             if (cardElement) {
                 cardElement.classList.add('price-update-flash');
@@ -175,7 +175,7 @@ class VenexWebSocket {
             }
         });
     }
-    
+
     showTradeNotification(trade) {
         // Create toast notification for trades
         const notification = document.createElement('div');
@@ -185,19 +185,19 @@ class VenexWebSocket {
             <div>${trade.type} ${trade.quantity} ${trade.symbol} @ $${trade.price_per_unit}</div>
             <small>${new Date().toLocaleTimeString()}</small>
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             notification.remove();
         }, 5000);
     }
-    
+
     handleReconnection() {
         if (this.reconnectAttempts < this.maxReconnectAttempts) {
             this.reconnectAttempts++;
             console.log(`Attempting to reconnect... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
-            
+
             setTimeout(() => {
                 this.connect();
             }, this.reconnectDelay * this.reconnectAttempts);
@@ -205,7 +205,7 @@ class VenexWebSocket {
             console.error('Max reconnection attempts reached. Please refresh the page.');
         }
     }
-    
+
     disconnect() {
         if (this.socket) {
             this.socket.close();
@@ -294,22 +294,22 @@ class VenexUtils {
     // Format date relative to now
     static timeAgo(date) {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
-        
+
         let interval = seconds / 31536000;
         if (interval > 1) return Math.floor(interval) + ' years ago';
-        
+
         interval = seconds / 2592000;
         if (interval > 1) return Math.floor(interval) + ' months ago';
-        
+
         interval = seconds / 86400;
         if (interval > 1) return Math.floor(interval) + ' days ago';
-        
+
         interval = seconds / 3600;
         if (interval > 1) return Math.floor(interval) + ' hours ago';
-        
+
         interval = seconds / 60;
         if (interval > 1) return Math.floor(interval) + ' minutes ago';
-        
+
         return Math.floor(seconds) + ' seconds ago';
     }
 
@@ -336,10 +336,10 @@ window.VenexUtils = VenexUtils;
 // Initialize WebSocket based on page context
 document.addEventListener('DOMContentLoaded', function() {
     // Get user ID from Django template context
-    const userId = document.body.getAttribute('data-user-id') || 
-                   (window.VENEX_CONFIG && VENEX_CONFIG.userId) || 
+    const userId = document.body.getAttribute('data-user-id') ||
+                   (window.VENEX_CONFIG && VENEX_CONFIG.userId) ||
                    null;
-    
+
     // Only initialize WebSocket if we're on a page that needs it
     const needsWebSocket = document.querySelector('[data-websocket="true"]');
     if (needsWebSocket) {

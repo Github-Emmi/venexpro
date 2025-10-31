@@ -82,7 +82,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'venexpro.wsgi.application'
-ASGI_APPLICATION = 'venexpro.asgi.application'
 
 # Channel layers (development configuration)
 CHANNEL_LAYERS = {
@@ -295,7 +294,7 @@ SUPPORT_EMAIL = 'emmidevcodes@gmail.com'
 ADMIN_EMAIL = 'emmidevcodes@gmail.com'
 
 # Site URL for email templates
-SITE_URL = env('SITE_URL', default='https://www.venexbtc.com')
+SITE_URL = env('SITE_URL', default=['https://www.venexbtc.com','https://venexbtc.com' ])
 
 
 # Authentication settings

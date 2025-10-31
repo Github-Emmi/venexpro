@@ -4,13 +4,13 @@ class PortfolioWebSocket {
         this.connectionStatus = document.createElement('div');
         this.connectionStatus.className = 'connection-status';
         document.body.appendChild(this.connectionStatus);
-        
+
         this.connect();
     }
 
     connect() {
         this.socket = new WebSocket(
-            `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/portfolio/`
+            `${window.location.protocol === 'https:' ? 'wss:' : 'wss:'}//${window.location.host}/wss/portfolio/`
         );
 
         this.socket.onopen = () => {
@@ -82,11 +82,11 @@ class PortfolioWebSocket {
             if (row) {
                 const priceCell = row.querySelector('.current-price');
                 const changeCell = row.querySelector('.price-change');
-                
+
                 if (priceCell) {
                     priceCell.textContent = `$${data.price.toFixed(2)}`;
                 }
-                
+
                 if (changeCell) {
                     const changePercent = data.change_24h;
                     changeCell.textContent = `${changePercent > 0 ? '+' : ''}${changePercent.toFixed(2)}%`;
@@ -118,7 +118,7 @@ class PortfolioWebSocket {
         };
 
         if (marketStatsElements.totalMarketCap) {
-            marketStatsElements.totalMarketCap.textContent = 
+            marketStatsElements.totalMarketCap.textContent =
                 new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: 'USD',
@@ -128,7 +128,7 @@ class PortfolioWebSocket {
         }
 
         if (marketStatsElements.volume24h) {
-            marketStatsElements.volume24h.textContent = 
+            marketStatsElements.volume24h.textContent =
                 new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: 'USD',
@@ -138,7 +138,7 @@ class PortfolioWebSocket {
         }
 
         if (marketStatsElements.btcDominance) {
-            marketStatsElements.btcDominance.textContent = 
+            marketStatsElements.btcDominance.textContent =
                 `${marketData.btc_dominance.toFixed(1)}%`;
         }
     }
