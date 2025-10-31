@@ -19,14 +19,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY', default="your_dev_secret_key_here") # type: ignore
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env.bool('DEBUG', default=False) # type: ignore
 
 # PythonAnywhere configuration
 ALLOWED_HOSTS = [
-    'emmidevcodes.pythonanywhere.com',
-    '*.pythonanywhere.com',
     'www.venexbtc.com',
     'venexbtc.com',
+    'emmidevcodes.pythonanywhere.com',
+    '*.pythonanywhere.com',
     'localhost',
     '127.0.0.1',
 ]
@@ -232,12 +232,13 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
+    'https://www.venexbtc.com',
+    'https://venexbtc.com',
     'https://emmidevcodes.pythonanywhere.com',
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'http://localhost:8000',
-    'https://www.venexbtc.com',
-    'https://venexbtc.com',
+    
 ]
 
 # Security Settings
@@ -263,13 +264,14 @@ else:
     SECURE_HSTS_PRELOAD = False
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://www.venexbtc.com",
+    "https://venexbtc.com",
     "https://emmidevcodes.pythonanywhere.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "https://www.venexbtc.com",
-    "https://venexbtc.com",
+    
 ]
 
 
