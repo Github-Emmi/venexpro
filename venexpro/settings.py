@@ -108,8 +108,6 @@ CHANNEL_LAYERS = {
 # }
 
 
-
-
 # Database
 DATABASES = {
     'default': {
