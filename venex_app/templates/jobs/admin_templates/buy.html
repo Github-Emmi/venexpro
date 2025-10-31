@@ -241,7 +241,7 @@
 {% endblock %}
 
 {% block extra_js %}
-<!-- Use fallback version for PythonAnywhere (no WebSocket support on free tier) -->
-<script src="{% static 'assets/js/buySocket-fallback.js' %}"></script>
+<!-- WebSocket real-time updates (PythonAnywhere paid plan supports WebSockets) -->
+<script src="{% static 'assets/js/buySocket.js' %}"></script>
 <script src="{% static 'assets/js/buy.js' %}"></script>
 {% endblock %}

@@ -83,10 +83,15 @@
         // Connect to WebSocket
         function connectWebSocket() {
             try {
-                ws = new WebSocket('wss://www.venexbtc.com/wss/market/');
+                // Dynamic WebSocket URL based on current hostname
+                const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const wsUrl = `${wsProtocol}//${window.location.host}/ws/market/`;
+                
+                console.log('Connecting to WebSocket:', wsUrl);
+                ws = new WebSocket(wsUrl);
 
                 ws.onopen = function() {
-                    console.log('WebSocket connected');
+                    console.log('✅ Dashboard WebSocket connected');
                     updateConnectionStatus(true);
                     reconnectAttempts = 0;
                 };

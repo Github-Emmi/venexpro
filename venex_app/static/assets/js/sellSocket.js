@@ -21,9 +21,9 @@ const RECONNECT_DELAY = 5000; // 5 seconds
  * Initialize WebSocket connection
  */
 function initializeSellSocket() {
-    // Determine WebSocket protocol (ws or wss)
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'wss:';
-    const wsUrl = `${protocol}//${window.location.host}/wss/market/`;
+    // Dynamic WebSocket URL based on current hostname
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${window.location.host}/ws/market/`;
 
     console.log('Connecting to market WebSocket:', wsUrl);
 
@@ -31,7 +31,7 @@ function initializeSellSocket() {
         sellSocket = new WebSocket(wsUrl);
 
         sellSocket.onopen = function(e) {
-            console.log('✓ Market WebSocket connected');
+            console.log('✅ Sell page WebSocket connected');
             clearReconnectInterval();
 
             // Request initial market data

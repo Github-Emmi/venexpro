@@ -644,6 +644,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{% static 'assets/js/portfolio.js' %}"></script>
 <script src="{% static 'assets/js/portfolioCharts.js' %}"></script>
-<!-- Use fallback version for PythonAnywhere (no WebSocket support on free tier) -->
-<script src="{% static 'assets/js/portfolioSocket-fallback.js' %}"></script>
+<!-- WebSocket real-time updates (PythonAnywhere paid plan supports WebSockets) -->
+<script src="{% static 'assets/js/portfolioSocket.js' %}"></script>
 {% endblock %}

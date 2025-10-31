@@ -1,14 +1,19 @@
 // buySocket.js
 // Real-time WebSocket integration for Buy Crypto page
 
-const BUY_WS_URL = (window.location.protocol === 'https:' ? 'wss://venexbtc.com/wss/' : 'wss://venexbtc.com/wss/') + 'market/';
+// Dynamic WebSocket URL based on current hostname (works on any domain)
+const BUY_WS_PROTOCOL = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const BUY_WS_URL = `${BUY_WS_PROTOCOL}//${window.location.host}/ws/market/`;
+
 let buySocket = null;
 let marketData = {};
 
 function connectBuySocket() {
+    console.log('Connecting to WebSocket:', BUY_WS_URL);
     buySocket = new WebSocket(BUY_WS_URL);
 
     buySocket.onopen = function() {
+        console.log('✅ Buy page WebSocket connected');
         // Subscribe to initial chart data for all cryptos
         sendMarketSubscribe();
     };
