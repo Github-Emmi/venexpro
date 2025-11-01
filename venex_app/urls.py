@@ -151,6 +151,7 @@ urlpatterns = [
     ###########################################
     path('api/user/profile/', api_views.api_user_profile, name='api_user_profile'),
     path('api/user/profile/update/', api_views.api_update_profile, name='api_update_profile'),
+    path('api/user/change-password/', api_views.api_change_password, name='api_change_password'),
 ]
 
 # Error handlers

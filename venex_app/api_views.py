@@ -1327,32 +1327,115 @@ def api_user_profile(request):
 @permission_classes([IsAuthenticated])
 def api_update_profile(request):
     """
-    API endpoint for updating user profile
+    API endpoint for updating user profile including wallet addresses
     """
     try:
         user = request.user
-        data = request.data
         
-        # Update allowed fields
-        allowed_fields = ['first_name', 'last_name', 'phone_no']
-        for field in allowed_fields:
-            if field in data:
+        # Handle file uploads (profile_pic, id_document)
+        if request.FILES:
+            if 'profile_pic' in request.FILES:
+                user.profile_pic = request.FILES['profile_pic']
+            if 'id_document' in request.FILES:
+                user.id_document = request.FILES['id_document']
+                # If KYC document is uploaded, mark for verification
+                if not user.is_verified:
+                    # In a real app, this would trigger admin review
+                    # For now, we'll just save the document
+                    logger.info(f"KYC document uploaded for user {user.email}")
+            user.save()
+            return Response({
+                'success': True,
+                'message': 'File uploaded successfully'
+            })
+        
+        # Handle JSON data
+        if request.content_type == 'application/json':
+            data = request.data
+        else:
+            data = request.POST.dict()
+        
+        # Update personal info fields
+        personal_fields = ['first_name', 'last_name', 'phone_no', 'gender', 'address']
+        for field in personal_fields:
+            if field in data and data[field] is not None:
+                setattr(user, field, data[field])
+        
+        # Update wallet addresses
+        wallet_fields = ['btc_wallet', 'ethereum_wallet', 'usdt_wallet', 'litecoin_wallet', 'tron_wallet']
+        for field in wallet_fields:
+            if field in data and data[field] is not None:
                 setattr(user, field, data[field])
         
         user.save()
         
         return Response({
+            'success': True,
             'message': 'Profile updated successfully',
             'user': {
                 'first_name': user.first_name,
                 'last_name': user.last_name,
                 'phone_no': user.phone_no,
+                'gender': user.gender,
+                'address': user.address,
             }
         })
         
     except Exception as e:
+        logger.error(f"Failed to update profile: {str(e)}")
         return Response(
-            {'error': f'Failed to update profile: {str(e)}'},
+            {'success': False, 'error': f'Failed to update profile: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def api_change_password(request):
+    """
+    API endpoint for changing user password
+    """
+    try:
+        user = request.user
+        data = request.data
+        
+        current_password = data.get('current_password')
+        new_password = data.get('new_password')
+        
+        if not current_password or not new_password:
+            return Response({
+                'success': False,
+                'error': 'Current password and new password are required'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Verify current password
+        if not user.check_password(current_password):
+            return Response({
+                'success': False,
+                'error': 'Current password is incorrect'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Validate new password strength
+        if len(new_password) < 8:
+            return Response({
+                'success': False,
+                'error': 'New password must be at least 8 characters long'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Set new password
+        user.set_password(new_password)
+        user.save()
+        
+        logger.info(f"Password changed for user {user.email}")
+        
+        return Response({
+            'success': True,
+            'message': 'Password changed successfully'
+        })
+        
+    except Exception as e:
+        logger.error(f"Failed to change password: {str(e)}")
+        return Response(
+            {'success': False, 'error': f'Failed to change password: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 

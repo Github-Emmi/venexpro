@@ -786,3 +786,17 @@ INFO 2025-11-01 00:53:23,481 autoreload 18887 4732700160 Watching for file chang
 INFO 2025-11-01 00:53:26,721 autoreload 18887 4732700160 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
 INFO 2025-11-01 00:53:27,840 autoreload 18896 4492756480 Watching for file changes with StatReloader
 INFO 2025-11-01 00:54:47,441 autoreload 19174 4486280704 Watching for file changes with StatReloader
+INFO 2025-11-01 00:55:35,611 autoreload 19653 4423378432 Watching for file changes with StatReloader
+INFO 2025-11-01 00:56:07,903 autoreload 21001 4664096256 Watching for file changes with StatReloader
+INFO 2025-11-01 00:56:20,529 crypto_api_service 21001 123145395691520 CoinGecko API success: fetched 5 coins
+INFO 2025-11-01 00:56:20,536 crypto_api_service 21001 123145395691520 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-01 00:56:20,573 crypto_api_service 21001 123145395691520 Updated 5 cryptocurrencies
+INFO 2025-11-01 00:56:20,578 user_views 21001 123145395691520 Cryptocurrency data updated successfully
+INFO 2025-11-01 00:56:21,269 crypto_api_service 21001 123145395691520 CoinGecko API success: fetched 5 coins
+INFO 2025-11-01 00:56:21,272 crypto_api_service 21001 123145395691520 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-01 00:56:21,334 crypto_api_service 21001 123145395691520 Updated 5 cryptocurrencies
+WARNING 2025-11-01 00:56:23,120 log 21001 123145414090752 Not Found: /ws/market/
+INFO 2025-11-01 00:59:36,813 cli 21140 4573246976 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-01 00:59:36,825 server 21140 4573246976 HTTP/2 support enabled
+INFO 2025-11-01 00:59:36,826 server 21140 4573246976 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-01 00:59:36,830 server 21140 4573246976 Listening on TCP address 127.0.0.1:8000
