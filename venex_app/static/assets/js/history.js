@@ -245,13 +245,17 @@
                 </tr>
             `);
 
+            const apiUrl = `/api/transactions/history/?${params.toString()}`;
+            console.log('Loading transactions from:', apiUrl);
+            
             $.ajax({
-                url: `/api/transactions/history/?${params.toString()}`,
+                url: apiUrl,
                 method: 'GET',
                 headers: {
                     'X-CSRFToken': getCookie('csrftoken')
                 },
                 success: function(response) {
+                    console.log('Transaction API Response:', response);
                     if (response.success) {
                         state.transactions.data = response.transactions;
                         state.transactions.totalPages = response.pagination.total_pages;
@@ -271,14 +275,33 @@
                         reject(response.error);
                     }
                 },
-                error: function(xhr) {
-                    console.error('Error loading transactions:', xhr);
+                error: function(xhr, status, error) {
+                    console.error('Error loading transactions:', {
+                        status: xhr.status,
+                        statusText: xhr.statusText,
+                        responseText: xhr.responseText,
+                        error: error
+                    });
+                    
+                    let errorMessage = 'Failed to load transactions. Please try again.';
+                    
+                    if (xhr.status === 401 || xhr.status === 403) {
+                        errorMessage = 'Authentication required. Please log in.';
+                    } else if (xhr.status === 404) {
+                        errorMessage = 'API endpoint not found. Please contact support.';
+                    } else if (xhr.status === 500) {
+                        errorMessage = 'Server error. Please try again later.';
+                    }
+                    
                     $('#transactions-tbody').html(`
                         <tr>
                             <td colspan="9">
                                 <div class="empty-state">
                                     <i class="fas fa-exclamation-triangle"></i>
-                                    <p>Failed to load transactions. Please try again.</p>
+                                    <p>${errorMessage}</p>
+                                    <small style="color: var(--text-secondary); margin-top: 0.5rem; display: block;">
+                                        Error Code: ${xhr.status} | ${xhr.statusText}
+                                    </small>
                                 </div>
                             </td>
                         </tr>

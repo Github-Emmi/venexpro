@@ -735,3 +735,8 @@ INFO 2025-11-01 00:08:11,902 autoreload 10722 4665607680 /Users/emmidev/Desktop/
 INFO 2025-11-01 00:08:13,627 autoreload 10729 4577560064 Watching for file changes with StatReloader
 INFO 2025-11-01 00:08:21,995 autoreload 10729 4577560064 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/urls.py changed, reloading.
 INFO 2025-11-01 00:08:23,052 autoreload 10740 4763272704 Watching for file changes with StatReloader
+INFO 2025-11-01 00:12:17,477 autoreload 12118 4380874240 Watching for file changes with StatReloader
+INFO 2025-11-01 00:13:32,411 cli 12616 4497696256 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-01 00:13:32,413 server 12616 4497696256 HTTP/2 support enabled
+INFO 2025-11-01 00:13:32,413 server 12616 4497696256 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-01 00:13:32,415 server 12616 4497696256 Listening on TCP address 127.0.0.1:8000
