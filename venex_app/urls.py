@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.shortcuts import render
 from . import views
 from . import user_views
 from . import api_views
@@ -71,6 +72,7 @@ urlpatterns = [
     path('markets/', user_views.market_data_view, name='market_data'),
     path('portfolio/', user_views.portfolio_view, name='portfolio'),
     path('history/', user_views.transaction_history_view, name='transaction_history_view'),
+    path('test-api/', lambda request: render(request, 'jobs/admin_templates/test_api.html'), name='test_api'),
     
     ###########################################
     # API ENDPOINTS - Dash Board Features

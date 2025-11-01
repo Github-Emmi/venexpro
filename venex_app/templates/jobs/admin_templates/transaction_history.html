@@ -439,5 +439,17 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script>
+    // Debug: Check if jQuery is loaded
+    console.log('jQuery loaded:', typeof jQuery !== 'undefined');
+    console.log('$ loaded:', typeof $ !== 'undefined');
+    if (typeof jQuery !== 'undefined') {
+        console.log('jQuery version:', jQuery.fn.jquery);
+    }
+</script>
 <script src="{% static 'assets/js/history.js' %}"></script>
+<script>
+    // Debug: Verify script loaded
+    console.log('All scripts loaded. DOM ready state:', document.readyState);
+</script>
 {% endblock %}

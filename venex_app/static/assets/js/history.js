@@ -57,6 +57,8 @@
     // INITIALIZATION
     // ========================================
     $(document).ready(function() {
+        console.log('✅ Transaction History JavaScript loaded!');
+        console.log('jQuery version:', $.fn.jquery);
         initializeDatePickers();
         attachEventListeners();
         loadTransactionHistory();
