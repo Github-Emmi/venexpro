@@ -746,3 +746,30 @@ INFO 2025-11-01 00:29:54,824 cli 15031 4678194688 Starting server at tcp:port=80
 INFO 2025-11-01 00:29:54,825 server 15031 4678194688 HTTP/2 support enabled
 INFO 2025-11-01 00:29:54,825 server 15031 4678194688 Configuring endpoint tcp:port=8000:interface=127.0.0.1
 INFO 2025-11-01 00:29:54,826 server 15031 4678194688 Listening on TCP address 127.0.0.1:8000
+INFO 2025-11-01 00:36:18,849 server 15031 4678194688 Killed 0 pending application instances
+INFO 2025-11-01 00:36:43,589 autoreload 17424 4619748864 Watching for file changes with StatReloader
+WARNING 2025-11-01 00:36:55,789 log 17424 123145549705216 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-01 00:36:57,260 log 17424 123145549705216 Not Found: /login/er.lrticker.html
+WARNING 2025-11-01 00:36:57,357 log 17424 123145532915712 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-01 00:37:12,005 log 17424 123145532915712 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-01 00:37:12,289 log 17424 123145532915712 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-01 00:37:12,486 log 17424 123145532915712 Not Found: /login/er.lrticker.html
+INFO 2025-11-01 00:37:44,214 crypto_api_service 17424 123145532915712 CoinGecko API success: fetched 5 coins
+INFO 2025-11-01 00:37:44,217 crypto_api_service 17424 123145532915712 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-01 00:37:44,245 crypto_api_service 17424 123145532915712 Updated 5 cryptocurrencies
+INFO 2025-11-01 00:37:44,248 user_views 17424 123145532915712 Cryptocurrency data updated successfully
+WARNING 2025-11-01 00:37:44,499 log 17424 123145549705216 Forbidden (CSRF token from POST incorrect.): /login/
+INFO 2025-11-01 00:37:44,866 crypto_api_service 17424 123145532915712 CoinGecko API success: fetched 5 coins
+INFO 2025-11-01 00:37:44,929 crypto_api_service 17424 123145532915712 Successfully fetched data from _fetch_from_coingecko
+WARNING 2025-11-01 00:37:44,935 log 17424 123145549705216 Not Found: /favicon.ico
+INFO 2025-11-01 00:37:44,990 crypto_api_service 17424 123145532915712 Updated 5 cryptocurrencies
+WARNING 2025-11-01 00:37:49,575 log 17424 123145532915712 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-01 00:37:49,723 log 17424 123145532915712 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-01 00:37:49,766 log 17424 123145567031296 Not Found: /login/er.lrticker.html
+WARNING 2025-11-01 00:38:03,811 log 17424 123145532915712 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-01 00:38:04,045 log 17424 123145532915712 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-01 00:38:04,064 log 17424 123145549705216 Not Found: /login/er.lrticker.html
+INFO 2025-11-01 00:38:21,415 crypto_api_service 17424 123145532915712 CoinGecko API success: fetched 5 coins
+INFO 2025-11-01 00:38:21,421 crypto_api_service 17424 123145532915712 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-01 00:38:21,449 crypto_api_service 17424 123145532915712 Updated 5 cryptocurrencies
+WARNING 2025-11-01 00:38:24,317 log 17424 123145634189312 Not Found: /ws/market/
