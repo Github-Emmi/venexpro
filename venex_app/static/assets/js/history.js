@@ -61,6 +61,7 @@
         console.log('jQuery version:', $.fn.jquery);
         initializeDatePickers();
         attachEventListeners();
+        loadCryptocurrencyOptions();
         loadTransactionHistory();
     });
 
@@ -90,6 +91,53 @@
                 maxDate: "today"
             });
         }
+    }
+
+    // ========================================
+    // LOAD CRYPTOCURRENCY OPTIONS
+    // ========================================
+    function loadCryptocurrencyOptions() {
+        // Fetch available cryptocurrencies from the API
+        $.ajax({
+            url: '/api/cryptocurrencies/',
+            method: 'GET',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            success: function(response) {
+                const cryptoSelect = $('#crypto-filter');
+                if (response.success && response.cryptocurrencies) {
+                    response.cryptocurrencies.forEach(function(crypto) {
+                        cryptoSelect.append(`<option value="${crypto.symbol}">${crypto.name} (${crypto.symbol})</option>`);
+                    });
+                } else if (Array.isArray(response)) {
+                    // Handle array response format
+                    response.forEach(function(crypto) {
+                        const symbol = crypto.symbol || crypto.code;
+                        const name = crypto.name;
+                        cryptoSelect.append(`<option value="${symbol}">${name} (${symbol})</option>`);
+                    });
+                }
+            },
+            error: function(xhr) {
+                console.warn('Could not load cryptocurrency options:', xhr);
+                // Use default options if API fails
+                const defaultCryptos = [
+                    {symbol: 'BTC', name: 'Bitcoin'},
+                    {symbol: 'ETH', name: 'Ethereum'},
+                    {symbol: 'USDT', name: 'Tether'},
+                    {symbol: 'BNB', name: 'Binance Coin'},
+                    {symbol: 'SOL', name: 'Solana'},
+                    {symbol: 'XRP', name: 'Ripple'},
+                    {symbol: 'DOGE', name: 'Dogecoin'},
+                    {symbol: 'ADA', name: 'Cardano'}
+                ];
+                const cryptoSelect = $('#crypto-filter');
+                defaultCryptos.forEach(function(crypto) {
+                    cryptoSelect.append(`<option value="${crypto.symbol}">${crypto.name} (${crypto.symbol})</option>`);
+                });
+            }
+        });
     }
 
     // ========================================

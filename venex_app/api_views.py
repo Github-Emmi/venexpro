@@ -1253,6 +1253,39 @@ def api_order_history(request):
         )
 
 # ================================
+# CRYPTOCURRENCIES API ENDPOINT
+# ================================
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_cryptocurrencies(request):
+    """
+    API endpoint to get list of available cryptocurrencies
+    """
+    try:
+        cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('name')
+        crypto_data = []
+        
+        for crypto in cryptocurrencies:
+            crypto_data.append({
+                'id': crypto.id,
+                'symbol': crypto.symbol,
+                'name': crypto.name,
+                'code': crypto.symbol,  # Alias for compatibility
+            })
+        
+        return Response({
+            'success': True,
+            'cryptocurrencies': crypto_data
+        })
+    except Exception as e:
+        logger.error(f"Failed to fetch cryptocurrencies: {str(e)}")
+        return Response(
+            {'success': False, 'error': f'Failed to fetch cryptocurrencies: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+# ================================
 # USER PROFILE API ENDPOINTS
 # ================================
 
