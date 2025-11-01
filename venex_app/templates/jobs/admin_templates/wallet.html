@@ -2,10 +2,9 @@
 {% load static %}
 {% load humanize %}
 
-{% block title %}Wallet Management - Venex Broker{% endblock %}
+{% block title %}Wallet Management | Venex Trading Platform{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/wallet.css' %}">
 {% endblock %}
 
@@ -44,10 +43,16 @@
                     <p>Network: Bitcoin</p>
                 </div>
             </div>
-            <!-- This should show the user's currency conversion to btc current live market price updating in real-time
-             price updates when it has e.g +3.587% green, and -1.234% red and for other cryptocurrencies implement similar logic -->
-            <div class="wallet-balance">{{ user.btc_balance }} // make the change here! BTC</div>
-            <div class="wallet-value">≈ {{ user.currency_type }} {{ user.btc_balance|floatformat:6 }}</div>
+            <div class="wallet-balance">
+                <span id="btc-balance">{{ user.btc_balance }}</span> BTC
+            </div>
+            <div class="wallet-value">
+                ≈ <span id="btc-currency">{{ user.currency_type }}</span> <span id="btc-fiat-value" class="fiat-value">--</span>
+                <span class="loading-spinner" id="btc-loading">⟳</span>
+            </div>
+            <div class="price-change-wrapper">
+                <span id="btc-price-change" class="price-change">--</span>
+            </div>
             <div class="wallet-address">
                 <span class="wallet-address-label">Wallet Address</span>
                 {{ user.btc_wallet|default:"No address set" }}
@@ -71,8 +76,16 @@
                     <p>Network: Ethereum</p>
                 </div>
             </div>
-            <div class="wallet-balance">{{ user.ethereum_balance }} ETH</div>
-            <div class="wallet-value">≈ ${{ user.ethereum_balance|floatformat:2 }}</div>
+            <div class="wallet-balance">
+                <span id="eth-balance">{{ user.ethereum_balance }}</span> ETH
+            </div>
+            <div class="wallet-value">
+                ≈ <span id="eth-currency">{{ user.currency_type }}</span> <span id="eth-fiat-value" class="fiat-value">--</span>
+                <span class="loading-spinner" id="eth-loading">⟳</span>
+            </div>
+            <div class="price-change-wrapper">
+                <span id="eth-price-change" class="price-change">--</span>
+            </div>
             <div class="wallet-address">
                 <span class="wallet-address-label">Wallet Address</span>
                 {{ user.ethereum_wallet|default:"No address set" }}
@@ -96,8 +109,16 @@
                     <p>Network: Ethereum (ERC20)</p>
                 </div>
             </div>
-            <div class="wallet-balance">{{ user.usdt_balance }} USDT</div>
-            <div class="wallet-value">≈ ${{ user.usdt_balance|floatformat:2 }}</div>
+            <div class="wallet-balance">
+                <span id="usdt-balance">{{ user.usdt_balance }}</span> USDT
+            </div>
+            <div class="wallet-value">
+                ≈ <span id="usdt-currency">{{ user.currency_type }}</span> <span id="usdt-fiat-value" class="fiat-value">--</span>
+                <span class="loading-spinner" id="usdt-loading">⟳</span>
+            </div>
+            <div class="price-change-wrapper">
+                <span id="usdt-price-change" class="price-change">--</span>
+            </div>
             <div class="wallet-address">
                 <span class="wallet-address-label">Wallet Address</span>
                 {{ user.usdt_wallet|default:"No address set" }}
@@ -121,8 +142,16 @@
                     <p>Network: Litecoin</p>
                 </div>
             </div>
-            <div class="wallet-balance">{{ user.litecoin_balance }} LTC</div>
-            <div class="wallet-value">≈ ${{ user.litecoin_balance|floatformat:2 }}</div>
+            <div class="wallet-balance">
+                <span id="ltc-balance">{{ user.litecoin_balance }}</span> LTC
+            </div>
+            <div class="wallet-value">
+                ≈ <span id="ltc-currency">{{ user.currency_type }}</span> <span id="ltc-fiat-value" class="fiat-value">--</span>
+                <span class="loading-spinner" id="ltc-loading">⟳</span>
+            </div>
+            <div class="price-change-wrapper">
+                <span id="ltc-price-change" class="price-change">--</span>
+            </div>
             <div class="wallet-address">
                 <span class="wallet-address-label">Wallet Address</span>
                 {{ user.litecoin_wallet|default:"No address set" }}
@@ -146,8 +175,16 @@
                     <p>Network: Tron</p>
                 </div>
             </div>
-            <div class="wallet-balance">{{ user.tron_balance }} TRX</div>
-            <div class="wallet-value">≈ ${{ user.tron_balance|floatformat:2 }}</div>
+            <div class="wallet-balance">
+                <span id="trx-balance">{{ user.tron_balance }}</span> TRX
+            </div>
+            <div class="wallet-value">
+                ≈ <span id="trx-currency">{{ user.currency_type }}</span> <span id="trx-fiat-value" class="fiat-value">--</span>
+                <span class="loading-spinner" id="trx-loading">⟳</span>
+            </div>
+            <div class="price-change-wrapper">
+                <span id="trx-price-change" class="price-change">--</span>
+            </div>
             <div class="wallet-address">
                 <span class="wallet-address-label">Wallet Address</span>
                 {{ user.tron_wallet|default:"No address set" }}
@@ -268,4 +305,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+<script src="{% static 'assets/js/wallet.js' %}"></script>
 {% endblock %}

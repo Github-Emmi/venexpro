@@ -487,6 +487,11 @@ def get_multiple_prices(request):
     symbol_list = [s.strip().upper() for s in symbols.split(',')]
     
     prices = crypto_service.get_multiple_prices(symbol_list)
+    
+    # Debug logging
+    logger.info(f"get_multiple_prices called with symbols: {symbol_list}")
+    logger.info(f"Returning prices: {prices}")
+    
     return JsonResponse({'success': True, 'prices': prices})
 
 @api_view(['POST'])
