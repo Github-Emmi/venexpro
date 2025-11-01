@@ -5,13 +5,10 @@
 {% block title %}Dashboard - VENEX Brokerage{% endblock %}
 
 {% block extra_css %}
-   <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">  
+   <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}"> 
     {% endblock %}
 
-    {% block main_content%}
-    {% comment %} <div class="connection-status connected" id="connectionStatus">
-        Connected
-    </div> {% endcomment %}
+    {% block main_content %}
 
     <!-- Page Header -->
     <div class="row mb-4">
@@ -312,5 +309,7 @@
 
 {% block extra_js %}
 <!-- WebSocket real-time updates (PythonAnywhere paid plan supports WebSockets) -->
+ base
 <script src="{% static 'assets/js/venex-dashboard.js' %}"></script>
+<script src="{% static 'assets/js/base.js' %}"></script>
 {% endblock %}

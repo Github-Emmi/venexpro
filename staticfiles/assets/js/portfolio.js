@@ -12,7 +12,7 @@ class PortfolioManager {
     // Initialize WebSocket connection
     initializeWebSocket() {
         this.socket = new WebSocket(
-            `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/portfolio/`
+            `${window.location.protocol === 'https:' ? 'wss:' : 'wss:'}//${window.location.host}/wss/portfolio/`
         );
 
         this.socket.onmessage = (event) => {
@@ -113,8 +113,8 @@ class PortfolioManager {
         return `
             <tr data-symbol="${holding.cryptocurrency}">
                 <td class="asset-cell">
-                    <img src="/static/assets/images/crypto/${holding.cryptocurrency.toLowerCase()}.png" 
-                         alt="${holding.cryptocurrency}" 
+                    <img src="/static/assets/images/crypto/${holding.cryptocurrency.toLowerCase()}.png"
+                         alt="${holding.cryptocurrency}"
                          class="crypto-icon">
                     <span class="asset-name">${holding.cryptocurrency}</span>
                 </td>
@@ -137,7 +137,7 @@ class PortfolioManager {
     initializeCharts(portfolioData, performanceData) {
         // Distribution chart
         this.initializeDistributionChart(portfolioData.portfolio);
-        
+
         // Performance chart
         this.initializePerformanceChart(performanceData);
     }
@@ -145,7 +145,7 @@ class PortfolioManager {
     // Initialize portfolio distribution chart
     initializeDistributionChart(holdings) {
         const ctx = document.getElementById('portfolioDistributionChart').getContext('2d');
-        
+
         const data = {
             labels: holdings.map(h => h.cryptocurrency),
             datasets: [{
@@ -176,7 +176,7 @@ class PortfolioManager {
     // Initialize performance chart
     initializePerformanceChart(performanceData) {
         const ctx = document.getElementById('portfolioPerformanceChart').getContext('2d');
-        
+
         // Extract timestamps and values from performance data
         const timestamps = performanceData.map(p => p.timestamp);
         const values = performanceData.map(p => p.value);
@@ -246,7 +246,7 @@ class PortfolioManager {
     async calculatePortfolioInsights(portfolioData) {
         const holdings = portfolioData.portfolio;
         const totalValue = holdings.reduce((sum, h) => sum + h.current_value, 0);
-        
+
         // Calculate risk metrics
         const riskMetrics = {
             diversification: this.calculateDiversificationScore(holdings, totalValue),
@@ -312,7 +312,7 @@ class PortfolioManager {
             '#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#F59E0B',
             '#6366F1', '#14B8A6', '#06B6D4', '#6B7280', '#EF4444'
         ];
-        
+
         // Repeat colors if we need more than available
         return Array(count).fill().map((_, i) => colors[i % colors.length]);
     }
@@ -381,7 +381,7 @@ class PortfolioManager {
     generatePerformanceInsight(portfolioData) {
         const { total_profit_loss_percentage } = portfolioData.summary;
         let message = '';
-        
+
         if (total_profit_loss_percentage > 20) {
             message = 'Strong performance! Consider taking some profits to rebalance.';
         } else if (total_profit_loss_percentage > 0) {

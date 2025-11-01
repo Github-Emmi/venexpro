@@ -1025,31 +1025,230 @@ def api_portfolio_performance(request):
 @permission_classes([IsAuthenticated])
 def api_transaction_history(request):
     """
-    API endpoint for transaction history
+    API endpoint for transaction history with search, filters, and pagination
     """
     try:
+        # Get filter parameters
         transaction_type = request.GET.get('type', '')
         status_filter = request.GET.get('status', '')
-        limit = int(request.GET.get('limit', 50))
+        crypto_filter = request.GET.get('crypto', '')
+        search_query = request.GET.get('search', '')
+        start_date = request.GET.get('start_date', '')
+        end_date = request.GET.get('end_date', '')
         
-        transactions = Transaction.objects.filter(user=request.user)
+        # Get pagination parameters
+        page = int(request.GET.get('page', 1))
+        per_page = int(request.GET.get('per_page', 25))
         
+        # Base queryset
+        transactions = Transaction.objects.filter(user=request.user).select_related('cryptocurrency')
+        
+        # Apply filters
         if transaction_type:
             transactions = transactions.filter(transaction_type=transaction_type)
         if status_filter:
             transactions = transactions.filter(status=status_filter)
+        if crypto_filter:
+            transactions = transactions.filter(cryptocurrency__symbol=crypto_filter)
             
-        transactions = transactions.order_by('-created_at')[:limit]
-        serializer = TransactionSerializer(transactions, many=True)
+        # Date range filter
+        if start_date:
+            from datetime import datetime
+            start = datetime.strptime(start_date, '%Y-%m-%d')
+            transactions = transactions.filter(created_at__gte=start)
+        if end_date:
+            from datetime import datetime
+            end = datetime.strptime(end_date, '%Y-%m-%d')
+            from datetime import timedelta
+            end = end + timedelta(days=1)  # Include the entire end date
+            transactions = transactions.filter(created_at__lt=end)
+            
+        # Search filter
+        if search_query:
+            from django.db.models import Q
+            transactions = transactions.filter(
+                Q(id__icontains=search_query) |
+                Q(cryptocurrency__symbol__icontains=search_query) |
+                Q(cryptocurrency__name__icontains=search_query) |
+                Q(transaction_hash__icontains=search_query)
+            )
+        
+        # Get total count before pagination
+        total_count = transactions.count()
+        
+        # Calculate pagination
+        total_pages = (total_count + per_page - 1) // per_page  # Ceiling division
+        start_index = (page - 1) * per_page
+        end_index = start_index + per_page
+        
+        # Apply pagination
+        transactions = transactions.order_by('-created_at')[start_index:end_index]
+        
+        # Serialize transactions
+        transactions_data = []
+        for txn in transactions:
+            crypto_symbol = txn.cryptocurrency.symbol if txn.cryptocurrency else 'N/A'
+            crypto_name = txn.cryptocurrency.name if txn.cryptocurrency else 'N/A'
+            
+            transactions_data.append({
+                'id': str(txn.id),
+                'transaction_type': txn.transaction_type,
+                'cryptocurrency': {
+                    'symbol': crypto_symbol,
+                    'name': crypto_name,
+                },
+                'quantity': str(txn.quantity) if txn.quantity else '0',
+                'price_per_unit': str(txn.price_per_unit) if txn.price_per_unit else '0',
+                'total_amount': str(txn.total_amount),
+                'fiat_amount': str(txn.fiat_amount) if txn.fiat_amount else str(txn.total_amount),
+                'currency': txn.currency,
+                'status': txn.status,
+                'transaction_hash': txn.transaction_hash or '',
+                'wallet_address': txn.wallet_address or '',
+                'network_fee': str(txn.network_fee),
+                'platform_fee': str(txn.platform_fee),
+                'created_at': txn.created_at.isoformat(),
+                'updated_at': txn.updated_at.isoformat(),
+                'completed_at': txn.completed_at.isoformat() if txn.completed_at else None,
+            })
+        
+        # Calculate statistics
+        all_transactions = Transaction.objects.filter(user=request.user)
+        stats = {
+            'total_transactions': all_transactions.count(),
+            'completed': all_transactions.filter(status='COMPLETED').count(),
+            'pending': all_transactions.filter(status='PENDING').count(),
+            'failed': all_transactions.filter(status='FAILED').count(),
+            'total_volume': sum(float(t.fiat_amount or t.total_amount) for t in all_transactions if t.status == 'COMPLETED'),
+        }
         
         return Response({
-            'transactions': serializer.data,
-            'total_count': transactions.count()
+            'success': True,
+            'transactions': transactions_data,
+            'pagination': {
+                'current_page': page,
+                'per_page': per_page,
+                'total_count': total_count,
+                'total_pages': total_pages,
+                'has_next': page < total_pages,
+                'has_prev': page > 1,
+            },
+            'statistics': stats,
         })
         
     except Exception as e:
+        logger.error(f"Failed to fetch transaction history: {str(e)}")
         return Response(
-            {'error': f'Failed to fetch transaction history: {str(e)}'},
+            {'success': False, 'error': f'Failed to fetch transaction history: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+# ================================
+# ORDER HISTORY API ENDPOINT
+# ================================
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_order_history(request):
+    """
+    API endpoint for order history with search, filters, and pagination
+    """
+    try:
+        # Get filter parameters
+        order_type = request.GET.get('order_type', '')
+        side_filter = request.GET.get('side', '')
+        status_filter = request.GET.get('status', '')
+        crypto_filter = request.GET.get('crypto', '')
+        search_query = request.GET.get('search', '')
+        start_date = request.GET.get('start_date', '')
+        end_date = request.GET.get('end_date', '')
+        
+        # Get pagination parameters
+        page = int(request.GET.get('page', 1))
+        per_page = int(request.GET.get('per_page', 25))
+        
+        # Base queryset
+        orders = Order.objects.filter(user=request.user)
+        
+        # Apply filters
+        if order_type:
+            orders = orders.filter(order_type=order_type)
+        if side_filter:
+            orders = orders.filter(side=side_filter)
+        if status_filter:
+            orders = orders.filter(status=status_filter)
+        if crypto_filter:
+            orders = orders.filter(cryptocurrency=crypto_filter)
+            
+        # Date range filter
+        if start_date:
+            from datetime import datetime
+            start = datetime.strptime(start_date, '%Y-%m-%d')
+            orders = orders.filter(created_at__gte=start)
+        if end_date:
+            from datetime import datetime
+            end = datetime.strptime(end_date, '%Y-%m-%d')
+            from datetime import timedelta
+            end = end + timedelta(days=1)
+            orders = orders.filter(created_at__lt=end)
+            
+        # Search filter
+        if search_query:
+            from django.db.models import Q
+            orders = orders.filter(
+                Q(id__icontains=search_query) |
+                Q(cryptocurrency__icontains=search_query)
+            )
+        
+        # Get total count before pagination
+        total_count = orders.count()
+        
+        # Calculate pagination
+        total_pages = (total_count + per_page - 1) // per_page
+        start_index = (page - 1) * per_page
+        end_index = start_index + per_page
+        
+        # Apply pagination
+        orders = orders.order_by('-created_at')[start_index:end_index]
+        
+        # Serialize orders
+        orders_data = []
+        for order in orders:
+            orders_data.append({
+                'id': str(order.id),
+                'order_type': order.order_type,
+                'side': order.side,
+                'cryptocurrency': order.cryptocurrency,
+                'quantity': str(order.quantity),
+                'price': str(order.price) if order.price else '0',
+                'stop_price': str(order.stop_price) if order.stop_price else None,
+                'filled_quantity': str(order.filled_quantity),
+                'average_filled_price': str(order.average_filled_price),
+                'status': order.status,
+                'time_in_force': order.time_in_force,
+                'created_at': order.created_at.isoformat(),
+                'updated_at': order.updated_at.isoformat(),
+                'filled_at': order.filled_at.isoformat() if order.filled_at else None,
+                'expires_at': order.expires_at.isoformat() if order.expires_at else None,
+            })
+        
+        return Response({
+            'success': True,
+            'orders': orders_data,
+            'pagination': {
+                'current_page': page,
+                'per_page': per_page,
+                'total_count': total_count,
+                'total_pages': total_pages,
+                'has_next': page < total_pages,
+                'has_prev': page > 1,
+            },
+        })
+        
+    except Exception as e:
+        logger.error(f"Failed to fetch order history: {str(e)}")
+        return Response(
+            {'success': False, 'error': f'Failed to fetch order history: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 

@@ -141,6 +141,7 @@ urlpatterns = [
     # API ENDPOINTS - TRANSACTIONS
     ###########################################
     path('api/transactions/history/', api_views.api_transaction_history, name='api_transaction_history'),
+    path('api/orders/history/', api_views.api_order_history, name='api_order_history'),
     
     ###########################################
     # API ENDPOINTS - USER PROFILE

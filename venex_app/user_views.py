@@ -284,26 +284,39 @@ def portfolio_view(request):
 @login_required
 def transaction_history_view(request):
     """
-    Transaction history page
+    Transaction history page with statistics and initial data
     """
-    transactions = Transaction.objects.filter(user=request.user).order_by('-created_at')
+    # Get user's transactions for statistics
+    all_transactions = Transaction.objects.filter(user=request.user)
+    all_orders = Order.objects.filter(user=request.user)
     
-    # Filter options
-    transaction_type = request.GET.get('type', '')
-    status_filter = request.GET.get('status', '')
+    # Calculate statistics
+    completed_transactions = all_transactions.filter(status='COMPLETED')
+    total_volume = sum(
+        float(txn.fiat_amount or txn.total_amount) 
+        for txn in completed_transactions
+    )
     
-    if transaction_type:
-        transactions = transactions.filter(transaction_type=transaction_type)
-    if status_filter:
-        transactions = transactions.filter(status=status_filter)
+    statistics = {
+        'total_transactions': all_transactions.count(),
+        'completed': completed_transactions.count(),
+        'pending': all_transactions.filter(status='PENDING').count(),
+        'failed': all_transactions.filter(status='FAILED').count(),
+        'total_volume': total_volume,
+        'total_orders': all_orders.count(),
+        'open_orders': all_orders.filter(status='OPEN').count(),
+    }
+    
+    # Get available cryptocurrencies for filter
+    from .models import Cryptocurrency
+    cryptocurrencies = Cryptocurrency.objects.filter(is_active=True).order_by('rank')
     
     context = {
         'user': request.user,
-        'transactions': transactions,
-        'filters': {
-            'type': transaction_type,
-            'status': status_filter,
-        }
+        'statistics': statistics,
+        'cryptocurrencies': cryptocurrencies,
+        'transaction_types': ['BUY', 'SELL', 'DEPOSIT', 'WITHDRAWAL'],
+        'statuses': ['COMPLETED', 'PENDING', 'FAILED', 'CANCELLED'],
     }
     return render(request, 'jobs/admin_templates/transaction_history.html', context)
 

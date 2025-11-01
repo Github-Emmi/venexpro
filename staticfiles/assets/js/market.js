@@ -12,7 +12,7 @@ class MarketPage {
         this.apiRefreshInterval = 60000; // 60 seconds
         this.cryptoData = new Map();
         this.isConnected = false;
-        
+
         this.init();
     }
 
@@ -47,7 +47,7 @@ class MarketPage {
                 // Fallback to API call
                 await this.fetchMarketData();
             }
-            
+
             this.hideLoading();
         } catch (error) {
             console.error('Error loading initial market data:', error);
@@ -62,7 +62,7 @@ class MarketPage {
         try {
             const response = await fetch('/api/market/data/');
             if (!response.ok) throw new Error('API response not ok');
-            
+
             const data = await response.json();
             this.processMarketData(data);
         } catch (error) {
@@ -78,12 +78,12 @@ class MarketPage {
         if (data.market_stats) {
             this.updateMarketStats(data.market_stats);
         }
-        
+
         if (data.cryptocurrencies) {
             this.updateCryptoData(data.cryptocurrencies);
             this.updatePerformanceLists(data.cryptocurrencies);
         }
-        
+
         this.updateLastUpdated();
     }
 
@@ -132,7 +132,7 @@ class MarketPage {
 
         // Update table view
         this.updateTableView(cryptos);
-        
+
         // Update cards view
         this.updateCardsView(cryptos);
     }
@@ -261,7 +261,7 @@ class MarketPage {
      */
     updatePerformanceLists(cryptos) {
         // Sort by 24h change percentage
-        const sorted = [...cryptos].sort((a, b) => 
+        const sorted = [...cryptos].sort((a, b) =>
             parseFloat(b.price_change_percentage_24h) - parseFloat(a.price_change_percentage_24h)
         );
 
@@ -308,9 +308,9 @@ class MarketPage {
      */
     connectWebSocket() {
         try {
-            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsUrl = `${protocol}//${window.location.host}/ws/market/`;
-            
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'wss:';
+            const wsUrl = `${protocol}//${window.location.host}/wss/market/`;
+
             this.ws = new WebSocket(wsUrl);
             this.updateConnectionStatus('connecting');
 
@@ -347,7 +347,7 @@ class MarketPage {
     handleWebSocketMessage(event) {
         try {
             const data = JSON.parse(event.data);
-            
+
             switch (data.type) {
                 case 'price_update':
                     this.handlePriceUpdate(data);
@@ -371,13 +371,13 @@ class MarketPage {
      */
     handlePriceUpdate(update) {
         const { symbol, data } = update;
-        
+
         // Update price in table view
         const priceElement = document.getElementById(`price-${symbol}`);
         if (priceElement) {
             const oldPrice = this.extractPrice(priceElement.textContent);
             const newPrice = parseFloat(data.price);
-            
+
             this.animatePriceUpdate(priceElement, oldPrice, newPrice);
             priceElement.textContent = `$${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
         }
@@ -466,7 +466,7 @@ class MarketPage {
         const text = statusElement.querySelector('.status-text');
 
         indicator.className = 'status-indicator ' + status;
-        
+
         switch (status) {
             case 'connected':
                 text.textContent = 'Live market data connected';
@@ -492,7 +492,7 @@ class MarketPage {
         if (this.reconnectAttempts < this.maxReconnectAttempts) {
             this.reconnectAttempts++;
             console.log(`Attempting to reconnect... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
-            
+
             setTimeout(() => {
                 this.connectWebSocket();
             }, this.reconnectDelay * this.reconnectAttempts);
@@ -519,11 +519,11 @@ class MarketPage {
      */
     toggleView(button) {
         const view = button.dataset.view;
-        
+
         // Update active button
         document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-        
+
         // Show/hide views
         document.getElementById('tableView').classList.toggle('active', view === 'table');
         document.getElementById('cardsView').classList.toggle('active', view === 'cards');
