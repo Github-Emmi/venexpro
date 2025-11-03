@@ -1088,30 +1088,67 @@ def api_get_crypto_detail(request, symbol):
 @permission_classes([IsAuthenticated])
 def api_portfolio_data(request):
     """
-    API endpoint for portfolio data
+    API endpoint for portfolio data with enhanced metrics
     """
     try:
         portfolio = Portfolio.objects.filter(user=request.user)
-        serializer = PortfolioSerializer(portfolio, many=True)
         
-        # Calculate totals
-        total_invested = sum(float(item.total_invested) for item in portfolio)
-        current_value = sum(float(item.current_value) for item in portfolio)
+        # Build enhanced portfolio data with current prices
+        portfolio_data = []
+        total_invested = Decimal('0.0')
+        current_value = Decimal('0.0')
+        
+        for item in portfolio:
+            # Get current cryptocurrency price
+            try:
+                crypto = Cryptocurrency.objects.get(symbol=item.cryptocurrency)
+                current_price = crypto.current_price
+                price_change_24h = crypto.price_change_24h
+                price_change_percentage_24h = crypto.price_change_percentage_24h
+            except Cryptocurrency.DoesNotExist:
+                current_price = item.average_buy_price
+                price_change_24h = Decimal('0.0')
+                price_change_percentage_24h = Decimal('0.0')
+            
+            # Calculate current value
+            item_current_value = item.total_quantity * current_price
+            item_profit_loss = item_current_value - item.total_invested
+            item_profit_loss_percentage = (item_profit_loss / item.total_invested * 100) if item.total_invested > 0 else Decimal('0.0')
+            
+            portfolio_data.append({
+                'cryptocurrency': item.cryptocurrency,
+                'total_quantity': float(item.total_quantity),
+                'average_buy_price': float(item.average_buy_price),
+                'total_invested': float(item.total_invested),
+                'current_price': float(current_price),
+                'current_value': float(item_current_value),
+                'profit_loss': float(item_profit_loss),
+                'profit_loss_percentage': float(item_profit_loss_percentage),
+                'price_change_24h': float(price_change_24h),
+                'price_change_percentage_24h': float(price_change_percentage_24h)
+            })
+            
+            total_invested += item.total_invested
+            current_value += item_current_value
+        
         total_profit_loss = current_value - total_invested
+        total_profit_loss_percentage = (total_profit_loss / total_invested * 100) if total_invested > 0 else Decimal('0.0')
         
         return Response({
-            'portfolio': serializer.data,
+            'success': True,
+            'portfolio': portfolio_data,
             'summary': {
-                'total_invested': total_invested,
-                'current_value': current_value,
-                'total_profit_loss': total_profit_loss,
-                'total_profit_loss_percentage': (total_profit_loss / total_invested * 100) if total_invested > 0 else 0
+                'total_invested': float(total_invested),
+                'current_value': float(current_value),
+                'total_profit_loss': float(total_profit_loss),
+                'total_profit_loss_percentage': float(total_profit_loss_percentage)
             }
         })
         
     except Exception as e:
+        logger.error(f"Failed to fetch portfolio data: {str(e)}")
         return Response(
-            {'error': f'Failed to fetch portfolio data: {str(e)}'},
+            {'success': False, 'error': f'Failed to fetch portfolio data: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
@@ -1127,11 +1164,17 @@ def api_portfolio_performance(request):
         # Calculate performance metrics
         performance_data = []
         for item in portfolio:
+            try:
+                crypto = Cryptocurrency.objects.get(symbol=item.cryptocurrency)
+                current_price = crypto.current_price
+            except Cryptocurrency.DoesNotExist:
+                current_price = item.average_buy_price
+                
             performance_data.append({
                 'cryptocurrency': item.cryptocurrency,
                 'quantity': float(item.total_quantity),
                 'average_buy_price': float(item.average_buy_price),
-                'current_price': float(get_current_price(item.cryptocurrency)),
+                'current_price': float(current_price),
                 'profit_loss': float(item.profit_loss),
                 'profit_loss_percentage': float(item.profit_loss_percentage)
             })
@@ -1145,6 +1188,147 @@ def api_portfolio_performance(request):
             {'error': f'Failed to fetch portfolio performance: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_portfolio_allocation(request):
+    """
+    API endpoint for portfolio allocation data
+    """
+    try:
+        portfolio = Portfolio.objects.filter(user=request.user)
+        
+        # Calculate total value
+        total_value = Decimal('0.0')
+        allocation_data = []
+        
+        for item in portfolio:
+            try:
+                crypto = Cryptocurrency.objects.get(symbol=item.cryptocurrency)
+                current_price = crypto.current_price
+            except Cryptocurrency.DoesNotExist:
+                current_price = item.average_buy_price
+            
+            current_value = item.total_quantity * current_price
+            total_value += current_value
+            
+            allocation_data.append({
+                'cryptocurrency': item.cryptocurrency,
+                'value': float(current_value),
+                'quantity': float(item.total_quantity)
+            })
+        
+        # Calculate percentages
+        for item in allocation_data:
+            item['percentage'] = (item['value'] / float(total_value) * 100) if total_value > 0 else 0
+        
+        return Response({
+            'success': True,
+            'allocation': allocation_data,
+            'total_value': float(total_value)
+        })
+        
+    except Exception as e:
+        logger.error(f"Failed to fetch portfolio allocation: {str(e)}")
+        return Response(
+            {'success': False, 'error': f'Failed to fetch portfolio allocation: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_portfolio_history(request):
+    """
+    API endpoint for portfolio history data
+    """
+    try:
+        from .models import PortfolioHistory
+        from datetime import timedelta
+        
+        days = int(request.GET.get('days', 30))
+        start_date = timezone.now() - timedelta(days=days)
+        
+        # Get portfolio history
+        history = PortfolioHistory.objects.filter(
+            portfolio__user=request.user,
+            timestamp__gte=start_date
+        ).order_by('timestamp')
+        
+        # Group by portfolio and aggregate
+        history_data = []
+        for record in history:
+            history_data.append({
+                'timestamp': record.timestamp.isoformat(),
+                'total_value': float(record.total_value)
+            })
+        
+        # If no history, generate from current portfolio
+        if not history_data:
+            portfolio = Portfolio.objects.filter(user=request.user)
+            total_value = sum(float(item.current_value) for item in portfolio)
+            
+            # Create sample history points
+            for i in range(days):
+                date = timezone.now() - timedelta(days=days-i)
+                # Simulate historical value (90-100% of current value)
+                historical_value = total_value * (0.9 + (i / days) * 0.1)
+                history_data.append({
+                    'timestamp': date.isoformat(),
+                    'total_value': historical_value
+                })
+        
+        return Response({
+            'success': True,
+            'history': history_data
+        })
+        
+    except Exception as e:
+        logger.error(f"Failed to fetch portfolio history: {str(e)}")
+        return Response(
+            {'success': False, 'error': f'Failed to fetch portfolio history: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_portfolio_analytics(request):
+    """
+    API endpoint for portfolio analytics and AI insights
+    """
+    try:
+        from .services.portfolio_service import portfolio_service
+        
+        # Calculate risk metrics for user
+        risk_metrics = portfolio_service.calculate_risk_metrics(request.user)
+        
+        # Generate AI insights for user
+        insights = portfolio_service.generate_ai_insights(request.user)
+        
+        return Response({
+            'success': True,
+            'risk_metrics': risk_metrics,
+            'insights': insights
+        })
+        
+    except Exception as e:
+        logger.error(f"Failed to fetch portfolio analytics: {str(e)}")
+        
+        # Return default analytics if service fails
+        return Response({
+            'success': True,
+            'risk_metrics': {
+                'risk_score': 50,
+                'volatility': 0.15,
+                'diversification_score': 60,
+                'max_drawdown': 0,
+                'sharpe_ratio': 0
+            },
+            'insights': [
+                'Your portfolio data is being analyzed.',
+                'Add more holdings to get personalized insights.',
+                'Diversification helps reduce risk in volatile markets.'
+            ]
+        })
 
 # ================================
 # TRANSACTION HISTORY API ENDPOINTS

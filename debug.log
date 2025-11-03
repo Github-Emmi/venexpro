@@ -1,0 +1,44 @@
+INFO 2025-11-03 15:57:23,429 autoreload 28522 4399977984 Watching for file changes with StatReloader
+INFO 2025-11-03 15:57:33,660 autoreload 28522 4399977984 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-11-03 15:57:37,496 autoreload 28532 4478764544 Watching for file changes with StatReloader
+INFO 2025-11-03 15:57:44,723 autoreload 28532 4478764544 /Users/emmidev/Desktop/Projects/Backup/RBC/venex_app/api_views.py changed, reloading.
+INFO 2025-11-03 15:57:46,602 autoreload 28542 4580267520 Watching for file changes with StatReloader
+INFO 2025-11-03 15:57:51,547 autoreload 28645 4659656192 Watching for file changes with StatReloader
+INFO 2025-11-03 16:07:43,220 autoreload 28961 4778169856 Watching for file changes with StatReloader
+INFO 2025-11-03 16:08:31,603 autoreload 29105 4584162816 Watching for file changes with StatReloader
+INFO 2025-11-03 16:08:47,486 crypto_api_service 29105 123145415319552 CoinGecko API success: fetched 5 coins
+INFO 2025-11-03 16:08:47,488 crypto_api_service 29105 123145415319552 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-03 16:08:47,523 crypto_api_service 29105 123145415319552 Updated 5 cryptocurrencies
+INFO 2025-11-03 16:08:47,525 user_views 29105 123145415319552 Cryptocurrency data updated successfully
+INFO 2025-11-03 16:08:49,620 crypto_api_service 29105 123145415319552 CoinGecko API success: fetched 5 coins
+INFO 2025-11-03 16:08:49,622 crypto_api_service 29105 123145415319552 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-03 16:08:49,643 crypto_api_service 29105 123145415319552 Updated 5 cryptocurrencies
+WARNING 2025-11-03 16:08:50,561 log 29105 123145449971712 Not Found: /ws/market/
+WARNING 2025-11-03 16:09:45,917 log 29105 123145432109056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-11-03 16:12:45,155 autoreload 29418 4674491904 Watching for file changes with StatReloader
+INFO 2025-11-03 16:13:19,090 cli 29532 4558378496 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-03 16:13:19,091 server 29532 4558378496 HTTP/2 support enabled
+INFO 2025-11-03 16:13:19,091 server 29532 4558378496 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-03 16:13:19,092 server 29532 4558378496 Listening on TCP address 127.0.0.1:8000
+INFO 2025-11-03 16:13:32,196 consumers 29532 4558378496 Market WebSocket connected: specific..inmemory!YXeHicdMqMZU
+INFO 2025-11-03 16:13:32,248 currency_service 29532 123145579302912 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-11-03 16:13:33,581 crypto_api_service 29532 123145562513408 CoinGecko: Fetched 288 data points for BTC
+INFO 2025-11-03 16:13:33,748 currency_service 29532 123145579302912 Cached 165 exchange rates for 600 seconds
+INFO 2025-11-03 16:13:33,758 currency_service 29532 123145579302912 Using cached exchange rates
+INFO 2025-11-03 16:25:34,405 consumers 29532 4558378496 Market WebSocket disconnected: specific..inmemory!YXeHicdMqMZU
+INFO 2025-11-03 16:25:38,344 consumers 29532 4558378496 Market WebSocket connected: specific..inmemory!iFslQCgaOBJf
+INFO 2025-11-03 16:25:39,074 crypto_api_service 29532 123145562513408 CoinGecko: Fetched 287 data points for BTC
+INFO 2025-11-03 16:31:00,777 server 29532 4558378496 Killed 1 pending application instances
+INFO 2025-11-03 16:31:13,756 autoreload 29868 4562261504 Watching for file changes with StatReloader
+WARNING 2025-11-03 16:31:15,586 log 29868 123145531920384 Not Found: /ws/market/
+WARNING 2025-11-03 16:31:18,616 log 29868 123145531920384 Not Found: /ws/market/
+INFO 2025-11-03 16:31:31,305 cli 29979 4378768896 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-03 16:31:31,306 server 29979 4378768896 HTTP/2 support enabled
+INFO 2025-11-03 16:31:31,306 server 29979 4378768896 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-03 16:31:31,307 server 29979 4378768896 Listening on TCP address 127.0.0.1:8000
+INFO 2025-11-03 16:34:20,409 server 29979 4378768896 Killed 0 pending application instances
+INFO 2025-11-03 16:34:25,075 cli 30152 4517201408 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-03 16:34:25,076 server 30152 4517201408 HTTP/2 support enabled
+INFO 2025-11-03 16:34:25,076 server 30152 4517201408 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-03 16:34:25,077 server 30152 4517201408 Listening on TCP address 127.0.0.1:8000
+INFO 2025-11-03 16:35:05,988 server 30152 4517201408 Killed 0 pending application instances

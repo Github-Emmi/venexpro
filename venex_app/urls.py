@@ -147,6 +147,9 @@ urlpatterns = [
     ###########################################
     path('api/portfolio/data/', api_views.api_portfolio_data, name='api_portfolio_data'),
     path('api/portfolio/performance/', api_views.api_portfolio_performance, name='api_portfolio_performance'),
+    path('api/portfolio/allocation/', api_views.api_portfolio_allocation, name='api_portfolio_allocation'),
+    path('api/portfolio/history/', api_views.api_portfolio_history, name='api_portfolio_history'),
+    path('api/portfolio/analytics/', api_views.api_portfolio_analytics, name='api_portfolio_analytics'),
     
     ###########################################
     # API ENDPOINTS - TRANSACTIONS

@@ -10,47 +10,42 @@ logger = logging.getLogger(__name__)
 class PortfolioService:
     @staticmethod
     def get_user_portfolio(user):
-        """Get or create portfolio for user"""
-        portfolio, created = Portfolio.objects.get_or_create(user=user)
-        if created:
-            logger.info(f"Created new portfolio for user: {user.username}")
-        return portfolio
+        """Get all portfolio entries for user"""
+        return Portfolio.objects.filter(user=user)
 
     @staticmethod
-    def calculate_portfolio_value(portfolio):
+    def calculate_portfolio_value(user):
         """Calculate total portfolio value and update holdings"""
-        holdings = portfolio.holdings.all()
+        portfolios = Portfolio.objects.filter(user=user)
         total_value = Decimal('0.0')
         
-        for holding in holdings:
+        for portfolio_item in portfolios:
             # Update current value based on latest price
-            current_price = holding.cryptocurrency.current_price
-            holding.current_value = holding.amount * current_price
-            holding.total_cost = holding.amount * holding.average_buy_price
-            holding.unrealized_pl = holding.current_value - holding.total_cost
+            try:
+                crypto = Cryptocurrency.objects.get(symbol=portfolio_item.cryptocurrency)
+                current_price = crypto.current_price
+            except Cryptocurrency.DoesNotExist:
+                current_price = portfolio_item.average_buy_price
             
-            if holding.total_cost > 0:
-                holding.unrealized_pl_percentage = (
-                    (holding.unrealized_pl / holding.total_cost) * Decimal('100.0')
+            portfolio_item.current_value = portfolio_item.total_quantity * current_price
+            portfolio_item.profit_loss = portfolio_item.current_value - portfolio_item.total_invested
+            
+            if portfolio_item.total_invested > 0:
+                calculated_percentage = (
+                    (portfolio_item.profit_loss / portfolio_item.total_invested) * Decimal('100.0')
                 )
+                # Cap percentage at reasonable limits
+                if calculated_percentage > Decimal('99999999.9999'):
+                    portfolio_item.profit_loss_percentage = Decimal('99999999.9999')
+                elif calculated_percentage < Decimal('-99999999.9999'):
+                    portfolio_item.profit_loss_percentage = Decimal('-99999999.9999')
+                else:
+                    portfolio_item.profit_loss_percentage = calculated_percentage
             else:
-                holding.unrealized_pl_percentage = Decimal('0.0')
+                portfolio_item.profit_loss_percentage = Decimal('0.0')
             
-            holding.save()
-            total_value += holding.current_value
-        
-        # Update portfolio totals
-        portfolio.total_value = total_value
-        
-        if portfolio.initial_investment > 0:
-            portfolio.unrealized_pl = total_value - portfolio.initial_investment
-        else:
-            portfolio.unrealized_pl = Decimal('0.0')
-        
-        portfolio.save()
-        
-        # Update allocation percentages
-        PortfolioService.update_allocations(portfolio)
+            portfolio_item.save()
+            total_value += portfolio_item.current_value
         
         return total_value
 
@@ -172,11 +167,11 @@ class PortfolioService:
         }
 
     @staticmethod
-    def calculate_risk_metrics(portfolio):
-        """Calculate portfolio risk metrics"""
-        holdings = portfolio.holdings.all()
+    def calculate_risk_metrics(user):
+        """Calculate portfolio risk metrics for user"""
+        portfolios = Portfolio.objects.filter(user=user)
         
-        if not holdings:
+        if not portfolios:
             return {
                 'risk_score': 0,
                 'volatility': 0,
@@ -184,18 +179,34 @@ class PortfolioService:
                 'max_drawdown': 0
             }
         
-        # Calculate volatility (simplified)
-        total_value = portfolio.total_value
+        # Calculate total value
+        total_value = sum(float(p.current_value) for p in portfolios)
+        if total_value == 0:
+            return {
+                'risk_score': 0,
+                'volatility': 0,
+                'diversification_score': 100,
+                'max_drawdown': 0
+            }
+        
+        # Calculate volatility (weighted by portfolio allocation)
         volatility = Decimal('0.0')
         
-        for holding in holdings:
-            # Use cryptocurrency's 24h change as volatility proxy
-            crypto_volatility = abs(holding.cryptocurrency.price_change_percentage_24h) / Decimal('100.0')
-            weight = holding.current_value / total_value
-            volatility += crypto_volatility * weight
+        for portfolio_item in portfolios:
+            try:
+                crypto = Cryptocurrency.objects.get(symbol=portfolio_item.cryptocurrency)
+                crypto_volatility = abs(crypto.price_change_percentage_24h) / Decimal('100.0')
+                weight = portfolio_item.current_value / Decimal(str(total_value))
+                volatility += crypto_volatility * weight
+            except Cryptocurrency.DoesNotExist:
+                continue
         
         # Calculate diversification score (0-100)
-        allocations = [h.allocation_percentage for h in holdings]
+        allocations = []
+        for portfolio_item in portfolios:
+            percentage = (float(portfolio_item.current_value) / total_value) * 100
+            allocations.append(percentage)
+        
         if allocations:
             # Herfindahl index for concentration
             herfindahl = sum((alloc / 100) ** 2 for alloc in allocations)
@@ -215,41 +226,50 @@ class PortfolioService:
         }
 
     @staticmethod
-    def generate_ai_insights(portfolio):
-        """Generate AI-driven portfolio insights"""
-        holdings = portfolio.holdings.all()
+    def generate_ai_insights(user):
+        """Generate AI-driven portfolio insights for user"""
+        portfolios = Portfolio.objects.filter(user=user)
         insights = []
         
-        if not holdings:
+        if not portfolios:
             insights.append("Your portfolio is empty. Consider adding some cryptocurrencies to get started!")
             return insights
         
         # Check for over-concentration
-        max_allocation = max([h.allocation_percentage for h in holdings])
-        if max_allocation > 70:
-            top_holding = max(holdings, key=lambda h: h.allocation_percentage)
-            insights.append(
-                f"Your portfolio is {max_allocation:.1f}% concentrated in {top_holding.cryptocurrency.symbol}. "
-                f"Consider diversifying to reduce risk."
-            )
+        total_value = sum(float(p.current_value) for p in portfolios)
+        if total_value > 0:
+            max_allocation = max([float(p.current_value) / total_value * 100 for p in portfolios])
+            
+            if max_allocation > 70:
+                top_holding = max(portfolios, key=lambda p: float(p.current_value))
+                insights.append(
+                    f"Your portfolio is {max_allocation:.1f}% concentrated in {top_holding.cryptocurrency}. "
+                    f"Consider diversifying to reduce risk."
+                )
         
         # Check for performance
-        profitable_holdings = [h for h in holdings if h.unrealized_pl > 0]
-        if len(profitable_holdings) >= len(holdings) * 0.7:
+        profitable_holdings = [p for p in portfolios if p.profit_loss > 0]
+        if len(profitable_holdings) >= len(portfolios) * 0.7:
             insights.append("Great job! Most of your holdings are in profit. Consider taking some profits on top performers.")
-        else:
+        elif len(profitable_holdings) < len(portfolios) * 0.3:
             insights.append("Some of your holdings are underperforming. Review your investment strategy.")
         
         # Check diversification
-        if len(holdings) < 3:
+        if len(portfolios) < 3:
             insights.append("Consider adding more assets to your portfolio for better diversification.")
+        elif len(portfolios) >= 5:
+            insights.append("Good diversification! You're spreading risk across multiple assets.")
         
         # Market condition insights
-        total_pl_percentage = (portfolio.unrealized_pl / portfolio.initial_investment * 100) if portfolio.initial_investment > 0 else 0
-        if total_pl_percentage > 20:
-            insights.append("Your portfolio is performing strongly! You're outperforming the average market returns.")
-        elif total_pl_percentage < -10:
-            insights.append("Market conditions are challenging. Consider dollar-cost averaging to lower your average buy prices.")
+        total_invested = sum(float(p.total_invested) for p in portfolios)
+        total_profit_loss = sum(float(p.profit_loss) for p in portfolios)
+        
+        if total_invested > 0:
+            total_pl_percentage = (total_profit_loss / total_invested * 100)
+            if total_pl_percentage > 20:
+                insights.append("Your portfolio is performing strongly! You're outperforming average market returns.")
+            elif total_pl_percentage < -10:
+                insights.append("Market conditions are challenging. Consider dollar-cost averaging to lower your average buy prices.")
         
         return insights
 

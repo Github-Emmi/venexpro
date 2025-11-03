@@ -1,574 +1,356 @@
-{% extends 'jobs/admin_templates/base.html' %}
+{% extends 'admin_templates/base.html' %}
 {% load humanize %}
 {% load static %}
 
-{% block title %}VENEX | Portfolio{% endblock %}
+{% block title %}Venex - Portfolio{% endblock title %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
-
-<style>
-    .portfolio-page {
-        padding: 0;
-    }
-
-    /* Portfolio Summary Cards */
-    .portfolio-summary {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .summary-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        border-left: 4px solid #667eea;
-    }
-
-    .summary-card.performance {
-        border-left-color: #10b981;
-    }
-
-    .summary-card.risk {
-        border-left-color: #f59e0b;
-    }
-
-    .summary-card.allocation {
-        border-left-color: #8b5cf6;
-    }
-
-    .card-value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1f2937;
-        margin-bottom: 0.5rem;
-    }
-
-    .card-label {
-        font-size: 0.875rem;
-        color: #6b7280;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
-    }
-
-    .card-change {
-        font-size: 0.875rem;
-        font-weight: 600;
-        padding: 0.25rem 0.75rem;
-        border-radius: 15px;
-        display: inline-block;
-    }
-
-    .card-change.positive {
-        background: #ecfdf5;
-        color: #059669;
-    }
-
-    .card-change.negative {
-        background: #fef2f2;
-        color: #dc2626;
-    }
-
-    /* Main Layout */
-    .portfolio-layout {
-        display: grid;
-        grid-template-columns: 1fr 400px;
-        gap: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    @media (max-width: 1200px) {
-        .portfolio-layout {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* Holdings Table */
-    .holdings-container {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    .table-header {
-        padding: 1.5rem;
-        border-bottom: 1px solid #e5e7eb;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .table-header h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #1f2937;
-        margin: 0;
-    }
-
-    .portfolio-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .portfolio-table th {
-        background: #f8fafc;
-        padding: 1rem 1.5rem;
-        text-align: left;
-        font-weight: 600;
-        color: #374151;
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .portfolio-table td {
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid #f1f5f9;
-        font-size: 0.875rem;
-    }
-
-    .portfolio-table tr:hover {
-        background: #f8fafc;
-    }
-
-    .portfolio-table tr:last-child td {
-        border-bottom: none;
-    }
-
-    /* Coin Info */
-    .coin-info {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    .coin-logo {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        font-size: 0.75rem;
-        color: white;
-    }
-
-    .coin-name {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .coin-symbol {
-        font-weight: 600;
-        color: #1f2937;
-    }
-
-    .coin-full-name {
-        font-size: 0.75rem;
-        color: #6b7280;
-    }
-
-    /* Performance Indicators */
-    .performance-indicator {
-        font-weight: 600;
-        padding: 0.25rem 0.75rem;
-        border-radius: 6px;
-        font-size: 0.875rem;
-    }
-
-    .performance-positive {
-        background: #ecfdf5;
-        color: #059669;
-    }
-
-    .performance-negative {
-        background: #fef2f2;
-        color: #dc2626;
-    }
-
-    /* Sidebar Widgets */
-    .portfolio-sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .widget {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    .widget-header {
-        padding: 1.25rem 1.5rem;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .widget-header h3 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: #1f2937;
-        margin: 0;
-    }
-
-    .widget-body {
-        padding: 1.5rem;
-    }
-
-    /* Allocation Chart */
-    .allocation-chart-container {
-        position: relative;
-        height: 250px;
-    }
-
-    /* Performance Chart */
-    .performance-chart-container {
-        position: relative;
-        height: 300px;
-    }
-
-    .chart-controls {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        margin-top: 1rem;
-    }
-
-    .timeframe-selector {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .timeframe-btn {
-        padding: 0.5rem 1rem;
-        border: 1px solid #e5e7eb;
-        background: white;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-size: 0.875rem;
-    }
-
-    .timeframe-btn.active {
-        background: #667eea;
-        color: white;
-        border-color: #667eea;
-    }
-
-    /* Risk Metrics */
-    .risk-metrics {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .risk-metric {
-        text-align: center;
-        padding: 1rem;
-        background: #f8fafc;
-        border-radius: 8px;
-    }
-
-    .risk-value {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
-
-    .risk-label {
-        font-size: 0.75rem;
-        color: #6b7280;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    .risk-low { color: #10b981; }
-    .risk-medium { color: #f59e0b; }
-    .risk-high { color: #ef4444; }
-
-    /* Insights Panel */
-    .insights-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .insight-item {
-        padding: 1rem;
-        background: #f0f9ff;
-        border-radius: 8px;
-        border-left: 4px solid #667eea;
-        font-size: 0.875rem;
-        line-height: 1.5;
-    }
-
-    .insight-item.warning {
-        background: #fef3c7;
-        border-left-color: #f59e0b;
-    }
-
-    .insight-item.success {
-        background: #ecfdf5;
-        border-left-color: #10b981;
-    }
-
-    /* Loading States */
-    .loading-spinner {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #f3f4f6;
-        border-top: 2px solid #667eea;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    /* Empty State */
-    .empty-state {
-        text-align: center;
-        padding: 3rem 2rem;
-        color: #6b7280;
-    }
-
-    .empty-state-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        opacity: 0.5;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .portfolio-summary {
-            grid-template-columns: 1fr;
-        }
-
-        .card-value {
-            font-size: 1.5rem;
-        }
-
-        .table-header {
-            flex-direction: column;
-            gap: 1rem;
-            align-items: stretch;
-        }
-
-        .portfolio-table {
-            display: block;
-            overflow-x: auto;
-        }
-
-        .chart-controls {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .timeframe-selector {
-            justify-content: center;
-        }
-
-        .risk-metrics {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* Connection Status */
-    .connection-status {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        padding: 5px 10px;
-        border-radius: 15px;
-        font-size: 12px;
-        font-weight: 600;
-        z-index: 1000;
-    }
-
-    .connection-status.connected {
-        background: #10b981;
-        color: white;
-    }
-
-    .connection-status.disconnected {
-        background: #6b7280;
-        color: white;
-    }
-
-    .connection-status.error {
-        background: #ef4444;
-        color: white;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'assets/css/portfolio.css' %}">
 {% endblock %}
 
 {% block main_content %}
-<div class="portfolio-page">
-    <!-- Portfolio Summary Cards -->
-    <div class="portfolio-summary">
-        <div class="summary-card">
-            <div class="card-label">Total Portfolio Value</div>
-            <div class="card-value" id="total-value">$0.00</div>
-            <div class="card-change positive" id="daily-change">+0.00%</div>
-        </div>
-        
-        <div class="summary-card performance">
-            <div class="card-label">Unrealized P/L</div>
-            <div class="card-value" id="unrealized-pl">$0.00</div>
-            <div class="card-change" id="pl-percentage">0.00%</div>
-        </div>
-        
-        <div class="summary-card risk">
-            <div class="card-label">Risk Score</div>
-            <div class="card-value" id="risk-score">0/100</div>
-            <div class="card-label" id="risk-level">Low Risk</div>
-        </div>
-        
-        <div class="summary-card allocation">
-            <div class="card-label">Diversification</div>
-            <div class="card-value" id="diversification-score">100%</div>
-            <div class="card-label">Well Diversified</div>
+<div class="portfolio-wrapper">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-title">Portfolio</h1>
+        <button class="refresh-btn-mobile" id="refresh-mobile">
+            <i class="fas fa-sync-alt"></i>
+        </button>
+    </div>
+
+    <!-- Portfolio Hero -->
+    <div class="portfolio-hero">
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+            <div class="hero-header">
+                <div class="hero-title-section">
+                    <h1 class="hero-title">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>My Portfolio</span>
+                    </h1>
+                    <p class="hero-subtitle">Real-time tracking & analytics</p>
+                </div>
+                <button class="btn-refresh" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="refresh-text">Refresh</span>
+                </button>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="summary-cards">
+                <div class="summary-card total-value">
+                    <div class="card-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">Total Value</span>
+                        <h2 class="card-value">
+                            {{ user.get_currency_symbol }}<span id="total-value">0.00</span>
+                        </h2>
+                        <span class="card-change positive" id="total-value-change">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>0.00%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="summary-card total-pl">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">Total P/L</span>
+                        <h2 class="card-value" id="total-pl-value">
+                            {{ user.get_currency_symbol }}0.00
+                        </h2>
+                        <span class="card-change" id="total-pl-percentage">0.00%</span>
+                    </div>
+                </div>
+
+                <div class="summary-card total-invested">
+                    <div class="card-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">Invested</span>
+                        <h2 class="card-value">
+                            {{ user.get_currency_symbol }}<span id="total-invested">0.00</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="summary-card total-assets">
+                    <div class="card-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">Assets</span>
+                        <h2 class="card-value" id="total-assets">0</h2>
+                        <span class="card-sublabel">Cryptocurrencies</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Main Portfolio Layout -->
-    <div class="portfolio-layout">
-        <!-- Left Column: Holdings Table & Performance Chart -->
-        <div class="portfolio-main">
-            <!-- Performance Chart -->
-            <div class="widget">
-                <div class="widget-header">
-                    <h3>Portfolio Performance</h3>
-                    <div class="chart-controls">
-                        <div class="timeframe-selector">
-                            <button class="timeframe-btn active" data-timeframe="1D">1D</button>
-                            <button class="timeframe-btn" data-timeframe="1W">1W</button>
-                            <button class="timeframe-btn" data-timeframe="1M">1M</button>
-                            <button class="timeframe-btn" data-timeframe="3M">3M</button>
-                            <button class="timeframe-btn" data-timeframe="1Y">1Y</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget-body">
-                    <div class="performance-chart-container">
-                        <canvas id="performanceChart"></canvas>
-                        <div id="performance-loading" style="display: none; text-align: center; padding: 2rem;">
-                            <div class="loading-spinner"></div>
-                            <div>Loading performance data...</div>
-                        </div>
-                    </div>
+    <!-- Tab Navigation -->
+    <div class="portfolio-tabs">
+        <button class="tab-btn active" data-tab="holdings">
+            <i class="fas fa-briefcase"></i>
+            <span>Holdings</span>
+        </button>
+        <button class="tab-btn" data-tab="performance">
+            <i class="fas fa-chart-bar"></i>
+            <span>Performance</span>
+        </button>
+        <button class="tab-btn" data-tab="allocation">
+            <i class="fas fa-pie-chart"></i>
+            <span>Allocation</span>
+        </button>
+        <button class="tab-btn" data-tab="analytics">
+            <i class="fas fa-brain"></i>
+            <span>Analytics</span>
+        </button>
+    </div>
+
+    <!-- Tab Contents -->
+    <div class="tab-content active" id="holdings-tab">
+        <!-- Holdings Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    Your Holdings
+                </h2>
+                <div class="section-actions">
+                    <select class="sort-select" id="holdings-sort">
+                        <option value="value-desc">Value (High to Low)</option>
+                        <option value="value-asc">Value (Low to High)</option>
+                        <option value="pl-desc">P/L (High to Low)</option>
+                        <option value="pl-asc">P/L (Low to High)</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Holdings Table -->
-            <div class="holdings-container">
-                <div class="table-header">
-                    <h2>Your Holdings</h2>
-                    <button class="btn-primary" id="add-transaction-btn">
-                        + Add Transaction
-                    </button>
+            <!-- Holdings List -->
+            <div class="holdings-list" id="holdings-list">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading holdings...</p>
                 </div>
-                <div class="table-container">
-                    <table class="portfolio-table">
-                        <thead>
-                            <tr>
-                                <th>Asset</th>
-                                <th>Holdings</th>
-                                <th>Price</th>
-                                <th>Value</th>
-                                <th>Allocation</th>
-                                <th>P/L</th>
-                                <th>24h Change</th>
-                            </tr>
-                        </thead>
-                        <tbody id="holdings-table-body">
-                            <!-- Holdings will be populated by JavaScript -->
-                            <tr id="empty-holdings" style="display: none;">
-                                <td colspan="7">
-                                    <div class="empty-state">
-                                        <div class="empty-state-icon">💼</div>
-                                        <h3>No Holdings Yet</h3>
-                                        <p>Start building your portfolio by adding your first transaction.</p>
-                                        <button class="btn-primary" id="empty-add-btn">
-                                            Add Your First Transaction
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-holdings" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-inbox"></i>
                 </div>
+                <h3>No Holdings Yet</h3>
+                <p>Start building your crypto portfolio</p>
+                <a href="{% url 'buy' %}" class="btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Buy Crypto
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="performance-tab">
+        <!-- Performance Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Performance
+                </h2>
+                <div class="timeframe-selector">
+                    <button class="timeframe-btn active" data-period="1D">1D</button>
+                    <button class="timeframe-btn" data-period="1W">1W</button>
+                    <button class="timeframe-btn" data-period="1M">1M</button>
+                    <button class="timeframe-btn" data-period="3M">3M</button>
+                    <button class="timeframe-btn" data-period="1Y">1Y</button>
+                    <button class="timeframe-btn" data-period="ALL">ALL</button>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="performance-metrics">
+                <div class="metric-item">
+                    <span class="metric-label">Today's Change</span>
+                    <span class="metric-value positive" id="today-change">+$0.00</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Best Performer</span>
+                    <span class="metric-value" id="best-performer">--</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Worst Performer</span>
+                    <span class="metric-value" id="worst-performer">--</span>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="chart-wrapper">
+                <canvas id="performance-chart"></canvas>
             </div>
         </div>
 
-        <!-- Right Column: Sidebar Widgets -->
-        <div class="portfolio-sidebar">
-            <!-- Allocation Chart -->
-            <div class="widget">
-                <div class="widget-header">
-                    <h3>Portfolio Allocation</h3>
-                </div>
-                <div class="widget-body">
-                    <div class="allocation-chart-container">
-                        <canvas id="allocationChart"></canvas>
-                        <div id="allocation-loading" style="display: none; text-align: center; padding: 2rem;">
-                            <div class="loading-spinner"></div>
-                            <div>Loading allocation data...</div>
-                        </div>
-                    </div>
+        <!-- Portfolio History -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-history"></i>
+                    Portfolio History
+                </h2>
+                <select class="period-select" id="history-period">
+                    <option value="7">Last 7 Days</option>
+                    <option value="30" selected>Last 30 Days</option>
+                    <option value="90">Last 90 Days</option>
+                    <option value="365">Last Year</option>
+                </select>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="history-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="allocation-tab">
+        <!-- Allocation Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-pie-chart"></i>
+                    Asset Allocation
+                </h2>
+            </div>
+
+            <!-- Allocation Grid -->
+            <div class="allocation-grid" id="allocation-grid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading allocation...</p>
                 </div>
             </div>
 
-            <!-- Risk Metrics -->
-            <div class="widget">
-                <div class="widget-header">
-                    <h3>Risk Analysis</h3>
+            <!-- Allocation Chart -->
+            <div class="allocation-chart-section">
+                <h3 class="subsection-title">Visual Distribution</h3>
+                <div class="chart-wrapper doughnut">
+                    <canvas id="allocation-chart"></canvas>
                 </div>
-                <div class="widget-body">
-                    <div class="risk-metrics">
-                        <div class="risk-metric">
-                            <div class="risk-value risk-low" id="volatility-value">0%</div>
-                            <div class="risk-label">Volatility</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="analytics-tab">
+        <!-- Analytics Section -->
+        <div class="analytics-wrapper">
+            <!-- Risk Analysis -->
+            <div class="section-card analytics-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Risk Analysis
+                    </h2>
+                    <span class="ai-badge">
+                        <i class="fas fa-robot"></i>
+                        AI Powered
+                    </span>
+                </div>
+
+                <div class="risk-score-container">
+                    <div class="risk-circle">
+                        <svg class="risk-circle-svg" viewBox="0 0 200 200">
+                            <circle class="risk-circle-bg" cx="100" cy="100" r="90"></circle>
+                            <circle class="risk-circle-progress" cx="100" cy="100" r="90" id="risk-circle-path"></circle>
+                        </svg>
+                        <div class="risk-score-content">
+                            <span class="risk-score-value" id="risk-score">0</span>
+                            <span class="risk-score-label">Risk Score</span>
                         </div>
-                        <div class="risk-metric">
-                            <div class="risk-value risk-low" id="diversification-value">100%</div>
-                            <div class="risk-label">Diversification</div>
-                        </div>
-                        <div class="risk-metric">
-                            <div class="risk-value risk-low" id="max-drawdown-value">0%</div>
-                            <div class="risk-label">Max Drawdown</div>
-                        </div>
-                        <div class="risk-metric">
-                            <div class="risk-value risk-low" id="sharpe-value">0.00</div>
-                            <div class="risk-label">Sharpe Ratio</div>
-                        </div>
+                    </div>
+                    <div class="risk-level-badge" id="risk-level-badge">Calculating...</div>
+                </div>
+
+                <div class="risk-breakdown">
+                    <div class="risk-item">
+                        <span class="risk-label">
+                            <i class="fas fa-chart-line"></i>
+                            Volatility
+                        </span>
+                        <span class="risk-value" id="volatility">--</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-label">
+                            <i class="fas fa-project-diagram"></i>
+                            Diversification
+                        </span>
+                        <span class="risk-value" id="diversification">--</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-label">
+                            <i class="fas fa-chart-area"></i>
+                            Max Drawdown
+                        </span>
+                        <span class="risk-value" id="max-drawdown">--</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-label">
+                            <i class="fas fa-percentage"></i>
+                            Sharpe Ratio
+                        </span>
+                        <span class="risk-value" id="sharpe-ratio">--</span>
                     </div>
                 </div>
             </div>
 
             <!-- AI Insights -->
-            <div class="widget">
-                <div class="widget-header">
-                    <h3>AI Insights & Recommendations</h3>
+            <div class="section-card insights-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-lightbulb"></i>
+                        AI Insights
+                    </h2>
                 </div>
-                <div class="widget-body">
-                    <div class="insights-list" id="insights-list">
-                        <div class="insight-item">
-                            <strong>Welcome to Your Portfolio!</strong><br>
-                            Start by adding your cryptocurrency transactions to see personalized insights and recommendations.
-                        </div>
+
+                <div class="insights-list" id="insights-list">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Generating insights...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="section-card metrics-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Performance Metrics
+                    </h2>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <span class="metric-box-label">Total Return</span>
+                        <span class="metric-box-value" id="total-return">--</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-box-label">Annualized Return</span>
+                        <span class="metric-box-value" id="annualized-return">--</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-box-label">Win Rate</span>
+                        <span class="metric-box-value" id="win-rate">--</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-box-label">Avg. Holding Time</span>
+                        <span class="metric-box-value" id="avg-holding">--</span>
                     </div>
                 </div>
             </div>
@@ -576,74 +358,18 @@
     </div>
 </div>
 
-<!-- Add Transaction Modal -->
-<div id="transaction-modal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>Add Transaction</h3>
-            <span class="close">&times;</span>
-        </div>
-        <div class="modal-body">
-            <form id="transaction-form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label>Transaction Type</label>
-                    <select name="type" id="transaction-type" required>
-                        <option value="BUY">Buy</option>
-                        <option value="SELL">Sell</option>
-                        <option value="DEPOSIT">Deposit</option>
-                        <option value="WITHDRAWAL">Withdrawal</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Cryptocurrency</label>
-                    <select name="symbol" id="transaction-symbol" required>
-                        <option value="">Select cryptocurrency</option>
-                        {% for crypto in cryptocurrencies %}
-                        <option value="{{ crypto.symbol }}">{{ crypto.symbol }} - {{ crypto.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Amount</label>
-                    <input type="number" name="amount" step="0.00000001" placeholder="0.00000000" required 
-                           id="transaction-amount">
-                </div>
-                
-                <div class="form-group">
-                    <label>Price per Coin (USD)</label>
-                    <input type="number" name="price" step="0.01" placeholder="0.00" required 
-                           id="transaction-price">
-                </div>
-                
-                <div class="form-group">
-                    <label>Total Amount (USD)</label>
-                    <input type="number" name="total_amount" step="0.01" placeholder="0.00" required 
-                           id="transaction-total">
-                </div>
-                
-                <div class="form-group">
-                    <label>Fee (USD)</label>
-                    <input type="number" name="fee" step="0.01" placeholder="0.00" value="0.00" 
-                           id="transaction-fee">
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" id="cancel-transaction">Cancel</button>
-                    <button type="submit" class="btn-primary">Add Transaction</button>
-                </div>
-            </form>
-        </div>
-    </div>
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Connection Status -->
+<div class="connection-status" id="connection-status">
+    <i class="fas fa-circle"></i>
+    <span>Connected</span>
 </div>
-{% endblock %}
+{% endblock main_content %}
 
 {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script src="{% static 'assets/js/portfolio.js' %}"></script>
-<script src="{% static 'assets/js/portfolioCharts.js' %}"></script>
-<!-- WebSocket real-time updates (PythonAnywhere paid plan supports WebSockets) -->
 <script src="{% static 'assets/js/portfolioSocket.js' %}"></script>
 {% endblock %}
