@@ -16,8 +16,33 @@ import json
 from datetime import datetime, timedelta
 from .models import (
     CustomUser, UserActivity, Cryptocurrency, PriceHistory, 
-    Transaction, Order, Portfolio, Country, State
+    Transaction, Order, Portfolio, Country, State, Admin_Wallet, Admin_Bank
 )
+
+
+# ================================
+# CUSTOM ADMIN FILTERS
+# ================================
+class PendingDepositFilter(admin.SimpleListFilter):
+    title = 'Pending Deposits'
+    parameter_name = 'pending_deposit'
+    
+    def lookups(self, request, model_admin):
+        return (
+            ('yes', 'Pending Deposits Only'),
+            ('crypto', 'Pending Crypto Deposits'),
+            ('bank', 'Pending Bank Deposits'),
+        )
+    
+    def queryset(self, request, queryset):
+        if self.value() == 'yes':
+            return queryset.filter(transaction_type='DEPOSIT', status='PENDING')
+        if self.value() == 'crypto':
+            return queryset.filter(transaction_type='DEPOSIT', status='PENDING', cryptocurrency__isnull=False)
+        if self.value() == 'bank':
+            return queryset.filter(transaction_type='DEPOSIT', status='PENDING', fiat_amount__isnull=False)
+        return queryset
+
 
 
 # ================================
@@ -894,9 +919,9 @@ class TransactionAdmin(admin.ModelAdmin):
         'get_quantity', 'get_total_amount', 'get_status_badge', 
         'get_created_date', 'get_completed_date'
     )
-    list_filter = ('transaction_type', 'status', 'cryptocurrency', 'created_at')
+    list_filter = (PendingDepositFilter, 'transaction_type', 'status', 'cryptocurrency', 'created_at')
     search_fields = ('user__email', 'user__username', 'transaction_hash', 'wallet_address')
-    readonly_fields = ('created_at', 'updated_at', 'completed_at')
+    readonly_fields = ('created_at', 'updated_at', 'completed_at', 'id')
     actions = [
         'mark_deposit_completed', 'mark_withdrawal_completed', 
         'mark_processing', 'mark_failed', 'mark_cancelled',
@@ -906,7 +931,7 @@ class TransactionAdmin(admin.ModelAdmin):
     
     fieldsets = (
         ('Transaction Details', {'fields': (
-            'user', 'transaction_type', 'cryptocurrency', 'status'
+            'id', 'user', 'transaction_type', 'cryptocurrency', 'status'
         )}),
         ('Amount Details', {'fields': (
             'quantity', 'price_per_unit', 'total_amount', 
@@ -919,6 +944,91 @@ class TransactionAdmin(admin.ModelAdmin):
             'created_at', 'updated_at', 'completed_at'
         )}),
     )
+    
+    def save_model(self, request, obj, form, change):
+        """Override save_model to handle deposit completion and send emails"""
+        from .services.email_service import EmailService
+        
+        # Track if this is an update and if status changed to COMPLETED
+        status_changed_to_completed = False
+        was_deposit = obj.transaction_type == 'DEPOSIT'
+        is_crypto_deposit = obj.cryptocurrency is not None
+        is_bank_deposit = obj.fiat_amount is not None and not is_crypto_deposit
+        
+        if change:  # This is an update, not a new object
+            # Get the original object from database
+            original = Transaction.objects.get(pk=obj.pk)
+            
+            # Check if status changed from non-COMPLETED to COMPLETED
+            if original.status != 'COMPLETED' and obj.status == 'COMPLETED':
+                status_changed_to_completed = True
+                
+                # Set completed timestamp if not already set
+                if not obj.completed_at:
+                    obj.completed_at = timezone.now()
+                
+                # Credit user balance for deposits
+                if was_deposit:
+                    user = obj.user
+                    
+                    # Handle crypto deposits
+                    if is_crypto_deposit and obj.quantity:
+                        crypto_symbol = obj.cryptocurrency.symbol
+                        crypto_field = f"{crypto_symbol.lower()}_balance"
+                        
+                        if hasattr(user, crypto_field):
+                            current_balance = getattr(user, crypto_field)
+                            new_balance = current_balance + obj.quantity
+                            setattr(user, crypto_field, new_balance)
+                            user.save()
+                            
+                            self.message_user(
+                                request,
+                                f"✅ Credited {obj.quantity} {crypto_symbol} to {user.email}'s wallet. New balance: {new_balance}",
+                                messages.SUCCESS
+                            )
+                    
+                    # Handle bank/fiat deposits
+                    elif is_bank_deposit:
+                        user.currency_balance += obj.fiat_amount
+                        user.save()
+                        
+                        self.message_user(
+                            request,
+                            f"✅ Credited {obj.fiat_amount} {obj.currency} to {user.email}'s account. New balance: {user.currency_balance}",
+                            messages.SUCCESS
+                        )
+        
+        # Save the transaction
+        super().save_model(request, obj, form, change)
+        
+        # Send completion email if status just changed to COMPLETED
+        if status_changed_to_completed and was_deposit:
+            user = obj.user
+            
+            try:
+                if is_crypto_deposit:
+                    # Send crypto deposit completed email
+                    EmailService.send_crypto_deposit_completed_email(user, obj)
+                    self.message_user(
+                        request,
+                        f"📧 Crypto deposit completion email sent to {user.email}",
+                        messages.INFO
+                    )
+                elif is_bank_deposit:
+                    # Send bank deposit completed email
+                    EmailService.send_bank_deposit_completed_email(user, obj)
+                    self.message_user(
+                        request,
+                        f"📧 Bank deposit completion email sent to {user.email}",
+                        messages.INFO
+                    )
+            except Exception as e:
+                self.message_user(
+                    request,
+                    f"⚠️ Deposit completed but email failed: {str(e)}",
+                    messages.WARNING
+                )
 
     def get_user_email(self, obj):
         return obj.user.email
@@ -938,6 +1048,9 @@ class TransactionAdmin(admin.ModelAdmin):
     get_transaction_type.admin_order_field = 'transaction_type'
 
     def get_cryptocurrency(self, obj):
+        if not obj.cryptocurrency:
+            return "💵 Fiat"
+        
         crypto_icons = {
             'BTC': '₿',
             'ETH': 'Ξ',
@@ -945,15 +1058,19 @@ class TransactionAdmin(admin.ModelAdmin):
             'LTC': 'Ł',
             'TRX': '⚡'
         }
-        icon = crypto_icons.get(obj.cryptocurrency, '🔷')
-        return f"{icon} {obj.get_cryptocurrency_display()}"
+        crypto_symbol = obj.cryptocurrency.symbol
+        icon = crypto_icons.get(crypto_symbol, '🔷')
+        return f"{icon} {crypto_symbol}"
     get_cryptocurrency.short_description = 'Crypto'
     get_cryptocurrency.admin_order_field = 'cryptocurrency'
 
     def get_quantity(self, obj):
-        if obj.quantity:
-            return f"{obj.quantity:.8f} {obj.cryptocurrency}"
-        return f"${obj.fiat_amount:.2f} {obj.currency}"
+        if obj.quantity and obj.cryptocurrency:
+            crypto_symbol = obj.cryptocurrency.symbol
+            return f"{obj.quantity:.8f} {crypto_symbol}"
+        elif obj.fiat_amount:
+            return f"${obj.fiat_amount:.2f} {obj.currency}"
+        return "-"
     get_quantity.short_description = 'Amount'
 
     def get_total_amount(self, obj):
@@ -1005,32 +1122,65 @@ class TransactionAdmin(admin.ModelAdmin):
     
     def mark_deposit_completed(self, request, queryset):
         """Mark deposits as completed and credit user balances"""
+        from .services.email_service import EmailService
+        
         deposits = queryset.filter(transaction_type='DEPOSIT', status='PENDING')
         completed_count = 0
+        email_failures = 0
         
-        for transaction in deposits:
-            # Update user balance based on cryptocurrency
-            user = transaction.user
-            crypto_field = f"{transaction.cryptocurrency.lower()}_balance"
+        for txn in deposits:
+            user = txn.user
             
-            if hasattr(user, crypto_field) and transaction.quantity:
-                current_balance = getattr(user, crypto_field)
-                setattr(user, crypto_field, current_balance + transaction.quantity)
+            # Handle crypto deposits
+            if txn.cryptocurrency:
+                crypto_symbol = txn.cryptocurrency.symbol
+                crypto_field = f"{crypto_symbol.lower()}_balance"
+                
+                if hasattr(user, crypto_field) and txn.quantity:
+                    current_balance = getattr(user, crypto_field)
+                    new_balance = current_balance + txn.quantity
+                    setattr(user, crypto_field, new_balance)
+                    user.save()
+                    
+                    txn.status = 'COMPLETED'
+                    txn.completed_at = timezone.now()
+                    txn.save()
+                    completed_count += 1
+                    
+                    # Send crypto deposit completed email
+                    try:
+                        EmailService.send_crypto_deposit_completed_email(user, txn)
+                    except Exception as e:
+                        email_failures += 1
+                        self.message_user(request, f"⚠️ Email failed for {user.email}: {e}", messages.WARNING)
+            
+            # Handle bank/fiat deposits
+            elif txn.fiat_amount:
+                user.currency_balance += txn.fiat_amount
                 user.save()
                 
-                transaction.status = 'COMPLETED'
-                transaction.completed_at = timezone.now()
-                transaction.save()
+                txn.status = 'COMPLETED'
+                txn.completed_at = timezone.now()
+                txn.save()
                 completed_count += 1
                 
-                # Send deposit notification email using template
-                AdminEmailService.send_deposit_notification(user, transaction)
+                # Send bank deposit completed email
+                try:
+                    EmailService.send_bank_deposit_completed_email(user, txn)
+                except Exception as e:
+                    email_failures += 1
+                    self.message_user(request, f"⚠️ Email failed for {user.email}: {e}", messages.WARNING)
         
-        self.message_user(
-            request, 
-            f"✅ Successfully completed {completed_count} deposits and credited user wallets.", 
-            messages.SUCCESS
-        )
+        if completed_count > 0:
+            email_status = f" ({completed_count - email_failures} emails sent)" if email_failures == 0 else f" ({email_failures} email failures)"
+            self.message_user(
+                request, 
+                f"✅ Successfully completed {completed_count} deposits and credited user balances{email_status}.", 
+                messages.SUCCESS
+            )
+        else:
+            self.message_user(request, "No pending deposits found in selection.", messages.WARNING)
+            
     mark_deposit_completed.short_description = "✅ Confirm Deposit & Credit Wallet"
 
     def mark_withdrawal_completed(self, request, queryset):
@@ -1041,33 +1191,44 @@ class TransactionAdmin(admin.ModelAdmin):
         for transaction in withdrawals:
             # Verify user has sufficient balance before completing withdrawal
             user = transaction.user
-            crypto_field = f"{transaction.cryptocurrency.lower()}_balance"
             
-            if hasattr(user, crypto_field) and transaction.quantity:
-                current_balance = getattr(user, crypto_field)
-                if current_balance >= transaction.quantity:
-                    setattr(user, crypto_field, current_balance - transaction.quantity)
-                    user.save()
-                    
-                    transaction.status = 'COMPLETED'
-                    transaction.completed_at = timezone.now()
-                    transaction.save()
-                    completed_count += 1
-                    
-                    # Send withdrawal notification email using template
-                    AdminEmailService.send_withdrawal_notification(user, transaction)
-                else:
-                    self.message_user(
-                        request, 
-                        f"❌ User {user.email} has insufficient balance for withdrawal", 
-                        messages.ERROR
-                    )
+            if transaction.cryptocurrency:
+                crypto_symbol = transaction.cryptocurrency.symbol
+                crypto_field = f"{crypto_symbol.lower()}_balance"
+                
+                if hasattr(user, crypto_field) and transaction.quantity:
+                    current_balance = getattr(user, crypto_field)
+                    if current_balance >= transaction.quantity:
+                        new_balance = current_balance - transaction.quantity
+                        setattr(user, crypto_field, new_balance)
+                        user.save()
+                        
+                        transaction.status = 'COMPLETED'
+                        transaction.completed_at = timezone.now()
+                        transaction.save()
+                        completed_count += 1
+                        
+                        # Send withdrawal notification email using template
+                        try:
+                            AdminEmailService.send_withdrawal_notification(user, transaction)
+                        except Exception as e:
+                            self.message_user(request, f"⚠️ Email failed for {user.email}: {e}", messages.WARNING)
+                    else:
+                        self.message_user(
+                            request, 
+                            f"❌ User {user.email} has insufficient {crypto_symbol} balance (has {current_balance}, needs {transaction.quantity})", 
+                            messages.ERROR
+                        )
         
-        self.message_user(
-            request, 
-            f"✅ Successfully completed {completed_count} withdrawals.", 
-            messages.SUCCESS
-        )
+        if completed_count > 0:
+            self.message_user(
+                request, 
+                f"✅ Successfully completed {completed_count} withdrawals.", 
+                messages.SUCCESS
+            )
+        else:
+            self.message_user(request, "No pending withdrawals found or insufficient balances.", messages.WARNING)
+            
     mark_withdrawal_completed.short_description = "✅ Mark Withdrawal as Completed"
 
     def bulk_complete_deposits(self, request, queryset):
@@ -1366,12 +1527,14 @@ class CryptocurrencyAdmin(admin.ModelAdmin):
     def get_price_change(self, obj):
         color = 'green' if obj.price_change_24h >= 0 else 'red'
         arrow = '↗' if obj.price_change_24h >= 0 else '↘'
+        price_change = float(obj.price_change_24h)
+        percentage_change = float(obj.price_change_percentage_24h)
         return format_html(
-            '<span style="color: {};">{} ${:.2f} ({:.2f}%)</span>',
+            '<span style="color: {};">{} ${} ({}%)</span>',
             color,
             arrow,
-            float(obj.price_change_24h),
-            float(obj.price_change_percentage_24h)
+            f"{price_change:.2f}",
+            f"{percentage_change:.2f}"
         )
     get_price_change.short_description = '24h Change'
 
@@ -1553,4 +1716,112 @@ class CountryAdmin(admin.ModelAdmin):
 class StateAdmin(admin.ModelAdmin):
     list_display = ('name', 'country')
     list_filter = ('country',)
+    search_fields = ('name', 'country__name')
+
+
+# ================================
+# ADMIN WALLET & BANK ADMIN
+# ================================
+@admin.register(Admin_Wallet)
+class AdminWalletAdmin(admin.ModelAdmin):
+    list_display = ('id', 'get_btc_wallet', 'get_eth_wallet', 'get_usdt_wallet', 'get_ltc_wallet', 'get_trx_wallet')
+    fieldsets = (
+        ('Bitcoin', {
+            'fields': ('btc_wallet',),
+            'classes': ('wide',)
+        }),
+        ('Ethereum', {
+            'fields': ('ethereum_wallet',),
+            'classes': ('wide',)
+        }),
+        ('Tether (USDT)', {
+            'fields': ('usdt_wallet',),
+            'classes': ('wide',)
+        }),
+        ('Litecoin', {
+            'fields': ('litecoin_wallet',),
+            'classes': ('wide',)
+        }),
+        ('Tron', {
+            'fields': ('tron_wallet',),
+            'classes': ('wide',)
+        }),
+    )
+    
+    def get_btc_wallet(self, obj):
+        if obj.btc_wallet:
+            return f"₿ {obj.btc_wallet[:10]}...{obj.btc_wallet[-10:]}" if len(obj.btc_wallet) > 20 else f"₿ {obj.btc_wallet}"
+        return "Not Set"
+    get_btc_wallet.short_description = 'BTC Wallet'
+    
+    def get_eth_wallet(self, obj):
+        if obj.ethereum_wallet:
+            return f"Ξ {obj.ethereum_wallet[:10]}...{obj.ethereum_wallet[-10:]}" if len(obj.ethereum_wallet) > 20 else f"Ξ {obj.ethereum_wallet}"
+        return "Not Set"
+    get_eth_wallet.short_description = 'ETH Wallet'
+    
+    def get_usdt_wallet(self, obj):
+        if obj.usdt_wallet:
+            return f"₮ {obj.usdt_wallet[:10]}...{obj.usdt_wallet[-10:]}" if len(obj.usdt_wallet) > 20 else f"₮ {obj.usdt_wallet}"
+        return "Not Set"
+    get_usdt_wallet.short_description = 'USDT Wallet'
+    
+    def get_ltc_wallet(self, obj):
+        if obj.litecoin_wallet:
+            return f"Ł {obj.litecoin_wallet[:10]}...{obj.litecoin_wallet[-10:]}" if len(obj.litecoin_wallet) > 20 else f"Ł {obj.litecoin_wallet}"
+        return "Not Set"
+    get_ltc_wallet.short_description = 'LTC Wallet'
+    
+    def get_trx_wallet(self, obj):
+        if obj.tron_wallet:
+            return f"⚡ {obj.tron_wallet[:10]}...{obj.tron_wallet[-10:]}" if len(obj.tron_wallet) > 20 else f"⚡ {obj.tron_wallet}"
+        return "Not Set"
+    get_trx_wallet.short_description = 'TRX Wallet'
+    
+    def has_add_permission(self, request):
+        # Only allow one admin wallet instance
+        return not Admin_Wallet.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deletion of admin wallet
+        return False
+
+
+@admin.register(Admin_Bank)
+class AdminBankAdmin(admin.ModelAdmin):
+    list_display = ('id', 'get_bank_name', 'currency_type', 'get_account_number', 'get_swift_code')
+    list_filter = ('currency_type',)
+    search_fields = ('bank_name', 'account_number', 'swift_code', 'iban')
+    
+    fieldsets = (
+        ('Bank Information', {
+            'fields': ('currency_type', 'bank_name'),
+            'classes': ('wide',)
+        }),
+        ('Account Details', {
+            'fields': ('account_number', 'routing_number'),
+            'classes': ('wide',)
+        }),
+        ('International Transfer', {
+            'fields': ('swift_code', 'iban'),
+            'classes': ('wide',),
+            'description': 'For international transfers'
+        }),
+    )
+    
+    def get_bank_name(self, obj):
+        return f"🏦 {obj.bank_name}" if obj.bank_name else "Not Set"
+    get_bank_name.short_description = 'Bank Name'
+    
+    def get_account_number(self, obj):
+        if obj.account_number:
+            # Mask account number for security
+            masked = f"****{obj.account_number[-4:]}" if len(obj.account_number) > 4 else obj.account_number
+            return f"💳 {masked}"
+        return "Not Set"
+    get_account_number.short_description = 'Account Number'
+    
+    def get_swift_code(self, obj):
+        return f"🌍 {obj.swift_code}" if obj.swift_code else "Not Set"
+    get_swift_code.short_description = 'SWIFT Code'
     search_fields = ('name', 'country__name')

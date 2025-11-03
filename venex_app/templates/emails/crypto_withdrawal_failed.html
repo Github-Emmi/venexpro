@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Withdrawal Failed</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .email-header {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .email-header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .email-header .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .email-body {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 30px;
+        }
+        .error-box {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .error-box h2 {
+            margin: 0 0 10px 0;
+            color: #721c24;
+            font-size: 20px;
+        }
+        .error-box p {
+            margin: 0;
+            color: #721c24;
+            font-size: 15px;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ff6a00;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin: 0 0 15px 0;
+            color: #333333;
+            font-size: 18px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #666666;
+            font-weight: 500;
+        }
+        .info-value {
+            color: #333333;
+            font-weight: 600;
+            text-align: right;
+        }
+        .success-notice {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-notice strong {
+            color: #155724;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .success-notice p {
+            margin: 0;
+            color: #155724;
+            font-size: 14px;
+        }
+        .wallet-address-box {
+            background-color: #fff8e1;
+            border: 2px dashed #ffa726;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            text-align: center;
+            color: #e65100;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .email-footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        .email-footer p {
+            margin: 5px 0;
+            color: #666666;
+            font-size: 13px;
+        }
+        .email-footer .social-links {
+            margin: 15px 0;
+        }
+        .email-footer .social-links a {
+            color: #ee0979;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 30px 0;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-body {
+                padding: 30px 20px;
+            }
+            .email-header {
+                padding: 30px 20px;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .info-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="email-header">
+            <div class="icon">⚠️</div>
+            <h1>Withdrawal Failed</h1>
+        </div>
+
+        <!-- Body -->
+        <div class="email-body">
+            <p class="greeting">Hello {{ user.first_name|default:user.username }},</p>
+
+            <div class="error-box">
+                <h2>❌ Withdrawal Could Not Be Completed</h2>
+                <p>We were unable to process your withdrawal request</p>
+            </div>
+
+            <p class="message">
+                Unfortunately, your withdrawal request for <strong>{{ amount }} {{ crypto }}</strong> could not be completed. We apologize for any inconvenience this may have caused.
+            </p>
+
+            <!-- Reason for Failure -->
+            <div class="info-box">
+                <h3>📋 Failure Reason:</h3>
+                <p style="color: #721c24; font-size: 15px; margin: 10px 0;">
+                    <strong>{{ reason }}</strong>
+                </p>
+            </div>
+
+            <!-- Refund Notice -->
+            <div class="success-notice">
+                <strong>✅ Funds Refunded</strong>
+                <p>The withdrawal amount has been automatically refunded to your account balance.</p>
+            </div>
+
+            <!-- Transaction Details -->
+            <div class="info-box">
+                <h3>📊 Transaction Details</h3>
+                <div class="info-row">
+                    <span class="info-label">Transaction ID:</span>
+                    <span class="info-value">{{ transaction_id }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Cryptocurrency:</span>
+                    <span class="info-value">{{ crypto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Attempted Amount:</span>
+                    <span class="info-value">{{ amount }} {{ crypto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Refunded Balance:</span>
+                    <span class="info-value">{{ refunded_balance }} {{ crypto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" style="color: #dc3545;">FAILED</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Date:</span>
+                    <span class="info-value">{{ timestamp|date:"F d, Y H:i" }}</span>
+                </div>
+            </div>
+
+            <!-- Attempted Destination -->
+            <div class="info-box">
+                <h3>📍 Attempted Destination:</h3>
+                <div class="wallet-address-box">
+                    {{ wallet_address }}
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="message">
+                <strong>What to do next:</strong><br>
+                • Check that your wallet address is correct<br>
+                • Ensure you have sufficient balance for network fees<br>
+                • Try submitting the withdrawal request again<br>
+                • Contact our support team if you need assistance
+            </p>
+
+            <center>
+                <a href="{{ site_url }}/withdraw/" class="button">Try Again</a>
+            </center>
+
+            <p class="message" style="text-align: center; margin-top: 20px;">
+                If you continue to experience issues, our support team is here to help.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <p><strong>Venex Broker</strong></p>
+            <p>Your trusted cryptocurrency trading platform</p>
+            <div class="social-links">
+                <a href="mailto:{{ support_email }}">Support</a> | 
+                <a href="{{ site_url }}/faq/">FAQ</a> | 
+                <a href="mailto:{{ support_email }}">Contact Us</a>
+            </div>
+            
+            <!-- Reply Encouragement (Anti-Spam) -->
+            <p style="margin-top: 20px; font-size: 13px; color: #666666;">
+                Need help with your withdrawal? Simply reply to this email or contact 
+                <a href="mailto:{{ support_email }}" style="color: #ee0979; text-decoration: none;">{{ support_email }}</a>
+            </p>
+            
+            <p style="font-size: 12px; color: #999999;">
+                To manage notification preferences, 
+                <a href="{{ site_url }}/dashboard/settings/" style="color: #ee0979; text-decoration: none;">visit your settings</a>
+            </p>
+            
+            <p style="font-size: 12px; color: #999999;">
+                © {{ current_year }} Venex Broker. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

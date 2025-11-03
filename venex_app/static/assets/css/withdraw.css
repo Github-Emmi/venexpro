@@ -1,0 +1,1078 @@
+/**
+ * WITHDRAW PAGE STYLES
+ * Modern dark theme matching deposit and wallet pages
+ * Cryptocurrency withdrawal functionality
+ */
+
+/* ===== VARIABLES ===== */
+:root {
+    --dark-bg: #0f172a;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --accent-yellow: #f59e0b;
+    --success: #10b981;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+}
+
+/* ===== CONTAINER ===== */
+.withdraw-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--dark-bg);
+    min-height: 100vh;
+}
+
+/* ===== HERO SECTION ===== */
+.withdraw-hero {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+    border-radius: 1rem;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.withdraw-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 70%);
+    animation: pulse 15s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.hero-title i {
+    color: var(--accent-red);
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* ===== BALANCE CARDS ===== */
+.balance-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.balance-card {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.balance-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
+}
+
+.balance-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+}
+
+.fiat-card .balance-card-icon {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.crypto-card .balance-card-icon {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.balance-card-content {
+    flex: 1;
+}
+
+.balance-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.balance-amount {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.balance-currency {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* ===== CRYPTO BALANCES SECTION ===== */
+.crypto-balances-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.crypto-balances-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.crypto-balance-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.crypto-balance-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+}
+
+.crypto-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.crypto-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.btc-icon { background: linear-gradient(135deg, #f7931a, #e67e00); }
+.eth-icon { background: linear-gradient(135deg, #627eea, #4c63c9); }
+.usdt-icon { background: linear-gradient(135deg, #26a17b, #1e8a66); }
+.ltc-icon { background: linear-gradient(135deg, #345d9d, #2a4a7c); }
+.trx-icon { background: linear-gradient(135deg, #eb0029, #c40023); }
+
+.crypto-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.crypto-symbol {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.crypto-balance {
+    margin: 1.5rem 0 0.5rem;
+}
+
+.crypto-balance .balance-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.crypto-balance .balance-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-left: 0.5rem;
+}
+
+.crypto-value {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.withdraw-btn {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent-red), #dc2626);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.withdraw-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+}
+
+.withdraw-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--border-color);
+}
+
+/* ===== RECENT WITHDRAWALS ===== */
+.recent-withdrawals-section {
+    margin-bottom: 3rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.refresh-btn, .view-all-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.refresh-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.refresh-btn:hover {
+    background: var(--border-color);
+}
+
+.view-all-btn {
+    background: var(--accent-blue);
+    border: none;
+    color: white;
+    text-decoration: none;
+}
+
+.view-all-btn:hover {
+    background: #2563eb;
+}
+
+.withdrawals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.withdrawal-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.withdrawal-card:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
+}
+
+.withdrawal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.withdrawal-crypto {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.withdrawal-crypto-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+}
+
+.withdrawal-crypto-info h4 {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.25rem 0;
+}
+
+.withdrawal-crypto-info .amount {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--accent-yellow);
+}
+
+.status-badge.completed {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--accent-green);
+}
+
+.status-badge.failed {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+}
+
+.withdrawal-details {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    color: var(--text-secondary);
+}
+
+.detail-value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--border-color);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+/* ===== FORM STEPS ===== */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.step-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.back-btn {
+    background: var(--border-color);
+    border: none;
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-btn:hover {
+    background: var(--accent-blue);
+}
+
+/* ===== SELECTED CRYPTO INFO ===== */
+.selected-crypto-info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.crypto-info-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f7931a, #e67e00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.crypto-info-details {
+    flex: 1;
+}
+
+.crypto-info-name {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.crypto-info-balance {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* ===== FORM GROUPS ===== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-with-symbol {
+    position: relative;
+}
+
+.input-with-symbol input {
+    padding-right: 60px;
+}
+
+.input-symbol {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.input-helper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.helper-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.fiat-equivalent {
+    color: var(--accent-green);
+    font-weight: 500;
+}
+
+/* ===== AMOUNT PRESETS ===== */
+.amount-helpers {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.amount-preset-btn {
+    flex: 1;
+    padding: 0.5rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.amount-preset-btn:hover {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+}
+
+/* ===== INFO BOXES ===== */
+.info-box, .warning-box {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-box {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.info-box i {
+    color: var(--accent-blue);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.warning-box {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.warning-box i {
+    color: var(--accent-yellow);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.info-box strong,
+.warning-box strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+.info-box p,
+.warning-box p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.info-box ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.info-box li {
+    margin-bottom: 0.25rem;
+}
+
+/* ===== REVIEW SECTION ===== */
+.review-section {
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.review-section h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 1.5rem 0;
+}
+
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.review-item:last-child {
+    margin-bottom: 0;
+}
+
+.review-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.review-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: right;
+}
+
+.address-value {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    word-break: break-all;
+    max-width: 60%;
+}
+
+.review-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 1rem 0;
+}
+
+.review-item.highlight {
+    background: rgba(16, 185, 129, 0.1);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
+
+.review-item.highlight .review-value {
+    color: var(--accent-green);
+    font-size: 1.125rem;
+}
+
+.review-note {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 0.5rem;
+    align-items: start;
+}
+
+.review-note i {
+    color: var(--accent-yellow);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.review-note small {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* ===== SUCCESS MESSAGE ===== */
+.success-message {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.success-message i {
+    font-size: 4rem;
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+}
+
+.success-message h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.success-message p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.success-details {
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.detail-item code {
+    font-family: 'Courier New', monospace;
+    background: rgba(59, 130, 246, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    color: var(--accent-blue);
+    font-size: 0.875rem;
+}
+
+.success-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.success-actions .modal-btn {
+    flex: 1;
+}
+
+/* ===== BUTTONS ===== */
+.modal-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.modal-btn.primary {
+    background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+    color: white;
+}
+
+.modal-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
+.modal-btn.secondary {
+    background: var(--border-color);
+    color: var(--text-primary);
+}
+
+.modal-btn.secondary:hover {
+    background: var(--dark-bg);
+}
+
+/* ===== LOADING & EMPTY STATES ===== */
+.loading-state, .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+}
+
+.loading-state i, .empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.loading-state i {
+    color: var(--accent-blue);
+}
+
+.empty-state i {
+    color: var(--border-color);
+}
+
+.empty-state h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 1rem 0 0.5rem;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* ===== TOAST NOTIFICATIONS ===== */
+.toast-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.toast {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast i {
+    font-size: 1.25rem;
+}
+
+.toast-success { border-left: 4px solid var(--accent-green); }
+.toast-success i { color: var(--accent-green); }
+
+.toast-error { border-left: 4px solid var(--accent-red); }
+.toast-error i { color: var(--accent-red); }
+
+.toast-warning { border-left: 4px solid var(--accent-yellow); }
+.toast-warning i { color: var(--accent-yellow); }
+
+.toast-info { border-left: 4px solid var(--accent-blue); }
+.toast-info i { color: var(--accent-blue); }
+
+.toast span {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .withdraw-container {
+        padding: 1rem;
+    }
+
+    .withdraw-hero {
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .balance-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .crypto-balances-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .withdrawals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal {
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+
+    .toast-container {
+        right: 1rem;
+        left: 1rem;
+    }
+
+    .toast {
+        min-width: auto;
+    }
+}

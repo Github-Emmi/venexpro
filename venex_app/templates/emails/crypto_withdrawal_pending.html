@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Withdrawal Pending</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .email-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .email-header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .email-header .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .email-body {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #f5576c;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin: 0 0 15px 0;
+            color: #333333;
+            font-size: 18px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #666666;
+            font-weight: 500;
+        }
+        .info-value {
+            color: #333333;
+            font-weight: 600;
+            text-align: right;
+        }
+        .wallet-address-box {
+            background-color: #fff8e1;
+            border: 2px dashed #ffa726;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            text-align: center;
+            color: #e65100;
+        }
+        .alert-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .alert-box strong {
+            color: #856404;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .alert-box p {
+            margin: 0;
+            color: #856404;
+            font-size: 14px;
+        }
+        .instructions {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .instructions h3 {
+            margin: 0 0 15px 0;
+            color: #1976d2;
+            font-size: 16px;
+        }
+        .instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            color: #0d47a1;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .email-footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        .email-footer p {
+            margin: 5px 0;
+            color: #666666;
+            font-size: 13px;
+        }
+        .email-footer .social-links {
+            margin: 15px 0;
+        }
+        .email-footer .social-links a {
+            color: #f5576c;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 30px 0;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-body {
+                padding: 30px 20px;
+            }
+            .email-header {
+                padding: 30px 20px;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .info-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="email-header">
+            <div class="icon">⏳</div>
+            <h1>Withdrawal Processing</h1>
+        </div>
+
+        <!-- Body -->
+        <div class="email-body">
+            <p class="greeting">Hello {{ user.first_name|default:user.username }},</p>
+
+            <p class="message">
+                Your cryptocurrency withdrawal request has been received and is now being processed. Your <strong>{{ amount }} {{ crypto }}</strong> will be sent to your specified wallet address shortly.
+            </p>
+
+            <!-- Transaction Details -->
+            <div class="info-box">
+                <h3>📊 Withdrawal Details</h3>
+                <div class="info-row">
+                    <span class="info-label">Transaction ID:</span>
+                    <span class="info-value">{{ transaction_id }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Cryptocurrency:</span>
+                    <span class="info-value">{{ crypto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Amount:</span>
+                    <span class="info-value">{{ amount }} {{ crypto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">New Balance:</span>
+                    <span class="info-value">{{ new_balance }} {{ crypto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" style="color: #ffa726;">PENDING</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Date:</span>
+                    <span class="info-value">{{ timestamp|date:"F d, Y H:i" }}</span>
+                </div>
+            </div>
+
+            <!-- Destination Wallet Address -->
+            <div class="instructions">
+                <h3>📍 Withdrawal Destination:</h3>
+                <div class="wallet-address-box">
+                    {{ wallet_address }}
+                </div>
+            </div>
+
+            <!-- Important Notice -->
+            <div class="alert-box">
+                <strong>⚠️ Important Information:</strong>
+                <p>Your funds have been reserved and deducted from your available balance. The withdrawal will be processed by our team and sent to the blockchain shortly.</p>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="instructions">
+                <h3>What happens next?</h3>
+                <ol>
+                    <li>Our team reviews your withdrawal request for security</li>
+                    <li>Once approved, the transaction is broadcast to the blockchain</li>
+                    <li>Network confirmations are required (typically 10-60 minutes)</li>
+                    <li>You'll receive a confirmation email with the transaction hash</li>
+                </ol>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="message">
+                You can track your withdrawal status in real-time from your dashboard. If you have any questions or concerns, please don't hesitate to contact our support team.
+            </p>
+
+            <center>
+                <a href="{{ site_url }}/dashboard/" class="button">View Dashboard</a>
+            </center>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <p><strong>Venex Broker</strong></p>
+            <p>Your trusted cryptocurrency trading platform</p>
+            <div class="social-links">
+                <a href="mailto:{{ support_email }}">Support</a> | 
+                <a href="{{ site_url }}/faq/">FAQ</a> | 
+                <a href="mailto:{{ support_email }}">Contact Us</a>
+            </div>
+            
+            <!-- Reply Encouragement (Anti-Spam) -->
+            <p style="margin-top: 20px; font-size: 13px; color: #666666;">
+                Questions about your withdrawal? Simply reply to this email or contact 
+                <a href="mailto:{{ support_email }}" style="color: #f5576c; text-decoration: none;">{{ support_email }}</a>
+            </p>
+            
+            <p style="font-size: 12px; color: #999999;">
+                To manage notification preferences, 
+                <a href="{{ site_url }}/dashboard/settings/" style="color: #f5576c; text-decoration: none;">visit your settings</a>
+            </p>
+            
+            <p style="font-size: 12px; color: #999999;">
+                © {{ current_year }} Venex Broker. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -91,6 +91,7 @@ urlpatterns = [
     path('api/data/crypto/prices/', api_views.get_multiple_prices, name='get_multiple_prices'),
     path('api/data/crypto/<str:symbol>/', api_views.get_crypto_price_data, name='get_crypto_price_data'),
     path('api/data/crypto/<str:symbol>/historical/', api_views.get_historical_data, name='get_historical_data'),
+    path('api/portfolio/crypto-value/', api_views.api_total_crypto_value, name='api_total_crypto_value'),
 
     ###########################################
     # API ENDPOINTS - Real-Time Data endpoints
@@ -107,9 +108,17 @@ urlpatterns = [
     path('api/convert-currency/', api_views.api_convert_currency, name='api_convert_currency'),
     
     ###########################################
-    # API ENDPOINTS - Transactions
+    # API ENDPOINTS - TRANSACTIONS
     ###########################################
     path('api/transactions/recent/', api_views.api_recent_transactions, name='api_recent_transactions'),
+    
+    ###########################################
+    # API ENDPOINTS - DEPOSIT SYSTEM
+    ###########################################
+    path('api/deposit/admin-wallets/', api_views.api_get_admin_wallets, name='api_get_admin_wallets'),
+    path('api/deposit/admin-banks/', api_views.api_get_admin_banks, name='api_get_admin_banks'),
+    path('api/deposit/crypto/', api_views.api_create_crypto_deposit, name='api_create_crypto_deposit'),
+    path('api/deposit/bank/', api_views.api_create_bank_deposit, name='api_create_bank_deposit'),
     
     # API URLs
     path('api/v1/', include([

@@ -1,204 +1,520 @@
 {% extends 'admin_templates/base.html' %}
-{% block title %} Venex Dashboard | Deposit List{% endblock title %}
-{% block content %}
-<div class="cabContent" style="background-image: url(/static/assets/images/grad_bg_rev.png), url(/static/assets/images/white_bg.png)">
-    <div class="container">
-            <!-- cabHead starts-->
-    {% block cabHead %}
-    <div class="cabHead">
-        <div class="row">
-            <div class="left">
-                <div class="userInfo">
-                    <div class="userpic" style="background-image: url('/static/assets/images/user.png');"><input type="file" id="userpic"><label for="userpic"></label></div>
-                    <span>Username:</span>
-                    <a href="/view-profile">{{ user.username }} </a>
-                    <a href="/edit-account" class="editAcc"><span class="icon-edit"></span>Edit account</a>
+{% load humanize %}
+{% load static %}
+
+{% block title %}Venex - Deposit Funds{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/deposit.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="deposit-container">
+    <!-- Hero Section -->
+    <div class="deposit-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-plus-circle"></i>
+                Deposit Funds
+            </h1>
+            <p class="hero-subtitle">Add funds to your account via cryptocurrency or bank transfer</p>
+        </div>
+        
+        <!-- Balance Cards -->
+        <div class="balance-cards-grid">
+            <!-- Fiat Balance Card -->
+            <div class="balance-card fiat-card">
+                <div class="balance-card-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="balance-card-content">
+                    <span class="balance-label">Fiat Balance</span>
+                    <span class="balance-amount">
+                        {{ user.get_currency_symbol }}
+                        <span id="fiat-balance">{{ user.currency_balance|floatformat:2|intcomma }}</span>
+                    </span>
+                    <span class="balance-currency">{{ user.currency_type }}</span>
                 </div>
             </div>
-            <div class="right">
-                <div class="accInfo cfix">
-                    <ul>
-                        <li>
-                            <div class="iconLeft">
-                                <span class="icon-date"></span>
-                                <div class="data">
-                                    <span>Last seen:</span>
-                                    <span><b>{{ AdminUser.admin.last_login }}</b></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            
+            <!-- Total Crypto Balance Card -->
+            <div class="balance-card crypto-card">
+                <div class="balance-card-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="balance-card-content">
+                    <span class="balance-label">Total Crypto Value</span>
+                    <span class="balance-amount">
+                        {{ user.get_currency_symbol }}
+                        <span id="total-crypto-value">--</span>
+                    </span>
+                    <span class="balance-currency">{{ user.currency_type }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="userBal">
-                        <div class="iconLeft">
-                            <div class="icon">
-                                <span class="icon-sum2 gradTxt"></span>
+    <!-- Deposit Methods -->
+    <div class="deposit-methods-section">
+        <h2 class="section-title">Choose Deposit Method</h2>
+        
+        <div class="deposit-methods-grid">
+            <!-- Cryptocurrency Deposit -->
+            <div class="deposit-method-card" id="crypto-deposit-card">
+                <div class="method-icon crypto-icon">
+                    <i class="fab fa-bitcoin"></i>
+                </div>
+                <div class="method-content">
+                    <h3>Cryptocurrency</h3>
+                    <p>Deposit Bitcoin, Ethereum, USDT, Litecoin, or Tron</p>
+                    <ul class="method-features">
+                        <li><i class="fas fa-check-circle"></i> Instant processing</li>
+                        <li><i class="fas fa-check-circle"></i> Low fees</li>
+                        <li><i class="fas fa-check-circle"></i> Secure blockchain</li>
+                    </ul>
+                </div>
+                <button class="deposit-btn" onclick="showCryptoDepositModal()">
+                    <i class="fas fa-arrow-right"></i>
+                    Deposit Crypto
+                </button>
+            </div>
+            
+            <!-- Bank Deposit -->
+            <div class="deposit-method-card" id="bank-deposit-card">
+                <div class="method-icon bank-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="method-content">
+                    <h3>Bank Transfer</h3>
+                    <p>Deposit via wire transfer or bank account</p>
+                    <ul class="method-features">
+                        <li><i class="fas fa-check-circle"></i> Traditional banking</li>
+                        <li><i class="fas fa-check-circle"></i> Large amounts</li>
+                        <li><i class="fas fa-check-circle"></i> Regulated & secure</li>
+                    </ul>
+                </div>
+                <button class="deposit-btn" onclick="showBankDepositModal()">
+                    <i class="fas fa-arrow-right"></i>
+                    Bank Deposit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Deposits -->
+    <div class="recent-deposits-section">
+        <div class="section-header">
+            <h2 class="section-title">Recent Deposits</h2>
+            <div class="section-header-actions">
+                <button class="refresh-btn" onclick="loadRecentDeposits()">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh
+                </button>
+                <a href="{% url 'transaction_history_view' %}" class="view-all-btn">
+                    View All
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="deposits-grid" id="deposits-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading deposits...</p>
+            </div>
+        </div>
+        
+        <div class="empty-state" id="deposits-empty-state" style="display: none;">
+            <i class="fas fa-inbox"></i>
+            <h3>No Deposits Yet</h3>
+            <p>Make your first deposit to get started</p>
+        </div>
+    </div>
+</div>
+
+<!-- Crypto Deposit Modal -->
+<div class="modal deposit-modal" id="cryptoDepositModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                <i class="fab fa-bitcoin"></i>
+                Cryptocurrency Deposit
+            </h2>
+            <button class="modal-close" onclick="closeCryptoDepositModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            {% csrf_token %}
+            <form id="crypto-deposit-form">
+                <!-- Step 1: Select Cryptocurrency -->
+                <div class="form-step active" id="crypto-step-1">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Select Cryptocurrency</h3>
+                    </div>
+                    
+                    <div class="crypto-selector-grid">
+                        <label class="crypto-selector-card">
+                            <input type="radio" name="cryptocurrency" value="BTC" required>
+                            <div class="crypto-selector-content">
+                                <span class="crypto-icon">₿</span>
+                                <span class="crypto-name">Bitcoin</span>
+                                <span class="crypto-symbol">BTC</span>
+                                <span class="crypto-price" id="btc-price">--</span>
                             </div>
-                            <div class="data">
-                                <span class="title">your balance:</span>
-                                <span class="num" id="balance" style="">$0.00</span>
+                        </label>
+                        
+                        <label class="crypto-selector-card">
+                            <input type="radio" name="cryptocurrency" value="ETH">
+                            <div class="crypto-selector-content">
+                                <span class="crypto-icon">Ξ</span>
+                                <span class="crypto-name">Ethereum</span>
+                                <span class="crypto-symbol">ETH</span>
+                                <span class="crypto-price" id="eth-price">--</span>
+                            </div>
+                        </label>
+                        
+                        <label class="crypto-selector-card">
+                            <input type="radio" name="cryptocurrency" value="USDT">
+                            <div class="crypto-selector-content">
+                                <span class="crypto-icon">₮</span>
+                                <span class="crypto-name">Tether</span>
+                                <span class="crypto-symbol">USDT</span>
+                                <span class="crypto-price" id="usdt-price">--</span>
+                            </div>
+                        </label>
+                        
+                        <label class="crypto-selector-card">
+                            <input type="radio" name="cryptocurrency" value="LTC">
+                            <div class="crypto-selector-content">
+                                <span class="crypto-icon">Ł</span>
+                                <span class="crypto-name">Litecoin</span>
+                                <span class="crypto-symbol">LTC</span>
+                                <span class="crypto-price" id="ltc-price">--</span>
+                            </div>
+                        </label>
+                        
+                        <label class="crypto-selector-card">
+                            <input type="radio" name="cryptocurrency" value="TRX">
+                            <div class="crypto-selector-content">
+                                <span class="crypto-icon">⚡</span>
+                                <span class="crypto-name">Tron</span>
+                                <span class="crypto-symbol">TRX</span>
+                                <span class="crypto-price" id="trx-price">--</span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="modal-btn primary" onclick="nextCryptoStep()">
+                        Next Step <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Step 2: Enter Amount -->
+                <div class="form-step" id="crypto-step-2">
+                    <div class="step-header">
+                        <button type="button" class="back-btn" onclick="previousCryptoStep()">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <div>
+                            <span class="step-number">2</span>
+                            <h3>Enter Amount</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="selected-crypto-info" id="selected-crypto-info">
+                        <div class="crypto-info-icon" id="crypto-info-icon">₿</div>
+                        <div class="crypto-info-details">
+                            <span class="crypto-info-name" id="crypto-info-name">Bitcoin</span>
+                            <span class="crypto-info-price" id="crypto-info-price">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Amount to Deposit</label>
+                        <div class="input-with-symbol">
+                            <input 
+                                type="number" 
+                                id="crypto-amount" 
+                                name="amount" 
+                                step="0.00000001" 
+                                min="0" 
+                                placeholder="0.00000000"
+                                required
+                            >
+                            <span class="input-symbol" id="crypto-symbol">BTC</span>
+                        </div>
+                        <div class="input-helper">
+                            <span class="helper-text" id="min-deposit">Minimum: --</span>
+                            <span class="helper-text fiat-equivalent" id="fiat-equivalent">≈ $0.00</span>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="modal-btn primary" onclick="submitCryptoDeposit()">
+                        Continue to Deposit <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Step 3: Deposit Instructions -->
+                <div class="form-step" id="crypto-step-3">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>Send Cryptocurrency</h3>
+                    </div>
+                    
+                    <div class="deposit-success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Deposit request created successfully!</p>
+                        <small style="display: block; margin-top: 8px; color: var(--text-secondary);">
+                            <i class="fas fa-envelope"></i> A confirmation email has been sent to your inbox
+                        </small>
+                    </div>
+                    
+                    <div class="deposit-instructions">
+                        <div class="instruction-block">
+                            <h4>
+                                <i class="fas fa-1"></i>
+                                Send the exact amount
+                            </h4>
+                            <div class="amount-display">
+                                <span class="amount-value" id="deposit-amount-display">0.00000000</span>
+                                <span class="amount-crypto" id="deposit-crypto-display">BTC</span>
+                            </div>
+                            <div class="amount-fiat" id="deposit-fiat-display">≈ $0.00 {{ user.currency_type }}</div>
+                        </div>
+                        
+                        <div class="instruction-block">
+                            <h4>
+                                <i class="fas fa-2"></i>
+                                To this wallet address
+                            </h4>
+                            <div class="wallet-address-container">
+                                <div class="wallet-address" id="admin-wallet-address">Loading...</div>
+                                <button type="button" class="copy-btn" onclick="copyWalletAddress()">
+                                    <i class="fas fa-copy"></i>
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="instruction-block">
+                            <h4>
+                                <i class="fas fa-3"></i>
+                                Scan QR Code
+                            </h4>
+                            <div class="qr-code-container" id="qr-code-container">
+                                <canvas id="qr-code"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="btnsCab">
-                        <a href="/deposit" class="btnFillColor1MdIcon">
-                            <span class="iconLeft"><span class="icon-pay_out"></span><span class="data">deposit</span></span>
-                        </a>
-                        <a href="/withdraw" class="btnFillColor2MdIcon">
-                            <span class="iconLeft"><span class="icon-pay_in"></span><span class="data">withdraw</span></span>
-                        </a>
+                    
+                    <div class="deposit-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Important:</strong> Only send <span id="warning-crypto">BTC</span> to this address.
+                            Sending any other cryptocurrency may result in permanent loss of funds.
+                        </div>
                     </div>
+                    
+                    <div class="transaction-id-block">
+                        <span>Transaction ID: </span>
+                        <code id="transaction-id">--</code>
+                    </div>
+                    
+                    <button type="button" class="modal-btn secondary" onclick="closeCryptoDepositModal()">
+                        Done <i class="fas fa-check"></i>
+                    </button>
                 </div>
-            </div>
+            </form>
         </div>
-        <div class="row">
-                <!-- navigation starts -->
-                {% include 'admin_templates/includes/navigation.html' %}
-                <!-- navigation ends -->
-        </div>
-        </div>
-        {% endblock cabHead %}     
-
-{% block content_place %} 
-
-    <div id="content_place"></div>
-
-<div class="cabItem depList">
-    <span class="captionDark center">your deposit</span>
-
-	<div class="wrap">
-        <div class="row">
-<center><b>Total: $0.00</b></center><br><br>
-
- 
-<div class="filter">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
-<tbody><tr>
- <td colspan="3" align="center"><b>PLATINUM</b></td>
-</tr><tr>
- <th class="inheader">Plan</th>
- <th class="inheader" width="200">Amount Spent ($)</th>
- <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
-</tr>
-<tr>
- <td class="item">Platinum</td>
- <td class="item" align="right">$20.00 - $999.00</td>
- <td class="item" align="right">13.00</td>
-</tr>
-</tbody></table>
-<br>
-<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
- <td colspan="4"><b>No deposits for this plan</b></td>
-</tr>           
-</tbody></table>
-<br>
-</td></tr></tbody></table></div>
-<br>
- 
-<div class="filter">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
-<tbody><tr>
- <td colspan="3" align="center"><b>SILVER</b></td>
-</tr><tr>
- <th class="inheader">Plan</th>
- <th class="inheader" width="200">Amount Spent ($)</th>
- <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
-</tr>
-<tr>
- <td class="item">Silver</td>
- <td class="item" align="right">$1000.00 - $2999.00</td>
- <td class="item" align="right">25.00</td>
-</tr>
-</tbody></table>
-<br>
-<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
- <td colspan="4"><b>No deposits for this plan</b></td>
-</tr>           
-</tbody></table>
-<br>
-</td></tr></tbody></table></div>
-<br>
- 
-<div class="filter">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
-<tbody><tr>
- <td colspan="3" align="center"><b>GOLD</b></td>
-</tr><tr>
- <th class="inheader">Plan</th>
- <th class="inheader" width="200">Amount Spent ($)</th>
- <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
-</tr>
-<tr>
- <td class="item">Gold</td>
- <td class="item" align="right">$3000.00 - $5999.00</td>
- <td class="item" align="right">40.00</td>
-</tr>
-</tbody></table>
-<br>
-<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
- <td colspan="4"><b>No deposits for this plan</b></td>
-</tr>           
-</tbody></table>
-<br>
-</td></tr></tbody></table></div>
-<br>
- 
-<div class="filter">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
-<tbody><tr>
- <td colspan="3" align="center"><b>DIAMOND</b></td>
-</tr><tr>
- <th class="inheader">Plan</th>
- <th class="inheader" width="200">Amount Spent ($)</th>
- <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
-</tr>
-<tr>
- <td class="item">Diamond</td>
- <td class="item" align="right">$6000.00 - $9999.00</td>
- <td class="item" align="right">60.00</td>
-</tr>
-</tbody></table>
-<br>
-<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
- <td colspan="4"><b>No deposits for this plan</b></td>
-</tr>           
-</tbody></table>
-<br>
-</td></tr></tbody></table></div>
-<br>
- 
-<div class="filter">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="line"><tbody><tr><td class="item">
-<table cellspacing="1" cellpadding="2" border="0" width="100%" class="tab">
-<tbody><tr>
- <td colspan="3" align="center"><b>EMERALD</b></td>
-</tr><tr>
- <th class="inheader">Plan</th>
- <th class="inheader" width="200">Amount Spent ($)</th>
- <th class="inheader" width="100" nowrap=""><nobr> Profit (%)</nobr></th>
-</tr>
-<tr>
- <td class="item">Emerald</td>
- <td class="item" align="right">$10000.00 - $50000.00</td>
- <td class="item" align="right">80.00</td>
-</tr>
-</tbody></table>
-<br>
-<table cellspacing="1" cellpadding="2" border="0" width="100%"><tbody><tr>
- <td colspan="4"><b>No deposits for this plan</b></td>
-</tr>           
-</tbody></table>
-<br>
-</td></tr></tbody></table></div>
-<br>
-
-</div></div>
-</div>
-        {% endblock content_place %}
     </div>
 </div>
-{% endblock content %}
+
+<!-- Bank Deposit Modal -->
+<div class="modal deposit-modal" id="bankDepositModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                <i class="fas fa-university"></i>
+                Bank Deposit
+            </h2>
+            <button class="modal-close" onclick="closeBankDepositModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            {% csrf_token %}
+            <form id="bank-deposit-form">
+                <!-- Step 1: Select Bank & Enter Amount -->
+                <div class="form-step active" id="bank-step-1">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Select Bank & Amount</h3>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Receiving Bank</label>
+                        <select name="bank_id" id="bank-select" required>
+                            <option value="">Loading banks...</option>
+                        </select>
+                        <div class="input-helper">
+                            <span class="helper-text">Select the bank account you'll transfer to</span>
+                        </div>
+                    </div>
+                    
+                    <div id="selected-bank-info" class="bank-info-card" style="display: none;">
+                        <div class="bank-info-row">
+                            <span class="bank-info-label">Bank:</span>
+                            <span class="bank-info-value" id="bank-name-display">--</span>
+                        </div>
+                        <div class="bank-info-row">
+                            <span class="bank-info-label">Currency:</span>
+                            <span class="bank-info-value" id="bank-currency-display">--</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Amount to Deposit ({{ user.currency_type }})</label>
+                        <div class="input-with-symbol">
+                            <span class="input-symbol-left">{{ user.get_currency_symbol }}</span>
+                            <input 
+                                type="number" 
+                                id="bank-amount" 
+                                name="amount" 
+                                step="0.01" 
+                                min="10" 
+                                placeholder="0.00"
+                                required
+                            >
+                        </div>
+                        <div class="input-helper">
+                            <span class="helper-text">Minimum: $10.00 (or equivalent)</span>
+                            <span class="helper-text converted-amount" id="bank-converted-amount"></span>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="modal-btn primary" onclick="submitBankDeposit()">
+                        Continue <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Step 2: Bank Transfer Instructions -->
+                <div class="form-step" id="bank-step-2">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Bank Transfer Instructions</h3>
+                    </div>
+                    
+                    <div class="deposit-success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Deposit request created successfully!</p>
+                    </div>
+                    
+                    <div class="deposit-instructions">
+                        <div class="instruction-block">
+                            <h4>
+                                <i class="fas fa-1"></i>
+                                Transfer Amount
+                            </h4>
+                            <div class="amount-display">
+                                <span class="amount-currency">{{ user.get_currency_symbol }}</span>
+                                <span class="amount-value" id="bank-amount-display">0.00</span>
+                                <span class="amount-currency-code">{{ user.currency_type }}</span>
+                            </div>
+                            <div class="amount-converted" id="bank-amount-converted-display"></div>
+                        </div>
+                        
+                        <div class="instruction-block">
+                            <h4>
+                                <i class="fas fa-2"></i>
+                                To This Bank Account
+                            </h4>
+                            <div class="bank-details-grid" id="bank-details-grid">
+                                <div class="bank-detail-row">
+                                    <span class="detail-label">Bank Name:</span>
+                                    <span class="detail-value" id="detail-bank-name">--</span>
+                                </div>
+                                <div class="bank-detail-row">
+                                    <span class="detail-label">Account Number:</span>
+                                    <span class="detail-value" id="detail-account-number">--</span>
+                                    <button type="button" class="copy-btn-small" onclick="copyBankDetail('account')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="bank-detail-row" id="routing-number-row">
+                                    <span class="detail-label">Routing Number:</span>
+                                    <span class="detail-value" id="detail-routing-number">--</span>
+                                    <button type="button" class="copy-btn-small" onclick="copyBankDetail('routing')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="bank-detail-row" id="swift-code-row">
+                                    <span class="detail-label">SWIFT Code:</span>
+                                    <span class="detail-value" id="detail-swift-code">--</span>
+                                    <button type="button" class="copy-btn-small" onclick="copyBankDetail('swift')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="bank-detail-row" id="iban-row">
+                                    <span class="detail-label">IBAN:</span>
+                                    <span class="detail-value" id="detail-iban">--</span>
+                                    <button type="button" class="copy-btn-small" onclick="copyBankDetail('iban')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="instruction-block">
+                            <h4>
+                                <i class="fas fa-3"></i>
+                                Important: Include Reference
+                            </h4>
+                            <div class="reference-block">
+                                <p>When making the transfer, please include this reference:</p>
+                                <div class="reference-code">
+                                    <code>{{ user.username }}</code>
+                                    <button type="button" class="copy-btn-small" onclick="copyReference()">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <p class="reference-note">This helps us identify your payment quickly</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="deposit-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Processing Time:</strong> Bank deposits typically take 1-5 business days to process.
+                            You'll receive an email once your deposit is confirmed.
+                        </div>
+                    </div>
+                    
+                    <div class="transaction-id-block">
+                        <span>Transaction ID: </span>
+                        <code id="bank-transaction-id">--</code>
+                    </div>
+                    
+                    <button type="button" class="modal-btn secondary" onclick="closeBankDepositModal()">
+                        Done <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification Container -->
+<div class="toast-container" id="toast-container"></div>
+
+{% endblock main_content %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="{% static 'assets/js/deposit.js' %}"></script>
+<script src="{% static 'assets/js/depositSocket.js' %}"></script>
+{% endblock %}

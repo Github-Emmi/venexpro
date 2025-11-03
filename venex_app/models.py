@@ -193,13 +193,21 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return symbols.get(self.currency_type, '$')
 
 
-class Buy_Sell_Wallet(models.Model):
+class Admin_Wallet(models.Model):
     btc_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="BTC Wallet Address")
     ethereum_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Ethereum Wallet Address")
     usdt_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="USDT Wallet Address")
     litecoin_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Litecoin Wallet Address")
     tron_wallet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Tron Wallet Address")
 
+class Admin_Bank(models.Model):
+    currency_type = models.CharField(max_length=97, choices=Currency, default='USD')
+    bank_name = models.CharField(max_length=255, blank=True, null=True, verbose_name="Bank Name")
+    account_number = models.CharField(max_length=255, blank=True, null=True, verbose_name="Account Number")
+    routing_number = models.CharField(max_length=255, blank=True, null=True, verbose_name="Routing Number")
+    swift_code = models.CharField(max_length=255, blank=True, null=True, verbose_name="SWIFT Code")
+    iban = models.CharField(max_length=255, blank=True, null=True, verbose_name="IBAN")
+    
 
 # ------------------------
 # User Activity

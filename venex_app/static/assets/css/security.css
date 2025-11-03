@@ -1,0 +1,849 @@
+/* Security Page Styles */
+:root {
+    --security-primary: #6366f1;
+    --security-success: #10b981;
+    --security-warning: #f59e0b;
+    --security-danger: #ef4444;
+    --security-dark: #1e293b;
+    --security-light: #f8fafc;
+    --security-border: #e2e8f0;
+}
+
+.security-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+/* Hero Section */
+.security-hero {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--security-dark);
+    margin-bottom: 10px;
+}
+
+.hero-title i {
+    color: var(--security-primary);
+    margin-right: 15px;
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Security Status Cards */
+.security-status-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.status-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.status-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.password-status {
+    border-left-color: var(--security-primary);
+}
+
+.account-status {
+    border-left-color: var(--security-success);
+}
+
+.activity-status {
+    border-left-color: var(--security-warning);
+}
+
+.status-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.password-status .status-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.account-status .status-icon {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.activity-status .status-icon {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.status-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.status-label {
+    font-size: 13px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.status-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--security-dark);
+    margin-bottom: 3px;
+}
+
+.status-last-changed {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* Main Content Grid */
+.security-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+/* Security Cards */
+.security-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    color: white;
+}
+
+.card-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.card-header h2 i {
+    margin-right: 10px;
+}
+
+.card-header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+/* Password Form */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--security-dark);
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.form-group label i {
+    color: var(--security-primary);
+    margin-right: 8px;
+}
+
+.password-input-wrapper {
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 2px solid var(--security-border);
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--security-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: var(--security-primary);
+}
+
+/* Password Strength Meter */
+.password-strength-meter {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.strength-bar.weak {
+    width: 33%;
+    background: var(--security-danger);
+}
+
+.strength-bar.medium {
+    width: 66%;
+    background: var(--security-warning);
+}
+
+.strength-bar.strong {
+    width: 100%;
+    background: var(--security-success);
+}
+
+.strength-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Password Match Indicator */
+.password-match-indicator {
+    margin-top: 8px;
+    font-size: 12px;
+    display: none;
+}
+
+.password-match-indicator.match {
+    display: block;
+    color: var(--security-success);
+}
+
+.password-match-indicator.no-match {
+    display: block;
+    color: var(--security-danger);
+}
+
+/* Password Requirements */
+.password-requirements {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.password-requirements h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--security-dark);
+    margin: 0 0 15px 0;
+}
+
+.password-requirements ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.password-requirements li {
+    padding: 5px 0;
+    font-size: 13px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.password-requirements li i {
+    font-size: 8px;
+    color: #cbd5e1;
+}
+
+.password-requirements li.met {
+    color: var(--security-success);
+}
+
+.password-requirements li.met i {
+    color: var(--security-success);
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: var(--security-dark);
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+.btn-danger {
+    background: var(--security-danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Activity Section */
+.activity-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid var(--security-border);
+    background: white;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #64748b;
+}
+
+.filter-btn:hover {
+    border-color: var(--security-primary);
+    color: var(--security-primary);
+}
+
+.filter-btn.active {
+    background: var(--security-primary);
+    border-color: var(--security-primary);
+    color: white;
+}
+
+.activity-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.activity-loading {
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+}
+
+.activity-loading i {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    background: #f1f5f9;
+    transform: translateX(5px);
+}
+
+.activity-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.activity-icon.login {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.activity-icon.transaction {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.activity-icon.settings {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.activity-icon.security {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-title {
+    font-weight: 600;
+    color: var(--security-dark);
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.activity-description {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.activity-meta {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.activity-meta i {
+    margin-right: 5px;
+}
+
+.load-more-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Settings Section */
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--security-border);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--security-dark);
+    margin: 0 0 5px 0;
+}
+
+.setting-info h4 i {
+    color: var(--security-primary);
+    margin-right: 10px;
+}
+
+.setting-info p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: var(--security-primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+input:disabled + .slider {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Divider */
+.divider {
+    height: 1px;
+    background: var(--security-border);
+    margin: 30px 0;
+}
+
+/* Danger Zone */
+.danger-zone {
+    background: #fef2f2;
+    border: 2px dashed var(--security-danger);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.danger-zone h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--security-danger);
+    margin: 0 0 15px 0;
+}
+
+.danger-zone h3 i {
+    margin-right: 10px;
+}
+
+.danger-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Sessions Section */
+.session-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.session-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 2px solid var(--security-border);
+}
+
+.session-item.current-session {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-color: var(--security-primary);
+}
+
+.session-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.session-info {
+    flex: 1;
+}
+
+.session-info h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--security-dark);
+    margin: 0 0 10px 0;
+}
+
+.session-info p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 5px 0;
+}
+
+.session-info i {
+    margin-right: 8px;
+    color: var(--security-primary);
+}
+
+.session-badge {
+    flex-shrink: 0;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-success {
+    background: var(--security-success);
+    color: white;
+}
+
+.no-sessions {
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    min-width: 300px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideIn 0.3s ease;
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast.success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.toast.error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.toast.info {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.toast i {
+    font-size: 20px;
+}
+
+.toast-content {
+    flex: 1;
+}
+
+.toast-title {
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.toast-message {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .security-container {
+        padding: 15px;
+    }
+
+    .security-hero {
+        padding: 25px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .security-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .security-status-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        padding: 20px;
+    }
+
+    .card-header h2 {
+        font-size: 20px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .activity-filter {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .danger-actions {
+        flex-direction: column;
+    }
+
+    .danger-actions .btn {
+        width: 100%;
+    }
+
+    #toast-container {
+        left: 10px;
+        right: 10px;
+    }
+
+    .toast {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .status-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .session-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}

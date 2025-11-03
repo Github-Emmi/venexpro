@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Deposit Completed</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .email-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .email-header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .email-header .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .success-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid #ffffff;
+            border-radius: 50px;
+            padding: 10px 25px;
+            display: inline-block;
+            margin-top: 15px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .email-body {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 30px;
+        }
+        .celebration-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid #10b981;
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .celebration-box .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+        .celebration-box h2 {
+            margin: 0 0 10px 0;
+            color: #047857;
+            font-size: 24px;
+        }
+        .celebration-box .amount {
+            font-size: 36px;
+            font-weight: 700;
+            color: #065f46;
+            margin: 15px 0;
+        }
+        .celebration-box .currency {
+            font-size: 18px;
+            color: #047857;
+            font-weight: 600;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin: 0 0 15px 0;
+            color: #333333;
+            font-size: 18px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #666666;
+            font-weight: 500;
+        }
+        .info-value {
+            color: #333333;
+            font-weight: 600;
+            text-align: right;
+        }
+        .balance-box {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border: 2px solid #8b5cf6;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .balance-box h3 {
+            margin: 0 0 15px 0;
+            color: #6d28d9;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .balance-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #5b21b6;
+            margin: 10px 0;
+        }
+        .balance-label {
+            display: block;
+            color: #6d28d9;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .next-steps {
+            background-color: #e0f2fe;
+            border-left: 4px solid #0ea5e9;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .next-steps h3 {
+            margin: 0 0 15px 0;
+            color: #0369a1;
+            font-size: 16px;
+        }
+        .next-steps ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .next-steps li {
+            color: #075985;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .thank-you-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .thank-you-box .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .thank-you-box p {
+            margin: 5px 0;
+            color: #92400e;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .button-secondary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            margin-left: 10px;
+        }
+        .email-footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        .email-footer p {
+            margin: 5px 0;
+            color: #666666;
+            font-size: 13px;
+        }
+        .email-footer .social-links {
+            margin: 15px 0;
+        }
+        .email-footer .social-links a {
+            color: #10b981;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 30px 0;
+        }
+        .receipt-note {
+            background-color: #f1f5f9;
+            border: 1px dashed #64748b;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .receipt-note p {
+            margin: 5px 0;
+            color: #475569;
+            font-size: 13px;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-body {
+                padding: 30px 20px;
+            }
+            .email-header {
+                padding: 30px 20px;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .info-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+            .button-secondary {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="email-header">
+            <div class="icon">✅</div>
+            <h1>Deposit Completed!</h1>
+            <div class="success-badge">VERIFIED & CREDITED</div>
+        </div>
+
+        <!-- Body -->
+        <div class="email-body">
+            <p class="greeting">Hello {{ user.first_name|default:user.username }},</p>
+
+            <p class="message">
+                Excellent news! Your bank deposit has been successfully received, verified, and credited to your Venex Broker account. Your funds are now available for trading.
+            </p>
+
+            <!-- Celebration -->
+            <div class="celebration-box">
+                <div class="icon">🎉</div>
+                <h2>Bank Deposit Confirmed</h2>
+                <div class="amount">{{ user.get_currency_symbol }}{{ transaction.amount|floatformat:2 }}</div>
+                <div class="currency">{{ transaction.currency_type }}</div>
+            </div>
+
+            <!-- Transaction Details -->
+            <div class="info-box">
+                <h3>📊 Transaction Details</h3>
+                <div class="info-row">
+                    <span class="info-label">Transaction ID:</span>
+                    <span class="info-value">{{ transaction.id }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Deposit Type:</span>
+                    <span class="info-value">Bank Transfer</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Amount Deposited:</span>
+                    <span class="info-value">{{ user.get_currency_symbol }}{{ transaction.amount|floatformat:2 }} {{ transaction.currency_type }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" style="color: #10b981;">✓ COMPLETED</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Received On:</span>
+                    <span class="info-value">{{ transaction.created_at|date:"F d, Y H:i" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Processed On:</span>
+                    <span class="info-value">{{ transaction.updated_at|date:"F d, Y H:i" }}</span>
+                </div>
+            </div>
+
+            <!-- Updated Balance -->
+            <div class="balance-box">
+                <h3>💰 Your Updated Account Balance</h3>
+                <div class="balance-amount">{{ user.get_currency_symbol }}{{ user.currency_balance|floatformat:2 }}</div>
+                <span class="balance-label">{{ transaction.currency_type }} Available Balance</span>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>🚀 What You Can Do Now</h3>
+                <ul>
+                    <li>Your funds are immediately available for cryptocurrency purchases</li>
+                    <li>Browse our marketplace and explore investment opportunities</li>
+                    <li>Start trading Bitcoin, Ethereum, and other cryptocurrencies</li>
+                    <li>Set up your trading strategy and portfolio allocation</li>
+                    <li>Monitor real-time market prices and trends</li>
+                </ul>
+            </div>
+
+            <!-- Receipt Note -->
+            <div class="receipt-note">
+                <p><strong>📄 Receipt & Records</strong></p>
+                <p>This email serves as confirmation of your deposit. Please keep it for your records.</p>
+                <p>Transaction receipts are also available in your account dashboard.</p>
+            </div>
+
+            <!-- Thank You -->
+            <div class="thank-you-box">
+                <div class="icon">🙏</div>
+                <p><strong>Thank You for Your Deposit!</strong></p>
+                <p>We appreciate your trust in Venex Broker</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="message" style="text-align: center;">
+                Need help or have questions? Our support team is ready to assist you 24/7.
+            </p>
+
+            <center>
+                <a href="{{ site_url }}/dashboard/" class="button">View Dashboard</a>
+                <a href="{{ site_url }}/buy-crypto/" class="button button-secondary">Buy Crypto</a>
+            </center>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <p><strong>Venex Broker</strong></p>
+            <p>Your trusted cryptocurrency trading platform</p>
+            <div class="social-links">
+                <a href="#">Support</a> | 
+                <a href="#">FAQ</a> | 
+                <a href="#">Contact Us</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; color: #999999;">
+                This is an automated message. Please do not reply to this email.
+            </p>
+            <p style="font-size: 12px; color: #999999;">
+                © {{ current_year }} Venex Broker. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

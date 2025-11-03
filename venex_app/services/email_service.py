@@ -11,12 +11,14 @@ logger = logging.getLogger(__name__)
 class EmailService:
     """
     Professional email service for sending HTML emails with Zoho integration
+    Enhanced with anti-spam headers and better deliverability
     """
     
     @staticmethod
-    def _send_email(subject, template_name, context, to_emails, reply_to=None):
+    def _send_email(subject, template_name, context, to_emails, reply_to=None, category='transactional'):
         """
         Generic method to send emails with template
+        Includes anti-spam headers for better deliverability
         """
         try:
             html_content = render_to_string(template_name, context)
@@ -25,11 +27,22 @@ class EmailService:
             email = EmailMultiAlternatives(
                 subject=subject,
                 body=text_content,
-                from_email=settings.DEFAULT_FROM_EMAIL,
+                from_email=f"Venex Support <{settings.DEFAULT_FROM_EMAIL}>",
                 to=to_emails,
                 reply_to=reply_to or [settings.SUPPORT_EMAIL],
             )
             email.attach_alternative(html_content, "text/html")
+            
+            # Add anti-spam headers
+            email.extra_headers = {
+                'X-Mailer': 'Venex Trading Platform',
+                'X-Priority': '1' if category == 'urgent' else '3',
+                'X-Entity-Ref-ID': f"venex-{category}",
+                'Precedence': 'bulk' if category == 'marketing' else 'first-class',
+                'List-Unsubscribe': f'<mailto:{settings.SUPPORT_EMAIL}?subject=Unsubscribe>',
+                'X-Campaign-Type': category,
+            }
+            
             email.send(fail_silently=False)
             
             logger.info(f"Email sent successfully to {to_emails} - Subject: {subject}")
@@ -299,4 +312,361 @@ class EmailService:
             return True
         except Exception as e:
             print(f"Password reset success email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_deposit_pending_email(user, transaction, admin_wallet_address):
+        """Send crypto deposit pending notification with enhanced deliverability"""
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        crypto_symbol = transaction.cryptocurrency.symbol if transaction.cryptocurrency else 'CRYPTO'
+        
+        context = {
+            'user': user,
+            'transaction': transaction,
+            'admin_wallet_address': admin_wallet_address,
+            'amount': transaction.quantity,
+            'crypto': crypto_symbol,
+            'fiat_amount': transaction.fiat_amount,
+            'currency': transaction.currency,
+            'transaction_id': transaction.id,
+            'timestamp': timezone.now(),
+            'current_year': timezone.now().year,
+            'site_url': 'http://127.0.0.1:8000',  # Update with your domain
+            'support_email': settings.SUPPORT_EMAIL,
+        }
+        
+        subject = f"Crypto Deposit Processing - {context['amount']} {crypto_symbol}"
+        html_message = render_to_string('emails/crypto_deposit_pending.html', context)
+        plain_message = f"Your deposit of {context['amount']} {context['crypto']} is being processed. Please send the cryptocurrency to: {admin_wallet_address}\n\nFor support, reply to this email or contact {settings.SUPPORT_EMAIL}"
+        
+        try:
+            logger.info(f"Sending deposit pending email to {user.email} for {context['amount']} {crypto_symbol}")
+            
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=plain_message,
+                from_email=f"Venex Support <{settings.DEFAULT_FROM_EMAIL}>",
+                to=[user.email],
+                reply_to=[settings.SUPPORT_EMAIL],
+            )
+            email.attach_alternative(html_message, "text/html")
+            
+            # Add anti-spam headers
+            email.extra_headers = {
+                'X-Mailer': 'Venex Trading Platform',
+                'X-Priority': '3',
+                'X-Entity-Ref-ID': f"venex-deposit-{transaction.id}",
+                'X-Transaction-Type': 'crypto-deposit',
+                'Message-ID': f"<deposit-{transaction.id}@venexbtc.com>",
+                'List-Unsubscribe': f'<mailto:{settings.SUPPORT_EMAIL}?subject=Unsubscribe>',
+            }
+            
+            email.send(fail_silently=False)
+            
+            logger.info(f"Deposit pending email sent successfully to {user.email}")
+            return True
+        except Exception as e:
+            logger.error(f"Deposit pending email failed for {user.email}: {e}", exc_info=True)
+            print(f"Deposit pending email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_bank_deposit_pending_email(user, transaction, admin_bank, amount_in_bank_currency):
+        """Send bank deposit pending notification"""
+        context = {
+            'user': user,
+            'transaction': transaction,
+            'admin_bank': admin_bank,
+            'amount': transaction.fiat_amount,
+            'currency': transaction.currency,
+            'amount_in_bank_currency': amount_in_bank_currency,
+            'bank_currency': admin_bank.currency_type,
+            'transaction_id': transaction.id,
+            'timestamp': timezone.now(),
+            'current_year': timezone.now().year,
+            'site_url': 'http://127.0.0.1:8000',  # Update with your domain
+        }
+        
+        subject = f"Bank Deposit Processing - {context['amount']} {context['currency']}"
+        html_message = render_to_string('emails/bank_deposit_pending.html', context)
+        plain_message = f"Your deposit of {context['amount']} {context['currency']} is being processed. Please transfer funds to the bank account provided."
+        
+        try:
+            send_mail(
+                subject=subject,
+                message=plain_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+            return True
+        except Exception as e:
+            print(f"Bank deposit pending email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_crypto_deposit_completed_email(user, transaction):
+        """Send crypto deposit completed notification"""
+        crypto_symbol = transaction.cryptocurrency.symbol if transaction.cryptocurrency else 'CRYPTO'
+        # Get the balance field name (e.g., 'btc_balance' for BTC)
+        balance_field = f"{crypto_symbol.lower()}_balance"
+        new_balance = getattr(user, balance_field, 0)
+        
+        context = {
+            'user': user,
+            'transaction': transaction,
+            'amount': transaction.quantity,
+            'crypto': crypto_symbol,
+            'new_balance': new_balance,
+            'transaction_id': transaction.id,
+            'timestamp': timezone.now(),
+            'current_year': timezone.now().year,
+            'site_url': 'http://127.0.0.1:8000',  # Update with your domain
+        }
+        
+        subject = f"Deposit Complete - {context['amount']} {crypto_symbol} Credited"
+        html_message = render_to_string('emails/crypto_deposit_completed.html', context)
+        plain_message = f"Your deposit of {context['amount']} {context['crypto']} has been completed. Your new balance is {context['new_balance']} {context['crypto']}."
+        
+        try:
+            send_mail(
+                subject=subject,
+                message=plain_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+            return True
+        except Exception as e:
+            print(f"Deposit completed email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_bank_deposit_completed_email(user, transaction):
+        """Send bank deposit completed notification"""
+        context = {
+            'user': user,
+            'transaction': transaction,
+            'amount': transaction.fiat_amount,
+            'currency': transaction.currency,
+            'new_balance': user.currency_balance,
+            'transaction_id': transaction.id,
+            'timestamp': timezone.now(),
+            'current_year': timezone.now().year,
+            'site_url': 'http://127.0.0.1:8000',  # Update with your domain
+        }
+        
+        subject = f"Deposit Complete - {context['amount']} {context['currency']} Credited"
+        html_message = render_to_string('emails/bank_deposit_completed.html', context)
+        plain_message = f"Your deposit of {context['amount']} {context['currency']} has been completed. Your new balance is {context['new_balance']} {context['currency']}."
+        
+        try:
+            send_mail(
+                subject=subject,
+                message=plain_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+            return True
+        except Exception as e:
+            print(f"Bank deposit completed email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_withdrawal_pending_email(user, transaction):
+        """Send crypto withdrawal pending notification with enhanced deliverability"""
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        crypto_symbol = transaction.cryptocurrency.symbol if transaction.cryptocurrency else 'CRYPTO'
+        
+        # Map crypto symbols to correct balance field names
+        balance_field_map = {
+            'BTC': 'btc_balance',
+            'ETH': 'ethereum_balance',
+            'USDT': 'usdt_balance',
+            'LTC': 'litecoin_balance',
+            'TRX': 'tron_balance'
+        }
+        
+        balance_field = balance_field_map.get(crypto_symbol, f"{crypto_symbol.lower()}_balance")
+        new_balance = getattr(user, balance_field, 0)
+        
+        context = {
+            'user': user,
+            'transaction': transaction,
+            'amount': transaction.quantity,
+            'crypto': crypto_symbol,
+            'wallet_address': transaction.wallet_address,
+            'new_balance': new_balance,
+            'transaction_id': transaction.id,
+            'timestamp': timezone.now(),
+            'current_year': timezone.now().year,
+            'site_url': 'http://127.0.0.1:8000',  # Update with your domain
+            'support_email': settings.SUPPORT_EMAIL,
+        }
+        
+        subject = f"Withdrawal Request Received - {context['amount']} {crypto_symbol}"
+        html_message = render_to_string('emails/crypto_withdrawal_pending.html', context)
+        plain_message = f"Your withdrawal request for {context['amount']} {crypto_symbol} to {transaction.wallet_address} is being processed.\n\nFor support, reply to this email or contact {settings.SUPPORT_EMAIL}"
+        
+        try:
+            logger.info(f"Sending withdrawal pending email to {user.email} for {context['amount']} {crypto_symbol}")
+            
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=plain_message,
+                from_email=f"Venex Support <{settings.DEFAULT_FROM_EMAIL}>",
+                to=[user.email],
+                reply_to=[settings.SUPPORT_EMAIL],
+            )
+            email.attach_alternative(html_message, "text/html")
+            
+            # Add anti-spam headers
+            email.extra_headers = {
+                'X-Mailer': 'Venex Trading Platform',
+                'X-Priority': '3',
+                'X-Entity-Ref-ID': f"venex-withdrawal-{transaction.id}",
+                'X-Transaction-Type': 'crypto-withdrawal',
+                'Message-ID': f"<withdrawal-{transaction.id}@venexbtc.com>",
+                'List-Unsubscribe': f'<mailto:{settings.SUPPORT_EMAIL}?subject=Unsubscribe>',
+            }
+            
+            email.send(fail_silently=False)
+            
+            logger.info(f"Withdrawal pending email sent successfully to {user.email}")
+            return True
+        except Exception as e:
+            logger.error(f"Withdrawal pending email failed for {user.email}: {e}", exc_info=True)
+            print(f"Withdrawal pending email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_withdrawal_completed_email(user, transaction):
+        """Send crypto withdrawal completed notification"""
+        crypto_symbol = transaction.cryptocurrency.symbol if transaction.cryptocurrency else 'CRYPTO'
+        
+        # Map crypto symbols to correct balance field names
+        balance_field_map = {
+            'BTC': 'btc_balance',
+            'ETH': 'ethereum_balance',
+            'USDT': 'usdt_balance',
+            'LTC': 'litecoin_balance',
+            'TRX': 'tron_balance'
+        }
+        
+        balance_field = balance_field_map.get(crypto_symbol, f"{crypto_symbol.lower()}_balance")
+        new_balance = getattr(user, balance_field, 0)
+        
+        context = {
+            'user': user,
+            'transaction': transaction,
+            'amount': transaction.quantity,
+            'crypto': crypto_symbol,
+            'wallet_address': transaction.wallet_address,
+            'transaction_hash': transaction.transaction_hash or 'Pending blockchain confirmation',
+            'new_balance': new_balance,
+            'transaction_id': transaction.id,
+            'timestamp': timezone.now(),
+            'current_year': timezone.now().year,
+            'site_url': 'http://127.0.0.1:8000',  # Update with your domain
+            'support_email': settings.SUPPORT_EMAIL,
+        }
+        
+        subject = f"Withdrawal Complete - {context['amount']} {crypto_symbol} Sent"
+        html_message = render_to_string('emails/crypto_withdrawal_completed.html', context)
+        plain_message = f"Your withdrawal of {context['amount']} {crypto_symbol} has been completed and sent to {transaction.wallet_address}.\n\nTransaction Hash: {context['transaction_hash']}\nYour new balance is {context['new_balance']} {crypto_symbol}."
+        
+        try:
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=plain_message,
+                from_email=f"Venex Support <{settings.DEFAULT_FROM_EMAIL}>",
+                to=[user.email],
+                reply_to=[settings.SUPPORT_EMAIL],
+            )
+            email.attach_alternative(html_message, "text/html")
+            
+            # Add anti-spam headers
+            email.extra_headers = {
+                'X-Mailer': 'Venex Trading Platform',
+                'X-Priority': '3',
+                'X-Entity-Ref-ID': f"venex-withdrawal-{transaction.id}",
+                'X-Transaction-Type': 'crypto-withdrawal-completed',
+                'Message-ID': f"<withdrawal-complete-{transaction.id}@venexbtc.com>",
+                'List-Unsubscribe': f'<mailto:{settings.SUPPORT_EMAIL}?subject=Unsubscribe>',
+            }
+            
+            email.send(fail_silently=False)
+            return True
+        except Exception as e:
+            print(f"Withdrawal completed email failed: {e}")
+            return False
+
+    @staticmethod
+    def send_withdrawal_failed_email(user, transaction, reason):
+        """Send crypto withdrawal failed notification"""
+        crypto_symbol = transaction.cryptocurrency.symbol if transaction.cryptocurrency else 'CRYPTO'
+        
+        # Map crypto symbols to correct balance field names
+        balance_field_map = {
+            'BTC': 'btc_balance',
+            'ETH': 'ethereum_balance',
+            'USDT': 'usdt_balance',
+            'LTC': 'litecoin_balance',
+            'TRX': 'tron_balance'
+        }
+        
+        balance_field = balance_field_map.get(crypto_symbol, f"{crypto_symbol.lower()}_balance")
+        refunded_balance = getattr(user, balance_field, 0)
+        
+        context = {
+            'user': user,
+            'transaction': transaction,
+            'amount': transaction.quantity,
+            'crypto': crypto_symbol,
+            'wallet_address': transaction.wallet_address,
+            'reason': reason,
+            'refunded_balance': refunded_balance,
+            'transaction_id': transaction.id,
+            'timestamp': timezone.now(),
+            'current_year': timezone.now().year,
+            'site_url': 'http://127.0.0.1:8000',  # Update with your domain
+            'support_email': settings.SUPPORT_EMAIL,
+        }
+        
+        subject = f"Withdrawal Failed - {context['amount']} {crypto_symbol} Refunded"
+        html_message = render_to_string('emails/crypto_withdrawal_failed.html', context)
+        plain_message = f"Your withdrawal request for {context['amount']} {crypto_symbol} has failed.\n\nReason: {reason}\n\nThe amount has been refunded to your account. Current balance: {refunded_balance} {crypto_symbol}.\n\nFor support, contact {settings.SUPPORT_EMAIL}"
+        
+        try:
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=plain_message,
+                from_email=f"Venex Support <{settings.DEFAULT_FROM_EMAIL}>",
+                to=[user.email],
+                reply_to=[settings.SUPPORT_EMAIL],
+            )
+            email.attach_alternative(html_message, "text/html")
+            
+            # Add anti-spam headers
+            email.extra_headers = {
+                'X-Mailer': 'Venex Trading Platform',
+                'X-Priority': '1',  # High priority for failed transactions
+                'X-Entity-Ref-ID': f"venex-withdrawal-{transaction.id}",
+                'X-Transaction-Type': 'crypto-withdrawal-failed',
+                'Message-ID': f"<withdrawal-failed-{transaction.id}@venexbtc.com>",
+                'List-Unsubscribe': f'<mailto:{settings.SUPPORT_EMAIL}?subject=Unsubscribe>',
+            }
+            
+            email.send(fail_silently=False)
+            return True
+        except Exception as e:
+            print(f"Withdrawal failed email notification failed: {e}")
             return False

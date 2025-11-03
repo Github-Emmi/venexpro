@@ -453,3 +453,192 @@ class PortfolioConsumer(AsyncWebsocketConsumer):
                 'type': 'error',
                 'message': 'Failed to load analytics data'
             }))
+
+
+class WithdrawalConsumer(AsyncWebsocketConsumer):
+    """WebSocket consumer for real-time withdrawal updates"""
+    
+    async def connect(self):
+        """Handle WebSocket connection"""
+        self.user = self.scope["user"]  # type: ignore
+        
+        # Require authentication
+        if self.user.is_anonymous:  # type: ignore
+            await self.close()
+            return
+        
+        # Create unique group name for this user's withdrawals
+        self.withdrawal_group_name = f'withdrawals_{self.user.id}'  # type: ignore
+        
+        # Join withdrawal group
+        await self.channel_layer.group_add(
+            self.withdrawal_group_name,
+            self.channel_name
+        )
+        
+        await self.accept()
+        logger.info(f"Withdrawal WebSocket connected for user: {self.user.username}")  # type: ignore
+        
+        # Send connection confirmation
+        await self.send(text_data=json.dumps({
+            'type': 'connection_established',
+            'message': 'Connected to withdrawal updates',
+            'timestamp': await self.get_current_timestamp()
+        }))
+
+    async def disconnect(self, close_code):  # type: ignore
+        """Handle WebSocket disconnection"""
+        # Leave withdrawal group
+        if hasattr(self, 'withdrawal_group_name'):
+            await self.channel_layer.group_discard(
+                self.withdrawal_group_name,
+                self.channel_name
+            )
+        logger.info(f"Withdrawal WebSocket disconnected for user: {self.user.username}")  # type: ignore
+
+    async def receive(self, text_data=None, bytes_data=None):  # type: ignore
+        """Receive message from WebSocket"""
+        try:
+            if text_data:
+                data = json.loads(text_data)
+                message_type = data.get('type')
+                
+                if message_type == 'ping':
+                    # Respond to ping with pong
+                    await self.send(text_data=json.dumps({
+                        'type': 'pong',
+                        'timestamp': await self.get_current_timestamp()
+                    }))
+                elif message_type == 'get_recent_withdrawals':
+                    # Send recent withdrawals
+                    await self.send_recent_withdrawals()
+                else:
+                    logger.warning(f"Unknown message type: {message_type}")
+                    
+        except json.JSONDecodeError:
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': 'Invalid JSON format'
+            }))
+        except Exception as e:
+            logger.error(f"Error processing withdrawal WebSocket message: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': 'Internal server error'
+            }))
+
+    # Event handlers called from channel layer
+    async def withdrawal_status_update(self, event):
+        """Handle withdrawal status update event"""
+        await self.send(text_data=json.dumps({
+            'type': 'withdrawal_status_update',
+            'withdrawal_id': event['withdrawal_id'],
+            'status': event['status'],
+            'message': event.get('message', ''),
+            'timestamp': event.get('timestamp', await self.get_current_timestamp())
+        }))
+
+    async def withdrawal_completed(self, event):
+        """Handle withdrawal completed event"""
+        await self.send(text_data=json.dumps({
+            'type': 'withdrawal_completed',
+            'withdrawal_id': event['withdrawal_id'],
+            'cryptocurrency': event['cryptocurrency'],
+            'amount': event['amount'],
+            'transaction_hash': event.get('transaction_hash', ''),
+            'message': event.get('message', 'Withdrawal completed successfully'),
+            'timestamp': event.get('timestamp', await self.get_current_timestamp())
+        }))
+        
+        # Also send updated balance
+        await self.send_balance_update()
+
+    async def withdrawal_failed(self, event):
+        """Handle withdrawal failed event"""
+        await self.send(text_data=json.dumps({
+            'type': 'withdrawal_failed',
+            'withdrawal_id': event['withdrawal_id'],
+            'cryptocurrency': event['cryptocurrency'],
+            'amount': event['amount'],
+            'reason': event.get('reason', 'Unknown error'),
+            'message': event.get('message', 'Withdrawal failed'),
+            'timestamp': event.get('timestamp', await self.get_current_timestamp())
+        }))
+
+    async def balance_update(self, event):
+        """Handle balance update event"""
+        await self.send(text_data=json.dumps({
+            'type': 'balance_update',
+            'balances': event['balances'],
+            'timestamp': event.get('timestamp', await self.get_current_timestamp())
+        }))
+
+    @database_sync_to_async
+    def get_recent_withdrawals_data(self):
+        """Get recent withdrawals for the user"""
+        from .models import Transaction
+        
+        withdrawals = Transaction.objects.filter(
+            user=self.user,
+            transaction_type='WITHDRAWAL'
+        ).order_by('-created_at')[:10]
+        
+        withdrawal_list = []
+        for withdrawal in withdrawals:
+            withdrawal_list.append({
+                'id': withdrawal.id,
+                'cryptocurrency': withdrawal.cryptocurrency,
+                'amount': float(withdrawal.amount),
+                'wallet_address': withdrawal.wallet_address or '',
+                'status': withdrawal.status,
+                'transaction_hash': withdrawal.transaction_hash or '',
+                'created_at': withdrawal.created_at.isoformat(),
+                'completed_at': withdrawal.completed_at.isoformat() if withdrawal.completed_at else None
+            })
+        
+        return withdrawal_list
+
+    @database_sync_to_async
+    def get_user_balances(self):
+        """Get current user balances"""
+        balances = {
+            'BTC': float(self.user.btc_balance),
+            'ETH': float(self.user.ethereum_balance),
+            'USDT': float(self.user.usdt_balance),
+            'LTC': float(self.user.litecoin_balance),
+            'TRX': float(self.user.tron_balance)
+        }
+        return balances
+
+    @database_sync_to_async
+    def get_current_timestamp(self):
+        """Get current timestamp"""
+        return timezone.now().isoformat()
+
+    async def send_recent_withdrawals(self):
+        """Send recent withdrawals to client"""
+        try:
+            withdrawals = await self.get_recent_withdrawals_data()
+            await self.send(text_data=json.dumps({
+                'type': 'recent_withdrawals',
+                'withdrawals': withdrawals,
+                'timestamp': await self.get_current_timestamp()
+            }))
+        except Exception as e:
+            logger.error(f"Error sending recent withdrawals: {e}")
+            await self.send(text_data=json.dumps({
+                'type': 'error',
+                'message': 'Failed to load recent withdrawals'
+            }))
+
+    async def send_balance_update(self):
+        """Send updated balances to client"""
+        try:
+            balances = await self.get_user_balances()
+            await self.send(text_data=json.dumps({
+                'type': 'balance_update',
+                'balances': balances,
+                'timestamp': await self.get_current_timestamp()
+            }))
+        except Exception as e:
+            logger.error(f"Error sending balance update: {e}")

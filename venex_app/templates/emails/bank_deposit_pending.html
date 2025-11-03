@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Deposit Pending</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .email-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .email-header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .email-header .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .email-body {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin: 0 0 15px 0;
+            color: #333333;
+            font-size: 18px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            min-height: 30px;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #666666;
+            font-weight: 500;
+            font-size: 14px;
+            flex: 0 0 auto;
+            max-width: 60%;
+        }
+        .info-value {
+            color: #333333;
+            font-weight: 600;
+            text-align: right;
+            font-size: 14px;
+            flex: 0 0 auto;
+            max-width: 40%;
+            word-break: break-word;
+        }
+        .bank-details-box {
+            background-color: #e8f5e9;
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+        .bank-details-box h3 {
+            margin: 0 0 20px 0;
+            color: #2E7D32;
+            font-size: 18px;
+            text-align: center;
+        }
+        .bank-detail-row {
+            padding: 12px 0;
+            border-bottom: 1px dashed #c8e6c9;
+        }
+        .bank-detail-row:last-child {
+            border-bottom: none;
+        }
+        .bank-detail-label {
+            color: #2E7D32;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .bank-detail-value {
+            color: #1B5E20;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        .reference-box {
+            background-color: #fff3e0;
+            border: 3px solid #FF9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .reference-box h3 {
+            margin: 0 0 10px 0;
+            color: #E65100;
+            font-size: 16px;
+        }
+        .reference-code {
+            font-size: 24px;
+            font-weight: 700;
+            color: #E65100;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .alert-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .alert-box strong {
+            color: #856404;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .alert-box p {
+            margin: 0;
+            color: #856404;
+            font-size: 14px;
+        }
+        .instructions {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .instructions h3 {
+            margin: 0 0 15px 0;
+            color: #1976d2;
+            font-size: 16px;
+        }
+        .instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            color: #0d47a1;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .email-footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        .email-footer p {
+            margin: 5px 0;
+            color: #666666;
+            font-size: 13px;
+        }
+        .email-footer .social-links {
+            margin: 15px 0;
+        }
+        .email-footer .social-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 30px 0;
+        }
+        .highlight-amount {
+            background-color: #c8e6c9;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .highlight-amount .amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1B5E20;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-body {
+                padding: 30px 20px;
+            }
+            .email-header {
+                padding: 30px 20px;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .info-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="email-header">
+            <div class="icon">🏦</div>
+            <h1>Bank Deposit Pending</h1>
+        </div>
+
+        <!-- Body -->
+        <div class="email-body">
+            <p class="greeting">Hello {{ user.first_name|default:user.username }},</p>
+
+            <p class="message">
+                Your bank deposit request has been created successfully. Please complete the bank transfer to activate your deposit.
+            </p>
+
+            <!-- Transaction Details -->
+            <div class="info-box">
+                <h3>📊 Deposit Details</h3>
+                <div class="info-row">
+                    <span class="info-label">Transaction ID:</span>
+                    <span class="info-value">{{ transaction.id }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Your Currency:</span>
+                    <span class="info-value">{{ transaction.currency }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Amount (Your Currency):</span>
+                    <span class="info-value">{{ user.get_currency_symbol }}{{ transaction.fiat_amount|floatformat:2 }}</span>
+                </div>
+                {% if amount_in_bank_currency and amount_in_bank_currency != transaction.fiat_amount %}
+                <div class="info-row">
+                    <span class="info-label">Amount (Bank Currency):</span>
+                    <span class="info-value">{{ admin_bank.get_currency_symbol|default:"$" }}{{ amount_in_bank_currency|floatformat:2 }} {{ admin_bank.currency_type }}</span>
+                </div>
+                {% endif %}
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" style="color: #FF9800;">{{ transaction.status }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Date:</span>
+                    <span class="info-value">{{ transaction.created_at|date:"M d, Y g:i A" }}</span>
+                </div>
+            </div>
+
+            <!-- Amount to Transfer -->
+            <div class="highlight-amount">
+                <p style="margin: 0 0 10px 0; color: #2E7D32; font-weight: 600;">Transfer This Amount:</p>
+                <div class="amount">
+                    {% if amount_in_bank_currency and amount_in_bank_currency != transaction.amount %}
+                        {{ admin_bank.currency_symbol|default:"$" }}{{ amount_in_bank_currency|floatformat:2 }} {{ admin_bank.currency_type }}
+                    {% else %}
+                        {{ user.get_currency_symbol }}{{ transaction.amount|floatformat:2 }} {{ transaction.currency_type }}
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Bank Details -->
+            <div class="bank-details-box">
+                <h3>🏦 Transfer to This Bank Account</h3>
+                
+                <div class="bank-detail-row">
+                    <span class="bank-detail-label">Bank Name:</span>
+                    <div class="bank-detail-value">{{ admin_bank.bank_name }}</div>
+                </div>
+                
+                <div class="bank-detail-row">
+                    <span class="bank-detail-label">Account Number:</span>
+                    <div class="bank-detail-value">{{ admin_bank.account_number }}</div>
+                </div>
+                
+                {% if admin_bank.routing_number %}
+                <div class="bank-detail-row">
+                    <span class="bank-detail-label">Routing Number:</span>
+                    <div class="bank-detail-value">{{ admin_bank.routing_number }}</div>
+                </div>
+                {% endif %}
+                
+                {% if admin_bank.swift_code %}
+                <div class="bank-detail-row">
+                    <span class="bank-detail-label">SWIFT Code:</span>
+                    <div class="bank-detail-value">{{ admin_bank.swift_code }}</div>
+                </div>
+                {% endif %}
+                
+                {% if admin_bank.iban %}
+                <div class="bank-detail-row">
+                    <span class="bank-detail-label">IBAN:</span>
+                    <div class="bank-detail-value">{{ admin_bank.iban }}</div>
+                </div>
+                {% endif %}
+                
+                <div class="bank-detail-row">
+                    <span class="bank-detail-label">Bank Currency:</span>
+                    <div class="bank-detail-value">{{ admin_bank.currency_type }}</div>
+                </div>
+            </div>
+
+            <!-- Reference Code -->
+            <div class="reference-box">
+                <h3>⚠️ IMPORTANT: Include This Reference</h3>
+                <p style="margin: 10px 0; color: #E65100; font-size: 14px;">
+                    You MUST include this reference in your bank transfer:
+                </p>
+                <div class="reference-code">{{ user.username }}</div>
+                <p style="margin: 10px 0 0 0; color: #666; font-size: 12px;">
+                    This helps us identify your payment quickly
+                </p>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <h3>📝 How to Complete Your Deposit</h3>
+                <ol>
+                    <li>Log in to your online banking or visit your bank</li>
+                    <li>Initiate a wire transfer or bank transfer</li>
+                    <li>Use the bank details provided above</li>
+                    <li><strong>IMPORTANT:</strong> Include reference code "<strong>{{ user.username }}</strong>" in the transfer</li>
+                    <li>Keep your transfer receipt for your records</li>
+                    <li>Wait for admin approval (typically 1-5 business days)</li>
+                </ol>
+            </div>
+
+            <!-- Processing Time Alert -->
+            <div class="alert-box">
+                <strong>⏰ Processing Time:</strong>
+                <p>Bank deposits typically take 1-5 business days to process depending on your bank and location. We'll send you a confirmation email once we receive and verify your transfer.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="message">
+                If you have any questions or need assistance with your deposit, please don't hesitate to contact our support team.
+            </p>
+
+            <center>
+                <a href="{{ site_url }}/dashboard/" class="button">View Dashboard</a>
+            </center>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <p><strong>Venex Broker</strong></p>
+            <p>Your trusted cryptocurrency trading platform</p>
+            <div class="social-links">
+                <a href="#">Support</a> | 
+                <a href="#">FAQ</a> | 
+                <a href="#">Contact Us</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; color: #999999;">
+                This is an automated message. Please do not reply to this email.
+            </p>
+            <p style="font-size: 12px; color: #999999;">
+                © {{ current_year }} Venex Broker. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

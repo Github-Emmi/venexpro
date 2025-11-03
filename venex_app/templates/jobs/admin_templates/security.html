@@ -1,0 +1,328 @@
+{% extends 'admin_templates/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}Venex - Security Settings{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/security.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="security-container">
+    <!-- Hero Section -->
+    <div class="security-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <i class="fas fa-shield-alt"></i>
+                Security Settings
+            </h1>
+            <p class="hero-subtitle">Manage your account security and privacy settings</p>
+        </div>
+        
+        <!-- Security Status Cards -->
+        <div class="security-status-cards">
+            <div class="status-card password-status">
+                <div class="status-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="status-content">
+                    <span class="status-label">Password Status</span>
+                    <span class="status-value">Strong</span>
+                    <span class="status-last-changed">Last changed: {{ user.updated_at|date:"F d, Y" }}</span>
+                </div>
+            </div>
+            
+            <div class="status-card account-status">
+                <div class="status-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="status-content">
+                    <span class="status-label">Account Status</span>
+                    <span class="status-value">{% if user.is_verified %}Verified{% else %}Unverified{% endif %}</span>
+                    <span class="status-last-changed">Member since: {{ user.created_at|date:"F d, Y" }}</span>
+                </div>
+            </div>
+            
+            <div class="status-card activity-status">
+                <div class="status-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="status-content">
+                    <span class="status-label">Last Login</span>
+                    <span class="status-value">{% if user.last_login %}{{ user.last_login|timesince }} ago{% else %}First time{% endif %}</span>
+                    <span class="status-last-changed">From: {{ request.META.HTTP_X_FORWARDED_FOR|default:request.META.REMOTE_ADDR|default:"Unknown" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="security-content-grid">
+        <!-- Change Password Section -->
+        <div class="security-card password-card">
+            <div class="card-header">
+                <h2><i class="fas fa-lock"></i> Change Password</h2>
+                <p>Update your password to keep your account secure</p>
+            </div>
+            <div class="card-body">
+                <form id="change-password-form">
+                    <div class="form-group">
+                        <label for="current-password">
+                            <i class="fas fa-unlock-alt"></i>
+                            Current Password
+                        </label>
+                        <div class="password-input-wrapper">
+                            <input 
+                                type="password" 
+                                id="current-password" 
+                                name="current_password" 
+                                class="form-control" 
+                                placeholder="Enter your current password"
+                                required
+                            >
+                            <button type="button" class="toggle-password" data-target="current-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password">
+                            <i class="fas fa-key"></i>
+                            New Password
+                        </label>
+                        <div class="password-input-wrapper">
+                            <input 
+                                type="password" 
+                                id="new-password" 
+                                name="new_password" 
+                                class="form-control" 
+                                placeholder="Enter your new password"
+                                required
+                            >
+                            <button type="button" class="toggle-password" data-target="new-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength-meter">
+                            <div class="strength-bar" id="strength-bar"></div>
+                        </div>
+                        <span class="strength-text" id="strength-text">Password strength: None</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">
+                            <i class="fas fa-check-circle"></i>
+                            Confirm New Password
+                        </label>
+                        <div class="password-input-wrapper">
+                            <input 
+                                type="password" 
+                                id="confirm-password" 
+                                name="confirm_password" 
+                                class="form-control" 
+                                placeholder="Confirm your new password"
+                                required
+                            >
+                            <button type="button" class="toggle-password" data-target="confirm-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-match-indicator" id="password-match"></div>
+                    </div>
+
+                    <div class="password-requirements">
+                        <h4>Password Requirements:</h4>
+                        <ul>
+                            <li id="req-length">
+                                <i class="fas fa-circle"></i>
+                                At least 8 characters long
+                            </li>
+                            <li id="req-uppercase">
+                                <i class="fas fa-circle"></i>
+                                Contains uppercase letter (A-Z)
+                            </li>
+                            <li id="req-lowercase">
+                                <i class="fas fa-circle"></i>
+                                Contains lowercase letter (a-z)
+                            </li>
+                            <li id="req-number">
+                                <i class="fas fa-circle"></i>
+                                Contains number (0-9)
+                            </li>
+                            <li id="req-special">
+                                <i class="fas fa-circle"></i>
+                                Contains special character (!@#$%^&*)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-change-password">
+                        <i class="fas fa-save"></i>
+                        Update Password
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Account Activity Section -->
+        <div class="security-card activity-card">
+            <div class="card-header">
+                <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                <p>Monitor your account activity and login history</p>
+            </div>
+            <div class="card-body">
+                <div class="activity-filter">
+                    <button class="filter-btn active" data-filter="all">All Activity</button>
+                    <button class="filter-btn" data-filter="LOGIN">Logins</button>
+                    <button class="filter-btn" data-filter="TRANSACTION">Transactions</button>
+                    <button class="filter-btn" data-filter="SETTINGS">Settings</button>
+                </div>
+
+                <div class="activity-list" id="activity-list">
+                    <div class="activity-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading activity...</p>
+                    </div>
+                </div>
+
+                <div class="load-more-container">
+                    <button class="btn btn-secondary btn-load-more" id="load-more-activity">
+                        <i class="fas fa-chevron-down"></i>
+                        Load More
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Settings Section -->
+        <div class="security-card settings-card">
+            <div class="card-header">
+                <h2><i class="fas fa-cog"></i> Security Preferences</h2>
+                <p>Configure your security and notification settings</p>
+            </div>
+            <div class="card-body">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4><i class="fas fa-envelope"></i> Email Notifications</h4>
+                        <p>Receive email alerts for important account activities</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="email-notifications" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4><i class="fas fa-sign-in-alt"></i> Login Notifications</h4>
+                        <p>Get notified when someone logs into your account</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="login-notifications" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4><i class="fas fa-exchange-alt"></i> Transaction Alerts</h4>
+                        <p>Receive notifications for all transactions</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="transaction-notifications" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4><i class="fas fa-mobile-alt"></i> SMS Notifications</h4>
+                        <p>Receive SMS alerts for critical activities (Coming Soon)</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="sms-notifications" disabled>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4><i class="fas fa-shield-alt"></i> Two-Factor Authentication</h4>
+                        <p>Add an extra layer of security to your account (Coming Soon)</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="two-factor-auth" disabled>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="danger-zone">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+                    <div class="danger-actions">
+                        <button class="btn btn-danger btn-logout-all">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout All Devices
+                        </button>
+                        <button class="btn btn-danger btn-delete-account" disabled>
+                            <i class="fas fa-trash-alt"></i>
+                            Delete Account (Coming Soon)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sessions Section -->
+        <div class="security-card sessions-card">
+            <div class="card-header">
+                <h2><i class="fas fa-desktop"></i> Active Sessions</h2>
+                <p>Manage your active login sessions across devices</p>
+            </div>
+            <div class="card-body">
+                <div class="session-list">
+                    <!-- Current Session -->
+                    <div class="session-item current-session">
+                        <div class="session-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="session-info">
+                            <h4>Current Session</h4>
+                            <p class="session-device">
+                                <i class="fas fa-globe"></i>
+                                {{ request.META.HTTP_USER_AGENT|default:"Unknown Browser" }}
+                            </p>
+                            <p class="session-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{ request.META.HTTP_X_FORWARDED_FOR|default:request.META.REMOTE_ADDR|default:"Unknown Location" }}
+                            </p>
+                            <p class="session-time">
+                                <i class="fas fa-clock"></i>
+                                Active now
+                            </p>
+                        </div>
+                        <div class="session-badge">
+                            <span class="badge badge-success">This Device</span>
+                        </div>
+                    </div>
+
+                    <!-- Other sessions will be loaded via JavaScript -->
+                    <div id="other-sessions">
+                        <p class="no-sessions">No other active sessions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notifications -->
+<div id="toast-container"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'assets/js/security.js' %}"></script>
+{% endblock %}

@@ -191,7 +191,7 @@ def api_verify_sell_code(request):
                 if crypto_field:
                     # Deduct cryptocurrency
                     current_crypto = getattr(user, crypto_field, Decimal('0'))
-                    new_crypto = current_crypto - pending_transaction.quantity
+                    new_crypto = current_crypto - pending_transaction.quantity # type: ignore
                     setattr(user, crypto_field, new_crypto)
                     
                     # Add net proceeds to currency_balance
@@ -494,6 +494,78 @@ def get_multiple_prices(request):
     
     return JsonResponse({'success': True, 'prices': prices})
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_total_crypto_value(request):
+    """
+    API endpoint to calculate total cryptocurrency portfolio value in user's currency
+    """
+    try:
+        user = request.user
+        
+        # Get all crypto balances
+        crypto_balances = {
+            'BTC': user.btc_balance,
+            'ETH': user.ethereum_balance,
+            'USDT': user.usdt_balance,
+            'LTC': user.litecoin_balance,
+            'TRX': user.tron_balance,
+        }
+        
+        # Get current prices for all cryptocurrencies
+        symbols = ['BTC', 'ETH', 'USDT', 'LTC', 'TRX']
+        prices_data = crypto_service.get_multiple_prices(symbols)
+        
+        # Calculate total value in USD
+        total_value_usd = Decimal('0.0')
+        breakdown = {}
+        
+        for symbol in symbols:
+            balance = crypto_balances.get(symbol, 0)
+            if balance and balance > 0:
+                # Extract price from nested dict
+                price_info = prices_data.get(symbol, {})
+                price = price_info.get('price', 0) if isinstance(price_info, dict) else 0
+                
+                if price and price > 0:
+                    try:
+                        balance_decimal = Decimal(str(balance))
+                        price_decimal = Decimal(str(price))
+                        value = balance_decimal * price_decimal
+                        total_value_usd += value
+                        breakdown[symbol] = {
+                            'balance': float(balance),
+                            'price': float(price),
+                            'value': float(value)
+                        }
+                    except (ValueError, TypeError, ArithmeticError) as e:
+                        logger.warning(f"Error calculating value for {symbol}: {e}")
+                        continue
+        
+        # Convert to user's currency if not USD
+        total_value_user_currency = total_value_usd
+        if user.currency_type != 'USD':
+            from venex_app.services.currency_service import CurrencyConversionService
+            conversion_rate = CurrencyConversionService.get_exchange_rate('USD', user.currency_type)
+            if conversion_rate:
+                total_value_user_currency = total_value_usd * Decimal(str(conversion_rate))
+        
+        return Response({
+            'success': True,
+            'total_value': float(total_value_user_currency),
+            'total_value_usd': float(total_value_usd),
+            'currency': user.currency_type,
+            'breakdown': breakdown
+        })
+        
+    except Exception as e:
+        logger.error(f"Error calculating total crypto value: {str(e)}", exc_info=True)
+        return Response({
+            'success': False,
+            'error': 'Failed to calculate total crypto value',
+            'message': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def api_sell_crypto(request):
@@ -725,7 +797,7 @@ def api_withdraw_funds(request):
     """
     try:
         data = request.data
-        cryptocurrency = data.get('cryptocurrency', 'USDT')
+        crypto_symbol = data.get('cryptocurrency', 'USDT')
         quantity = Decimal(str(data.get('quantity', 0)))
         wallet_address = data.get('wallet_address')
         
@@ -741,13 +813,37 @@ def api_withdraw_funds(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
         
+        # Get the Cryptocurrency instance
+        try:
+            cryptocurrency = Cryptocurrency.objects.get(symbol=crypto_symbol)
+        except Cryptocurrency.DoesNotExist:
+            return Response(
+                {'error': f'Cryptocurrency {crypto_symbol} not found'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
         # Check user balance
-        crypto_field = f"{cryptocurrency.lower()}_balance"
+        # Map crypto symbols to correct balance field names
+        balance_field_map = {
+            'BTC': 'btc_balance',
+            'ETH': 'ethereum_balance',
+            'USDT': 'usdt_balance',
+            'LTC': 'litecoin_balance',
+            'TRX': 'tron_balance'
+        }
+        
+        crypto_field = balance_field_map.get(crypto_symbol)
+        if not crypto_field:
+            return Response(
+                {'error': f'Unsupported cryptocurrency: {crypto_symbol}'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
         current_balance = getattr(request.user, crypto_field)
         
         if current_balance < quantity:
             return Response(
-                {'error': f'Insufficient {cryptocurrency} balance'}, 
+                {'error': f'Insufficient {crypto_symbol} balance'}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -756,15 +852,42 @@ def api_withdraw_funds(request):
             withdrawal_transaction = Transaction.objects.create(
                 user=request.user,
                 transaction_type='WITHDRAWAL',
-                cryptocurrency=cryptocurrency,
+                cryptocurrency=cryptocurrency,  # Now passing the instance
                 quantity=quantity,
                 wallet_address=wallet_address,
-                status='PENDING'
+                status='PENDING',
+                currency=request.user.currency_type  # Add user's currency
             )
             
             # Reserve the funds by deducting immediately
             setattr(request.user, crypto_field, current_balance - quantity)
             request.user.save()
+            
+            # Send email notification for withdrawal pending
+            try:
+                EmailService.send_withdrawal_pending_email(request.user, withdrawal_transaction)
+            except Exception as email_error:
+                logger.warning(f"Failed to send withdrawal pending email: {email_error}")
+            
+            # Send WebSocket notification for withdrawal created
+            try:
+                from asgiref.sync import async_to_sync
+                from channels.layers import get_channel_layer
+                
+                channel_layer = get_channel_layer()
+                if channel_layer:
+                    async_to_sync(channel_layer.group_send)(
+                        f'withdrawals_{request.user.id}',
+                        {
+                            'type': 'withdrawal_status_update',
+                            'withdrawal_id': str(withdrawal_transaction.id),
+                            'status': 'PENDING',
+                            'message': f'Withdrawal request for {quantity} {crypto_symbol} submitted successfully',
+                            'timestamp': timezone.now().isoformat()
+                        }
+                    )
+            except Exception as ws_error:
+                logger.warning(f"Failed to send WebSocket notification: {ws_error}")
             
             return Response(
                 {
@@ -775,6 +898,7 @@ def api_withdraw_funds(request):
             )
             
     except Exception as e:
+        logger.error(f"Withdrawal error: {str(e)}", exc_info=True)
         return Response(
             {'error': f'Failed to process withdrawal request: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -2093,10 +2217,10 @@ def portfolio_overview(request):
 def api_recent_transactions(request):
     """
     API endpoint to get recent transactions for the authenticated user
-    GET /api/transactions/recent/?type=sell&limit=4
+    GET /api/transactions/recent/?type=DEPOSIT&limit=4
     
     Query params:
-        - type: Transaction type filter (buy, sell, all) - defaults to 'all'
+        - type: Transaction type filter (BUY, SELL, DEPOSIT, WITHDRAWAL, all) - defaults to 'all'
         - limit: Number of transactions to return - defaults to 10
     
     Returns:
@@ -2111,10 +2235,11 @@ def api_recent_transactions(request):
         transactions = Transaction.objects.filter(user=user).order_by('-created_at')
         
         # Filter by type if specified
-        if transaction_type == 'SELL':
-            transactions = transactions.filter(transaction_type='SELL')
-        elif transaction_type == 'BUY':
-            transactions = transactions.filter(transaction_type='BUY')
+        if transaction_type in ['SELL', 'BUY', 'DEPOSIT', 'WITHDRAWAL']:
+            transactions = transactions.filter(transaction_type=transaction_type)
+        elif transaction_type != 'ALL':
+            # Handle legacy 'all' keyword
+            pass
         
         # Limit results
         transactions = transactions[:limit]
@@ -2124,10 +2249,12 @@ def api_recent_transactions(request):
         for txn in transactions:
             transactions_data.append({
                 'id': str(txn.id),
-                'cryptocurrency': txn.cryptocurrency.symbol if txn.cryptocurrency else 'UNKNOWN',
+                'cryptocurrency': txn.cryptocurrency.symbol if txn.cryptocurrency else None,
                 'transaction_type': txn.transaction_type,
-                'quantity': str(txn.quantity),
-                'amount': str(txn.fiat_amount or txn.total_amount),
+                'quantity': str(txn.quantity) if txn.quantity else '0',
+                'amount': str(txn.fiat_amount) if txn.fiat_amount else str(txn.total_amount),
+                'fiat_amount': str(txn.fiat_amount) if txn.fiat_amount else '0',
+                'currency': txn.currency if txn.currency else 'USD',
                 'status': txn.status,
                 'created_at': txn.created_at.isoformat(),
                 'wallet_address': txn.wallet_address,
@@ -2145,4 +2272,361 @@ def api_recent_transactions(request):
             'success': False,
             'error': str(e),
             'message': 'Failed to fetch recent transactions'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# ================================
+# DEPOSIT SYSTEM API ENDPOINTS
+# ================================
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_get_admin_wallets(request):
+    """
+    Get admin wallet addresses for crypto deposits
+    GET /api/deposit/admin-wallets/
+    
+    Returns:
+        - wallets: Dictionary of cryptocurrency wallet addresses
+    """
+    try:
+        from .models import Admin_Wallet
+        
+        # Get the first (or only) admin wallet record
+        admin_wallet = Admin_Wallet.objects.first()
+        
+        if not admin_wallet:
+            return Response({
+                'success': False,
+                'error': 'Admin wallets not configured'
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        wallets = {
+            'BTC': admin_wallet.btc_wallet,
+            'ETH': admin_wallet.ethereum_wallet,
+            'USDT': admin_wallet.usdt_wallet,
+            'LTC': admin_wallet.litecoin_wallet,
+            'TRX': admin_wallet.tron_wallet,
+        }
+        
+        return Response({
+            'success': True,
+            'wallets': wallets
+        })
+        
+    except Exception as e:
+        logger.error(f"Error fetching admin wallets: {e}")
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_get_admin_banks(request):
+    """
+    Get admin bank accounts for fiat deposits
+    GET /api/deposit/admin-banks/
+    
+    Optional Query Parameters:
+        - currency: Filter by currency type (e.g., USD, EUR)
+    
+    Returns:
+        - banks: List of bank account details
+    """
+    try:
+        from .models import Admin_Bank
+        
+        currency_filter = request.GET.get('currency')
+        
+        if currency_filter:
+            banks = Admin_Bank.objects.filter(currency_type=currency_filter.upper())
+        else:
+            banks = Admin_Bank.objects.all()
+        
+        banks_data = []
+        for bank in banks:
+            banks_data.append({
+                'id': bank.id,
+                'currency_type': bank.currency_type,
+                'bank_name': bank.bank_name,
+                'account_number': bank.account_number,
+                'routing_number': bank.routing_number,
+                'swift_code': bank.swift_code,
+                'iban': bank.iban,
+            })
+        
+        return Response({
+            'success': True,
+            'banks': banks_data
+        })
+        
+    except Exception as e:
+        logger.error(f"Error fetching admin banks: {e}")
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def api_create_crypto_deposit(request):
+    """
+    Create a cryptocurrency deposit transaction
+    POST /api/deposit/crypto/
+    
+    Payload:
+        - cryptocurrency: Crypto symbol (BTC, ETH, USDT, LTC, TRX)
+        - amount: Amount to deposit
+    
+    Returns:
+        - transaction: Created transaction details
+        - admin_wallet: Admin wallet address to send funds to
+    """
+    try:
+        from .models import Admin_Wallet
+        from .services.email_service import EmailService
+        
+        cryptocurrency = request.data.get('cryptocurrency', '').upper()
+        amount = request.data.get('amount')
+        
+        # Validate inputs
+        if not cryptocurrency or cryptocurrency not in ['BTC', 'ETH', 'USDT', 'LTC', 'TRX']:
+            return Response({
+                'success': False,
+                'error': 'Invalid cryptocurrency. Must be BTC, ETH, USDT, LTC, or TRX.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            amount = Decimal(str(amount))
+            if amount <= 0:
+                raise ValueError("Amount must be positive")
+        except (ValueError, InvalidOperation, TypeError):
+            return Response({
+                'success': False,
+                'error': 'Invalid amount. Must be a positive number.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Minimum deposit thresholds
+        min_deposits = {
+            'BTC': Decimal('0.0001'),
+            'ETH': Decimal('0.001'),
+            'USDT': Decimal('10'),
+            'LTC': Decimal('0.01'),
+            'TRX': Decimal('100'),
+        }
+        
+        if amount < min_deposits.get(cryptocurrency, Decimal('0')):
+            return Response({
+                'success': False,
+                'error': f'Minimum deposit for {cryptocurrency} is {min_deposits[cryptocurrency]}'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Get admin wallet
+        admin_wallet = Admin_Wallet.objects.first()
+        if not admin_wallet:
+            return Response({
+                'success': False,
+                'error': 'Admin wallet not configured. Please contact support.'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        # Get wallet address for the cryptocurrency
+        wallet_field_map = {
+            'BTC': admin_wallet.btc_wallet,
+            'ETH': admin_wallet.ethereum_wallet,
+            'USDT': admin_wallet.usdt_wallet,
+            'LTC': admin_wallet.litecoin_wallet,
+            'TRX': admin_wallet.tron_wallet,
+        }
+        
+        admin_wallet_address = wallet_field_map.get(cryptocurrency)
+        if not admin_wallet_address:
+            return Response({
+                'success': False,
+                'error': f'Admin {cryptocurrency} wallet not configured'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        # Get current crypto price for fiat conversion
+        try:
+            crypto_obj = Cryptocurrency.objects.get(symbol=cryptocurrency)
+            current_price = crypto_obj.current_price
+            fiat_equivalent = amount * current_price
+        except Cryptocurrency.DoesNotExist:
+            return Response({
+                'success': False,
+                'error': f'{cryptocurrency} not found in system. Please contact support.'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        # Create pending deposit transaction
+        with transaction.atomic():
+            deposit_txn = Transaction.objects.create(
+                user=request.user,
+                transaction_type='DEPOSIT',
+                cryptocurrency=crypto_obj,  # Use the Cryptocurrency instance, not the symbol string
+                quantity=amount,
+                price_per_unit=current_price,
+                total_amount=amount,
+                fiat_amount=fiat_equivalent,
+                currency=request.user.currency_type,
+                status='PENDING',
+                wallet_address=admin_wallet_address,
+            )
+            
+            # Send deposit pending email
+            try:
+                logger.info(f"Attempting to send deposit pending email to {request.user.email}")
+                email_sent = EmailService.send_deposit_pending_email(
+                    user=request.user,
+                    transaction=deposit_txn,
+                    admin_wallet_address=admin_wallet_address
+                )
+                if email_sent:
+                    logger.info(f"Deposit pending email sent successfully to {request.user.email}")
+                else:
+                    logger.warning(f"Deposit pending email failed to send to {request.user.email}")
+            except Exception as email_error:
+                logger.error(f"Failed to send deposit pending email to {request.user.email}: {email_error}", exc_info=True)
+            
+            return Response({
+                'success': True,
+                'message': 'Deposit request created successfully! A confirmation email has been sent to your registered email address.',
+                'transaction': {
+                    'id': str(deposit_txn.id),
+                    'cryptocurrency': cryptocurrency,
+                    'amount': str(amount),
+                    'fiat_equivalent': str(fiat_equivalent),
+                    'currency': request.user.currency_type,
+                    'status': 'PENDING',
+                    'created_at': deposit_txn.created_at.isoformat(),
+                },
+                'admin_wallet_address': admin_wallet_address,
+                'instructions': f'Please send exactly {amount} {cryptocurrency} to the wallet address above. Your deposit will be credited after confirmation.'
+            }, status=status.HTTP_201_CREATED)
+        
+    except Exception as e:
+        logger.error(f"Error creating crypto deposit: {e}")
+        return Response({
+            'success': False,
+            'error': str(e),
+            'message': 'Failed to create deposit transaction'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def api_create_bank_deposit(request):
+    """
+    Create a bank deposit transaction
+    POST /api/deposit/bank/
+    
+    Payload:
+        - amount: Amount to deposit
+        - bank_id: Admin bank account ID
+    
+    Returns:
+        - transaction: Created transaction details
+        - bank_details: Bank account information
+    """
+    try:
+        from .models import Admin_Bank
+        from .services.currency_service import currency_service
+        from .services.email_service import EmailService
+        
+        amount = request.data.get('amount')
+        bank_id = request.data.get('bank_id')
+        
+        # Validate amount
+        try:
+            amount = Decimal(str(amount))
+            if amount <= 0:
+                raise ValueError("Amount must be positive")
+        except (ValueError, InvalidOperation, TypeError):
+            return Response({
+                'success': False,
+                'error': 'Invalid amount. Must be a positive number.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Minimum deposit
+        if amount < Decimal('10'):
+            return Response({
+                'success': False,
+                'error': 'Minimum bank deposit is $10 (or equivalent)'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Get admin bank
+        try:
+            admin_bank = Admin_Bank.objects.get(id=bank_id)
+        except Admin_Bank.DoesNotExist:
+            return Response({
+                'success': False,
+                'error': 'Invalid bank account selected'
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        # Convert amount from admin bank currency to user currency
+        user_currency = request.user.currency_type
+        bank_currency = admin_bank.currency_type
+        
+        if user_currency != bank_currency:
+            # Convert amount from user currency to bank currency
+            amount_in_bank_currency = currency_service.convert_amount(
+                amount, user_currency, bank_currency
+            )
+        else:
+            amount_in_bank_currency = amount
+        
+        # Create pending deposit transaction
+        with transaction.atomic():
+            deposit_txn = Transaction.objects.create(
+                user=request.user,
+                transaction_type='DEPOSIT',
+                cryptocurrency=None,  # Bank deposit
+                quantity=None,
+                fiat_amount=amount,
+                currency=user_currency,
+                status='PENDING',
+                wallet_address=f"Bank: {admin_bank.bank_name} - {admin_bank.account_number}",
+            )
+            
+            # Send deposit pending email
+            try:
+                EmailService.send_bank_deposit_pending_email(
+                    user=request.user,
+                    transaction=deposit_txn,
+                    admin_bank=admin_bank,
+                    amount_in_bank_currency=amount_in_bank_currency
+                )
+            except Exception as email_error:
+                logger.error(f"Failed to send bank deposit pending email: {email_error}")
+            
+            return Response({
+                'success': True,
+                'message': 'Bank deposit request created. Please transfer funds to the provided bank account.',
+                'transaction': {
+                    'id': str(deposit_txn.id),
+                    'amount': str(amount),
+                    'currency': user_currency,
+                    'amount_in_bank_currency': str(amount_in_bank_currency),
+                    'bank_currency': bank_currency,
+                    'status': 'PENDING',
+                    'created_at': deposit_txn.created_at.isoformat(),
+                },
+                'bank_details': {
+                    'bank_name': admin_bank.bank_name,
+                    'account_number': admin_bank.account_number,
+                    'routing_number': admin_bank.routing_number,
+                    'swift_code': admin_bank.swift_code,
+                    'iban': admin_bank.iban,
+                    'currency': bank_currency,
+                },
+                'instructions': f'Please transfer {amount_in_bank_currency} {bank_currency} to the bank account above. Include your username ({request.user.username}) as the reference.'
+            }, status=status.HTTP_201_CREATED)
+        
+    except Exception as e:
+        logger.error(f"Error creating bank deposit: {e}")
+        return Response({
+            'success': False,
+            'error': str(e),
+            'message': 'Failed to create deposit transaction'
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
