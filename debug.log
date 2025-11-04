@@ -42,3 +42,230 @@ INFO 2025-11-03 16:34:25,076 server 30152 4517201408 HTTP/2 support enabled
 INFO 2025-11-03 16:34:25,076 server 30152 4517201408 Configuring endpoint tcp:port=8000:interface=127.0.0.1
 INFO 2025-11-03 16:34:25,077 server 30152 4517201408 Listening on TCP address 127.0.0.1:8000
 INFO 2025-11-03 16:35:05,988 server 30152 4517201408 Killed 0 pending application instances
+INFO 2025-11-04 07:17:21,230 cli 3194 4620170752 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-04 07:17:21,231 server 3194 4620170752 HTTP/2 support enabled
+INFO 2025-11-04 07:17:21,232 server 3194 4620170752 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-04 07:17:21,233 server 3194 4620170752 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-11-04 07:18:04,188 log 3194 123145464819712 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 552, in thread_handler
+    raise exc_info[1]
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 132, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 502, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 556, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+ERROR 2025-11-04 07:18:07,546 log 3194 123145464819712 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 552, in thread_handler
+    raise exc_info[1]
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/utils/deprecation.py", line 132, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 502, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/asgiref/sync.py", line 556, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/emmidev/.pyenv/versions/3.11.8/lib/python3.11/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+INFO 2025-11-04 07:18:48,350 server 3194 4620170752 Killed 0 pending application instances
+INFO 2025-11-04 07:18:53,520 cli 3350 4625110528 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-04 07:18:53,521 server 3350 4625110528 HTTP/2 support enabled
+INFO 2025-11-04 07:18:53,521 server 3350 4625110528 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-04 07:18:53,522 server 3350 4625110528 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-11-04 07:18:58,483 log 3350 123145507328000 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:18:58,484 log 3350 123145524117504 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:18:58,484 log 3350 123145540907008 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:18:59,055 log 3350 123145540907008 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:19:02,793 log 3350 123145540907008 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:19:04,052 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-04 07:19:04,052 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-04 07:19:04,225 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-04 07:19:04,231 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-04 07:19:04,698 log 3350 123145507328000 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-11-04 07:19:04,700 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-11-04 07:19:16,969 log 3350 123145540907008 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:19:17,180 log 3350 123145540907008 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:19:17,180 log 3350 123145507328000 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:19:17,518 log 3350 123145540907008 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:19:17,556 log 3350 123145524117504 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-11-04 07:19:17,558 log 3350 123145540907008 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-11-04 07:19:17,702 log 3350 123145540907008 Not Found: /login/er.lrticker.html
+WARNING 2025-11-04 07:19:17,981 log 3350 123145524117504 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:19:18,032 log 3350 123145507328000 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-11-04 07:19:18,033 log 3350 123145540907008 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-11-04 07:19:18,040 log 3350 123145507328000 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-11-04 07:19:18,368 log 3350 123145507328000 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-11-04 07:19:18,446 log 3350 123145507328000 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+WARNING 2025-11-04 07:19:30,319 log 3350 123145524117504 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:19:30,321 log 3350 123145507328000 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:19:30,465 log 3350 123145507328000 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:19:30,827 log 3350 123145507328000 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-11-04 07:19:30,833 log 3350 123145507328000 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-11-04 07:19:30,854 log 3350 123145524117504 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:19:31,268 log 3350 123145540907008 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:19:40,774 log 3350 123145507328000 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:19:40,789 log 3350 123145540907008 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:19:41,814 log 3350 123145540907008 Not Found: /static/assets/js/jquery.min.map
+WARNING 2025-11-04 07:20:01,100 log 3350 123145540907008 Not Found: /signup/gtranslate.net/flags/24a.png
+WARNING 2025-11-04 07:20:02,098 log 3350 123145524117504 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:20:02,143 log 3350 123145507328000 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:20:02,147 log 3350 123145524117504 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:20:02,263 log 3350 123145524117504 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:20:02,553 log 3350 123145524117504 Not Found: /static/assets/js/jquery.min.map
+WARNING 2025-11-04 07:20:02,775 log 3350 123145524117504 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-11-04 07:20:02,776 log 3350 123145507328000 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-11-04 07:20:03,030 log 3350 123145507328000 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:20:03,174 log 3350 123145507328000 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:20:11,155 log 3350 123145524117504 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:20:11,175 log 3350 123145540907008 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:20:11,178 log 3350 123145524117504 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:20:11,246 log 3350 123145524117504 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:20:11,576 log 3350 123145524117504 Not Found: /static/assets/js/jquery.min.map
+WARNING 2025-11-04 07:20:11,767 log 3350 123145524117504 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:20:11,866 log 3350 123145524117504 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:20:12,601 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-04 07:20:12,605 log 3350 123145507328000 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-04 07:20:13,480 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-04 07:20:13,568 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-04 07:20:13,750 log 3350 123145507328000 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-11-04 07:20:13,750 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-11-04 07:21:40,434 log 3350 123145540907008 Not Found: /favicon.ico
+WARNING 2025-11-04 07:45:23,837 log 3350 123145540907008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:45:23,987 log 3350 123145540907008 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:45:24,308 log 3350 123145540907008 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:45:24,310 log 3350 123145524117504 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:45:24,895 log 3350 123145524117504 Not Found: /static/assets/js/jquery.min.map
+WARNING 2025-11-04 07:45:25,050 log 3350 123145524117504 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:45:25,746 log 3350 123145524117504 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:45:26,695 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-04 07:45:26,696 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-04 07:45:27,762 log 3350 123145507328000 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-04 07:45:27,764 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-04 07:45:28,608 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-11-04 07:45:28,614 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-11-04 07:47:18,564 log 3350 123145524117504 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:47:18,684 log 3350 123145524117504 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:47:18,967 log 3350 123145507328000 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:47:18,974 log 3350 123145524117504 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:47:19,745 log 3350 123145540907008 Not Found: /static/assets/js/jquery.min.map
+WARNING 2025-11-04 07:47:19,989 log 3350 123145540907008 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:47:20,410 log 3350 123145540907008 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:47:20,835 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-04 07:47:20,835 log 3350 123145507328000 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-04 07:47:21,161 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-04 07:47:21,162 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-04 07:47:21,262 log 3350 123145540907008 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-11-04 07:47:21,302 log 3350 123145507328000 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-11-04 07:47:55,559 log 3350 123145507328000 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:47:55,700 log 3350 123145507328000 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:47:55,838 log 3350 123145540907008 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:47:55,842 log 3350 123145540907008 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:47:56,561 log 3350 123145540907008 Not Found: /static/assets/js/jquery.min.map
+WARNING 2025-11-04 07:47:56,757 log 3350 123145524117504 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:47:57,034 log 3350 123145524117504 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:47:57,823 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-04 07:47:57,829 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-04 07:47:57,911 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-04 07:47:58,112 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-04 07:47:58,331 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-11-04 07:47:58,802 log 3350 123145524117504 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+INFO 2025-11-04 07:48:00,433 server 3350 4625110528 Killed 0 pending application instances
+INFO 2025-11-04 07:48:21,426 autoreload 3838 4511421952 Watching for file changes with StatReloader
+WARNING 2025-11-04 07:48:26,071 log 3838 123145608413184 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:48:26,853 log 3838 123145625202688 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:48:27,230 log 3838 123145574834176 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:48:52,732 log 3838 123145558044672 Not Found: /assets/js/default.js
+WARNING 2025-11-04 07:48:53,213 log 3838 123145558044672 Not Found: /assets/js/element.js
+WARNING 2025-11-04 07:48:53,238 log 3838 123145541255168 Not Found: /about/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:48:53,401 log 3838 123145541255168 Not Found: /about/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:49:00,812 log 3838 123145541255168 Not Found: /assets/js/default.js
+WARNING 2025-11-04 07:49:00,903 log 3838 123145558044672 Not Found: /assets/js/element.js
+WARNING 2025-11-04 07:49:00,949 log 3838 123145558044672 Not Found: /faq/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:49:01,040 log 3838 123145541255168 Not Found: /faq/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:49:09,485 log 3838 123145558044672 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:49:09,558 log 3838 123145558044672 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:49:09,646 log 3838 123145608413184 Not Found: /login/er.lrticker.html
+WARNING 2025-11-04 07:49:20,074 log 3838 123145541255168 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-11-04 07:50:41,195 autoreload 3838 4511421952 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:50:42,561 autoreload 3919 4541498880 Watching for file changes with StatReloader
+INFO 2025-11-04 07:50:51,484 autoreload 3919 4541498880 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:50:52,638 autoreload 3931 4678444544 Watching for file changes with StatReloader
+INFO 2025-11-04 07:50:55,496 autoreload 3931 4678444544 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:50:56,409 autoreload 3938 4751037952 Watching for file changes with StatReloader
+INFO 2025-11-04 07:51:08,135 autoreload 3938 4751037952 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:51:09,347 autoreload 3953 4575999488 Watching for file changes with StatReloader
+INFO 2025-11-04 07:51:12,268 autoreload 3953 4575999488 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:51:13,619 autoreload 3954 4494669312 Watching for file changes with StatReloader
+INFO 2025-11-04 07:51:26,357 autoreload 3954 4494669312 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:51:27,565 autoreload 3969 4681700864 Watching for file changes with StatReloader
+INFO 2025-11-04 07:51:40,360 autoreload 3969 4681700864 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:51:41,266 autoreload 3984 4723308032 Watching for file changes with StatReloader
+INFO 2025-11-04 07:51:54,701 autoreload 3984 4723308032 /Users/emmidev/Desktop/Projects/Backup/RBC/venexpro/settings.py changed, reloading.
+INFO 2025-11-04 07:51:55,392 autoreload 3996 4647654912 Watching for file changes with StatReloader
+WARNING 2025-11-04 07:52:09,421 log 3996 123145489788928 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:52:10,689 log 3996 123145489788928 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:52:11,150 log 3996 123145489788928 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:52:12,050 log 3996 123145489788928 Not Found: /login/er.lrticker.html
+WARNING 2025-11-04 07:52:13,998 log 3996 123145489788928 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-04 07:52:14,741 log 3996 123145489788928 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:52:15,155 log 3996 123145489788928 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:52:26,734 log 3996 123145489788928 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:52:26,843 log 3996 123145489788928 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:52:27,013 log 3996 123145489788928 Not Found: /login/er.lrticker.html
+INFO 2025-11-04 07:52:46,490 cli 4026 4729574912 Starting server at tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-04 07:52:46,490 server 4026 4729574912 HTTP/2 support enabled
+INFO 2025-11-04 07:52:46,491 server 4026 4729574912 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-11-04 07:52:46,492 server 4026 4729574912 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-11-04 07:52:51,547 log 4026 123145631629312 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-04 07:52:51,548 log 4026 123145598050304 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-04 07:52:51,548 log 4026 123145614839808 Not Found: /static/assets/css.css
+WARNING 2025-11-04 07:52:51,769 log 4026 123145598050304 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-11-04 07:52:51,772 log 4026 123145614839808 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-11-04 07:52:51,831 log 4026 123145614839808 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:52:51,873 log 4026 123145614839808 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:52:51,932 log 4026 123145614839808 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-11-04 07:52:52,008 log 4026 123145614839808 Not Found: /login/er.lrticker.html
+WARNING 2025-11-04 07:52:52,113 log 4026 123145598050304 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-11-04 07:52:52,130 log 4026 123145614839808 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-11-04 07:52:52,519 log 4026 123145614839808 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-11-04 07:52:52,581 log 4026 123145614839808 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-11-04 07:52:58,229 server 4026 4729574912 Killed 0 pending application instances
+INFO 2025-11-04 07:56:03,228 autoreload 4159 4551747072 Watching for file changes with StatReloader
+WARNING 2025-11-04 07:56:11,693 log 4159 123145585741824 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:56:11,794 log 4159 123145585741824 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-04 07:56:20,942 log 4159 123145585741824 Not Found: /signup/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 07:56:21,062 log 4159 123145585741824 Not Found: /signup/gtranslate.net/flags/24.png
+WARNING 2025-11-04 08:00:53,294 log 4159 123145585741824 Not Found: /signup/gtranslate.net/flags/24a.png
+WARNING 2025-11-04 08:00:55,772 log 4159 123145585741824 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 08:00:55,949 log 4159 123145585741824 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-04 08:16:12,447 log 4159 123145585741824 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-04 08:16:12,682 log 4159 123145585741824 Not Found: /gtranslate.net/flags/24.png
