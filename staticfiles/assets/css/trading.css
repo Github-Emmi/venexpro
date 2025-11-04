@@ -127,6 +127,7 @@
 
 .crypto-card {
     background: var(--dark-bg);
+    color: var(--text-primary);
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 1.25rem;
@@ -521,11 +522,18 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
 .section-subtitle {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin: 0 0 1rem 0;
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -535,12 +543,40 @@
     color: var(--primary-color);
 }
 
+.view-all-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.view-all-link:hover {
+    color: #1d4ed8;
+    gap: 0.75rem;
+}
+
+.view-all-link i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.view-all-link:hover i {
+    transform: translateX(3px);
+}
+
 .transactions-list {
-    max-height: 300px;
+    max-height: 400px;
     overflow-y: auto;
 }
 
 .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem;
     background: var(--dark-bg);
     border: 1px solid var(--border-color);
@@ -551,6 +587,94 @@
 
 .transaction-item:hover {
     border-color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.transaction-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.transaction-crypto {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.crypto-icon {
+    font-size: 1.2rem;
+    color: var(--warning-color);
+}
+
+.crypto-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.transaction-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.transaction-amount {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+.transaction-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.transaction-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge i {
+    font-size: 0.7rem;
+}
+
+.status-completed {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success-color);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-failed {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-color);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.transaction-total {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .transaction-header {
@@ -578,21 +702,20 @@
     color: var(--text-secondary);
 }
 
-.transaction-details {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-
-.transaction-amount {
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
 .empty-state {
     text-align: center;
     padding: 2rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    opacity: 0.5;
 }
 
 /* Loading Spinner */

@@ -28,7 +28,11 @@
                         <div>
                             <h5>Total Portfolio Value</h5>
                             <div class="portfolio-value digital-display">
-                                ${{ total_balance|floatformat:2|intcomma }}
+                                {% if user.currency_type != 'USD' %}
+                                    {{ user.get_currency_symbol }}{{ total_balance|floatformat:2|intcomma }}
+                                {% else %}
+                                    ${{ total_balance|floatformat:2|intcomma }}
+                                {% endif %}
                             </div>
                             <div class="portfolio-change {% if total_profit_loss >= 0 %}positive{% else %}negative{% endif %}">
                                 <i class="fas fa-{% if total_profit_loss >= 0 %}arrow-up{% else %}arrow-down{% endif %}"></i>

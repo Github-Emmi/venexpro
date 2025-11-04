@@ -343,6 +343,39 @@
         .portfolio-value {
             font-size: 2rem;
         }
+        
+        /* Portfolio Overview Mobile */
+        .portfolio-overview {
+            padding: 1.5rem 1rem;
+        }
+        
+        .portfolio-content .d-flex {
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+        }
+        
+        .portfolio-content .vr {
+            display: none !important;
+        }
+        
+        .portfolio-content .row > div {
+            text-align: center !important;
+        }
+        
+        .portfolio-content h5 {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-value {
+            font-size: 1.75rem !important;
+        }
+        
+        .portfolio-change {
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            justify-content: center;
+        }
     }
 
     /* Section Headers */
@@ -644,5 +677,41 @@
         .transaction-status {
             grid-column: span 2;
             text-align: right;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .portfolio-overview {
+            padding: 1rem 0.75rem;
+        }
+        
+        .portfolio-value {
+            font-size: 1.5rem !important;
+        }
+        
+        .portfolio-content h5 {
+            font-size: 0.85rem;
+        }
+        
+        .portfolio-change {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.7rem;
+        }
+        
+        .portfolio-change i {
+            font-size: 0.7rem;
+        }
+        
+        .btn {
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .asset-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .section-header h2 {
+            font-size: 1.25rem;
         }
     }

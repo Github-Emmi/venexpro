@@ -482,17 +482,52 @@ def get_historical_data(request, symbol):
 
 @require_GET
 def get_multiple_prices(request):
-    """API endpoint to get multiple cryptocurrency prices at once"""
+    """API endpoint to get multiple cryptocurrency prices at once with currency conversion"""
+    from .services.currency_service import currency_service
+    
     symbols = request.GET.get('symbols', 'BTC,ETH,USDT,LTC,TRX')
     symbol_list = [s.strip().upper() for s in symbols.split(',')]
     
+    # Get user's currency preference (default to USD)
+    target_currency = request.GET.get('currency', 'USD').upper()
+    
+    # Get prices in USD
     prices = crypto_service.get_multiple_prices(symbol_list)
     
+    # Convert prices to user's currency if not USD
+    if target_currency != 'USD':
+        try:
+            for symbol, price_data in prices.items():
+                if price_data and 'price' in price_data:
+                    usd_price = price_data['price']
+                    # Convert USD price to target currency
+                    converted_price = currency_service.convert_amount(
+                        usd_price, 
+                        from_currency='USD', 
+                        to_currency=target_currency
+                    )
+                    price_data['converted_price'] = float(converted_price)
+                    price_data['original_price_usd'] = usd_price
+                    price_data['currency'] = target_currency
+        except Exception as e:
+            logger.error(f"Currency conversion error: {e}")
+            # If conversion fails, keep USD prices
+            for symbol, price_data in prices.items():
+                if price_data and 'price' in price_data:
+                    price_data['converted_price'] = price_data['price']
+                    price_data['currency'] = 'USD'
+    else:
+        # For USD, just copy the price
+        for symbol, price_data in prices.items():
+            if price_data and 'price' in price_data:
+                price_data['converted_price'] = price_data['price']
+                price_data['currency'] = 'USD'
+    
     # Debug logging
-    logger.info(f"get_multiple_prices called with symbols: {symbol_list}")
+    logger.info(f"get_multiple_prices called with symbols: {symbol_list}, currency: {target_currency}")
     logger.info(f"Returning prices: {prices}")
     
-    return JsonResponse({'success': True, 'prices': prices})
+    return JsonResponse({'success': True, 'prices': prices, 'currency': target_currency})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -1340,6 +1375,7 @@ def api_transaction_history(request):
     """
     API endpoint for transaction history with search, filters, and pagination
     """
+    logger.info(f"Transaction history API called by user: {request.user}")
     try:
         # Get filter parameters
         transaction_type = request.GET.get('type', '')

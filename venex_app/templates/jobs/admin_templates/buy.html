@@ -126,12 +126,52 @@
 
             <!-- Recent Transactions -->
             <div class="recent-transactions">
-                <h3 class="section-subtitle">
-                    <i class="fas fa-history"></i>
-                    Recent Buy Orders
-                </h3>
+                <div class="section-header">
+                    <h3 class="section-subtitle">
+                        <i class="fas fa-history"></i>
+                        Recent Buy Orders
+                    </h3>
+                    {% if recent_buy_transactions %}
+                    <a href="{% url 'transaction_history_view' %}" class="view-all-link">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </a>
+                    {% endif %}
+                </div>
                 <div class="transactions-list" id="recent-transactions">
-                    <p class="empty-state">No recent transactions</p>
+                    {% if recent_buy_transactions %}
+                        {% for transaction in recent_buy_transactions %}
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <div class="transaction-crypto">
+                                    <i class="fab fa-bitcoin crypto-icon"></i>
+                                    <span class="crypto-name">{{ transaction.get_cryptocurrency_display }}</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <span class="transaction-amount">{{ transaction.quantity|floatformat:8 }} {{ transaction.cryptocurrency }}</span>
+                                    <span class="transaction-date">{{ transaction.created_at|date:"M d, Y H:i" }}</span>
+                                </div>
+                            </div>
+                            <div class="transaction-status">
+                                <span class="status-badge status-{{ transaction.status|lower }}">
+                                    {% if transaction.status == 'COMPLETED' %}
+                                        <i class="fas fa-check-circle"></i>
+                                    {% elif transaction.status == 'PENDING' %}
+                                        <i class="fas fa-clock"></i>
+                                    {% elif transaction.status == 'FAILED' %}
+                                        <i class="fas fa-times-circle"></i>
+                                    {% endif %}
+                                    {{ transaction.get_status_display }}
+                                </span>
+                                <span class="transaction-total">${{ transaction.total_amount|floatformat:2|intcomma }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            No recent buy transactions
+                        </p>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -208,9 +208,10 @@ body {
 
 /* ===== SUMMARY CARDS ===== */
 .summary-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: flex !important;
+    flex-direction: column !important;
     gap: var(--spacing-md);
+    max-width: 100%;
 }
 
 .summary-card {
@@ -220,6 +221,7 @@ body {
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     transition: all var(--transition-base);
+    width: 100%;
 }
 
 .summary-card:hover {
@@ -1037,7 +1039,7 @@ body {
     }
 
     .summary-cards {
-        grid-template-columns: repeat(4, 1fr);
+        flex-direction: column !important;
     }
 
     .portfolio-tabs {
@@ -1113,14 +1115,14 @@ body {
     }
 
     .summary-cards {
-        grid-template-columns: repeat(4, 1fr);
+        flex-direction: column !important;
     }
 }
 
 /* Small Mobile (320px - 374px) */
 @media (max-width: 374px) {
     .summary-cards {
-        grid-template-columns: repeat(2, 1fr);
+        flex-direction: column !important;
         gap: var(--spacing-sm);
     }
 

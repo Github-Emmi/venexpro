@@ -47,7 +47,7 @@
                 <span id="btc-balance">{{ user.btc_balance }}</span> BTC
             </div>
             <div class="wallet-value">
-                ≈ <span id="btc-currency">{{ user.currency_type }}</span> <span id="btc-fiat-value" class="fiat-value">--</span>
+                ≈ <span id="btc-fiat-value" class="fiat-value">--</span>
                 <span class="loading-spinner" id="btc-loading">⟳</span>
             </div>
             <div class="price-change-wrapper">
@@ -65,6 +65,8 @@
                 <a href="{% url 'withdraw' %}" class="action-btn withdraw-btn">Withdraw</a>
             </div>
             <button class="edit-address-btn" data-crypto="BTC">Edit Address</button>
+            <!-- Hidden currency type for JS -->
+            <span id="btc-currency" style="display:none;">{{ user.currency_type }}</span>
         </div>
 
         <!-- Ethereum Wallet Card -->
@@ -80,7 +82,7 @@
                 <span id="eth-balance">{{ user.ethereum_balance }}</span> ETH
             </div>
             <div class="wallet-value">
-                ≈ <span id="eth-currency">{{ user.currency_type }}</span> <span id="eth-fiat-value" class="fiat-value">--</span>
+                ≈ <span id="eth-fiat-value" class="fiat-value">--</span>
                 <span class="loading-spinner" id="eth-loading">⟳</span>
             </div>
             <div class="price-change-wrapper">
@@ -113,7 +115,7 @@
                 <span id="usdt-balance">{{ user.usdt_balance }}</span> USDT
             </div>
             <div class="wallet-value">
-                ≈ <span id="usdt-currency">{{ user.currency_type }}</span> <span id="usdt-fiat-value" class="fiat-value">--</span>
+                ≈ <span id="usdt-fiat-value" class="fiat-value">--</span>
                 <span class="loading-spinner" id="usdt-loading">⟳</span>
             </div>
             <div class="price-change-wrapper">
@@ -146,7 +148,7 @@
                 <span id="ltc-balance">{{ user.litecoin_balance }}</span> LTC
             </div>
             <div class="wallet-value">
-                ≈ <span id="ltc-currency">{{ user.currency_type }}</span> <span id="ltc-fiat-value" class="fiat-value">--</span>
+                ≈ <span id="ltc-fiat-value" class="fiat-value">--</span>
                 <span class="loading-spinner" id="ltc-loading">⟳</span>
             </div>
             <div class="price-change-wrapper">
@@ -179,7 +181,7 @@
                 <span id="trx-balance">{{ user.tron_balance }}</span> TRX
             </div>
             <div class="wallet-value">
-                ≈ <span id="trx-currency">{{ user.currency_type }}</span> <span id="trx-fiat-value" class="fiat-value">--</span>
+                ≈ <span id="trx-fiat-value" class="fiat-value">--</span>
                 <span class="loading-spinner" id="trx-loading">⟳</span>
             </div>
             <div class="price-change-wrapper">

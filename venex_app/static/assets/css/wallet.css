@@ -13,6 +13,19 @@
         gap: 1rem;
     }
 
+    .section-header h1 {
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .section-header p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        margin: 0.5rem 0 0 0;
+    }
+
     .balance-info-header {
         display: flex;
         align-items: center;
@@ -63,10 +76,12 @@
     }
 
     .wallet-card {
-        background: var(--card-bg);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 10px;
         padding: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
     .wallet-card-header {
@@ -91,11 +106,14 @@
     .crypto-info h3 {
         margin: 0;
         font-size: 1.2rem;
+        color: #fff;
+        font-weight: 600;
     }
 
     .crypto-info p {
         margin: 0;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
     }
 
     .wallet-balance {
@@ -110,19 +128,22 @@
     }
 
     .wallet-address {
-        background: var(--input-bg);
+        background: rgba(255, 255, 255, 0.05);
         padding: 0.75rem;
         border-radius: 5px;
         margin: 1rem 0;
         position: relative;
         word-break: break-all;
+        color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .wallet-address-label {
         display: block;
         font-size: 0.8rem;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.6);
         margin-bottom: 0.5rem;
+        font-weight: 500;
     }
 
     .copy-btn {
@@ -186,11 +207,13 @@
     }
 
     .modal-content {
-        background: var(--card-bg);
+        background: rgba(26, 26, 46, 0.98);
+        backdrop-filter: blur(20px);
         padding: 2rem;
         border-radius: 10px;
         width: 90%;
         max-width: 500px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .modal-header {
@@ -203,6 +226,7 @@
     .modal-title {
         margin: 0;
         font-size: 1.5rem;
+        color: #fff;
     }
 
     .close-modal {
@@ -210,7 +234,11 @@
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .close-modal:hover {
+        color: #fff;
     }
 
     .form-group {
@@ -220,16 +248,23 @@
     .form-label {
         display: block;
         margin-bottom: 0.5rem;
-        color: var(--text-color);
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
     }
 
     .form-input {
         width: 100%;
         padding: 0.75rem;
-        border: 1px solid var(--border-color);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 5px;
-        background: var(--input-bg);
-        color: var(--text-color);
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.08);
     }
 
     .save-btn {
@@ -368,8 +403,44 @@
         margin-top: 0.75rem;
     }
 
+
     /* Responsive adjustments for price changes */
     @media (max-width: 768px) {
+        .wallet-container {
+            padding: 1rem;
+        }
+
+        .section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .section-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .section-header p {
+            font-size: 0.9rem;
+        }
+
+        .balance-info-header {
+            flex-direction: column;
+            width: 100%;
+            gap: 1rem;
+        }
+
+        .currency-balance-card {
+            width: 100%;
+            min-width: unset;
+            margin-left: 0 !important;
+        }
+
+        .wallet-overview {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
         .price-change {
             font-size: 0.75rem;
             padding: 0.25rem 0.5rem;
@@ -382,4 +453,36 @@
         .wallet-balance {
             font-size: 1.3rem;
         }
+
+        .wallet-card {
+            padding: 1rem;
+        }
+
+        .currency-balance-card .balance-value {
+            font-size: 1.5rem;
+        }
     }
+
+    /* Extra small devices */
+    @media (max-width: 480px) {
+        .wallet-container {
+            padding: 0.75rem;
+        }
+
+        .section-header h1 {
+            font-size: 1.25rem;
+        }
+
+        .currency-balance-card {
+            padding: 1rem 1.25rem;
+        }
+
+        .currency-balance-card .balance-value {
+            font-size: 1.25rem;
+        }
+
+        .wallet-card {
+            padding: 0.75rem;
+        }
+    }
+

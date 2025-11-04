@@ -254,6 +254,13 @@
 
     // Load User Activity
     async function loadUserActivity() {
+        // Note: User activity API endpoint not yet implemented
+        // Using sample data for now
+        console.log('User activity API not implemented - showing sample data');
+        renderActivity(generateSampleActivity());
+        return;
+        
+        /* Uncomment when API is ready
         try {
             const url = `${API_ENDPOINTS.USER_ACTIVITY}?limit=${activityLimit}&offset=${activityOffset}&filter=${currentFilter}`;
             
@@ -274,6 +281,7 @@
             console.error('Failed to load activity:', error);
             renderActivity(generateSampleActivity());
         }
+        */
     }
 
     // Generate Sample Activity (for demo)

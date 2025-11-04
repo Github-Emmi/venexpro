@@ -132,10 +132,17 @@ def buy_crypto_view(request):
     """
     Buy cryptocurrency page
     """
+    # Get recent 4 buy transactions for this user
+    recent_buy_transactions = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='BUY'
+    ).order_by('-created_at')[:4]
+    
     context = {
         'user': request.user,
         'cryptocurrencies': Cryptocurrency.objects.filter(is_active=True),
         'currency_balance': request.user.currency_balance,  # Use currency_balance instead
+        'recent_buy_transactions': recent_buy_transactions,
     }
     return render(request, 'jobs/admin_templates/buy.html', context)
 

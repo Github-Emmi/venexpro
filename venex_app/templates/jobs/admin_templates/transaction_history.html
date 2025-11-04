@@ -1,7 +1,7 @@
 {% extends "jobs/admin_templates/base.html" %}
 {% load static %}
 
-{% block title %}Transaction History | Venex Trading Platform{% endblock %}
+{% block title %}Transaction History | VENEX Brokerage{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'assets/css/history.css' %}">
@@ -9,348 +9,215 @@
 {% endblock %}
 
 {% block main_content %}
+{% csrf_token %}
 <div class="history-container">
-    <!-- Page Header -->
-    <div class="history-hero-section">
-        <div class="hero-content">
-            <div class="hero-header">
-                <div class="hero-text">
-                    <h1>
-                        <i class="fas fa-history"></i>
-                        Transaction History
-                    </h1>
-                    <p>Complete overview of all your trading activities and transactions</p>
+    <!-- Page Header with Statistics -->
+    <div class="history-header">
+        <div class="header-top">
+            <div class="header-title">
+                <h1><i class="fas fa-history"></i> Transaction History</h1>
+                <p>Track all your trading activities and transactions</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-action" id="refreshBtn" title="Refresh Data">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Refresh</span>
+                </button>
+                <button class="btn-action" id="exportBtn" title="Export History">
+                    <i class="fas fa-download"></i>
+                    <span>Export</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon primary">
+                    <i class="fas fa-exchange-alt"></i>
                 </div>
-                <div class="hero-actions">
-                    <button class="btn-export" id="export-btn">
-                        <i class="fas fa-download"></i>
-                        Export History
-                    </button>
-                    <button class="btn-refresh" id="refresh-btn">
-                        <i class="fas fa-sync-alt"></i>
-                        Refresh
-                    </button>
+                <div class="stat-info">
+                    <span class="stat-label">Total Transactions</span>
+                    <span class="stat-value" id="totalTransactions">{{ statistics.total_transactions }}</span>
                 </div>
             </div>
 
-            <!-- Quick Stats -->
-            <div class="quick-stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-label">Total Transactions</div>
-                        <div class="stat-value" id="total-transactions">0</div>
-                    </div>
+            <div class="stat-card">
+                <div class="stat-icon success">
+                    <i class="fas fa-check-circle"></i>
                 </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon success">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-label">Completed</div>
-                        <div class="stat-value" id="completed-count">0</div>
-                    </div>
+                <div class="stat-info">
+                    <span class="stat-label">Completed</span>
+                    <span class="stat-value" id="completedCount">{{ statistics.completed }}</span>
                 </div>
+            </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon warning">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-label">Pending</div>
-                        <div class="stat-value" id="pending-count">0</div>
-                    </div>
+            <div class="stat-card">
+                <div class="stat-icon warning">
+                    <i class="fas fa-clock"></i>
                 </div>
+                <div class="stat-info">
+                    <span class="stat-label">Pending</span>
+                    <span class="stat-value" id="pendingCount">{{ statistics.pending }}</span>
+                </div>
+            </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon info">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-label">Total Volume</div>
-                        <div class="stat-value" id="total-volume">$0.00</div>
-                    </div>
+            <div class="stat-card">
+                <div class="stat-icon info">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Volume</span>
+                    <span class="stat-value" id="totalVolume">${{ statistics.total_volume|floatformat:2 }}</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="history-content">
-        <!-- Tabs Navigation -->
-        <div class="tabs-container">
-            <div class="tabs-nav">
-                <button class="tab-btn active" data-tab="transactions">
-                    <i class="fas fa-list"></i>
-                    Transactions
+    <!-- Filters Section -->
+    <div class="filters-section">
+        <div class="filters-row">
+            <!-- Search -->
+            <div class="filter-item">
+                <label><i class="fas fa-search"></i> Search</label>
+                <input type="text" id="searchInput" class="filter-input" placeholder="Search transactions...">
+            </div>
+
+            <!-- Date Range -->
+            <div class="filter-item">
+                <label><i class="fas fa-calendar"></i> Date Range</label>
+                <input type="text" id="dateRange" class="filter-input" placeholder="Select date range">
+            </div>
+
+            <!-- Type Filter -->
+            <div class="filter-item">
+                <label><i class="fas fa-filter"></i> Type</label>
+                <select id="typeFilter" class="filter-select">
+                    <option value="">All Types</option>
+                    <option value="BUY">Buy</option>
+                    <option value="SELL">Sell</option>
+                    <option value="DEPOSIT">Deposit</option>
+                    <option value="WITHDRAWAL">Withdrawal</option>
+                </select>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="filter-item">
+                <label><i class="fas fa-tags"></i> Status</label>
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="COMPLETED">Completed</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="FAILED">Failed</option>
+                    <option value="CANCELLED">Cancelled</option>
+                </select>
+            </div>
+
+            <!-- Cryptocurrency Filter -->
+            <div class="filter-item">
+                <label><i class="fas fa-coins"></i> Crypto</label>
+                <select id="cryptoFilter" class="filter-select">
+                    <option value="">All Cryptocurrencies</option>
+                    {% for crypto in cryptocurrencies %}
+                    <option value="{{ crypto.symbol }}">{{ crypto.name }} ({{ crypto.symbol }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Clear Filters -->
+            <div class="filter-item">
+                <button class="btn-clear" id="clearFiltersBtn">
+                    <i class="fas fa-times"></i> Clear
                 </button>
-                <button class="tab-btn" data-tab="orders">
-                    <i class="fas fa-shopping-cart"></i>
-                    Orders
+            </div>
+        </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="table-section">
+        <div class="table-header">
+            <h3><i class="fas fa-list"></i> Transaction Records</h3>
+            <span class="table-count" id="showingCount">Showing 0 of 0</span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Cryptocurrency</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionsTableBody">
+                    <tr class="loading-row">
+                        <td colspan="9">
+                            <div class="loading-state">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Loading transactions...</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-section">
+            <div class="pagination-info">
+                <span id="paginationInfo">Page 1 of 1</span>
+            </div>
+            <div class="pagination-controls">
+                <button class="btn-page" id="firstPage" disabled>
+                    <i class="fas fa-angle-double-left"></i>
+                </button>
+                <button class="btn-page" id="prevPage" disabled>
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <div class="page-numbers" id="pageNumbers">
+                    <button class="page-num active">1</button>
+                </div>
+                <button class="btn-page" id="nextPage">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+                <button class="btn-page" id="lastPage">
+                    <i class="fas fa-angle-double-right"></i>
                 </button>
             </div>
-        </div>
-
-        <!-- Filters Section -->
-        <div class="filters-section">
-            <div class="filters-grid">
-                <!-- Search -->
-                <div class="filter-group">
-                    <label class="filter-label">
-                        <i class="fas fa-search"></i>
-                        Search
-                    </label>
-                    <input type="text" 
-                           id="search-input" 
-                           class="filter-input" 
-                           placeholder="Search by crypto, amount, or ID...">
-                </div>
-
-                <!-- Date Range -->
-                <div class="filter-group">
-                    <label class="filter-label">
-                        <i class="fas fa-calendar"></i>
-                        Date Range
-                    </label>
-                    <input type="text" 
-                           id="date-range" 
-                           class="filter-input" 
-                           placeholder="Select date range">
-                </div>
-
-                <!-- Type Filter -->
-                <div class="filter-group">
-                    <label class="filter-label">
-                        <i class="fas fa-filter"></i>
-                        Type
-                    </label>
-                    <select id="type-filter" class="filter-select">
-                        <option value="">All Types</option>
-                        <option value="BUY">Buy</option>
-                        <option value="SELL">Sell</option>
-                        <option value="DEPOSIT">Deposit</option>
-                        <option value="WITHDRAWAL">Withdrawal</option>
-                    </select>
-                </div>
-
-                <!-- Status Filter -->
-                <div class="filter-group">
-                    <label class="filter-label">
-                        <i class="fas fa-tags"></i>
-                        Status
-                    </label>
-                    <select id="status-filter" class="filter-select">
-                        <option value="">All Status</option>
-                        <option value="COMPLETED">Completed</option>
-                        <option value="PENDING">Pending</option>
-                        <option value="FAILED">Failed</option>
-                        <option value="CANCELLED">Cancelled</option>
-                    </select>
-                </div>
-
-                <!-- Cryptocurrency Filter -->
-                <div class="filter-group">
-                    <label class="filter-label">
-                        <i class="fas fa-coins"></i>
-                        Cryptocurrency
-                    </label>
-                    <select id="crypto-filter" class="filter-select">
-                        <option value="">All Cryptocurrencies</option>
-                        <!-- Additional options will be populated dynamically -->
-                    </select>
-                </div>
-                    
-                <!-- Clear Filters -->
-                <div class="filter-group filter-actions">
-                    <button class="btn-clear-filters" id="clear-filters-btn">
-                        <i class="fas fa-times"></i>
-                        Clear All
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab Content: Transactions -->
-        <div class="tab-content active" id="transactions-tab">
-            <div class="table-container">
-                <div class="table-header">
-                    <h3>
-                        <i class="fas fa-list"></i>
-                        Transaction Records
-                    </h3>
-                    <div class="table-info">
-                        <span id="showing-count">Showing 0 of 0</span>
-                    </div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="history-table" id="transactions-table">
-                        <thead>
-                            <tr>
-                                <th>Date & Time</th>
-                                <th>Transaction ID</th>
-                                <th>Type</th>
-                                <th>Cryptocurrency</th>
-                                <th>Amount</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="transactions-tbody">
-                            <tr class="loading-row">
-                                <td colspan="9">
-                                    <div class="loading-state">
-                                        <i class="fas fa-spinner fa-spin"></i>
-                                        <p>Loading transactions...</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Pagination -->
-                <div class="pagination-container">
-                    <div class="pagination-info">
-                        <span id="pagination-info">Page 1 of 1</span>
-                    </div>
-                    <div class="pagination-controls">
-                        <button class="btn-pagination" id="first-page" disabled>
-                            <i class="fas fa-angle-double-left"></i>
-                        </button>
-                        <button class="btn-pagination" id="prev-page" disabled>
-                            <i class="fas fa-angle-left"></i>
-                        </button>
-                        <div class="page-numbers" id="page-numbers">
-                            <button class="page-number active">1</button>
-                        </div>
-                        <button class="btn-pagination" id="next-page">
-                            <i class="fas fa-angle-right"></i>
-                        </button>
-                        <button class="btn-pagination" id="last-page">
-                            <i class="fas fa-angle-double-right"></i>
-                        </button>
-                    </div>
-                    <div class="per-page-selector">
-                        <label>Show:</label>
-                        <select id="per-page-select">
-                            <option value="10">10</option>
-                            <option value="25" selected>25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab Content: Orders -->
-        <div class="tab-content" id="orders-tab">
-            <div class="table-container">
-                <div class="table-header">
-                    <h3>
-                        <i class="fas fa-shopping-cart"></i>
-                        Order History
-                    </h3>
-                    <div class="table-info">
-                        <span id="orders-showing-count">Showing 0 of 0</span>
-                    </div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="history-table" id="orders-table">
-                        <thead>
-                            <tr>
-                                <th>Date & Time</th>
-                                <th>Order ID</th>
-                                <th>Type</th>
-                                <th>Side</th>
-                                <th>Cryptocurrency</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Filled</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="orders-tbody">
-                            <tr class="loading-row">
-                                <td colspan="10">
-                                    <div class="loading-state">
-                                        <i class="fas fa-spinner fa-spin"></i>
-                                        <p>Loading orders...</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Orders Pagination -->
-                <div class="pagination-container">
-                    <div class="pagination-info">
-                        <span id="orders-pagination-info">Page 1 of 1</span>
-                    </div>
-                    <div class="pagination-controls">
-                        <button class="btn-pagination" id="orders-first-page" disabled>
-                            <i class="fas fa-angle-double-left"></i>
-                        </button>
-                        <button class="btn-pagination" id="orders-prev-page" disabled>
-                            <i class="fas fa-angle-left"></i>
-                        </button>
-                        <div class="page-numbers" id="orders-page-numbers">
-                            <button class="page-number active">1</button>
-                        </div>
-                        <button class="btn-pagination" id="orders-next-page">
-                            <i class="fas fa-angle-right"></i>
-                        </button>
-                        <button class="btn-pagination" id="orders-last-page">
-                            <i class="fas fa-angle-double-right"></i>
-                        </button>
-                    </div>
-                    <div class="per-page-selector">
-                        <label>Show:</label>
-                        <select id="orders-per-page-select">
-                            <option value="10">10</option>
-                            <option value="25" selected>25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="per-page-select">
+                <label>Show:</label>
+                <select id="perPageSelect">
+                    <option value="10">10</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Transaction Details Modal -->
-<div class="modal fade" id="transactionDetailsModal" tabindex="-1">
+<div class="modal fade" id="transactionModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="fas fa-receipt"></i>
-                    Transaction Receipt
-                </h5>
+                <h5 class="modal-title"><i class="fas fa-receipt"></i> Transaction Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body" id="transaction-details-content">
-                <!-- Content loaded dynamically -->
+            <div class="modal-body" id="transactionDetailsBody">
+                <!-- Loaded dynamically -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="print-receipt-btn">
-                    <i class="fas fa-print"></i>
-                    Print Receipt
-                </button>
-                <button type="button" class="btn btn-success" id="download-receipt-btn">
-                    <i class="fas fa-download"></i>
-                    Download PDF
+                <button type="button" class="btn btn-primary" id="downloadReceiptBtn">
+                    <i class="fas fa-download"></i> Download
                 </button>
             </div>
         </div>
@@ -362,72 +229,39 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="fas fa-file-export"></i>
-                    Export History
-                </h5>
+                <h5 class="modal-title"><i class="fas fa-file-export"></i> Export History</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <div class="export-options">
                     <div class="option-group">
-                        <label class="export-label">Export Format</label>
-                        <div class="format-options">
-                            <label class="format-option">
-                                <input type="radio" name="export-format" value="csv" checked>
-                                <span class="format-icon">
-                                    <i class="fas fa-file-csv"></i>
-                                    CSV
-                                </span>
+                        <label>Format</label>
+                        <div class="format-btns">
+                            <label class="format-btn">
+                                <input type="radio" name="format" value="csv" checked>
+                                <span><i class="fas fa-file-csv"></i> CSV</span>
                             </label>
-                            <label class="format-option">
-                                <input type="radio" name="export-format" value="xlsx">
-                                <span class="format-icon">
-                                    <i class="fas fa-file-excel"></i>
-                                    Excel
-                                </span>
-                            </label>
-                            <label class="format-option">
-                                <input type="radio" name="export-format" value="pdf">
-                                <span class="format-icon">
-                                    <i class="fas fa-file-pdf"></i>
-                                    PDF
-                                </span>
+                            <label class="format-btn">
+                                <input type="radio" name="format" value="pdf">
+                                <span><i class="fas fa-file-pdf"></i> PDF</span>
                             </label>
                         </div>
                     </div>
-
                     <div class="option-group">
-                        <label class="export-label">Export Range</label>
-                        <input type="text" id="export-date-range" class="filter-input" placeholder="Select date range">
-                    </div>
-
-                    <div class="option-group">
-                        <label class="export-label">Include</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" checked>
-                                <span>Transactions</span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" checked>
-                                <span>Orders</span>
-                            </label>
-                        </div>
+                        <label>Date Range</label>
+                        <input type="text" id="exportDateRange" class="filter-input">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="confirm-export-btn">
-                    <i class="fas fa-download"></i>
-                    Export Now
+                <button type="button" class="btn btn-primary" id="confirmExportBtn">
+                    <i class="fas fa-download"></i> Export
                 </button>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block extra_js %}
@@ -435,17 +269,6 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-<script>
-    // Debug: Check if jQuery is loaded
-    console.log('jQuery loaded:', typeof jQuery !== 'undefined');
-    console.log('$ loaded:', typeof $ !== 'undefined');
-    if (typeof jQuery !== 'undefined') {
-        console.log('jQuery version:', jQuery.fn.jquery);
-    }
-</script>
 <script src="{% static 'assets/js/history.js' %}"></script>
-<script>
-    // Debug: Verify script loaded
-    console.log('All scripts loaded. DOM ready state:', document.readyState);
-</script>
+<script src="{% static 'assets/js/historySocket.js' %}"></script>
 {% endblock %}

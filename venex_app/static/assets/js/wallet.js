@@ -18,6 +18,29 @@ const userBalances = {
     TRX: 0
 };
 
+// User currency (from template, will be initialized)
+let userCurrency = 'USD';
+let currencySymbol = '$';
+
+// Currency symbol mapping
+const currencySymbols = {
+    'USD': '$',
+    'EUR': '€',
+    'GBP': '£',
+    'JPY': '¥',
+    'NGN': '₦',
+    'INR': '₹',
+    'CNY': '¥',
+    'KRW': '₩',
+    'BRL': 'R$',
+    'ZAR': 'R',
+    'CAD': 'C$',
+    'AUD': 'A$',
+    'NZD': 'NZ$',
+    'MXN': 'Mex$',
+    'SGD': 'S$'
+};
+
 // Currency mapping
 const symbolMap = {
     'BTC': 'btc',
@@ -44,6 +67,14 @@ function initializeBalances() {
         }
     });
     
+    // Get user currency from DOM
+    const currencyElement = document.getElementById('btc-currency');
+    if (currencyElement) {
+        userCurrency = currencyElement.textContent.trim();
+        currencySymbol = currencySymbols[userCurrency] || userCurrency;
+        console.log(`User currency: ${userCurrency}, Symbol: ${currencySymbol}`);
+    }
+    
     console.log('Final userBalances:', userBalances);
 }
 
@@ -58,6 +89,16 @@ function formatNumber(num, decimals = 2) {
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals
     });
+}
+
+/**
+ * Format currency value with symbol and code
+ * Format: USD 104,515.80 or NGN 149,956,926.30
+ */
+function formatCurrency(amount, currency, symbol) {
+    const formatted = formatNumber(amount, 2);
+    // Return format: "USD 104,515.80" or "NGN 149,956,926.30"
+    return `${currency} ${formatted}`;
 }
 
 /**
@@ -78,25 +119,31 @@ function formatPercentage(percent) {
 function updateWalletCard(symbol, priceData) {
     const symbolLower = symbolMap[symbol];
     const balance = userBalances[symbol];
-    const currentPrice = priceData.price || 0;
+    const currentPriceUSD = priceData.price || 0;
     const changePercent = priceData.change_percentage_24h || 0;
+    const convertedPrice = priceData.converted_price || currentPriceUSD;
     
     console.log(`updateWalletCard called:`, {
         symbol,
         symbolLower,
         balance,
-        currentPrice,
+        currentPriceUSD,
+        convertedPrice,
+        userCurrency,
+        currencySymbol,
         changePercent,
         priceData
     });
     
-    // Calculate fiat value
-    const fiatValue = balance * currentPrice;
+    // Calculate fiat value in user's currency
+    const fiatValue = balance * convertedPrice;
     
-    // Update fiat value
+    // Update fiat value with proper formatting
     const fiatElement = document.getElementById(`${symbolLower}-fiat-value`);
     if (fiatElement) {
-        fiatElement.textContent = formatNumber(fiatValue, 2);
+        // Format: ₦149,956,926.30 (for NGN) or $104,432.80 (for USD)
+        const formattedValue = formatCurrency(fiatValue, userCurrency, currencySymbol);
+        fiatElement.textContent = formattedValue;
         fiatElement.classList.add('updated');
         setTimeout(() => fiatElement.classList.remove('updated'), 500);
     } else {
@@ -149,9 +196,9 @@ async function loadCryptoPrices() {
         // Show loading spinners
         CRYPTO_SYMBOLS.forEach(symbol => showLoading(symbol));
         
-        // Fetch prices for all cryptocurrencies
+        // Fetch prices for all cryptocurrencies with currency conversion
         const symbolsParam = CRYPTO_SYMBOLS.join(',');
-        const response = await fetch(`/api/v1/prices/multiple/?symbols=${symbolsParam}`);
+        const response = await fetch(`/api/v1/prices/multiple/?symbols=${symbolsParam}&currency=${userCurrency}`);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
