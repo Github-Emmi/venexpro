@@ -70,3 +70,10 @@ htmlcov/
 build/
 dist/
 *.egg-info/
+
+# =============================================
+# Deployment Guidelines
+# =============================================
+DEPLOYMENT_CHECKLIST.md
+DEPLOYMENT_SUMMARY.md
+PYTHONANYWHERE_DEPLOYMENT_GUIDE.md

@@ -22,12 +22,11 @@ SECRET_KEY = env('SECRET_KEY', default="your_dev_secret_key_here") # type: ignor
 DEBUG = env.bool('DEBUG', default=True) # type: ignore
 
 # PythonAnywhere configuration
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
     'www.venexbtc.com',
     'venexbtc.com',
-    # 'localhost',
-    # '127.0.0.1',
-]
+    'emmidevcodes.pythonanywhere.com',
+])
 
 # Application definition
 INSTALLED_APPS = [
@@ -85,37 +84,32 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'venexpro.wsgi.application'
+# WSGI_APPLICATION = 'venexpro.wsgi.application'  # Disabled for ASGI deployment
 ASGI_APPLICATION = 'venexpro.asgi.application'
 
-# Channel layers configuration
-# PythonAnywhere paid plan supports Redis for WebSocket channel layers
-# Development: Use in-memory channel layer
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
-#     },
-# }
+# Channel layers configuration - Parse Redis URL for channels
+import urllib.parse as urlparse
 
-# Production: Use Redis for WebSocket support
+REDIS_URL_STR = env('REDIS_URL', default='redis://localhost:6379/0')
+redis_url = urlparse.urlparse(REDIS_URL_STR)
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env("REDIS_URL"),
+        "LOCATION": REDIS_URL_STR,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     }
 }
 
-
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL')],  # Uses your REDIS_URL
-            "symmetric_encryption_keys": [os.environ.get('DJANGO_SECRET_KEY')],
+            "hosts": [(redis_url.hostname or 'localhost', redis_url.port or 6379)],
+            "password": redis_url.password,
+            "db": 0,
         },
     },
 }
@@ -247,13 +241,11 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-CORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
     'https://www.venexbtc.com',
     'https://venexbtc.com',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-
-]
+    'https://emmidevcodes.pythonanywhere.com',
+])
 
 # Security Settings
 if not DEBUG:
@@ -277,14 +269,11 @@ else:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_HSTS_PRELOAD = False
 
-CSRF_TRUSTED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
     "https://www.venexbtc.com",
     "https://venexbtc.com",
-    
-    # "http://localhost:8000",
-    # "http://127.0.0.1:8000",
-    
-]
+    "https://emmidevcodes.pythonanywhere.com",
+])
 
 
 # ===========================
