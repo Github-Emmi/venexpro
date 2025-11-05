@@ -1,30 +1,29 @@
-"""
-ASGI config for venexpro project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/
-"""
-
 import os
+import sys
 
+# Add your project directory to the sys.path
+path = '/home/emmidevcodes/venexpro'
+if path not in sys.path:
+    sys.path.insert(0, path)
+
+# Set environment variable to tell Django where settings are
+os.environ['DJANGO_SETTINGS_MODULE'] = 'venexpro.settings'
+
+# Import Django ASGI application
 from django.core.asgi import get_asgi_application
+django_asgi_app = get_asgi_application()
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'venexpro.settings')
-
-application = get_asgi_application()
-
-# Django Channels integration for WebSocket routing
+# Import Channels
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
-
-
 from venex_app.routing import websocket_urlpatterns
 
+# Define the ASGI application
 application = ProtocolTypeRouter({
-	"http": get_asgi_application(),
-	"websocket": AuthMiddlewareStack(
-		URLRouter(websocket_urlpatterns)
-	),
+    "http": django_asgi_app,
+    "websocket": AuthMiddlewareStack(
+        URLRouter(
+            websocket_urlpatterns
+        )
+    ),
 })

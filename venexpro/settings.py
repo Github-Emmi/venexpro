@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'channels',
+    'daphne',
     'django_extensions',
 
     # Local apps
@@ -90,21 +91,34 @@ ASGI_APPLICATION = 'venexpro.asgi.application'
 # Channel layers configuration
 # PythonAnywhere paid plan supports Redis for WebSocket channel layers
 # Development: Use in-memory channel layer
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
-    },
-}
-
-# Production: Use Redis for WebSocket support
 # CHANNEL_LAYERS = {
 #     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             "hosts": [('127.0.0.1', 6379)],  # Redis on PythonAnywhere
-#         },
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
 #     },
 # }
+
+# Production: Use Redis for WebSocket support
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": env("REDIS_URL"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL')],  # Uses your REDIS_URL
+            "symmetric_encryption_keys": [os.environ.get('DJANGO_SECRET_KEY')],
+        },
+    },
+}
 
 
 # Database
@@ -236,8 +250,8 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     'https://www.venexbtc.com',
     'https://venexbtc.com',
-    # 'http://localhost:8000',
-    # 'http://127.0.0.1:8000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 
 ]
 
@@ -310,6 +324,7 @@ LOGOUT_REDIRECT_URL = '/'
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', default='') # type: ignore
 COINGECKO_API_KEY = os.getenv('COINGECKO_API_KEY')
 CRYPTOCOMPARE_API_KEY = os.getenv('CRYPTOCOMPARE_API_KEY')
+API_TOKEN = os.getenv('API_TOKEN', default='c4108202488206bedec033be85b047342c106f12')  
 
 
 
