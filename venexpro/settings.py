@@ -26,7 +26,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
     'www.venexbtc.com',
     'venexbtc.com',
     'emmidevcodes.pythonanywhere.com',
-])
+]) # type: ignore
 
 # Application definition
 INSTALLED_APPS = [
@@ -90,8 +90,8 @@ ASGI_APPLICATION = 'venexpro.asgi.application'
 # Channel layers configuration - Parse Redis URL for channels
 import urllib.parse as urlparse
 
-REDIS_URL_STR = env('REDIS_URL', default='redis://localhost:6379/0')
-redis_url = urlparse.urlparse(REDIS_URL_STR)
+REDIS_URL_STR = env('REDIS_URL', default='redis://localhost:6379/0') # type: ignore
+redis_url = urlparse.urlparse(REDIS_URL_STR) # type: ignore
 
 CACHES = {
     "default": {
@@ -245,7 +245,7 @@ CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
     'https://www.venexbtc.com',
     'https://venexbtc.com',
     'https://emmidevcodes.pythonanywhere.com',
-])
+]) # type: ignore
 
 # Security Settings
 if not DEBUG:
@@ -273,7 +273,7 @@ CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
     "https://www.venexbtc.com",
     "https://venexbtc.com",
     "https://emmidevcodes.pythonanywhere.com",
-])
+]) # type: ignore
 
 
 # ===========================
