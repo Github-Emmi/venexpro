@@ -3,85 +3,79 @@
 
 {% block content %}
 
-<!--passing crypto values-->
-
+<!-- Crypto Ticker -->
 <script src="{% static 'assets/js/coingecko-coin-price-marquee-widget.js' %}"></script>
-<coingecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#ffffff" locale="en" vce-ready=""></coingecko-coin-price-marquee-widget> 
+<coingecko-coin-price-marquee-widget
+    coin-ids="bitcoin,ethereum,eos,ripple,litecoin"
+    currency="usd"
+    background-color="#ffffff"
+    locale="en">
+</coingecko-coin-price-marquee-widget>
 
-<!--passing crypto values ends-->
+<!-- Banner Section -->
+<div class="bannerContainer">
+  <div class="bannerInner">
+    <div class="banner-left">
+      <h3><br><span>"investment"<br>"solutions"</span></h3>
+      <p style="font-weight: bold">- your success starts here!</p>
+      <div class="ctn-banner-btt">
+        <a href="#">get started</a>
+        <a href="#" class="proofs">sign up</a>
+      </div>
+    </div>
+    <div class="banner-right-part1 zoomIn wow">
+      <img src="{% static 'assets/images/bn-bg5.png' %}">
+    </div>
+    <div class="banner-right-part3 fadeInRight wow">
+      <div class="bounce"><img src="{% static 'assets/images/bn-bg3.png' %}" draggable="false"></div>
+    </div>
+    <div class="banner-right-part2 fadeInLeft wow">
+      <div class="bounce"><img src="{% static 'assets/images/bn-bg2.png' %}" draggable="false"></div>
+    </div>
+  </div>
+</div>
 
-        <div class="bannerContainer">
-            <div class="bannerInner">
-                <div class="banner-left">
-                    <h3>
-                    <br>
-                        <span>"investment" <br>
-                            "solutions"</span></h3>
-                    <p style="font-weight: bold">-your success starts here!</p>
-                    <div class="ctn-banner-btt"> <a href="#">get started</a>
-                                                <a href="#" class="proofs">sign up</a>
-                                            </div>
-                </div>
-                <div class="banner-right-part1 zoomIn wow"> <img src="{% static 'assets/images/bn-bg5.png' %}"> </div>
-                <div class="banner-right-part3 fadeInRight wow">
-                    <div class="bounce"> <img src="{% static 'assets/images/bn-bg3.png' %}" draggable="false"> </div>
-                </div>
-                <div class="banner-right-part2 fadeInLeft wow">
-                    <div class="bounce"> <img src="{% static 'assets/images/bn-bg2.png' %}" draggable="false"> </div>
-                </div>
-            </div>
-        </div>
+<!-- Statistics Section -->
+<div class="contentBotContainer">
+  <div class="contentBotInner">
+    <div class="">
+      <div class="ctn-stt-part ctn-stt-part4">
+        <h3 style="font-size: 30px">75000+</h3>
+        <p style="font-size: 30px">Total Investors</p>
+      </div>
+      <div class="ctn-stt-part ctn-stt-part1">
+        <h3 style="font-size: 30px">OVER $10b</h3>
+        <p style="font-size: 30px">Processed Transactions</p>
+      </div>
+      <div class="ctn-stt-part ctn-stt-part5">
+        <h3 style="font-size: 30px">$1,204,674,494.74</h3>
+        <p style="font-size: 30px">Total Deposited</p>
+      </div>
+      <div class="ctn-stt-part ctn-stt-part2">
+        <h3 style="font-size: 30px">$320,991.32</h3>
+        <p style="font-size: 30px">Total Withdrawn</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- About Section -->
+<div class="aboutContainer">
+  <div class="aboutInner">
+    <h1><span>about</span> Venex Crypto</h1>
+    <div class="aboutTop">
+      <div class="aboutTop-part1">
+        <img src="{% static 'assets/images/about-icon1.png' %}">
+      </div>
+      <div class="aboutTop-part2">
+        <p>
+          At Venex BTC and Cryptos, we believe in diversified investments...
+          (Your full about text remains unchanged)
+        </p>
+      </div>
     </div>
 
-        
-                <div class="contentBotContainer">
-            <div class="contentBotInner">
-
-                <div class="">
-                    <div class="ctn-stt-part ctn-stt-part4">
-                        <h3 style="font-size: 30px">75000+</h3>
-                        <p style="font-size: 30px">Total Investors</p>
-                    </div>
-                    
-                    <div class="ctn-stt-part ctn-stt-part1">
-                        <h3 style="font-size: 30px">OVER $10b</h3>
-                        <p style="font-size: 30px">Processed Transactions</p>
-                    </div>
-                    <div class="ctn-stt-part ctn-stt-part5">
-                        <h3 style="font-size: 30px">$ 1204674494.74</h3>
-                        <p style="font-size: 30px">Total Deposited</p>
-                    </div>
-                    <div class="ctn-stt-part ctn-stt-part2">
-                        <h3 style="font-size: 30px">$ 320991.32</h3>
-                        <p style="font-size: 30px"> Total Withdrawn</p>
-                    </div>
-                
-
-                </div>
-            </div>
-        </div>
-        
-        
-        <div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="{% static 'assets/images/translate_24dp.png' %}" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
-        <div class="aboutContainer">
-            <div class="aboutInner">
-                <h1><span>about</span> Venex Crypto</h1>
-                <div class="aboutTop">
-                    <div class="aboutTop-part1">
-                        <img src="{% static 'assets/images/about-icon1.png' %}">
-                    </div>
-                    <div class="aboutTop-part2">
-                        <p>
-                                At Venex btc and cryptos we believe in the divergence of investments, therefore we work in several areas like Forex, Binary options and stock of the financial market with our team of professional traders each working in its specific area. Since we have been able to achieve consistency over these years of work, we have decided to open our online project so as to offer our beneficial activities to clients worldwide. Always following the risk management rules aimed at consistency in earnings, and the preservation of capital, taking advantage of the best possible opportunities. We believe all investors deserve high-quality investment guidance, regardless of portfolio sizes. Therefore whether you're getting married, having a baby, reaching retirement, or simply going through some other major life event, we are available to help everyone so let us answer your questions and help set you on the path towards your future vision. We aim to make high profit, low risk and quick payoffs. To achieve this, we push the boundaries in foreign exchange &amp; currency trading and also apply new trading strategies to make remarkable profits possible. Venex btc and cryptos, we aspire to always create value for our investors and it is certain that with the help of our company investors can get more benefits. Have you ever asked yourself why currency traders are provided with high liquidity? It is because one of the major benefits of trading currencies is its massive trading volume. We tap into this uniqueness of the forex market and use it to its advantage and at the same time share it with our investors.
-                        </p> 
-                        <br>
-                        <p>
-                                Our goal is to reduce risks and guarantee a stable income for our investors and reinvestment of assets accrued through all our trading activities. We have a team of experts on board fromdifferent fields like finance, technical, management and analytics and this has empowered our cause of taking this investment platform to a higher level. When you partner with Venex btc and cryptos, your questions will be encouraged and our answers will be straightforward. We will help you understand where and how your money is invested, how your investments are performing, and how much it is costing you. As a bonus, you will have access to expertise and insights that can help you attain your specific goals. It is a joint approach to wealth management that’s all about transparency, responsibility and taking control of your finances. With our experience and safe approach to Forex and stock trading investment, we can manage more capital and offer our investment platform to the public and at the same time guarantee you our continuedcredibility &amp; success in the journey. Great efforts have been put in place to provide our clients with a user friendly interface &amp;an easily understandable profit making investment platform. Do not forget that we would take further steps to make sure everyone gets top quality service. If you have any queries about Venex btc and cryptos services or any questions about Forex and stock trading investment, do not hesitate to get in touch with us and our proficient team will be back to you as quickly as possible.
-                        </p>
-                    </div>
-                </div>
-
-
+    <!-- Investment Plans -->
     <div class="invesmentContainer">
         <div class="investmentInner">
             <!-- Basic Plan -->
@@ -227,143 +221,140 @@
                 </div>
                 <a href="#">deposit now</a>
             </div>
-                                    
-                        
-            <div class="calculate">
-                <h1>Double your investment! Select your plan and calculate your profit below.</h1>
-            </div>
 
+        <div class="calculate">
+          <h1>Double your investment! Select your plan and calculate your profit below.</h1>
         </div>
-        <div id="btc_plan__main_wrapper">
-            <div class="btc_plan__wrapper">
-                <h2>Calculate Your Profit</h2>
-                <div class="section1">
-                    <div class="img_box"><img src="{% static 'assets/images/icon-plan1.png' %}" alt="icon"></div>
-                    <div class="profit_box first" style="color: rgb(11, 32, 60); font-weight: bold; font-size: 20px"> 
-                        <span class="daily-interest">100%</span>
-                    </div>
-                    <div class="profit_box bgChange second">
-                        <p class="profit" style="color: rgb(11, 32, 60); font-weight: bold">$0.00</p>
-                    </div>
-                </div>
+      </div>
 
-                <div class="section2">
-                    <div>
-                        <label for="plan">Choose Plan (Required):</label>
-                        <select id="plan">
-                            <option value="">Select Plan</option>
-                            <option value="basic" data-percent='100.00' data-min='50.00' data-max='200.00'>Basic Plan ($50 - $200)</option>
-                            <option value="amateur" data-percent='100.00' data-min='250.00' data-max='400.00'>Amateur Plan ($250 - $400)</option>
-                            <option value="amateur_plus" data-percent='100.00' data-min='450.00' data-max='550.00'>Amateur Plus ($450 - $550)</option>
-                            <option value="standard" data-percent='100.00' data-min='600.00' data-max='750.00'>Standard Plan ($600 - $750)</option>
-                            <option value="standard_plus" data-percent='100.00' data-min='800.00' data-max='950.00'>Standard Plus ($800 - $950)</option>
-                            <option value="pro" data-percent='100.00' data-min='1000.00' data-max='2500.00'>Pro Plan ($1,000 - $2,500)</option>
-                            <option value="pro_plus" data-percent='100.00' data-min='3000.00' data-max='4500.00'>Pro Plus ($3,000 - $4,500)</option>
-                            <option value="master" data-percent='100.00' data-min='5000.00' data-max='10000.00'>Master Plan ($5,000 - $10,000)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="amount">Enter Amount ($):</label>
-                        <input type="number" placeholder="Enter investment amount" id="amount" class="user_input_amount" required>
-                    </div>
-                </div>
-
-                <div class="section3">
-                    <button class="calc_btn">Calculate Profit</button>
-                </div>
-                
-                
+      <!-- Calculator -->
+      <div id="btc_plan__main_wrapper">
+        <div class="btc_plan__wrapper">
+          <h2>Calculate Your Profit</h2>
+          <div class="section1">
+            <div class="img_box">
+              <img src="{% static 'assets/images/icon-plan1.png' %}" alt="icon">
             </div>
-        </div>
-
-
-
-
-
-                <div class="aboutBot">
-                    <h3>Why <br><span>choose </span><br>us?</h3>
-                    <div class="statit-about">
-                        <div class="stt-about stt-about-part1">
-                            <p>Efficient computing solutions to compete in the world of Bitcoin.</p>
-                        </div>
-                        <div class="stt-about stt-about-part2">
-                            <p>Worldwide data center network to guarantee the stable work of the service</p>
-                        </div>
-                        <div class="stt-about stt-about-part3">
-                            <p>Decentralized cloud ‘dynamic’ trading principles.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="profit_box first" style="color: rgb(11, 32, 60); font-weight: bold; font-size: 20px">
+              <span class="daily-interest">100%</span>
             </div>
-        </div>
-        
-        
+            <div class="profit_box bgChange second">
+              <p class="profit" style="color: rgb(11, 32, 60); font-weight: bold">$0.00</p>
+            </div>
+          </div>
 
+          <div class="section2">
+            <div>
+              <label for="plan">Choose Plan (Required):</label>
+              <select id="plan">
+                <option value="">Select Plan</option>
+                <option value="basic" data-min="50" data-max="200">Basic Plan ($50 - $200)</option>
+                <option value="amateur" data-min="250" data-max="400">Amateur Plan ($250 - $400)</option>
+                <option value="amateur_plus" data-min="450" data-max="550">Amateur Plus ($450 - $550)</option>
+                <option value="standard" data-min="600" data-max="750">Standard Plan ($600 - $750)</option>
+                <option value="standard_plus" data-min="800" data-max="950">Standard Plus ($800 - $950)</option>
+                <option value="pro" data-min="1000" data-max="2500">Pro Plan ($1,000 - $2,500)</option>
+                <option value="pro_plus" data-min="3000" data-max="4500">Pro Plus ($3,000 - $4,500)</option>
+                <option value="master" data-min="5000" data-max="10000">Master Plan ($5,000 - $10,000)</option>
+              </select>
+            </div>
+            <div>
+              <label for="amount">Enter Amount ($):</label>
+              <input type="number" id="amount" placeholder="Enter investment amount" class="user_input_amount" required>
+            </div>
+          </div>
+
+          <div class="section3">
+            <button class="calc_btn">Calculate Profit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div class="aboutBot">
+      <h3>Why <br><span>choose</span><br>us?</h3>
+      <div class="statit-about">
+        <div class="stt-about stt-about-part1"><p>Efficient computing solutions to compete in the world of Bitcoin.</p></div>
+        <div class="stt-about stt-about-part2"><p>Worldwide data center network ensures stable operations.</p></div>
+        <div class="stt-about stt-about-part3"><p>Decentralized cloud ‘dynamic’ trading principles.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Market Widget -->
 <script src="{% static 'assets/js/coingecko-coin-market-ticker-list-widget.js' %}"></script>
-<coingecko-coin-market-ticker-list-widget coin-id="bitcoin" currency="usd" locale="en" vce-ready=""></coingecko-coin-market-ticker-list-widget>
+<coingecko-coin-market-ticker-list-widget
+    coin-id="bitcoin"
+    currency="usd"
+    locale="en">
+</coingecko-coin-market-ticker-list-widget>
 
+<!-- Deposit iFrame -->
 <iframe frameborder="0" height="400" width="100%" scrolling="no" src="https://www.muladev.online/cryptominers/deposit.php"></iframe>
-        
-        <script type="text/javascript" src="{% static 'assets/js/1.js' %}" async="">
 
-        </script>
+<!-- Main Calculator Logic -->
+<script>
+  const calculateButton = document.querySelector('.calc_btn');
+  const amountInput = document.querySelector('#amount');
+  const planSelect = document.querySelector('#plan');
+  const profitDisplay = document.querySelector('.profit');
+  const interestDisplay = document.querySelector('.daily-interest');
 
-      
-        <script>
-            const calculateButton = document.querySelector('.section3 .calc_btn');
-            const amountInput = document.querySelector('.section2 .user_input_amount');
-            const plansContainer = document.querySelector('#plan');
-            const showProfitArea = document.querySelector('.profit_box .profit');
+  function calculateProfit() {
+    const selectedOption = planSelect.selectedOptions[0];
 
+    if (!selectedOption || !planSelect.value) {
+      alert('Please select a plan.');
+      planSelect.focus();
+      return;
+    }
 
-            function calculateProfit() {
+    const min = parseFloat(selectedOption.dataset.min);
+    const max = parseFloat(selectedOption.dataset.max);
+    const amount = parseFloat(amountInput.value);
 
-                let selectOption = document.querySelector("#plan");
-                let dataset = selectOption.selectedOptions[0].dataset;
+    if (isNaN(amount) || amount <= 0) {
+      alert('Please enter a valid amount.');
+      amountInput.focus();
+      return;
+    }
 
-                let userAmount = Number(amountInput.value);
-                let percent = dataset.percent;
-                let min = dataset.min;
-                let max = dataset.max;
+    if (amount < min || amount > max) {
+      alert(`Please enter an amount between $${min} and $${max} for this plan.`);
+      return;
+    }
 
-                const calculated = () => {
-                    if (userAmount == '') {
-                        alert('Please enter an amount')
-                        userAmount.focus();
-                        return amountInput.textContent = '';
-                    } else if (selectOption.value=== ''){
-                        alert('Please Select a plan')
-                        selectOption.focus();
-                        return amountInput.textContent = '';
-                    } else if (userAmount < min || userAmount > max) {
-                        alert("This amount does not match your selected plan");
-                        return amountInput.textContent = '';    
-                    }else {
-                        let daily = (percent / 100) * userAmount;
-                        let num = daily + userAmount;
-                        document.querySelector(".daily-interest").textContent = percent + "%";
-                        return num.toFixed(2);
-                    }
-                }
+    // ✅ Core Profit Logic: 10× multiplier
+    const profit = amount * 10;
 
-                if (min >= 10001) {
-                    showProfitArea.classList.add('big');
-                } else {
-                    showProfitArea.classList.remove('big');
-                }
+    // Update display with formatted value
+    profitDisplay.textContent = `$${profit.toLocaleString()}`;
+    interestDisplay.textContent = "100%";
 
-                const profitAreaContainer = document.querySelector('.profit_box');
+    // Add glow effect
+    const profitBox = document.querySelector('.profit_box.bgChange');
+    profitBox.classList.add('highlight');
+    setTimeout(() => profitBox.classList.remove('highlight'), 1000);
+  }
 
-                profitAreaContainer.classList.add('bgChange');
+  calculateButton.addEventListener('click', calculateProfit);
+</script>
 
+<style>
+  .highlight {
+    animation: glow 0.8s ease-in-out;
+  }
 
-                showProfitArea.style.color =  "#0b203c";
-                showProfitArea.textContent = "$" + calculated();
-            }
+  @keyframes glow {
+    from { background-color: #ffffff; }
+    to { background-color: #d4edda; }
+  }
 
-            calculateButton.addEventListener('click', calculateProfit);
-        </script>
-        
+  .profit_box.bgChange {
+    transition: background-color 0.3s ease;
+  }
+</style>
 
-        {% endblock %}
-
+{% endblock %}

@@ -1,535 +1,125 @@
-WARNING 2025-11-05 19:17:01,668 log 1 129685924927040 Not Found: /graphql
-WARNING 2025-11-05 19:17:02,393 log 1 129685924927040 Not Found: /api
-WARNING 2025-11-05 19:17:02,591 log 1 129685924927040 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:17:02,719 log 1 129685924927040 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:17:02,724 log 1 129685908141632 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:17:02,854 log 1 129685908141632 Not Found: /api/graphql
-WARNING 2025-11-05 19:17:03,257 log 1 129685908141632 Not Found: /graphql/api
-WARNING 2025-11-05 19:17:03,707 log 1 129685908141632 Not Found: /api/gql
-WARNING 2025-11-05 19:17:04,521 log 1 129685908141632 Not Found: /swagger-ui.html
-WARNING 2025-11-05 19:17:05,025 log 1 129685908141632 Not Found: /swagger/index.html
-WARNING 2025-11-05 19:17:05,509 log 1 129685924927040 Not Found: /swagger/swagger-ui.html
-WARNING 2025-11-05 19:17:05,514 log 1 129685908141632 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:17:05,600 log 1 129685908141632 Not Found: /gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:17:06,024 log 1 129685908141632 Not Found: /webjars/swagger-ui/index.html
-WARNING 2025-11-05 19:17:06,439 log 1 129685908141632 Not Found: /swagger.json
-WARNING 2025-11-05 19:17:07,025 log 1 129685908141632 Not Found: /swagger/v1/swagger.json
-WARNING 2025-11-05 19:17:07,401 log 1 129685908141632 Not Found: /v2/api-docs
-WARNING 2025-11-05 19:17:07,633 log 1 129685924927040 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
-WARNING 2025-11-05 19:17:07,634 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
-WARNING 2025-11-05 19:17:07,734 log 1 129685908141632 Not Found: /v3/api-docs
-WARNING 2025-11-05 19:17:08,028 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
-WARNING 2025-11-05 19:17:08,032 log 1 129685924927040 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
-WARNING 2025-11-05 19:17:08,072 log 1 129685924927040 Not Found: /api-docs/swagger.json
-WARNING 2025-11-05 19:17:08,367 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
-WARNING 2025-11-05 19:17:08,377 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
-WARNING 2025-11-05 19:17:08,398 log 1 129685908141632 Not Found: /api/swagger.json
-WARNING 2025-11-05 19:17:08,716 log 1 129685908141632 Not Found: /@vite/env
-WARNING 2025-11-05 19:17:09,029 log 1 129685908141632 Not Found: /actuator/env
-WARNING 2025-11-05 19:17:09,339 log 1 129685908141632 Not Found: /server
-WARNING 2025-11-05 19:17:09,666 log 1 129685908141632 Not Found: /.vscode/sftp.json
-WARNING 2025-11-05 19:17:10,370 log 1 129685924927040 Not Found: /debug/default/view
-WARNING 2025-11-05 19:17:10,933 log 1 129685924927040 Not Found: /v2/_catalog
-WARNING 2025-11-05 19:17:11,503 log 1 129685924927040 Not Found: /ecp/Current/exporttool/microsoft.exchange.ediscovery.exporttool.application
-WARNING 2025-11-05 19:17:11,916 log 1 129685924927040 Not Found: /server-status
-WARNING 2025-11-05 19:17:12,358 log 1 129685924927040 Not Found: /login.action
-WARNING 2025-11-05 19:17:12,860 log 1 129685924927040 Not Found: /_all_dbs
-WARNING 2025-11-05 19:17:13,730 log 1 129685924927040 Not Found: /.DS_Store
-WARNING 2025-11-05 19:17:14,341 log 1 129685924927040 Not Found: /.env
-WARNING 2025-11-05 19:17:14,867 log 1 129685924927040 Not Found: /.git/config
-WARNING 2025-11-05 19:17:15,934 log 1 129685924927040 Not Found: /s/730323e29363e2337313e25333/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties
-WARNING 2025-11-05 19:17:16,066 log 1 129685924927040 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:17:16,093 log 1 129685924927040 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:17:16,577 log 1 129685924927040 Not Found: /config.json
-WARNING 2025-11-05 19:17:16,636 log 1 129685924927040 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:17:17,290 log 1 129685924927040 Not Found: /static/assets/js/cubeb86a.js
-WARNING 2025-11-05 19:17:17,322 log 1 129685924927040 Not Found: /static/assets/js/1fonjd21.js
-WARNING 2025-11-05 19:17:17,529 log 1 129685924927040 Not Found: /telescope/requests
-WARNING 2025-11-05 19:17:17,909 log 1 129685908141632 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:17:17,942 log 1 129685908141632 Not Found: /login/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:17:18,194 log 1 129685908141632 Not Found: /info.php
-WARNING 2025-11-05 19:17:18,480 log 1 129685908141632 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
-WARNING 2025-11-05 19:17:18,532 log 1 129685924927040 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
-WARNING 2025-11-05 19:17:18,534 log 1 129685908141632 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
-WARNING 2025-11-05 19:17:18,839 log 1 129685908141632 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
-WARNING 2025-11-05 19:17:19,153 log 1 129685908141632 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
-ERROR 2025-11-05 19:17:31,716 views 1 129685916534336 Login error for email aghason.emmanuel@gmail.com: Error 111 connecting to localhost:6379. Connection refused.
-WARNING 2025-11-05 19:17:32,100 log 1 129685924927040 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:17:32,101 log 1 129685908141632 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:17:32,117 log 1 129685908141632 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:17:33,313 log 1 129685908141632 Not Found: /static/assets/js/cubeb86a.js
-WARNING 2025-11-05 19:17:33,329 log 1 129685908141632 Not Found: /static/assets/js/1fonjd21.js
-WARNING 2025-11-05 19:17:33,398 log 1 129685908141632 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:17:33,673 log 1 129685908141632 Not Found: /login/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:17:33,777 log 1 129685908141632 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
-WARNING 2025-11-05 19:17:33,780 log 1 129685924927040 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
-WARNING 2025-11-05 19:17:33,780 log 1 129685455365696 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
-WARNING 2025-11-05 19:17:34,071 log 1 129685924927040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
-WARNING 2025-11-05 19:17:34,356 log 1 129685908141632 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
-WARNING 2025-11-05 19:18:12,932 log 1 129685455365696 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:18:13,497 log 1 129685924927040 Not Found: /static/assets/js/jquery.min.map
-WARNING 2025-11-05 19:18:14,324 log 1 129685908141632 Not Found: /static/assets/css/styles.css.map
-WARNING 2025-11-05 19:20:56,495 log 1 129685455365696 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:20:56,537 log 1 129685924927040 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:20:56,774 log 1 129685908141632 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:20:56,807 log 1 129685455365696 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:20:57,148 log 1 129685924927040 Not Found: /gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:20:57,260 log 1 129685455365696 Range Not Satisfiable: /static/assets/images/bg.png
-WARNING 2025-11-05 19:20:57,420 log 1 129685924927040 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
-WARNING 2025-11-05 19:20:57,436 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
-WARNING 2025-11-05 19:20:57,534 log 1 129685924927040 Range Not Satisfiable: /static/assets/images/loginbg.png
-WARNING 2025-11-05 19:20:57,740 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
-WARNING 2025-11-05 19:20:57,779 log 1 129685455365696 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
-WARNING 2025-11-05 19:20:58,066 log 1 129685924927040 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
-WARNING 2025-11-05 19:20:58,081 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
-WARNING 2025-11-05 19:20:59,048 log 1 129685455365696 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:20:59,083 log 1 129685455365696 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:20:59,084 log 1 129685908141632 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:20:59,491 log 1 129685455365696 Not Found: /contact/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:20:59,511 log 1 129685924927040 Not Found: /contact/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:20:59,533 log 1 129685908141632 Not Found: /static/assets/images/address-icon.png
-WARNING 2025-11-05 19:20:59,981 log 1 129685455365696 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
-WARNING 2025-11-05 19:21:00,019 log 1 129685908141632 Not Found: /static/assets/images/phone-icon.png
-WARNING 2025-11-05 19:21:00,020 log 1 129685455365696 Not Found: /static/assets/images/emailblock-icon.png
-WARNING 2025-11-05 19:21:00,255 log 1 129685908141632 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
-WARNING 2025-11-05 19:21:00,520 log 1 129685924927040 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
-WARNING 2025-11-05 19:21:03,296 log 1 129685455365696 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:21:03,353 log 1 129685455365696 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:21:03,353 log 1 129685924927040 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:21:03,741 log 1 129685455365696 Not Found: /static/assets/js/cubeb86a.js
-WARNING 2025-11-05 19:21:03,761 log 1 129685908141632 Not Found: /static/assets/js/1fonjd21.js
-WARNING 2025-11-05 19:21:03,824 log 1 129685924927040 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:21:03,867 log 1 129685455365696 Not Found: /login/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:21:04,463 log 1 129685455365696 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
-WARNING 2025-11-05 19:21:04,463 log 1 129685924927040 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
-WARNING 2025-11-05 19:21:04,480 log 1 129685455365696 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
-WARNING 2025-11-05 19:21:05,141 log 1 129685908141632 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
-WARNING 2025-11-05 19:21:05,521 log 1 129685924927040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
-ERROR 2025-11-05 19:21:07,583 views 1 129685882930752 Login error for email aghason.emmanuel@gmail.com: Error 111 connecting to localhost:6379. Connection refused.
-WARNING 2025-11-05 19:21:07,977 log 1 129685455365696 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:21:07,999 log 1 129685908141632 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:21:08,028 log 1 129685924927040 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:21:08,314 log 1 129685455365696 Not Found: /static/assets/js/cubeb86a.js
-WARNING 2025-11-05 19:21:08,342 log 1 129685908141632 Not Found: /static/assets/js/1fonjd21.js
-WARNING 2025-11-05 19:21:08,375 log 1 129685924927040 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:21:08,411 log 1 129685455365696 Not Found: /login/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:21:08,445 log 1 129685908141632 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
-WARNING 2025-11-05 19:21:08,610 log 1 129685924927040 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
-WARNING 2025-11-05 19:21:08,630 log 1 129685455365696 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
-WARNING 2025-11-05 19:21:08,969 log 1 129685908141632 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
-WARNING 2025-11-05 19:21:09,351 log 1 129685924927040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
-ERROR 2025-11-05 19:21:13,088 views 1 129685882930752 Login error for email emilycesar52@gmail.com: Error 111 connecting to localhost:6379. Connection refused.
-WARNING 2025-11-05 19:21:13,422 log 1 129685455365696 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:21:13,443 log 1 129685908141632 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:21:13,474 log 1 129685924927040 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:21:13,720 log 1 129685455365696 Not Found: /static/assets/js/cubeb86a.js
-WARNING 2025-11-05 19:21:13,742 log 1 129685908141632 Not Found: /static/assets/js/1fonjd21.js
-WARNING 2025-11-05 19:21:13,799 log 1 129685924927040 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:21:13,819 log 1 129685455365696 Not Found: /login/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:21:13,906 log 1 129685908141632 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
-WARNING 2025-11-05 19:21:13,992 log 1 129685924927040 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
-WARNING 2025-11-05 19:21:14,023 log 1 129685455365696 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
-WARNING 2025-11-05 19:21:14,302 log 1 129685908141632 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
-WARNING 2025-11-05 19:21:14,579 log 1 129685924927040 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
-WARNING 2025-11-05 19:39:05,392 log 1 123460378424896 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:39:05,658 log 1 123460378424896 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:39:05,861 log 1 123460378424896 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:39:05,935 log 1 123460378424896 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:39:06,178 log 1 123460378424896 Not Found: /gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:39:08,429 log 1 123460378424896 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:39:08,441 log 1 123460378424896 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:39:08,823 log 1 123460378424896 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:39:08,842 log 1 123460378424896 Not Found: /static/assets/js/cubeb86a.js
-WARNING 2025-11-05 19:39:09,373 log 1 123460378424896 Not Found: /login/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:39:09,375 log 1 123460353246784 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:39:09,395 log 1 123460361639488 Not Found: /static/assets/js/1fonjd21.js
-WARNING 2025-11-05 19:39:09,419 log 1 123460361639488 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
-WARNING 2025-11-05 19:39:09,421 log 1 123460353246784 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
-WARNING 2025-11-05 19:39:09,586 log 1 123460361639488 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
-WARNING 2025-11-05 19:39:09,873 log 1 123460378424896 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
-WARNING 2025-11-05 19:39:10,169 log 1 123460353246784 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
-ERROR 2025-11-05 19:39:13,604 views 1 123460344854080 Login error for email aghason.emmanuel@gmail.com: Error 111 connecting to localhost:6379. Connection refused.
-WARNING 2025-11-05 19:39:14,129 log 1 123460361639488 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:39:14,141 log 1 123460378424896 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:39:14,223 log 1 123460353246784 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:39:14,442 log 1 123460353246784 Not Found: /static/assets/js/cubeb86a.js
-WARNING 2025-11-05 19:39:14,444 log 1 123460378424896 Not Found: /static/assets/js/1fonjd21.js
-WARNING 2025-11-05 19:39:14,526 log 1 123460353246784 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:39:14,550 log 1 123460361639488 Not Found: /login/gtranslate.net/flags/24.png
-WARNING 2025-11-05 19:39:14,580 log 1 123460378424896 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
-WARNING 2025-11-05 19:39:14,718 log 1 123460353246784 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
-WARNING 2025-11-05 19:39:14,732 log 1 123460361639488 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
-WARNING 2025-11-05 19:39:15,020 log 1 123460378424896 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
-WARNING 2025-11-05 19:39:15,294 log 1 123460353246784 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
-ERROR 2025-11-05 19:39:35,289 log 1 123460378424896 Internal Server Error: /admin/login/
-Traceback (most recent call last):
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 29, in _decorator
-    return method(self, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 138, in has_key
-    return self.client.has_key(*args, **kwargs)
-           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/client/default.py", line 740, in has_key
-    raise ConnectionInterrupted(connection=client) from e
-django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 552, in thread_handler
-    raise exc_info[1]
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
-    response = await get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 552, in thread_handler
-    raise exc_info[1]
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 253, in _get_response_async
-    response = await wrapped_callback(
-               ^^^^^^^^^^^^^^^^^^^^^^^
-        request, *callback_args, **callback_kwargs
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 502, in __call__
-    ret = await asyncio.shield(exec_coro)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/current_thread_executor.py", line 40, in run
-    result = self.fn(*self.args, **self.kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 556, in thread_handler
-    return func(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
-    return LoginView.as_view(**defaults)(request)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
-    return self.dispatch(request, *args, **kwargs)
-           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
-    return view(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
-    result = _process_exception(request, e)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
-    return super().dispatch(request, *args, **kwargs)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
-    return handler(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
-    return self.form_valid(form)
-           ~~~~~~~~~~~~~~~^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
-    auth_login(self.request, form.get_user())
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
-    request.session.cycle_key()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
-    self.create()
-    ~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
-    self._session_key = self._get_new_session_key()
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
-    if not self.exists(session_key):
-           ~~~~~~~~~~~^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
-    and (self.cache_key_prefix + session_key) in self._cache
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
-    return self.has_key(key)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 36, in _decorator
-    raise e.__cause__  # noqa: B904
-    ^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/client/default.py", line 738, in has_key
-    return client.exists(key) == 1
-           ~~~~~~~~~~~~~^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/commands/core.py", line 1741, in exists
-    return self.execute_command("EXISTS", *names, keys=names)
-           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/client.py", line 657, in execute_command
-    return self._execute_command(*args, **options)
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/client.py", line 663, in _execute_command
-    conn = self.connection or pool.get_connection()
-                              ~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/utils.py", line 196, in wrapper
-    return func(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 2601, in get_connection
-    connection.connect()
-    ~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 846, in connect
-    self.connect_check_health(check_health=True)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 863, in connect_check_health
-    raise ConnectionError(self._error_message(e))
-redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
-WARNING 2025-11-05 19:41:55,146 log 1 123460378424896 Not Found: /static/assets/css.css
-WARNING 2025-11-05 19:41:55,870 log 1 123460353246784 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-05 19:41:56,100 log 1 123460361639488 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-05 19:42:08,004 log 1 123460378424896 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-05 19:42:08,837 log 1 123460353246784 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
-WARNING 2025-11-05 19:42:08,995 log 1 123460361639488 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
-WARNING 2025-11-05 19:42:09,999 log 1 123460378424896 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
-WARNING 2025-11-05 19:42:10,241 log 1 123460353246784 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
-WARNING 2025-11-05 19:42:11,174 log 1 123460361639488 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
-WARNING 2025-11-05 19:42:12,085 log 1 123460378424896 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
-WARNING 2025-11-05 19:42:18,429 log 1 123460353246784 Not Found: /gtranslate.net/flags/24.png
-ERROR 2025-11-05 19:45:53,642 log 1 127483332363840 Internal Server Error: /admin/login/
-Traceback (most recent call last):
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 29, in _decorator
-    return method(self, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 138, in has_key
-    return self.client.has_key(*args, **kwargs)
-           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/client/default.py", line 740, in has_key
-    raise ConnectionInterrupted(connection=client) from e
-django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 552, in thread_handler
-    raise exc_info[1]
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
-    response = await get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 552, in thread_handler
-    raise exc_info[1]
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 253, in _get_response_async
-    response = await wrapped_callback(
-               ^^^^^^^^^^^^^^^^^^^^^^^
-        request, *callback_args, **callback_kwargs
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 502, in __call__
-    ret = await asyncio.shield(exec_coro)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/current_thread_executor.py", line 40, in run
-    result = self.fn(*self.args, **self.kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 556, in thread_handler
-    return func(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
-    return LoginView.as_view(**defaults)(request)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
-    return self.dispatch(request, *args, **kwargs)
-           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
-    return view(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
-    result = _process_exception(request, e)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
-    return super().dispatch(request, *args, **kwargs)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
-    return handler(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
-    return self.form_valid(form)
-           ~~~~~~~~~~~~~~~^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
-    auth_login(self.request, form.get_user())
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
-    request.session.cycle_key()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
-    self.create()
-    ~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
-    self._session_key = self._get_new_session_key()
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
-    if not self.exists(session_key):
-           ~~~~~~~~~~~^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
-    and (self.cache_key_prefix + session_key) in self._cache
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
-    return self.has_key(key)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 36, in _decorator
-    raise e.__cause__  # noqa: B904
-    ^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/client/default.py", line 738, in has_key
-    return client.exists(key) == 1
-           ~~~~~~~~~~~~~^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/commands/core.py", line 1741, in exists
-    return self.execute_command("EXISTS", *names, keys=names)
-           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/client.py", line 657, in execute_command
-    return self._execute_command(*args, **options)
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/client.py", line 663, in _execute_command
-    conn = self.connection or pool.get_connection()
-                              ~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/utils.py", line 196, in wrapper
-    return func(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 2601, in get_connection
-    connection.connect()
-    ~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 846, in connect
-    self.connect_check_health(check_health=True)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 863, in connect_check_health
-    raise ConnectionError(self._error_message(e))
-redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
-WARNING 2025-11-05 19:48:26,692 log 1 127483332363840 Not Found: /favicon.ico
-WARNING 2025-11-05 19:58:24,197 log 1 127483332363840 Not Found: /favicon.ico
-WARNING 2025-11-05 22:52:42,232 log 1 127483332363840 Not Found: /robots.txt
-WARNING 2025-11-05 23:56:19,745 log 1 127483332363840 Not Found: /robots.txt
-WARNING 2025-11-06 02:18:59,268 log 1 127483332363840 Not Found: /static/assets/css.css
-WARNING 2025-11-06 02:19:00,987 log 1 127483332363840 Not Found: /static/assets/js/wow.js
-WARNING 2025-11-06 02:19:01,003 log 1 127483332363840 Not Found: /static/assets/js/wow.min.js
-WARNING 2025-11-06 02:19:02,734 log 1 127483332363840 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
-WARNING 2025-11-06 02:19:04,113 log 1 127483332363840 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
-WARNING 2025-11-06 02:19:04,167 log 1 127483332363840 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
-WARNING 2025-11-06 02:19:04,752 log 1 127483332363840 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
-WARNING 2025-11-06 02:19:04,953 log 1 127483332363840 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
-WARNING 2025-11-06 02:19:07,743 log 1 127483332363840 Not Found: /favicon.ico
-ERROR 2025-11-06 02:19:39,952 log 1 127483332363840 Internal Server Error: /admin/login/
-Traceback (most recent call last):
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 29, in _decorator
-    return method(self, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 138, in has_key
-    return self.client.has_key(*args, **kwargs)
-           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/client/default.py", line 740, in has_key
-    raise ConnectionInterrupted(connection=client) from e
-django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 552, in thread_handler
-    raise exc_info[1]
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 42, in inner
-    response = await get_response(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 552, in thread_handler
-    raise exc_info[1]
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 253, in _get_response_async
-    response = await wrapped_callback(
-               ^^^^^^^^^^^^^^^^^^^^^^^
-        request, *callback_args, **callback_kwargs
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 502, in __call__
-    ret = await asyncio.shield(exec_coro)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/current_thread_executor.py", line 40, in run
-    result = self.fn(*self.args, **self.kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/asgiref/sync.py", line 556, in thread_handler
-    return func(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
-    return LoginView.as_view(**defaults)(request)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
-    return self.dispatch(request, *args, **kwargs)
-           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
-    return view(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
-    result = _process_exception(request, e)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
-    return bound_method(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
-    response = view_func(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
-    return super().dispatch(request, *args, **kwargs)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
-    return handler(request, *args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
-    return self.form_valid(form)
-           ~~~~~~~~~~~~~~~^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
-    auth_login(self.request, form.get_user())
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
-    request.session.cycle_key()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
-    self.create()
-    ~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
-    self._session_key = self._get_new_session_key()
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
-    if not self.exists(session_key):
-           ~~~~~~~~~~~^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
-    and (self.cache_key_prefix + session_key) in self._cache
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
-    return self.has_key(key)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/cache.py", line 36, in _decorator
-    raise e.__cause__  # noqa: B904
-    ^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/django_redis/client/default.py", line 738, in has_key
-    return client.exists(key) == 1
-           ~~~~~~~~~~~~~^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/commands/core.py", line 1741, in exists
-    return self.execute_command("EXISTS", *names, keys=names)
-           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/client.py", line 657, in execute_command
-    return self._execute_command(*args, **options)
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/client.py", line 663, in _execute_command
-    conn = self.connection or pool.get_connection()
-                              ~~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/utils.py", line 196, in wrapper
-    return func(*args, **kwargs)
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 2601, in get_connection
-    connection.connect()
-    ~~~~~~~~~~~~~~~~~~^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 846, in connect
-    self.connect_check_health(check_health=True)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
-  File "/home/emmidevcodes/.virtualenvs/venv/lib/python3.13/site-packages/redis/connection.py", line 863, in connect_check_health
-    raise ConnectionError(self._error_message(e))
-redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+INFO 2025-11-06 03:35:01,179 currency_service 1 126833852954176 Using cached exchange rates
+INFO 2025-11-06 03:51:53,993 currency_service 1 135945825461824 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-11-06 03:51:54,259 currency_service 1 135945825461824 Cached 165 exchange rates for 600 seconds
+WARNING 2025-11-06 03:52:38,338 log 1 135945851188800 Not Found: /static/assets/css.css
+WARNING 2025-11-06 03:52:38,877 log 1 135945851188800 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-06 03:52:38,881 log 1 135945851188800 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-06 03:52:40,610 log 1 135945851188800 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-06 03:52:40,668 log 1 135945851188800 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-06 03:52:40,896 log 1 135945851188800 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-06 03:52:40,948 log 1 135945851188800 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-06 03:52:41,144 log 1 135945851188800 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-06 03:52:41,198 log 1 135945851188800 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-06 03:52:41,392 log 1 135945851188800 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-11-06 03:52:41,450 log 1 135945851188800 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-11-06 03:52:44,893 log 1 135945311483456 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-06 03:52:44,893 log 1 135945851188800 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-06 03:52:44,895 log 1 135945311483456 Not Found: /static/assets/css.css
+WARNING 2025-11-06 03:52:45,381 log 1 135945311483456 Not Found: /static/assets/js/cubeb86a.js
+WARNING 2025-11-06 03:52:45,427 log 1 135945851188800 Not Found: /login/World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-06 03:52:45,430 log 1 135945311483456 Not Found: /static/assets/js/1fonjd21.js
+WARNING 2025-11-06 03:52:45,465 log 1 135945311483456 Not Found: /login/gtranslate.net/flags/24.png
+WARNING 2025-11-06 03:52:45,652 log 1 135945311483456 Not Found: /static/assets/fonts/Quicksand/Quicksand-Bold.ttf
+WARNING 2025-11-06 03:52:45,655 log 1 135945311483456 Not Found: /static/assets/fonts/Quicksand/Quicksand-Regular.ttf
+WARNING 2025-11-06 03:52:45,727 log 1 135945311483456 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff2
+WARNING 2025-11-06 03:52:45,984 log 1 135945311483456 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.woff
+WARNING 2025-11-06 03:52:46,325 log 1 135945311483456 Not Found: /static/assets/fonts/fontawesome-webfont3e6e.ttf
+INFO 2025-11-06 03:53:02,260 crypto_api_service 1 135945799202368 CoinGecko API success: fetched 5 coins
+INFO 2025-11-06 03:53:02,261 crypto_api_service 1 135945799202368 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-06 03:53:02,284 crypto_api_service 1 135945799202368 Updated 5 cryptocurrencies
+INFO 2025-11-06 03:53:02,289 user_views 1 135945799202368 Cryptocurrency data updated successfully
+INFO 2025-11-06 03:53:02,425 crypto_api_service 1 135945799202368 CoinGecko API success: fetched 5 coins
+INFO 2025-11-06 03:53:02,427 crypto_api_service 1 135945799202368 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-06 03:53:02,464 crypto_api_service 1 135945799202368 Updated 5 cryptocurrencies
+WARNING 2025-11-06 03:53:05,532 log 1 135945311483456 Not Found: /favicon.ico
+INFO 2025-11-06 03:53:13,092 currency_service 1 135945825461824 Using cached exchange rates
+INFO 2025-11-06 04:04:25,992 consumers 1 123466159823744 Market WebSocket connected: specific.3926987e3e15410a9e796a6912f362f9!09b6e865cd164b4db5ac41ab392af8d2
+INFO 2025-11-06 04:04:27,686 crypto_api_service 1 123466087630400 CoinGecko: Fetched 288 data points for BTC
+INFO 2025-11-06 04:04:32,575 consumers 1 123466159823744 Market WebSocket disconnected: specific.3926987e3e15410a9e796a6912f362f9!09b6e865cd164b4db5ac41ab392af8d2
+INFO 2025-11-06 04:04:45,044 consumers 1 126348966386560 Market WebSocket connected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!5ec2ff2d58874bd791d8883f8816b078
+INFO 2025-11-06 04:04:45,450 crypto_api_service 1 126348892096064 CoinGecko: Fetched 288 data points for BTC
+INFO 2025-11-06 04:06:37,029 consumers 1 126348966386560 Market WebSocket disconnected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!5ec2ff2d58874bd791d8883f8816b078
+INFO 2025-11-06 04:06:37,670 currency_service 1 126348777469504 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-11-06 04:06:37,941 currency_service 1 126348777469504 Cached 165 exchange rates for 600 seconds
+INFO 2025-11-06 04:06:38,118 consumers 1 126348966386560 Market WebSocket connected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!b28a9ba7e53d45d3ab6a9f8e907a2c3c
+INFO 2025-11-06 04:06:38,440 crypto_api_service 1 126348892096064 CoinGecko: Fetched 288 data points for BTC
+INFO 2025-11-06 04:23:00,083 consumers 1 126348966386560 Market WebSocket disconnected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!b28a9ba7e53d45d3ab6a9f8e907a2c3c
+INFO 2025-11-06 04:43:06,597 consumers 1 126348966386560 Market WebSocket connected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!ce3b18e1e2b044c199496945f08f86ed
+INFO 2025-11-06 04:43:06,943 crypto_api_service 1 126348892096064 CoinGecko: Fetched 289 data points for BTC
+WARNING 2025-11-06 04:48:59,763 log 1 126348766979648 Not Found: /robots.txt
+INFO 2025-11-06 04:53:17,693 crypto_api_service 1 126348777469504 CoinGecko API success: fetched 5 coins
+INFO 2025-11-06 04:53:17,695 crypto_api_service 1 126348777469504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-06 04:53:17,719 crypto_api_service 1 126348777469504 Updated 5 cryptocurrencies
+INFO 2025-11-06 04:53:17,724 user_views 1 126348777469504 Cryptocurrency data updated successfully
+INFO 2025-11-06 04:53:17,811 crypto_api_service 1 126348777469504 CoinGecko API success: fetched 5 coins
+INFO 2025-11-06 04:53:17,812 crypto_api_service 1 126348777469504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-06 04:53:17,830 crypto_api_service 1 126348777469504 Updated 5 cryptocurrencies
+WARNING 2025-11-06 04:53:19,074 log 1 126348766979648 Not Found: /favicon.ico
+INFO 2025-11-06 04:53:19,522 consumers 1 126348966386560 Market WebSocket connected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!27050d465aef462fa996a10518d06b02
+INFO 2025-11-06 04:53:52,102 consumers 1 126348966386560 Market WebSocket disconnected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!27050d465aef462fa996a10518d06b02
+INFO 2025-11-06 04:53:52,585 crypto_api_service 1 126348777469504 CoinGecko API success: fetched 5 coins
+INFO 2025-11-06 04:53:52,587 crypto_api_service 1 126348777469504 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-06 04:53:52,624 crypto_api_service 1 126348777469504 Updated 5 cryptocurrencies
+INFO 2025-11-06 04:53:52,937 consumers 1 126348966386560 Market WebSocket connected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!29c780eefd614c7bae37bbfa3468166d
+INFO 2025-11-06 04:53:53,672 consumers 1 126348966386560 Market WebSocket connected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!23975e8b7eee437fbe0681f347a3b9bd
+INFO 2025-11-06 04:54:27,476 consumers 1 126348966386560 Market WebSocket disconnected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!29c780eefd614c7bae37bbfa3468166d
+INFO 2025-11-06 04:54:27,478 consumers 1 126348966386560 Market WebSocket disconnected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!23975e8b7eee437fbe0681f347a3b9bd
+INFO 2025-11-06 04:58:39,802 consumers 1 126348966386560 Market WebSocket disconnected: specific.4f89a6004cb941aa8e4e44e93fc8e8b8!ce3b18e1e2b044c199496945f08f86ed
+INFO 2025-11-06 04:58:50,634 consumers 1 133346559376256 Market WebSocket connected: specific.499a1b4571684a2f9f023a634295f93c!02cb8e5ebd3245559a65b0576d20ed67
+INFO 2025-11-06 04:58:50,969 crypto_api_service 1 133346487182912 CoinGecko: Fetched 289 data points for BTC
+INFO 2025-11-06 04:59:07,061 consumers 1 133346559376256 Market WebSocket disconnected: specific.499a1b4571684a2f9f023a634295f93c!02cb8e5ebd3245559a65b0576d20ed67
+INFO 2025-11-06 04:59:17,545 consumers 1 125926116387712 Market WebSocket connected: specific.3fee311932654cc5a6fd68697b14fb35!35501b5b88ec486b8b882ef5d30b00b2
+INFO 2025-11-06 04:59:17,833 crypto_api_service 1 125926044194368 CoinGecko: Fetched 289 data points for BTC
+INFO 2025-11-06 04:59:52,343 consumers 1 125926116387712 Market WebSocket disconnected: specific.3fee311932654cc5a6fd68697b14fb35!35501b5b88ec486b8b882ef5d30b00b2
+INFO 2025-11-06 04:59:57,971 consumers 1 130471101537152 Market WebSocket connected: specific.034410533a574ff0911bf0f88ec67209!dfd9b79b4f4945349dadbc3a0fa80d4b
+INFO 2025-11-06 04:59:58,271 crypto_api_service 1 130471027246656 CoinGecko: Fetched 289 data points for BTC
+INFO 2025-11-06 05:00:05,972 crypto_api_service 1 130470981584448 CoinGecko API success: fetched 5 coins
+INFO 2025-11-06 05:00:05,973 crypto_api_service 1 130470981584448 Successfully fetched data from _fetch_from_coingecko
+INFO 2025-11-06 05:00:05,991 crypto_api_service 1 130470981584448 Updated 5 cryptocurrencies
+INFO 2025-11-06 05:00:06,206 consumers 1 130471101537152 Market WebSocket connected: specific.034410533a574ff0911bf0f88ec67209!1e6d585c2cba4125875acbd981b7f1b6
+INFO 2025-11-06 05:00:06,913 consumers 1 130471101537152 Market WebSocket connected: specific.034410533a574ff0911bf0f88ec67209!0fc199ec3af245f79e406ffec8eebe9a
+INFO 2025-11-06 05:00:13,712 consumers 1 130471101537152 Market WebSocket disconnected: specific.034410533a574ff0911bf0f88ec67209!0fc199ec3af245f79e406ffec8eebe9a
+INFO 2025-11-06 05:00:13,718 consumers 1 130471101537152 Market WebSocket disconnected: specific.034410533a574ff0911bf0f88ec67209!1e6d585c2cba4125875acbd981b7f1b6
+INFO 2025-11-06 05:00:14,079 currency_service 1 130470767490624 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-11-06 05:00:14,464 currency_service 1 130470767490624 Cached 165 exchange rates for 600 seconds
+INFO 2025-11-06 05:00:14,498 consumers 1 130471101537152 Market WebSocket connected: specific.034410533a574ff0911bf0f88ec67209!85b12a3fd8f94eab96673e9181de10d9
+INFO 2025-11-06 05:00:14,830 crypto_api_service 1 130471027246656 CoinGecko: Fetched 289 data points for BTC
+INFO 2025-11-06 05:02:26,655 consumers 1 130471101537152 Market WebSocket disconnected: specific.034410533a574ff0911bf0f88ec67209!85b12a3fd8f94eab96673e9181de10d9
+WARNING 2025-11-06 05:02:26,668 log 1 130470981584448 Not Found: /static/assets/css.css
+WARNING 2025-11-06 05:02:26,677 log 1 130470981584448 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-06 05:02:26,918 log 1 130470981584448 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-06 05:02:26,962 log 1 130470981584448 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-06 05:02:27,246 log 1 130470981584448 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-06 05:02:27,320 log 1 130470750705216 Range Not Satisfiable: /static/assets/images/bg.png
+WARNING 2025-11-06 05:02:27,342 log 1 130470981584448 Range Not Satisfiable: /static/assets/images/loginbg.png
+WARNING 2025-11-06 05:02:28,521 log 1 130470981584448 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-06 05:02:28,527 log 1 130470981584448 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-06 05:02:28,927 log 1 130470750705216 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-06 05:02:28,928 log 1 130470981584448 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-06 05:02:29,193 log 1 130470750705216 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf
+WARNING 2025-11-06 05:02:29,193 log 1 130470981584448 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+INFO 2025-11-06 05:10:02,099 consumers 1 130471101537152 Market WebSocket disconnected: specific.034410533a574ff0911bf0f88ec67209!dfd9b79b4f4945349dadbc3a0fa80d4b
+INFO 2025-11-06 05:10:13,703 consumers 1 124156045826944 Market WebSocket connected: specific.bb756293217749f5acdaeb8b965d3418!0ed2b0f13a154cccaf730c048ad299b5
+INFO 2025-11-06 05:10:14,041 crypto_api_service 1 124155973633600 CoinGecko: Fetched 289 data points for BTC
+INFO 2025-11-06 05:10:43,084 consumers 1 124156045826944 Market WebSocket disconnected: specific.bb756293217749f5acdaeb8b965d3418!0ed2b0f13a154cccaf730c048ad299b5
+INFO 2025-11-06 05:10:53,475 consumers 1 135339633023872 Market WebSocket connected: specific.4e131d7455d841a09a61715234cbaec3!f9d4793720cc4b9790efc136af8bb03b
+INFO 2025-11-06 05:10:53,800 crypto_api_service 1 135339558733376 CoinGecko: Fetched 289 data points for BTC
+INFO 2025-11-06 05:10:56,914 consumers 1 135339633023872 Market WebSocket disconnected: specific.4e131d7455d841a09a61715234cbaec3!f9d4793720cc4b9790efc136af8bb03b
+INFO 2025-11-06 05:10:57,700 currency_service 1 135339433776704 Fetching exchange rates from https://api.exchangerate-api.com/v4/latest/USD
+INFO 2025-11-06 05:10:58,012 currency_service 1 135339433776704 Cached 165 exchange rates for 600 seconds
+INFO 2025-11-06 05:10:58,155 consumers 1 135339633023872 Market WebSocket connected: specific.4e131d7455d841a09a61715234cbaec3!516a731e84404b51aa12e42b8980ff45
+INFO 2025-11-06 05:10:58,454 crypto_api_service 1 135339558733376 CoinGecko: Fetched 289 data points for BTC
+WARNING 2025-11-06 05:11:03,883 log 1 135339444266560 Not Found: /favicon.ico
+INFO 2025-11-06 05:11:04,771 consumers 1 135339633023872 Market WebSocket disconnected: specific.4e131d7455d841a09a61715234cbaec3!516a731e84404b51aa12e42b8980ff45
+WARNING 2025-11-06 05:11:04,840 log 1 135339444266560 Not Found: /static/assets/css.css
+WARNING 2025-11-06 05:11:04,851 log 1 135339444266560 Not Found: /static/assets/js/wow.min.js
+WARNING 2025-11-06 05:11:04,869 log 1 135339444266560 Not Found: /static/assets/js/wow.js
+WARNING 2025-11-06 05:11:06,531 log 1 135339444266560 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff2
+WARNING 2025-11-06 05:11:06,598 log 1 135339444266560 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff2
+WARNING 2025-11-06 05:11:06,689 log 1 135339444266560 Range Not Satisfiable: /static/assets/images/bg.png
+WARNING 2025-11-06 05:11:06,771 log 1 135339444266560 Not Found: /World FX CO LTD_files/googlelogo_color_42x16dp.png
+WARNING 2025-11-06 05:11:06,952 log 1 135339444266560 Not Found: /gtranslate.net/flags/24.png
+WARNING 2025-11-06 05:11:06,967 log 1 135339444266560 Not Found: /static/assets/css/fonts/UniSansThinCAPS.woff
+WARNING 2025-11-06 05:11:07,038 log 1 135339444266560 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.woff
+WARNING 2025-11-06 05:11:07,545 log 1 135339444266560 Not Found: /static/assets/css/fonts/UniSansHeavyCAPS.ttf
+WARNING 2025-11-06 05:11:07,558 log 1 135339444266560 Not Found: /static/assets/css/fonts/UniSansThinCAPS.ttf

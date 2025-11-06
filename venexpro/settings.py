@@ -1,5 +1,5 @@
 """
-Django settings for btc_brokerage project.
+Django settings for btc_brokerage project on PythonAnywhere Server
 """
 
 import os
@@ -7,19 +7,20 @@ from pathlib import Path
 from datetime import timedelta
 import environ
 
-# Initialize environment variables
-
-env = environ.Env()  # type: ignore[attr-defined]
-environ.Env.read_env()  # type: ignore[attr-defined]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Initialize environment variables
+env = environ.Env()  # type: ignore[attr-defined]
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))  # type: ignore[attr-defined]
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY', default="your_dev_secret_key_here") # type: ignore
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=True) # type: ignore
+DEBUG = env.bool('DEBUG', default=False) # type: ignore
 
 # PythonAnywhere configuration
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
@@ -90,8 +91,8 @@ ASGI_APPLICATION = 'venexpro.asgi.application'
 # Channel layers configuration - Parse Redis URL for channels
 import urllib.parse as urlparse
 
-REDIS_URL_STR = env('REDIS_URL', default='redis://localhost:6379/0')
-redis_url = urlparse.urlparse(REDIS_URL_STR)
+REDIS_URL_STR = env('REDIS_URL', default='redis://localhost:6379/0') # type: ignore
+redis_url = urlparse.urlparse(REDIS_URL_STR) # type: ignore
 
 CACHES = {
     "default": {
@@ -107,9 +108,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [redis_url.hostname],
-            "password": redis_url.password,
-            "db": 0,
+            "hosts": [REDIS_URL_STR],
         },
     },
 }
@@ -249,7 +248,7 @@ CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
 
 # Security Settings
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False  # PythonAnywhere handles HTTPS redirect
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
