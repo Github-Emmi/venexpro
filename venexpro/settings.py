@@ -7,13 +7,12 @@ from pathlib import Path
 from datetime import timedelta
 import environ
 
-# Initialize environment variables
-
-env = environ.Env()  # type: ignore[attr-defined]
-environ.Env.read_env()  # type: ignore[attr-defined]
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Initialize environment variables
+env = environ.Env()  # type: ignore[attr-defined]
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))  # type: ignore[attr-defined]
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY', default="your_dev_secret_key_here") # type: ignore
@@ -30,6 +29,8 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
 
 # Application definition
 INSTALLED_APPS = [
+    
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'channels',
-    'daphne',
     'django_extensions',
 
     # Local apps
