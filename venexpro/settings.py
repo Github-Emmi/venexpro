@@ -30,6 +30,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
 
 # Application definition
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'channels',
-    'daphne',
     'django_extensions',
 
     # Local apps
@@ -107,7 +107,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(redis_url.hostname or 'localhost', redis_url.port or 6379)],
+            "hosts": [redis_url.hostname],
             "password": redis_url.password,
             "db": 0,
         },
@@ -297,7 +297,7 @@ ADMIN_EMAIL = 'venexbtc@venexbtc.com'
 
 # Site URL for email templates
 SITE_URL = ['https://www.venexbtc.com', 'https://venexbtc.com'] # Change to your actual domain
- 
+
 # SITE_URL = ['http://localhost:8000', 'http://127.0.0.1:8000']
 
 # Authentication settings
@@ -313,7 +313,7 @@ LOGOUT_REDIRECT_URL = '/'
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', default='') # type: ignore
 COINGECKO_API_KEY = os.getenv('COINGECKO_API_KEY')
 CRYPTOCOMPARE_API_KEY = os.getenv('CRYPTOCOMPARE_API_KEY')
-API_TOKEN = os.getenv('API_TOKEN', default='c4108202488206bedec033be85b047342c106f12')  
+API_TOKEN = os.getenv('API_TOKEN', default='c4108202488206bedec033be85b047342c106f12')
 
 
 
